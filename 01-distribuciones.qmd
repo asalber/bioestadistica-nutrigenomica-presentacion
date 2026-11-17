@@ -810,7 +810,7 @@ a. Presión arterial sistólica de adultos sanos.
 a. Concentración de PCR ultrasensible.
 a. Proporciones de Firmicutes, Bacteroidetes y otros filos en una muestra de heces.
 a. Conteo de _Bifidobacterium_ en muestras donde muchos individuos no lo presentan.
-a. p-valores de 500 000 SNPs no asociados con el IMC.
+a. Número de lecturas del gen _LEP_ en réplicas técnicas de secuenciación de una misma biblioteca de RNA-seq.
 :::
 
 ---
@@ -825,6 +825,6 @@ a. Normal.
 a. Lognormal (o Gamma).
 a. Dirichlet.
 a. Binomial negativa inflada de ceros.
-a. Uniforme $U(0,1)$.
+a. Poisson.
 
 </details>
