@@ -203,9 +203,11 @@ Una estimación puntual no informa de su precisión. Es preferible dar un interv
 
 ![Estimación puntual y por intervalos](img/02-estimacion/estimacion-puntual-intervalo){width=80%}
 
+## Intervalo de confianza
+
 :::{#def-intervalo-confianza}
 ## Intervalo de confianza
-Dados dos estadísticos $l_1(X)$ y $l_2(X)$, el intervalo $[l_1(X), l_2(X)]$ es un _intervalo de confianza_ para el parámetro $\theta$ con _nivel de confianza_ $1-\alpha$ si
+Dados dos estadísticos $l_1(X)$ y $l_2(X)$, el intervalo $[l_1(X), l_2(X)]$ es un _intervalo de confianza_ para el parámetro $\theta$ con _nivel de confianza_ ${1-\alpha}$ si
 $$
 P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 $$
@@ -213,7 +215,36 @@ $$
 
 Lo habitual es usar niveles de confianza del 90%, 95% o 99%. La semiamplitud del intervalo se llama _margen de error_.
 
-## Interpretación de un intervalo de confianza
+## Interpretación de un intervalo de confianza {.smaller}
+
+:::: {.columns}
+
+::: {.column}
+**Lo que SÍ es**
+
+- Un rango de valores del parámetro compatibles con los datos al nivel de confianza elegido.
+- El resultado de un procedimiento que, repetido con muchas muestras, acierta el $(1-\alpha)\cdot 100\%$ de las veces.
+- Una medida de la precisión de la estimación: cuanto más estrecho, más precisa.
+- Una forma de valorar la relevancia clínica, comparando sus límites con el efecto mínimo de interés.
+:::
+
+::: {.column}
+**Lo que NO es**
+
+- La probabilidad del 95% de que el parámetro esté dentro de _este_ intervalo concreto.
+- El rango donde se encuentra el 95% de los individuos de la población.
+- El rango donde caerá el 95% de las medias de futuras muestras.
+- Una prueba de que todos los valores del intervalo son igual de plausibles, ni de que fuera de él el parámetro sea imposible.
+:::
+
+::::
+
+:::{.callout-tip}
+## Ejemplo
+Si el intervalo del 95% para la homocisteína media de los portadores TT de _MTHFR_ es $[`r fmt(t.test(hcy)$conf.int[1], 1)`, `r fmt(t.test(hcy)$conf.int[2], 1)`]$ µmol/l, decimos que _con una confianza del 95%_ la media poblacional está entre `r fmt(t.test(hcy)$conf.int[1], 1)` y `r fmt(t.test(hcy)$conf.int[2], 1)` µmol/l. No decimos que el 95% de los portadores TT tenga la homocisteína en ese rango.
+:::
+
+## Interpretación frecuentista de un intervalo de confianza
 
 El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiéramos el estudio muchas veces y construyéramos un intervalo del 95% con cada muestra, aproximadamente el 95% de esos intervalos contendrían el verdadero valor del parámetro.
 

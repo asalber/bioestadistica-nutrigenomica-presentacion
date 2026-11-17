@@ -307,16 +307,55 @@ E(\hat p) = p \qquad \mbox{y} \qquad Var(\hat p) = \frac{p(1-p)}{n},
 <h2>Estimación puntual y por intervalos</h2>
 <p>Una estimación puntual no informa de su precisión. Es preferible dar un intervalo de valores plausibles para el parámetro.</p>
 
-<img data-src="img/02-estimacion/estimacion-puntual-intervalo.svg" style="width:80.0%" class="r-stretch quarto-figure-center"><p class="caption">Estimación puntual y por intervalos</p><div id="def-intervalo-confianza" class="theorem definition">
-<p><span class="theorem-title"><strong>Definición 2 (Intervalo de confianza)</strong></span> Dados dos estadísticos <span class="math inline">\(l_1(X)\)</span> y <span class="math inline">\(l_2(X)\)</span>, el intervalo <span class="math inline">\([l_1(X), l_2(X)]\)</span> es un <em>intervalo de confianza</em> para el parámetro <span class="math inline">\(\theta\)</span> con <em>nivel de confianza</em> <span class="math inline">\(1-\alpha\)</span> si <span class="math display">\[
+<img data-src="img/02-estimacion/estimacion-puntual-intervalo.svg" style="width:80.0%" class="r-stretch quarto-figure-center"><p class="caption">Estimación puntual y por intervalos</p></section>
+
+<section id="intervalo-de-confianza" class="title-slide slide level2 center">
+<h2>Intervalo de confianza</h2>
+<div id="def-intervalo-confianza" class="theorem definition">
+<p><span class="theorem-title"><strong>Definición 2 (Intervalo de confianza)</strong></span> Dados dos estadísticos <span class="math inline">\(l_1(X)\)</span> y <span class="math inline">\(l_2(X)\)</span>, el intervalo <span class="math inline">\([l_1(X), l_2(X)]\)</span> es un <em>intervalo de confianza</em> para el parámetro <span class="math inline">\(\theta\)</span> con <em>nivel de confianza</em> <span class="math inline">\({1-\alpha}\)</span> si <span class="math display">\[
 P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 \]</span></p>
 </div>
 <p>Lo habitual es usar niveles de confianza del 90%, 95% o 99%. La semiamplitud del intervalo se llama <em>margen de error</em>.</p>
 </section>
 
-<section id="interpretación-de-un-intervalo-de-confianza" class="title-slide slide level2 center">
+<section id="interpretación-de-un-intervalo-de-confianza" class="title-slide slide level2 smaller center">
 <h2>Interpretación de un intervalo de confianza</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Lo que SÍ es</strong></p>
+<ul>
+<li>Un rango de valores del parámetro compatibles con los datos al nivel de confianza elegido.</li>
+<li>El resultado de un procedimiento que, repetido con muchas muestras, acierta el <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> de las veces.</li>
+<li>Una medida de la precisión de la estimación: cuanto más estrecho, más precisa.</li>
+<li>Una forma de valorar la relevancia clínica, comparando sus límites con el efecto mínimo de interés.</li>
+</ul>
+</div><div class="column">
+<p><strong>Lo que NO es</strong></p>
+<ul>
+<li>La probabilidad del 95% de que el parámetro esté dentro de <em>este</em> intervalo concreto.</li>
+<li>El rango donde se encuentra el 95% de los individuos de la población.</li>
+<li>El rango donde caerá el 95% de las medias de futuras muestras.</li>
+<li>Una prueba de que todos los valores del intervalo son igual de plausibles, ni de que fuera de él el parámetro sea imposible.</li>
+</ul>
+</div></div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ejemplo</strong></p>
+</div>
+<div class="callout-content">
+<p>Si el intervalo del 95% para la homocisteína media de los portadores TT de <em>MTHFR</em> es <span class="math inline">\([13.4, 15.5]\)</span> µmol/l, decimos que <em>con una confianza del 95%</em> la media poblacional está entre 13.4 y 15.5 µmol/l. No decimos que el 95% de los portadores TT tenga la homocisteína en ese rango.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="interpretación-frecuentista-de-un-intervalo-de-confianza" class="title-slide slide level2 center">
+<h2>Interpretación frecuentista de un intervalo de confianza</h2>
 <p>El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiéramos el estudio muchas veces y construyéramos un intervalo del 95% con cada muestra, aproximadamente el 95% de esos intervalos contendrían el verdadero valor del parámetro.</p>
 
 <img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="callout callout-caution callout-titled callout-style-default">
