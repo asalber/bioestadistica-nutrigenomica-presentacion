@@ -677,20 +677,22 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </div>
 </section>
 
-<section id="resumen-de-contrastes-paramétricos" class="title-slide slide level2 smaller center">
+<section id="resumen-de-contrastes-paramétricos" class="title-slide slide level2 smaller scrollable center">
 <h2>Resumen de contrastes paramétricos</h2>
 <table class="caption-top">
 <colgroup>
+<col style="width: 19%">
+<col style="width: 19%">
 <col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 29%">
-<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Objetivo</th>
 <th style="text-align: left;">Contraste</th>
 <th style="text-align: center;">Estadístico</th>
+<th style="text-align: left;">Condiciones de aplicación</th>
 <th style="text-align: left;">Ejemplo</th>
 </tr>
 </thead>
@@ -699,48 +701,63 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <td style="text-align: left;">Media de una población</td>
 <td style="text-align: left;">T para una muestra</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-1)\)</span></td>
+<td style="text-align: left;">Población normal o <span class="math inline">\(n\geq 30\)</span></td>
 <td style="text-align: left;">Homocisteína en TT de <em>MTHFR</em> frente a 12 µmol/l</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Proporción de una población</td>
 <td style="text-align: left;">Binomial / Z</td>
 <td style="text-align: center;"><span class="math inline">\(N(0,1)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(np_0\geq 5\)</span> y <span class="math inline">\(n(1-p_0)\geq 5\)</span> para Z; si no, binomial exacto</td>
 <td style="text-align: left;">Prevalencia de TT frente a la de referencia</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Varianza de una población</td>
 <td style="text-align: left;">Chi-cuadrado</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(n-1)\)</span></td>
+<td style="text-align: left;">Población normal (muy sensible a la falta de normalidad)</td>
 <td style="text-align: left;">Precisión de un método de medida de HbA1c</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medias de dos poblaciones independientes</td>
 <td style="text-align: left;">T de Student / Welch</td>
 <td style="text-align: center;"><span class="math inline">\(T\)</span></td>
+<td style="text-align: left;">Poblaciones normales o <span class="math inline">\(n_1, n_2\geq 30\)</span>; varianzas iguales (Student) o distintas (Welch)</td>
 <td style="text-align: left;">Pérdida de peso en AA frente a TT de <em>FTO</em></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medias de dos poblaciones pareadas</td>
 <td style="text-align: left;">T pareada</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-1)\)</span></td>
+<td style="text-align: left;">Diferencias normales o <span class="math inline">\(n\geq 30\)</span></td>
 <td style="text-align: left;">Triglicéridos antes y después de omega-3</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Proporciones de dos poblaciones</td>
+<td style="text-align: left;">Z para dos proporciones</td>
+<td style="text-align: center;"><span class="math inline">\(N(0,1)\)</span></td>
+<td style="text-align: left;">Muestras independientes; <span class="math inline">\(n_i\hat p_i\geq 5\)</span> y <span class="math inline">\(n_i(1-\hat p_i)\geq 5\)</span></td>
+<td style="text-align: left;">Normalización de homocisteína según <em>MTHFR</em></td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Varianzas de dos poblaciones</td>
 <td style="text-align: left;">F de Fisher</td>
 <td style="text-align: center;"><span class="math inline">\(F(n_1-1, n_2-1)\)</span></td>
+<td style="text-align: left;">Poblaciones normales independientes</td>
 <td style="text-align: left;">Variabilidad glucémica según <em>TCF7L2</em></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Medias de más de dos poblaciones</td>
 <td style="text-align: left;">ANOVA</td>
 <td style="text-align: center;"><span class="math inline">\(F(k-1, n-k)\)</span></td>
+<td style="text-align: left;">Grupos independientes, normales y con varianzas iguales</td>
 <td style="text-align: left;">IMC según genotipo AA, AT, TT de <em>FTO</em></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Correlación lineal</td>
 <td style="text-align: left;">T de Pearson</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-2)\)</span></td>
+<td style="text-align: left;">Relación lineal; normalidad bivariante</td>
 <td style="text-align: left;">Ingesta de folato y homocisteína</td>
 </tr>
 </tbody>
@@ -767,54 +784,48 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Proporciones de dos poblaciones</td>
-<td style="text-align: left;">Z / Chi-cuadrado 2×2</td>
-<td style="text-align: center;"><span class="math inline">\(\chi^2(1)\)</span></td>
-<td style="text-align: left;">Normalización de homocisteína según <em>MTHFR</em></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Independencia de dos variables cualitativas</td>
 <td style="text-align: left;">Chi-cuadrado de independencia</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2((r-1)(c-1))\)</span></td>
 <td style="text-align: left;">Genotipo de <em>FTO</em> y obesidad</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Ajuste a una distribución teórica</td>
 <td style="text-align: left;">Chi-cuadrado de bondad de ajuste</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(k-1-m)\)</span></td>
 <td style="text-align: left;">Equilibrio de Hardy-Weinberg</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Independencia con frecuencias esperadas &lt; 5</td>
 <td style="text-align: left;">Exacto de Fisher</td>
 <td style="text-align: center;">—</td>
 <td style="text-align: left;">Variante rara y respuesta a la dieta</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Dos poblaciones independientes sin normalidad</td>
 <td style="text-align: left;">U de Mann-Whitney</td>
 <td style="text-align: center;"><span class="math inline">\(W\)</span></td>
 <td style="text-align: left;">PCR según tipo de dieta</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Dos poblaciones pareadas sin normalidad</td>
 <td style="text-align: left;">Rangos con signo de Wilcoxon</td>
 <td style="text-align: center;"><span class="math inline">\(V\)</span></td>
 <td style="text-align: left;">Insulina antes y después de una intervención</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Más de dos poblaciones sin normalidad</td>
 <td style="text-align: left;">Kruskal-Wallis</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(k-1)\)</span></td>
 <td style="text-align: left;">Diversidad de la microbiota según dieta</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Correlación monótona</td>
 <td style="text-align: left;">Spearman</td>
 <td style="text-align: center;"><span class="math inline">\(\rho\)</span></td>
 <td style="text-align: left;">Fibra dietética y abundancia de <em>Bifidobacterium</em></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Muchos contrastes simultáneos</td>
 <td style="text-align: left;">Corrección de Bonferroni / FDR</td>
 <td style="text-align: center;">—</td>

@@ -484,24 +484,24 @@ La elección del contraste depende de:
 Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con un gráfico Q-Q y el contraste de Shapiro-Wilk, sobre todo con muestras pequeñas.
 :::
 
-## Resumen de contrastes paramétricos {.smaller}
+## Resumen de contrastes paramétricos {.smaller .scrollable}
 
-| Objetivo | Contraste | Estadístico | Ejemplo |
-|:---|:---|:---:|:---|
-| Media de una población | T para una muestra | $T(n-1)$ | Homocisteína en TT de _MTHFR_ frente a 12 µmol/l |
-| Proporción de una población | Binomial / Z | $N(0,1)$ | Prevalencia de TT frente a la de referencia |
-| Varianza de una población | Chi-cuadrado | $\chi^2(n-1)$ | Precisión de un método de medida de HbA1c |
-| Medias de dos poblaciones independientes | T de Student / Welch | $T$ | Pérdida de peso en AA frente a TT de _FTO_ |
-| Medias de dos poblaciones pareadas | T pareada | $T(n-1)$ | Triglicéridos antes y después de omega-3 |
-| Varianzas de dos poblaciones | F de Fisher | $F(n_1-1, n_2-1)$ | Variabilidad glucémica según _TCF7L2_ |
-| Medias de más de dos poblaciones | ANOVA | $F(k-1, n-k)$ | IMC según genotipo AA, AT, TT de _FTO_ |
-| Correlación lineal | T de Pearson | $T(n-2)$ | Ingesta de folato y homocisteína |
+| Objetivo | Contraste | Estadístico | Condiciones de aplicación | Ejemplo |
+|:---|:---|:---:|:---|:---|
+| Media de una población | T para una muestra | $T(n-1)$ | Población normal o $n\geq 30$ | Homocisteína en TT de _MTHFR_ frente a 12 µmol/l |
+| Proporción de una población | Binomial / Z | $N(0,1)$ | $np_0\geq 5$ y $n(1-p_0)\geq 5$ para Z; si no, binomial exacto | Prevalencia de TT frente a la de referencia |
+| Varianza de una población | Chi-cuadrado | $\chi^2(n-1)$ | Población normal (muy sensible a la falta de normalidad) | Precisión de un método de medida de HbA1c |
+| Medias de dos poblaciones independientes | T de Student / Welch | $T$ | Poblaciones normales o $n_1, n_2\geq 30$; varianzas iguales (Student) o distintas (Welch) | Pérdida de peso en AA frente a TT de _FTO_ |
+| Medias de dos poblaciones pareadas | T pareada | $T(n-1)$ | Diferencias normales o $n\geq 30$ | Triglicéridos antes y después de omega-3 |
+| Proporciones de dos poblaciones | Z para dos proporciones | $N(0,1)$ | Muestras independientes; $n_i\hat p_i\geq 5$ y $n_i(1-\hat p_i)\geq 5$ | Normalización de homocisteína según _MTHFR_ |
+| Varianzas de dos poblaciones | F de Fisher | $F(n_1-1, n_2-1)$ | Poblaciones normales independientes | Variabilidad glucémica según _TCF7L2_ |
+| Medias de más de dos poblaciones | ANOVA | $F(k-1, n-k)$ | Grupos independientes, normales y con varianzas iguales | IMC según genotipo AA, AT, TT de _FTO_ |
+| Correlación lineal | T de Pearson | $T(n-2)$ | Relación lineal; normalidad bivariante | Ingesta de folato y homocisteína |
 
 ## Resumen de contrastes para datos categóricos y no paramétricos {.smaller .scrollable}
 
 | Objetivo | Contraste | Estadístico | Ejemplo |
 |:---|:---|:---:|:---|
-| Proporciones de dos poblaciones | Z / Chi-cuadrado 2×2 | $\chi^2(1)$ | Normalización de homocisteína según _MTHFR_ |
 | Independencia de dos variables cualitativas | Chi-cuadrado de independencia | $\chi^2((r-1)(c-1))$ | Genotipo de _FTO_ y obesidad |
 | Ajuste a una distribución teórica | Chi-cuadrado de bondad de ajuste | $\chi^2(k-1-m)$ | Equilibrio de Hardy-Weinberg |
 | Independencia con frecuencias esperadas < 5 | Exacto de Fisher | — | Variante rara y respuesta a la dieta |
