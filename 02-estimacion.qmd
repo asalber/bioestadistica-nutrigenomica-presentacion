@@ -173,7 +173,7 @@ ggplot(tibble(estad), aes(estad)) +
 
 ::::
 
-## Distribución de la proporción muestral
+## Distribución de la proporción muestral {.smaller}
 
 :::{#thm-distribucion-proporcion-muestral}
 ## Distribución de la proporción muestral

@@ -139,7 +139,7 @@ Al estudiar si una variante de _APOA2_ modifica el efecto de la grasa saturada s
 Estadístico del contraste y regiones de rechazo
 :::
 
-## Estadístico del contraste
+## Estadístico del contraste {.smaller}
 
 :::{#def-estadistico-contraste}
 ## Estadístico del contraste

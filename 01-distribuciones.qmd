@@ -256,7 +256,7 @@ densidades(seq(0.1, 70, length.out = 500),
 
 ::::
 
-## Distribución Beta
+## Distribución Beta {.smaller}
 
 :::{#def-distribucion-beta}
 ## Distribución Beta
@@ -420,7 +420,7 @@ tibble(x = 0:25, p = dbinom(0:25, 50, 0.16)) |>
 
 ::::
 
-## Distribución Multinomial
+## Distribución Multinomial {.smaller}
 
 :::{#def-distribucion-multinomial}
 ## Distribución Multinomial

@@ -320,3 +320,12 @@ html .timeline {
 .reveal table td {
   vertical-align: middle;
 }
+
+/* Separación tras definiciones y teoremas para que no queden pegados al ejemplo siguiente */
+.reveal .theorem:not(.example) {
+  margin-bottom: 1.2em;
+}
+.reveal .theorem:not(.example) + .example {
+  display: block;
+  margin-top: 1.2em;
+}
