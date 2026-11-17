@@ -235,16 +235,6 @@ $$
 \mbox{Estadístico} = \frac{\mbox{Estimación} - \mbox{Valor bajo } H_0}{\mbox{Error estándar}}.
 $$
 
-:::{#exm-estadistico-contraste}
-Para contrastar si la homocisteína media de los homocigotos TT de _MTHFR_ supera el umbral de 12 µmol/l, $H_0: \mu = 12$ frente a $H_1: \mu > 12$, se usa el estadístico
-$$
-T = \frac{\bar X - 12}{\hat S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
-$$
-Valores de $T$ próximos a 0 son compatibles con $H_0$; valores grandes son evidencia a favor de $H_1$.
-:::
-
----
-
 :::{#exm-hombres-estadistico}
 Sospechamos que en una población hay menos hombres que mujeres. Si $p$ es la proporción de hombres, por las leyes de la genética lo esperable es $p = 0.5$, así que planteamos
 $$
@@ -253,6 +243,16 @@ $$
 Tomamos una muestra aleatoria de 10 personas y usamos como estadístico del contraste el número de hombres en la muestra, $X$. Si $H_0$ es cierta, $X\sim B(10, 0.5)$ y el número esperado de hombres es 5.
 
 Es lógico aceptar $H_0$ si en la muestra hay un número de hombres próximo a 5 y rechazarla si hay muchos menos. Pero _¿dónde ponemos el límite entre ambas regiones?_
+:::
+
+---
+
+:::{#exm-estadistico-contraste}
+Para contrastar si la homocisteína media de los homocigotos TT de _MTHFR_ supera el umbral de 12 µmol/l, $H_0: \mu = 12$ frente a $H_1: \mu > 12$, se usa el estadístico
+$$
+T = \frac{\bar X - 12}{\hat S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
+$$
+Valores de $T$ próximos a 0 son compatibles con $H_0$; valores grandes son evidencia a favor de $H_1$.
 :::
 
 
@@ -285,32 +285,6 @@ p1 | p2 | p3
 :::: {.columns}
 
 ::: {.column width="45%"}
-:::{#exm-regiones-homocisteina}
-Con las 20 mediciones de homocisteína de los homocigotos TT de _MTHFR_ ($\bar x = `r fmt(mean(hcy), 2)`$, $s = `r fmt(sd(hcy), 2)`$), contrastar $H_0: \mu = 12$ frente a $H_1: \mu > 12$ con $\alpha = 0.05$.
-:::
-
-- Estadístico: $t = \dfrac{`r fmt(mean(hcy), 2)` - 12}{`r fmt(sd(hcy), 2)`/\sqrt{20}} = `r fmt(t_obs, 3)`$.
-- Valor crítico: $t^{19}_{0.05} = `r fmt(t_crit, 3)`$.
-
-El estadístico ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_0$ y concluimos que la homocisteína media supera los 12 µmol/l.
-:::
-
-::: {.column width="55%"}
-```{r}
-#| fig-width: 6
-#| fig-height: 5
-dibujar_regiones(\(x) dt(x, n_hcy - 1), seq(-4, 7, length.out = 800), \(x) x > t_crit,
-                 "Distribución T(19) bajo H₀", "T", obs = t_obs)
-```
-:::
-
-::::
-
----
-
-:::: {.columns}
-
-::: {.column width="45%"}
 :::{#exm-hombres-regiones}
 Como $X\sim B(10, 0.5)$ bajo $H_0$ y el contraste es unilateral de menor, la región de rechazo estará en los valores pequeños de $X$.
 
@@ -330,6 +304,32 @@ $$P(X\leq 1) = `r fmt(pbinom(1, 10, 0.5), 4)` \leq 0.05.$$
 #| fig-width: 6
 #| fig-height: 5
 dibujar_binomial(10, 0.5, k_rechazo = 1)
+```
+:::
+
+::::
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-regiones-homocisteina}
+Con las 20 mediciones de homocisteína de los homocigotos TT de _MTHFR_ ($\bar x = `r fmt(mean(hcy), 2)`$, $\hat s = `r fmt(sd(hcy), 2)`$), contrastar $H_0: \mu = 12$ frente a $H_1: \mu > 12$ con $\alpha = 0.05$.
+:::
+
+- Estadístico: $t = \dfrac{`r fmt(mean(hcy), 2)` - 12}{`r fmt(sd(hcy), 2)`/\sqrt{20}} = `r fmt(t_obs, 3)`$.
+- Valor crítico: $t^{19}_{0.05} = `r fmt(t_crit, 3)`$.
+
+El estadístico ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_0$ y concluimos que la homocisteína media supera los 12 µmol/l.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+dibujar_regiones(\(x) dt(x, n_hcy - 1), seq(-4, 7, length.out = 800), \(x) x > t_crit,
+                 "Distribución T(19) bajo H₀", "T", obs = t_obs)
 ```
 :::
 
@@ -390,21 +390,6 @@ Esta regla lleva a la misma decisión que comprobar si el estadístico cae en la
 
 ---
 
-:::{#exm-p-valor}
-En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una $T(19)$ supere el valor observado:
-$$
-\mbox{p-valor} = P(T \geq `r fmt(t_obs, 3)`) = `r fmt_p(pt(t_obs, n_hcy - 1, lower.tail = FALSE))`.
-$$
-:::
-
-```{r}
-tabla_contraste(t.test(hcy, mu = 12, alternative = "greater"))
-```
-
-Como el p-valor es menor que $\alpha = 0.05$, rechazamos $H_0$. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de $H_0$.
-
----
-
 :::: {.columns}
 
 ::: {.column width="45%"}
@@ -436,6 +421,21 @@ tibble(x = 0:10, p = dbinom(0:10, 10, 0.5), pval = x <= 1) |>
 :::
 
 ::::
+
+---
+
+:::{#exm-p-valor}
+En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una $T(19)$ supere el valor observado:
+$$
+\mbox{p-valor} = P(T \geq `r fmt(t_obs, 3)`) = `r fmt_p(pt(t_obs, n_hcy - 1, lower.tail = FALSE))`.
+$$
+:::
+
+```{r}
+tabla_contraste(t.test(hcy, mu = 12, alternative = "greater"))
+```
+
+Como el p-valor es menor que $\alpha = 0.05$, rechazamos $H_0$. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de $H_0$.
 
 ## Interpretación del p-valor
 

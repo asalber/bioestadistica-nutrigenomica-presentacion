@@ -318,19 +318,19 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <p>Normalmente tiene la forma <span class="math display">\[
 \mbox{Estadístico} = \frac{\mbox{Estimación} - \mbox{Valor bajo } H_0}{\mbox{Error estándar}}.
 \]</span></p>
-<div id="exm-estadistico-contraste" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 3</strong></span> Para contrastar si la homocisteína media de los homocigotos TT de <em>MTHFR</em> supera el umbral de 12 µmol/l, <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span>, se usa el estadístico <span class="math display">\[
-T = \frac{\bar X - 12}{\hat S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
-\]</span> Valores de <span class="math inline">\(T\)</span> próximos a 0 son compatibles con <span class="math inline">\(H_0\)</span>; valores grandes son evidencia a favor de <span class="math inline">\(H_1\)</span>.</p>
+<div id="exm-hombres-estadistico" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 3</strong></span> Sospechamos que en una población hay menos hombres que mujeres. Si <span class="math inline">\(p\)</span> es la proporción de hombres, por las leyes de la genética lo esperable es <span class="math inline">\(p = 0.5\)</span>, así que planteamos <span class="math display">\[
+H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
+\]</span> Tomamos una muestra aleatoria de 10 personas y usamos como estadístico del contraste el número de hombres en la muestra, <span class="math inline">\(X\)</span>. Si <span class="math inline">\(H_0\)</span> es cierta, <span class="math inline">\(X\sim B(10, 0.5)\)</span> y el número esperado de hombres es 5.</p>
+<p>Es lógico aceptar <span class="math inline">\(H_0\)</span> si en la muestra hay un número de hombres próximo a 5 y rechazarla si hay muchos menos. Pero <em>¿dónde ponemos el límite entre ambas regiones?</em></p>
 </div>
 </section>
 <section class="slide level3">
 
-<div id="exm-hombres-estadistico" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Sospechamos que en una población hay menos hombres que mujeres. Si <span class="math inline">\(p\)</span> es la proporción de hombres, por las leyes de la genética lo esperable es <span class="math inline">\(p = 0.5\)</span>, así que planteamos <span class="math display">\[
-H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
-\]</span> Tomamos una muestra aleatoria de 10 personas y usamos como estadístico del contraste el número de hombres en la muestra, <span class="math inline">\(X\)</span>. Si <span class="math inline">\(H_0\)</span> es cierta, <span class="math inline">\(X\sim B(10, 0.5)\)</span> y el número esperado de hombres es 5.</p>
-<p>Es lógico aceptar <span class="math inline">\(H_0\)</span> si en la muestra hay un número de hombres próximo a 5 y rechazarla si hay muchos menos. Pero <em>¿dónde ponemos el límite entre ambas regiones?</em></p>
+<div id="exm-estadistico-contraste" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Para contrastar si la homocisteína media de los homocigotos TT de <em>MTHFR</em> supera el umbral de 12 µmol/l, <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span>, se usa el estadístico <span class="math display">\[
+T = \frac{\bar X - 12}{\hat S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
+\]</span> Valores de <span class="math inline">\(T\)</span> próximos a 0 son compatibles con <span class="math inline">\(H_0\)</span>; valores grandes son evidencia a favor de <span class="math inline">\(H_1\)</span>.</p>
 </div>
 </section></section>
 <section>
@@ -353,14 +353,15 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 
 <div class="columns">
 <div class="column" style="width:45%;">
-<div id="exm-regiones-homocisteina" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em> (<span class="math inline">\(\bar x = 14.44\)</span>, <span class="math inline">\(s = 2.24\)</span>), contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div id="exm-hombres-regiones" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Como <span class="math inline">\(X\sim B(10, 0.5)\)</span> bajo <span class="math inline">\(H_0\)</span> y el contraste es unilateral de menor, la región de rechazo estará en los valores pequeños de <span class="math inline">\(X\)</span>.</p>
+<p>Si rechazáramos con 2 o menos hombres, la probabilidad de error de tipo I sería <span class="math display">\[P(X\leq 2) = 0.0547 &gt; 0.05.\]</span></p>
+<p>Con <span class="math inline">\(\alpha = 0.05\)</span> solo podemos rechazar con 0 o 1 hombres, ya que <span class="math display">\[P(X\leq 1) = 0.0107 \leq 0.05.\]</span></p>
 </div>
 <ul>
-<li>Estadístico: <span class="math inline">\(t = \dfrac{14.44 - 12}{2.24/\sqrt{20}} = 4.880\)</span>.</li>
-<li>Valor crítico: <span class="math inline">\(t^{19}_{0.05} = 1.729\)</span>.</li>
+<li>Región de rechazo: <span class="math inline">\(X\leq 1\)</span>.</li>
+<li>Región de aceptación: <span class="math inline">\(X\geq 2\)</span>.</li>
 </ul>
-<p>El estadístico (<span class="mygreen">verde</span>) cae en la región de rechazo: rechazamos <span class="math inline">\(H_0\)</span> y concluimos que la homocisteína media supera los 12 µmol/l.</p>
 </div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -377,15 +378,14 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 
 <div class="columns">
 <div class="column" style="width:45%;">
-<div id="exm-hombres-regiones" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> Como <span class="math inline">\(X\sim B(10, 0.5)\)</span> bajo <span class="math inline">\(H_0\)</span> y el contraste es unilateral de menor, la región de rechazo estará en los valores pequeños de <span class="math inline">\(X\)</span>.</p>
-<p>Si rechazáramos con 2 o menos hombres, la probabilidad de error de tipo I sería <span class="math display">\[P(X\leq 2) = 0.0547 &gt; 0.05.\]</span></p>
-<p>Con <span class="math inline">\(\alpha = 0.05\)</span> solo podemos rechazar con 0 o 1 hombres, ya que <span class="math display">\[P(X\leq 1) = 0.0107 \leq 0.05.\]</span></p>
+<div id="exm-regiones-homocisteina" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em> (<span class="math inline">\(\bar x = 14.44\)</span>, <span class="math inline">\(\hat s = 2.24\)</span>), contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 </div>
 <ul>
-<li>Región de rechazo: <span class="math inline">\(X\leq 1\)</span>.</li>
-<li>Región de aceptación: <span class="math inline">\(X\geq 2\)</span>.</li>
+<li>Estadístico: <span class="math inline">\(t = \dfrac{14.44 - 12}{2.24/\sqrt{20}} = 4.880\)</span>.</li>
+<li>Valor crítico: <span class="math inline">\(t^{19}_{0.05} = 1.729\)</span>.</li>
 </ul>
+<p>El estadístico (<span class="mygreen">verde</span>) cae en la región de rechazo: rechazamos <span class="math inline">\(H_0\)</span> y concluimos que la homocisteína media supera los 12 µmol/l.</p>
 </div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -465,8 +465,31 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 </section>
 <section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-p-valor" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> En el contraste sobre la proporción de hombres (<span class="math inline">\(H_0: p = 0.5\)</span>, <span class="math inline">\(H_1: p &lt; 0.5\)</span>), si en una muestra de 10 personas observamos 1 hombre, el p-valor es <span class="math display">\[p = P(X\leq 1) = 0.0107.\]</span> Si observamos 0 hombres, el p-valor es <span class="math display">\[p = P(X\leq 0) = 0.0010.\]</span></p>
+</div>
+<ul>
+<li>Con 1 hombre se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>, pero no con <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+<li>Con 0 hombres se rechaza también con <span class="math inline">\(\alpha = 0.01\)</span>: la evidencia en contra de <span class="math inline">\(H_0\)</span> es mayor.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-8-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level3">
+
 <div id="exm-p-valor" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una <span class="math inline">\(T(19)\)</span> supere el valor observado: <span class="math display">\[
+<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una <span class="math inline">\(T(19)\)</span> supere el valor observado: <span class="math display">\[
 \mbox{p-valor} = P(T \geq 4.880) = &lt; 0.0001.
 \]</span></p>
 </div>
@@ -493,29 +516,6 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 </div>
 </div>
 <p>Como el p-valor es menor que <span class="math inline">\(\alpha = 0.05\)</span>, rechazamos <span class="math inline">\(H_0\)</span>. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
-</section>
-<section class="slide level3">
-
-<div class="columns">
-<div class="column" style="width:45%;">
-<div id="exm-hombres-p-valor" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> En el contraste sobre la proporción de hombres (<span class="math inline">\(H_0: p = 0.5\)</span>, <span class="math inline">\(H_1: p &lt; 0.5\)</span>), si en una muestra de 10 personas observamos 1 hombre, el p-valor es <span class="math display">\[p = P(X\leq 1) = 0.0107.\]</span> Si observamos 0 hombres, el p-valor es <span class="math display">\[p = P(X\leq 0) = 0.0010.\]</span></p>
-</div>
-<ul>
-<li>Con 1 hombre se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>, pero no con <span class="math inline">\(\alpha = 0.01\)</span>.</li>
-<li>Con 0 hombres se rechaza también con <span class="math inline">\(\alpha = 0.01\)</span>: la evidencia en contra de <span class="math inline">\(H_0\)</span> es mayor.</li>
-</ul>
-</div><div class="column" style="width:55%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-9-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
 </section></section>
 <section id="interpretación-del-p-valor" class="title-slide slide level2 center">
 <h2>Interpretación del p-valor</h2>
