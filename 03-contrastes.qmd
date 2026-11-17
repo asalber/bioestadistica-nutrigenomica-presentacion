@@ -118,13 +118,20 @@ Al decidir con una muestra podemos equivocarnos de dos formas:
 | Decisión \\ Realidad | $H_0$ cierta | $H_0$ falsa |
 |:---|:---:|:---:|
 | **No rechazar $H_0$** | Decisión correcta | **Error de tipo II** (riesgo $\beta$) |
-| **Rechazar $H_0$** | **Error de tipo I** (como máximo $\alpha$) | Decisión correcta (potencia $1-\beta$) |
+| **Rechazar $H_0$** | **Error de tipo I** (riesgo $\alpha$) | Decisión correcta (potencia $1-\beta$) |
 
 :::{#def-errores}
 ## Errores de tipo I y II
-- _Error de tipo I_ (falso positivo): rechazar $H_0$ cuando es cierta. El _riesgo_ $\alpha$ o _nivel de significación_ es la probabilidad **máxima** de error de tipo I que estamos dispuestos a asumir. Cuando se rechaza $H_0$, el p-valor es la probabilidad de error de tipo I que se comete con la muestra observada, y nunca supera $\alpha$.
-- _Error de tipo II_ (falso negativo): no rechazar $H_0$ cuando es falsa. Su probabilidad es $\beta = P(\mbox{No rechazar } H_0 \mid H_1)$.
+- _Error de tipo I_ (falso positivo): rechazar $H_0$ cuando es cierta. La probabilidad de cometerlo con la muestra observada es el _p-valor_.
+- _Error de tipo II_ (falso negativo): no rechazar $H_0$ cuando es falsa.
 :::
+
+Para controlar estos errores se fijan sus riesgos:
+
+- **Riesgo $\alpha$** o _nivel de significación_: probabilidad máxima de error de tipo I que estamos dispuestos a asumir. Se rechaza $H_0$ solo si el p-valor $\leq \alpha$.
+- **Riesgo $\beta$**: probabilidad de error de tipo II, $\beta = P(\mbox{No rechazar } H_0 \mid H_1)$.
+
+---
 
 :::{#exm-errores}
 Al estudiar si una variante de _APOA2_ modifica el efecto de la grasa saturada sobre el IMC:

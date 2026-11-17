@@ -212,6 +212,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <li><strong>Unilateral a la izquierda</strong>: <span class="math inline">\(H_0: \theta = \theta_0\)</span> frente a <span class="math inline">\(H_1: \theta &lt; \theta_0\)</span>.</li>
 </ul>
 </section></section>
+<section>
 <section id="tipos-de-errores" class="title-slide slide level2 smaller center">
 <h2>Tipos de errores</h2>
 <p>Al decidir con una muestra podemos equivocarnos de dos formas:</p>
@@ -236,7 +237,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Rechazar <span class="math inline">\(H_0\)</span></strong></td>
-<td style="text-align: center;"><strong>Error de tipo I</strong> (como máximo <span class="math inline">\(\alpha\)</span>)</td>
+<td style="text-align: center;"><strong>Error de tipo I</strong> (riesgo <span class="math inline">\(\alpha\)</span>)</td>
 <td style="text-align: center;">Decisión correcta (potencia <span class="math inline">\(1-\beta\)</span>)</td>
 </tr>
 </tbody>
@@ -244,10 +245,18 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <div id="def-errores" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 2 (Errores de tipo I y II)</strong></span> &nbsp;</p>
 <ul>
-<li><em>Error de tipo I</em> (falso positivo): rechazar <span class="math inline">\(H_0\)</span> cuando es cierta. El <em>riesgo</em> <span class="math inline">\(\alpha\)</span> o <em>nivel de significación</em> es la probabilidad <strong>máxima</strong> de error de tipo I que estamos dispuestos a asumir. Cuando se rechaza <span class="math inline">\(H_0\)</span>, el p-valor es la probabilidad de error de tipo I que se comete con la muestra observada, y nunca supera <span class="math inline">\(\alpha\)</span>.</li>
-<li><em>Error de tipo II</em> (falso negativo): no rechazar <span class="math inline">\(H_0\)</span> cuando es falsa. Su probabilidad es <span class="math inline">\(\beta = P(\mbox{No rechazar } H_0 \mid H_1)\)</span>.</li>
+<li><em>Error de tipo I</em> (falso positivo): rechazar <span class="math inline">\(H_0\)</span> cuando es cierta. La probabilidad de cometerlo con la muestra observada es el <em>p-valor</em>.</li>
+<li><em>Error de tipo II</em> (falso negativo): no rechazar <span class="math inline">\(H_0\)</span> cuando es falsa.</li>
 </ul>
 </div>
+<p>Para controlar estos errores se fijan sus riesgos:</p>
+<ul>
+<li><strong>Riesgo <span class="math inline">\(\alpha\)</span></strong> o <em>nivel de significación</em>: probabilidad máxima de error de tipo I que estamos dispuestos a asumir. Se rechaza <span class="math inline">\(H_0\)</span> solo si el p-valor <span class="math inline">\(\leq \alpha\)</span>.</li>
+<li><strong>Riesgo <span class="math inline">\(\beta\)</span></strong>: probabilidad de error de tipo II, <span class="math inline">\(\beta = P(\mbox{No rechazar } H_0 \mid H_1)\)</span>.</li>
+</ul>
+</section>
+<section class="slide level3">
+
 <div id="exm-errores" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 2</strong></span> Al estudiar si una variante de <em>APOA2</em> modifica el efecto de la grasa saturada sobre el IMC:</p>
 <ul>
@@ -255,8 +264,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <li>Error de tipo II: no detectar una interacción real (y perder una oportunidad de nutrición de precisión).</li>
 </ul>
 </div>
-</section>
-
+</section></section>
 <section id="qué-error-es-más-grave" class="title-slide slide level2 smaller center">
 <h2>¿Qué error es más grave?</h2>
 <div class="centered">
