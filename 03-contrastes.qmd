@@ -301,6 +301,7 @@ $$P(X\leq 1) = `r fmt(pbinom(1, 10, 0.5), 4)` \leq 0.05.$$
 
 ::: {.column width="55%"}
 ```{r}
+#| label: regiones-hombres
 #| fig-width: 6
 #| fig-height: 5
 dibujar_binomial(10, 0.5, k_rechazo = 1)
@@ -326,6 +327,7 @@ El estadístico ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_
 
 ::: {.column width="55%"}
 ```{r}
+#| label: regiones-homocisteina
 #| fig-width: 6
 #| fig-height: 5
 dibujar_regiones(\(x) dt(x, n_hcy - 1), seq(-4, 7, length.out = 800), \(x) x > t_crit,
@@ -406,6 +408,7 @@ $$p = P(X\leq 0) = `r fmt(pbinom(0, 10, 0.5), 4)`.$$
 
 ::: {.column width="55%"}
 ```{r}
+#| label: p-valor-hombres
 #| fig-width: 6
 #| fig-height: 5
 tibble(x = 0:10, p = dbinom(0:10, 10, 0.5), pval = x <= 1) |>
@@ -427,7 +430,7 @@ tibble(x = 0:10, p = dbinom(0:10, 10, 0.5), pval = x <= 1) |>
 :::{#exm-p-valor}
 En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una $T(19)$ supere el valor observado:
 $$
-\mbox{p-valor} = P(T \geq `r fmt(t_obs, 3)`) = `r fmt_p(pt(t_obs, n_hcy - 1, lower.tail = FALSE))`.
+\mbox{p-valor} = P(T \geq `r fmt(t_obs, 3)`) `r fmt_peq(pt(t_obs, n_hcy - 1, lower.tail = FALSE))`.
 $$
 :::
 
@@ -841,7 +844,7 @@ $H_0: \sigma = 0.3$ frente a $H_1: \sigma < 0.3$.
 :::
 
 $$
-\chi^2 = \frac{(n-1)\hat s^2}{0.3^2} = \frac{14\cdot `r fmt(var(hba1c), 4)`}{0.09} = `r fmt(chi_obs, 3)` \qquad \mbox{p-valor} = P(\chi^2(14) \leq `r fmt(chi_obs, 3)`) = `r fmt_p(pchisq(chi_obs, 14))`.
+\chi^2 = \frac{(n-1)\hat s^2}{0.3^2} = \frac{14\cdot `r fmt(var(hba1c), 4)`}{0.09} = `r fmt(chi_obs, 3)` \qquad \mbox{p-valor} = P(\chi^2(14) \leq `r fmt(chi_obs, 3)`) `r fmt_peq(pchisq(chi_obs, 14))`.
 $$
 
 Aunque la desviación típica muestral es menor que 0.3, con solo 15 mediciones no hay evidencia suficiente para afirmar que $\sigma < 0.3$. Haría falta una muestra mayor.
@@ -1074,7 +1077,7 @@ La frecuencia estimada del alelo A es $\hat p = \frac{2\cdot 92 + 236}{1000} = `
 tibble(Genotipo = names(obs), Observados = obs, Esperados = fmt(esp, 1)) |> kable(align = "ccc")
 ```
 
-$\chi^2 = \sum\frac{(O-E)^2}{E} = `r fmt(chi_hw, 3)`$ con $3 - 1 - 1 = 1$ grado de libertad (se descuenta el parámetro $p$ estimado), p-valor = `r fmt_p(pchisq(chi_hw, 1, lower.tail = FALSE))`.
+$\chi^2 = \sum\frac{(O-E)^2}{E} = `r fmt(chi_hw, 3)`$ con $3 - 1 - 1 = 1$ grado de libertad (se descuenta el parámetro $p$ estimado), p-valor `r fmt_peq(pchisq(chi_hw, 1, lower.tail = FALSE))`.
 
 No hay evidencia de desviación del equilibrio de Hardy-Weinberg, lo que respalda la calidad del genotipado.
 
