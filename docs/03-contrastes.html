@@ -320,7 +320,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 \]</span></p>
 <div id="exm-estadistico-contraste" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 3</strong></span> Para contrastar si la homocisteína media de los homocigotos TT de <em>MTHFR</em> supera el umbral de 12 µmol/l, <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span>, se usa el estadístico <span class="math display">\[
-T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
+T = \frac{\bar X - 12}{\hat S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es cierta.}
 \]</span> Valores de <span class="math inline">\(T\)</span> próximos a 0 son compatibles con <span class="math inline">\(H_0\)</span>; valores grandes son evidencia a favor de <span class="math inline">\(H_1\)</span>.</p>
 </div>
 </section>
@@ -754,7 +754,7 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Diferencia de medias</td>
-<td style="text-align: left;"><span class="math inline">\(d\)</span> de Cohen <span class="math inline">\(= \dfrac{\bar x_1-\bar x_2}{s_p}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(d\)</span> de Cohen <span class="math inline">\(= \dfrac{\bar x_1-\bar x_2}{\hat s_p}\)</span></td>
 <td style="text-align: center;">0.2</td>
 <td style="text-align: center;">0.5</td>
 <td style="text-align: center;">0.8</td>
@@ -1087,7 +1087,7 @@ H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
 <p><span class="math inline">\(H_0: \sigma = 0.3\)</span> frente a <span class="math inline">\(H_1: \sigma &lt; 0.3\)</span>.</p>
 </div>
 <p><span class="math display">\[
-\chi^2 = \frac{(n-1)s^2}{0.3^2} = \frac{14\cdot 0.0635}{0.09} = 9.881 \qquad \mbox{p-valor} = P(\chi^2(14) \leq 9.881) = 0.2292.
+\chi^2 = \frac{(n-1)\hat s^2}{0.3^2} = \frac{14\cdot 0.0635}{0.09} = 9.881 \qquad \mbox{p-valor} = P(\chi^2(14) \leq 9.881) = 0.2292.
 \]</span></p>
 <p>Aunque la desviación típica muestral es menor que 0.3, con solo 15 mediciones no hay evidencia suficiente para afirmar que <span class="math inline">\(\sigma &lt; 0.3\)</span>. Haría falta una muestra mayor.</p>
 </section>

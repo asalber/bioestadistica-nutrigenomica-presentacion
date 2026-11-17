@@ -45,7 +45,7 @@ En Nutrigenómica casi nunca podemos medir a toda la población. Estudiamos una 
 | Parámetro poblacional | Estimador muestral | Ejemplo |
 |:---|:---|:---|
 | Media $\mu$ | Media muestral $\bar X = \dfrac{\sum X_i}{n}$ | Homocisteína media de los portadores TT de _MTHFR_ |
-| Varianza $\sigma^2$ | Cuasivarianza $S^2 = \dfrac{\sum (X_i-\bar X)^2}{n-1}$ | Variabilidad de la respuesta glucémica postprandial |
+| Varianza $\sigma^2$ | Cuasivarianza $\hat S^2 = \dfrac{\sum (X_i-\bar X)^2}{n-1}$ | Variabilidad de la respuesta glucémica postprandial |
 | Proporción $p$ | Proporción muestral $\hat p = \dfrac{X}{n}$ | Frecuencia del alelo de riesgo de _FTO_ |
 
 :::{.callout-important}
@@ -63,7 +63,7 @@ Un _estimador_ de un parámetro $\theta$ es una función de la muestra aleatoria
 
 ### Propiedades de los estimadores
 
-- **Insesgado**: su media coincide con el parámetro, $E(\hat\theta) = \theta$. $\bar X$, $S^2$ y $\hat p$ son insesgados.
+- **Insesgado**: su media coincide con el parámetro, $E(\hat\theta) = \theta$. $\bar X$, $\hat S^2$ y $\hat p$ son insesgados.
 - **Eficiente**: tiene la menor varianza posible entre los estimadores insesgados.
 - **Consistente**: se aproxima al parámetro cuando crece el tamaño muestral.
 
@@ -96,7 +96,7 @@ _¿Y si la población no es normal, como ocurre con la insulina o los triglicér
 ## Teorema central del límite
 Si $X_1,\ldots,X_n$ es una muestra aleatoria de una población cualquiera con media $\mu$ y varianza $\sigma^2$ finita, entonces, para $n$ grande,
 $$
-\bar X \approx N\left(\mu, \frac{\sigma}{\sqrt{n}}\right) \qquad \mbox{o, equivalentemente,} \qquad \frac{\bar X-\mu}{\sigma/\sqrt{n}} \approx N(0,1).
+\bar X \overset{\text{aprox}}{\sim} N\left(\mu, \frac{\sigma}{\sqrt{n}}\right) \qquad \mbox{o, equivalentemente,} \qquad \frac{\bar X-\mu}{\sigma/\sqrt{n}} \overset{\text{aprox}}{\sim} N(0,1).
 $$
 :::
 
@@ -130,18 +130,18 @@ A medida que crece $n$, la distribución de la media se vuelve simétrica, norma
 ## Distribución de la cuasivarianza muestral
 Si $X_1,\ldots,X_n$ es una muestra aleatoria de una población normal $N(\mu, \sigma)$, entonces
 $$
-\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+\frac{(n-1)\hat S^2}{\sigma^2} \sim \chi^2(n-1).
 $$
 :::
 
 **Consecuencias**
 
-- $E(S^2) = \sigma^2$ y $Var(S^2) = \dfrac{2\sigma^4}{n-1}$.
+- $E(\hat S^2) = \sigma^2$ y $Var(\hat S^2) = \dfrac{2\sigma^4}{n-1}$.
 - A diferencia del teorema central del límite para la media, este resultado _depende mucho de la normalidad_ de la población.
 
-Por otro lado, combinando la distribución de $\bar X$ y la de $S^2$ se obtiene que
+Por otro lado, combinando la distribución de $\bar X$ y la de $\hat S^2$ se obtiene que
 $$
-\frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
+\frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 $$
 que es la base de los intervalos y contrastes para la media cuando no conocemos $\sigma$.
 
@@ -151,7 +151,7 @@ que es la base de los intervalos y contrastes para la media cuando no conocemos 
 
 ::: {.column width="45%"}
 :::{#exm-distribucion-varianza}
-La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución $N(6.5, 0.4)$. Simulamos 5000 muestras de tamaño 15 y calculamos $14S^2/0.4^2$ en cada una.
+La HbA1c en pacientes con diabetes tipo 2 bien controlados es $X\sim N(6.5, 0.4)$. Simulamos 5000 muestras de tamaño 15 y calculamos $14\hat S^2/0.4^2$ en cada una.
 :::
 
 El histograma de las simulaciones coincide con la densidad de la $\chi^2(14)$ ([línea roja]{.myred}), cuya media es 14.
@@ -167,7 +167,7 @@ estad <- replicate(5000, (n - 1) * var(rnorm(n, 6.5, sigma)) / sigma^2)
 ggplot(tibble(estad), aes(estad)) +
   geom_histogram(aes(y = after_stat(density)), bins = 40, fill = myblue, colour = "white") +
   stat_function(fun = dchisq, args = list(df = n - 1), colour = myred, linewidth = 1) +
-  labs(x = expression((n-1)*S^2/sigma^2), y = "Densidad")
+  labs(x = expression((n-1)*hat(S)^2/sigma^2), y = "Densidad")
 ```
 :::
 
@@ -183,7 +183,7 @@ E(\hat p) = p \qquad \mbox{y} \qquad Var(\hat p) = \frac{p(1-p)}{n},
 $$
 y, por el teorema central del límite, si $np\geq 5$ y $n(1-p)\geq 5$,
 $$
-\hat p \approx N\left(p, \sqrt{\frac{p(1-p)}{n}}\right).
+\hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{\frac{p(1-p)}{n}}\right).
 $$
 :::
 
@@ -277,9 +277,9 @@ Para reducir el margen de error a 2 mg/dl harían falta $n = \left(\frac{1.96\cd
 
 ## Intervalo para la media con varianza desconocida {.smaller}
 
-En la práctica $\sigma$ es desconocida y se estima con $S$. Si la población es normal,
+En la práctica $\sigma$ es desconocida y se estima con $\hat S$. Si la población es normal,
 $$
-T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
+T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 $$
 y razonando igual que antes:
 
@@ -318,7 +318,7 @@ Con una confianza del 95% la homocisteína media está por encima de 12 µmol/l,
 
 ## Intervalo para una proporción
 
-Por el teorema central del límite, $\hat p \approx N\left(p, \sqrt{p(1-p)/n}\right)$. Sustituyendo $p$ por $\hat p$ en el error estándar:
+Por el teorema central del límite, $\hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{p(1-p)/n}\right)$. Sustituyendo $p$ por $\hat p$ en el error estándar:
 
 :::{#thm-ic-proporcion}
 ## Intervalo de confianza para una proporción (Wald)
@@ -367,7 +367,7 @@ Principales intervalos de confianza
 | Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ |
 | Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{s}{\sqrt{n}}$ |
 | Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ |
-| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
+| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)\hat s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)\hat s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
 
 :::{.callout-note}
 $\chi^2_{n-1,\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $\chi^2(n-1)$. El intervalo para la desviación típica se obtiene tomando raíces cuadradas.
@@ -397,13 +397,13 @@ Tomando raíces cuadradas, con una confianza del 95% la desviación típica del 
 
 | Parámetro | Condiciones | Intervalo |
 |:---|:---|:---:|
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ |
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$ |
-| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{s_d}{\sqrt{n}}$ |
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ |
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{\hat s_1^2}{n_1}+\dfrac{\hat s_2^2}{n_2}}$ |
+| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{\hat s_d}{\sqrt{n}}$ |
 | $p_1-p_2$ | Muestras independientes grandes | $\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}$ |
-| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ |
+| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ |
 
-Donde $s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ es la varianza ponderada y $g$ son los grados de libertad de Welch-Satterthwaite.
+Donde $\hat s_p^2 = \dfrac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}$ es la varianza ponderada y $g$ son los grados de libertad de Welch-Satterthwaite.
 
 :::{.callout-tip}
 Si el intervalo para $\mu_1-\mu_2$ o $p_1-p_2$ no contiene el 0, o el intervalo para $\sigma_1^2/\sigma_2^2$ no contiene el 1, hay evidencia de diferencias entre las poblaciones.
@@ -448,7 +448,7 @@ resumen(Antes = tg_antes, Después = tg_despues, `Diferencia (después − antes
 
 Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias $d_i$:
 $$
-\bar d \pm t^{13}_{0.025}\frac{s_d}{\sqrt{14}} = `r fmt(mean(d), 2)` \pm `r fmt(qt(0.975, 13), 3)`\cdot\frac{`r fmt(sd(d), 2)`}{\sqrt{14}} = `r ic_texto(ic_pareado)`.
+\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = `r fmt(mean(d), 2)` \pm `r fmt(qt(0.975, 13), 3)`\cdot\frac{`r fmt(sd(d), 2)`}{\sqrt{14}} = `r ic_texto(ic_pareado)`.
 $$
 
 Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic_pareado[2])` y `r round(-ic_pareado[1])` mg/dl de media.
@@ -494,7 +494,7 @@ resumen(TT = auc_TT, CC = auc_CC)
 ```
 
 $$
-\frac{s_{TT}^2}{s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95%: } `r ic_texto(ic_f, 3)`.
+\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95%: } `r ic_texto(ic_f, 3)`.
 $$
 
 El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.

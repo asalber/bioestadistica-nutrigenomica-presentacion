@@ -169,7 +169,7 @@
 </tr>
 <tr class="even">
 <td style="text-align: left;">Varianza <span class="math inline">\(\sigma^2\)</span></td>
-<td style="text-align: left;">Cuasivarianza <span class="math inline">\(S^2 = \dfrac{\sum (X_i-\bar X)^2}{n-1}\)</span></td>
+<td style="text-align: left;">Cuasivarianza <span class="math inline">\(\hat S^2 = \dfrac{\sum (X_i-\bar X)^2}{n-1}\)</span></td>
 <td style="text-align: left;">Variabilidad de la respuesta glucémica postprandial</td>
 </tr>
 <tr class="odd">
@@ -205,7 +205,7 @@
 <section id="propiedades-de-los-estimadores" class="slide level3">
 <h3>Propiedades de los estimadores</h3>
 <ul>
-<li><strong>Insesgado</strong>: su media coincide con el parámetro, <span class="math inline">\(E(\hat\theta) = \theta\)</span>. <span class="math inline">\(\bar X\)</span>, <span class="math inline">\(S^2\)</span> y <span class="math inline">\(\hat p\)</span> son insesgados.</li>
+<li><strong>Insesgado</strong>: su media coincide con el parámetro, <span class="math inline">\(E(\hat\theta) = \theta\)</span>. <span class="math inline">\(\bar X\)</span>, <span class="math inline">\(\hat S^2\)</span> y <span class="math inline">\(\hat p\)</span> son insesgados.</li>
 <li><strong>Eficiente</strong>: tiene la menor varianza posible entre los estimadores insesgados.</li>
 <li><strong>Consistente</strong>: se aproxima al parámetro cuando crece el tamaño muestral.</li>
 </ul>
@@ -232,7 +232,7 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 <h2>Teorema central del límite</h2>
 <div id="thm-tcl" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 2 (Teorema central del límite)</strong></span> Si <span class="math inline">\(X_1,\ldots,X_n\)</span> es una muestra aleatoria de una población cualquiera con media <span class="math inline">\(\mu\)</span> y varianza <span class="math inline">\(\sigma^2\)</span> finita, entonces, para <span class="math inline">\(n\)</span> grande, <span class="math display">\[
-\bar X \approx N\left(\mu, \frac{\sigma}{\sqrt{n}}\right) \qquad \mbox{o, equivalentemente,} \qquad \frac{\bar X-\mu}{\sigma/\sqrt{n}} \approx N(0,1).
+\bar X \overset{\text{aprox}}{\sim} N\left(\mu, \frac{\sigma}{\sqrt{n}}\right) \qquad \mbox{o, equivalentemente,} \qquad \frac{\bar X-\mu}{\sigma/\sqrt{n}} \overset{\text{aprox}}{\sim} N(0,1).
 \]</span></p>
 </div>
 <p>En la práctica la aproximación es buena para <span class="math inline">\(n\geq 30\)</span>, aunque con distribuciones muy asimétricas (PCR, conteos de la microbiota) hacen falta muestras mayores.</p>
@@ -250,16 +250,16 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 <h2>Distribución de la varianza muestral</h2>
 <div id="thm-distribucion-varianza-muestral" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 3 (Distribución de la cuasivarianza muestral)</strong></span> Si <span class="math inline">\(X_1,\ldots,X_n\)</span> es una muestra aleatoria de una población normal <span class="math inline">\(N(\mu, \sigma)\)</span>, entonces <span class="math display">\[
-\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1).
+\frac{(n-1)\hat S^2}{\sigma^2} \sim \chi^2(n-1).
 \]</span></p>
 </div>
 <p><strong>Consecuencias</strong></p>
 <ul>
-<li><span class="math inline">\(E(S^2) = \sigma^2\)</span> y <span class="math inline">\(Var(S^2) = \dfrac{2\sigma^4}{n-1}\)</span>.</li>
+<li><span class="math inline">\(E(\hat S^2) = \sigma^2\)</span> y <span class="math inline">\(Var(\hat S^2) = \dfrac{2\sigma^4}{n-1}\)</span>.</li>
 <li>A diferencia del teorema central del límite para la media, este resultado <em>depende mucho de la normalidad</em> de la población.</li>
 </ul>
-<p>Por otro lado, combinando la distribución de <span class="math inline">\(\bar X\)</span> y la de <span class="math inline">\(S^2\)</span> se obtiene que <span class="math display">\[
-\frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
+<p>Por otro lado, combinando la distribución de <span class="math inline">\(\bar X\)</span> y la de <span class="math inline">\(\hat S^2\)</span> se obtiene que <span class="math display">\[
+\frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 \]</span> que es la base de los intervalos y contrastes para la media cuando no conocemos <span class="math inline">\(\sigma\)</span>.</p>
 </section>
 <section class="slide level3">
@@ -267,7 +267,7 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-distribucion-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución <span class="math inline">\(N(6.5, 0.4)\)</span>. Simulamos 5000 muestras de tamaño 15 y calculamos <span class="math inline">\(14S^2/0.4^2\)</span> en cada una.</p>
+<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> La HbA1c en pacientes con diabetes tipo 2 bien controlados es <span class="math inline">\(X\sim N(6.5, 0.4)\)</span>. Simulamos 5000 muestras de tamaño 15 y calculamos <span class="math inline">\(14\hat S^2/0.4^2\)</span> en cada una.</p>
 </div>
 <p>El histograma de las simulaciones coincide con la densidad de la <span class="math inline">\(\chi^2(14)\)</span> (<span class="myred">línea roja</span>), cuya media es 14.</p>
 </div><div class="column" style="width:55%;">
@@ -288,7 +288,7 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 <p><span class="theorem-title"><strong>Teorema 4 (Distribución de la proporción muestral)</strong></span> Si <span class="math inline">\(X\sim B(n, p)\)</span> es el número de individuos con una característica en una muestra de tamaño <span class="math inline">\(n\)</span>, la proporción muestral <span class="math inline">\(\hat p = X/n\)</span> cumple <span class="math display">\[
 E(\hat p) = p \qquad \mbox{y} \qquad Var(\hat p) = \frac{p(1-p)}{n},
 \]</span> y, por el teorema central del límite, si <span class="math inline">\(np\geq 5\)</span> y <span class="math inline">\(n(1-p)\geq 5\)</span>, <span class="math display">\[
-\hat p \approx N\left(p, \sqrt{\frac{p(1-p)}{n}}\right).
+\hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{\frac{p(1-p)}{n}}\right).
 \]</span></p>
 </div>
 <div id="exm-proporcion-muestral" class="theorem example">
@@ -373,8 +373,8 @@ Z = \frac{\bar X-\mu}{\sigma/\sqrt{n}} \sim N(0,1) \Rightarrow P\left(-z_{\alpha
 <section>
 <section id="intervalo-para-la-media-con-varianza-desconocida" class="title-slide slide level2 smaller center">
 <h2>Intervalo para la media con varianza desconocida</h2>
-<p>En la práctica <span class="math inline">\(\sigma\)</span> es desconocida y se estima con <span class="math inline">\(S\)</span>. Si la población es normal, <span class="math display">\[
-T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
+<p>En la práctica <span class="math inline">\(\sigma\)</span> es desconocida y se estima con <span class="math inline">\(\hat S\)</span>. Si la población es normal, <span class="math display">\[
+T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 \]</span> y razonando igual que antes:</p>
 <div id="thm-ic-media-varianza-desconocida" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 6 (Intervalo de confianza para la media con varianza desconocida)</strong></span> <span class="math display">\[
@@ -456,7 +456,7 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <section>
 <section id="intervalo-para-una-proporción" class="title-slide slide level2 center">
 <h2>Intervalo para una proporción</h2>
-<p>Por el teorema central del límite, <span class="math inline">\(\hat p \approx N\left(p, \sqrt{p(1-p)/n}\right)\)</span>. Sustituyendo <span class="math inline">\(p\)</span> por <span class="math inline">\(\hat p\)</span> en el error estándar:</p>
+<p>Por el teorema central del límite, <span class="math inline">\(\hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{p(1-p)/n}\right)\)</span>. Sustituyendo <span class="math inline">\(p\)</span> por <span class="math inline">\(\hat p\)</span> en el error estándar:</p>
 <div id="thm-ic-proporcion" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 7 (Intervalo de confianza para una proporción (Wald))</strong></span> Si <span class="math inline">\(n\hat p\geq 5\)</span> y <span class="math inline">\(n(1-\hat p)\geq 5\)</span>, <span class="math display">\[
 \hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}.
@@ -554,7 +554,7 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <tr class="even">
 <td style="text-align: left;">Varianza <span class="math inline">\(\sigma^2\)</span></td>
 <td style="text-align: left;">Población normal</td>
-<td style="text-align: center;"><span class="math inline">\(\left[\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left[\dfrac{(n-1)\hat s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)\hat s^2}{\chi^2_{n-1,1-\alpha/2}}\right]\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -602,17 +602,17 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales, <span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales, <span class="math inline">\(\sigma_1^2\neq\sigma_2^2\)</span> (Welch)</td>
-<td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{\hat s_1^2}{n_1}+\dfrac{\hat s_2^2}{n_2}}\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\mu_d = \mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras pareadas, diferencias normales</td>
-<td style="text-align: center;"><span class="math inline">\(\bar d \pm t^{n-1}_{\alpha/2}\dfrac{s_d}{\sqrt{n}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\bar d \pm t^{n-1}_{\alpha/2}\dfrac{\hat s_d}{\sqrt{n}}\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(p_1-p_2\)</span></td>
@@ -622,11 +622,11 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales</td>
-<td style="text-align: center;"><span class="math inline">\(\left[\dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left[\dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]\)</span></td>
 </tr>
 </tbody>
 </table>
-<p>Donde <span class="math inline">\(s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span> es la varianza ponderada y <span class="math inline">\(g\)</span> son los grados de libertad de Welch-Satterthwaite.</p>
+<p>Donde <span class="math inline">\(\hat s_p^2 = \dfrac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}\)</span> es la varianza ponderada y <span class="math inline">\(g\)</span> son los grados de libertad de Welch-Satterthwaite.</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -734,7 +734,7 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 </div>
 </div>
 <p>Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias <span class="math inline">\(d_i\)</span>: <span class="math display">\[
-\bar d \pm t^{13}_{0.025}\frac{s_d}{\sqrt{14}} = -34.71 \pm 2.160\cdot\frac{18.39}{\sqrt{14}} = [-45.33, -24.10].
+\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = -34.71 \pm 2.160\cdot\frac{18.39}{\sqrt{14}} = [-45.33, -24.10].
 \]</span></p>
 <p>Con una confianza del 95%, el omega-3 reduce los triglicéridos entre 24 y 45 mg/dl de media.</p>
 </section>
@@ -785,7 +785,7 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 </div>
 </div>
 <p><span class="math display">\[
-\frac{s_{TT}^2}{s_{CC}^2} = 3.747 \qquad \mbox{Intervalo del 95%: } [1.432, 10.390].
+\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = 3.747 \qquad \mbox{Intervalo del 95%: } [1.432, 10.390].
 \]</span></p>
 <p>El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.</p>
 </section>

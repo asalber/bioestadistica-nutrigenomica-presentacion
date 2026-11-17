@@ -104,7 +104,7 @@ Es simétrica, y el 68%, 95% y 99,7% de los valores están a menos de 1, 2 y 3 d
 
 ::: {.column width="45%"}
 :::{#exm-normal-imc}
-En adultos europeos el IMC de los homocigotos TT del gen _FTO_ (rs9939609) sigue aproximadamente una distribución $N(26, 4)$, mientras que el de los homocigotos AA (alelo de riesgo) sigue una $N(27.5, 4)$. ¿Qué proporción de cada grupo tiene obesidad (IMC $\geq 30$)?
+En adultos europeos el IMC de los homocigotos TT del gen _FTO_ (rs9939609) es $X_{TT}\sim N(26, 4)$, mientras que el de los homocigotos AA (alelo de riesgo) es $X_{AA}\sim N(27.5, 4)$. ¿Qué proporción de cada grupo tiene obesidad (IMC $\geq 30$)?
 :::
 
 $P(X\geq 30)$ es el área a la derecha de 30:
@@ -134,7 +134,7 @@ densidades(seq(10, 42, length.out = 500),
 
 ::: {.column width="45%"}
 :::{#exm-normal-ldl}
-El colesterol LDL en una población adulta sigue una distribución $N(130, 30)$ mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL $\geq 160$ mg/dl?
+El colesterol LDL en una población adulta es $X\sim N(130, 30)$ mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL $\geq 160$ mg/dl?
 :::
 
 - Antes: $P(X\geq 160) =$ `r fmt_pct(1 - pnorm(160, 130, 30))`.
@@ -236,7 +236,7 @@ donde $\alpha>0$ es el parámetro de _forma_, $\beta>0$ el de _tasa_ y $\Gamma$ 
 
 ::: {.column width="45%"}
 :::{#exm-gamma-vitamina-d}
-La 25(OH)D en una población mediterránea en invierno sigue una distribución $Gamma(6, 0.25)$ (ng/ml), con media 24 ng/ml. En los portadores de una variante del gen _GC_ (proteína transportadora de la vitamina D) sigue una $Gamma(6, 0.30)$, con media 20 ng/ml. ¿Qué proporción tiene deficiencia (< 20 ng/ml)?
+La 25(OH)D (ng/ml) en una población mediterránea en invierno es $X\sim Gamma(6, 0.25)$, con media 24 ng/ml. En los portadores de una variante del gen _GC_ (proteína transportadora de la vitamina D) es $X_{GC}\sim Gamma(6, 0.30)$, con media 20 ng/ml. ¿Qué proporción tiene deficiencia (< 20 ng/ml)?
 :::
 
 - No portadores: `r fmt_pct(pgamma(20, 6, 0.25))`.
@@ -283,7 +283,7 @@ Es muy flexible: puede ser simétrica, asimétrica, en forma de U o concentrada 
 
 ::: {.column width="45%"}
 :::{#exm-beta-metilacion}
-Se mide la metilación de un CpG del promotor del gen _MTHFR_ en sujetos con ingesta baja y adecuada de folato. El valor $\beta$ de metilación sigue una $Beta(6, 4)$ con folato bajo y una $Beta(3, 7)$ con folato adecuado.
+Se mide la metilación de un CpG del promotor del gen _MTHFR_ en sujetos con ingesta baja y adecuada de folato. El valor $\beta$ de metilación es $X_{bajo}\sim Beta(6, 4)$ con folato bajo y $X_{adecuado}\sim Beta(3, 7)$ con folato adecuado.
 :::
 
 - Metilación media: 0.6 con folato bajo y 0.3 con folato adecuado.
@@ -311,7 +311,7 @@ densidades(seq(0.001, 0.999, length.out = 500),
 
 :::{#def-distribucion-dirichlet}
 ## Distribución de Dirichlet
-Un vector aleatorio $(X_1,\ldots,X_k)$ con $X_i>0$ y $\sum_{i=1}^k X_i = 1$ sigue un _modelo de Dirichlet_ $Dir(\alpha_1,\ldots,\alpha_k)$ si su función de densidad es
+Un vector aleatorio $(X_1,\ldots,X_k)$ con $X_i>0$ y $\sum_{i=1}^k X_i = 1$ sigue un _modelo de Dirichlet_ $(X_1,\ldots,X_k)\sim Dir(\alpha_1,\ldots,\alpha_k)$ si su función de densidad es
 
 $$
 f(x_1,\ldots,x_k) = \frac{\Gamma(\alpha_0)}{\prod_{i=1}^k\Gamma(\alpha_i)}\prod_{i=1}^k x_i^{\alpha_i-1}, \quad \alpha_0=\sum_{i=1}^k \alpha_i.
@@ -331,7 +331,7 @@ Es la generalización multivariante de la Beta y el modelo natural para _datos c
 ---
 
 :::{#exm-dirichlet-microbiota}
-La composición de la microbiota fecal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros) sigue una $Dir(40, 30, 8, 5, 7)$, con $\alpha_0 = 90$. A la izquierda, la densidad marginal de cada filo, $Beta(\alpha_i, 90-\alpha_i)$; a la derecha, la composición de 12 voluntarios simulados.
+La composición de la microbiota fecal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros) es $(X_1,\ldots,X_5)\sim Dir(40, 30, 8, 5, 7)$, con $\alpha_0 = 90$. A la izquierda, la densidad marginal de cada filo, $X_i\sim Beta(\alpha_i, 90-\alpha_i)$; a la derecha, la composición de 12 voluntarios simulados.
 :::
 
 ```{r}
@@ -401,7 +401,7 @@ $$
 
 ::: {.column width="45%"}
 :::{#exm-binomial-mthfr}
-La frecuencia del genotipo TT de _MTHFR_ C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, el número de homocigotos TT sigue una $B(50, 0.16)$. ¿Cuál es la probabilidad de encontrar al menos 12?
+La frecuencia del genotipo TT de _MTHFR_ C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, el número de homocigotos TT es $X\sim B(50, 0.16)$. ¿Cuál es la probabilidad de encontrar al menos 12?
 :::
 
 - Número esperado: $np = 8$ homocigotos TT.
@@ -424,7 +424,7 @@ tibble(x = 0:25, p = dbinom(0:25, 50, 0.16)) |>
 
 :::{#def-distribucion-multinomial}
 ## Distribución Multinomial
-Si cada uno de $n$ ensayos independientes puede dar $k$ resultados con probabilidades $p_1,\ldots,p_k$, el vector $(X_1,\ldots,X_k)$ con el número de veces que se obtiene cada resultado sigue un _modelo multinomial_ $M(n; p_1,\ldots,p_k)$:
+Si cada uno de $n$ ensayos independientes puede dar $k$ resultados con probabilidades $p_1,\ldots,p_k$, el vector $(X_1,\ldots,X_k)$ con el número de veces que se obtiene cada resultado sigue un _modelo multinomial_ $(X_1,\ldots,X_k)\sim M(n; p_1,\ldots,p_k)$:
 
 $$
 P(X_1=x_1,\ldots,X_k=x_k) = \frac{n!}{x_1!\cdots x_k!}p_1^{x_1}\cdots p_k^{x_k}, \quad \sum x_i = n.
@@ -503,7 +503,7 @@ $$
 
 ::: {.column width="45%"}
 :::{#exm-poisson-rnaseq}
-En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas sigue una distribución $P(8)$. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?
+En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas es $X\sim P(8)$. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?
 :::
 
 - $P(X = 0) = e^{-8} =$ `r fmt(dpois(0, 8), 5)`.
@@ -549,7 +549,7 @@ Se obtiene como una mezcla de Poisson cuya tasa $\lambda$ varía entre individuo
 
 ::: {.column width="45%"}
 :::{#exm-binomial-negativa-rnaseq}
-Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión $\phi = 0.2$, es decir, sigue una $BN(100, 0.2)$. Comparémosla con la $P(100)$ de la misma media.
+Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión $\phi = 0.2$, es decir, $X\sim BN(100, 0.2)$. Comparémosla con $Y\sim P(100)$, de la misma media.
 :::
 
 - Varianza de Poisson: 100.
@@ -603,7 +603,7 @@ $$
 
 ::: {.column width="45%"}
 :::{#exm-zinb-microbiota}
-El 40% de los participantes no tiene _Akkermansia_ en su microbiota (ceros estructurales) y, en los que la tienen, el conteo sigue una $BN(20, 0.5)$. El conteo sigue una binomial negativa inflada de ceros con $\pi = 0.4$.
+El 40% de los participantes no tiene _Akkermansia_ en su microbiota (ceros estructurales) y, en los que la tienen, el conteo es $X\sim BN(20, 0.5)$. El conteo sigue una binomial negativa inflada de ceros con $\pi = 0.4$.
 :::
 
 - $P(X = 0) = 0.4 + 0.6\cdot P_{BN}(0) =$ `r fmt(0.4 + 0.6 * dnbinom(0, mu = 20, size = 2), 3)` ([barra roja]{.myred}).
@@ -649,7 +649,7 @@ Distribuciones de p-valores y de estadísticos
 
 :::{#thm-uniforme-pvalores}
 ## Distribución de los p-valores bajo $H_0$
-Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor sigue una distribución uniforme $U(0,1)$, con densidad $f(x) = 1$ para $0<x<1$:
+Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor es $p\sim U(0,1)$, con densidad $f(x) = 1$ para $0<x<1$:
 $$
 P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 $$
@@ -708,11 +708,11 @@ ggplot(tibble(pval), aes(pval)) +
 
 :::{#def-distribucion-chi-cuadrado}
 ## Distribución Chi-cuadrado
-Si $Z_1,\ldots,Z_\nu$ son variables independientes $N(0,1)$, la variable
+Si $Z_1,\ldots,Z_\nu$ son variables independientes con $Z_i\sim N(0,1)$, la variable
 $$
 \chi^2 = Z_1^2 + \cdots + Z_\nu^2
 $$
-sigue una _distribución chi-cuadrado_ con $\nu$ grados de libertad, $\chi^2(\nu)$.
+sigue una _distribución chi-cuadrado_ con $\nu$ grados de libertad, $\chi^2\sim\chi^2(\nu)$.
 :::
 
 **Estadísticos**: $E(\chi^2) = \nu$ y $Var(\chi^2) = 2\nu$.
@@ -732,7 +732,7 @@ Si $Z\sim N(0,1)$ y $U\sim\chi^2(\nu)$ son independientes, la variable
 $$
 T = \frac{Z}{\sqrt{U/\nu}}
 $$
-sigue una _distribución T de Student_ con $\nu$ grados de libertad, $T(\nu)$.
+sigue una _distribución T de Student_ con $\nu$ grados de libertad, $T\sim T(\nu)$.
 :::
 
 **Estadísticos**: $E(T) = 0$ ($\nu>1$) y $Var(T) = \dfrac{\nu}{\nu-2}$ ($\nu>2$).
@@ -754,7 +754,7 @@ Si $U\sim\chi^2(\nu_1)$ y $V\sim\chi^2(\nu_2)$ son independientes, la variable
 $$
 F = \frac{U/\nu_1}{V/\nu_2}
 $$
-sigue una _distribución F de Fisher-Snedecor_ con $\nu_1$ y $\nu_2$ grados de libertad, $F(\nu_1, \nu_2)$.
+sigue una _distribución F de Fisher-Snedecor_ con $\nu_1$ y $\nu_2$ grados de libertad, $F\sim F(\nu_1, \nu_2)$.
 :::
 
 **Estadísticos**: $E(F) = \dfrac{\nu_2}{\nu_2-2}$ ($\nu_2>2$).

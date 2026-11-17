@@ -251,7 +251,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad x\in\ma
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-normal-imc" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 1</strong></span> En adultos europeos el IMC de los homocigotos TT del gen <em>FTO</em> (rs9939609) sigue aproximadamente una distribución <span class="math inline">\(N(26, 4)\)</span>, mientras que el de los homocigotos AA (alelo de riesgo) sigue una <span class="math inline">\(N(27.5, 4)\)</span>. ¿Qué proporción de cada grupo tiene obesidad (IMC <span class="math inline">\(\geq 30\)</span>)?</p>
+<p><span class="theorem-title"><strong>Ejemplo 1</strong></span> En adultos europeos el IMC de los homocigotos TT del gen <em>FTO</em> (rs9939609) es <span class="math inline">\(X_{TT}\sim N(26, 4)\)</span>, mientras que el de los homocigotos AA (alelo de riesgo) es <span class="math inline">\(X_{AA}\sim N(27.5, 4)\)</span>. ¿Qué proporción de cada grupo tiene obesidad (IMC <span class="math inline">\(\geq 30\)</span>)?</p>
 </div>
 <p><span class="math inline">\(P(X\geq 30)\)</span> es el área a la derecha de 30:</p>
 <ul>
@@ -276,7 +276,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad x\in\ma
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-normal-ldl" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> El colesterol LDL en una población adulta sigue una distribución <span class="math inline">\(N(130, 30)\)</span> mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL <span class="math inline">\(\geq 160\)</span> mg/dl?</p>
+<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> El colesterol LDL en una población adulta es <span class="math inline">\(X\sim N(130, 30)\)</span> mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL <span class="math inline">\(\geq 160\)</span> mg/dl?</p>
 </div>
 <ul>
 <li>Antes: <span class="math inline">\(P(X\geq 160) =\)</span> 15.9%.</li>
@@ -368,7 +368,7 @@ f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\quad x&gt;0,
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-gamma-vitamina-d" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> La 25(OH)D en una población mediterránea en invierno sigue una distribución <span class="math inline">\(Gamma(6, 0.25)\)</span> (ng/ml), con media 24 ng/ml. En los portadores de una variante del gen <em>GC</em> (proteína transportadora de la vitamina D) sigue una <span class="math inline">\(Gamma(6, 0.30)\)</span>, con media 20 ng/ml. ¿Qué proporción tiene deficiencia (&lt; 20 ng/ml)?</p>
+<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> La 25(OH)D (ng/ml) en una población mediterránea en invierno es <span class="math inline">\(X\sim Gamma(6, 0.25)\)</span>, con media 24 ng/ml. En los portadores de una variante del gen <em>GC</em> (proteína transportadora de la vitamina D) es <span class="math inline">\(X_{GC}\sim Gamma(6, 0.30)\)</span>, con media 20 ng/ml. ¿Qué proporción tiene deficiencia (&lt; 20 ng/ml)?</p>
 </div>
 <ul>
 <li>No portadores: 38.4%.</li>
@@ -409,7 +409,7 @@ f(x) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-beta-metilacion" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Se mide la metilación de un CpG del promotor del gen <em>MTHFR</em> en sujetos con ingesta baja y adecuada de folato. El valor <span class="math inline">\(\beta\)</span> de metilación sigue una <span class="math inline">\(Beta(6, 4)\)</span> con folato bajo y una <span class="math inline">\(Beta(3, 7)\)</span> con folato adecuado.</p>
+<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Se mide la metilación de un CpG del promotor del gen <em>MTHFR</em> en sujetos con ingesta baja y adecuada de folato. El valor <span class="math inline">\(\beta\)</span> de metilación es <span class="math inline">\(X_{bajo}\sim Beta(6, 4)\)</span> con folato bajo y <span class="math inline">\(X_{adecuado}\sim Beta(3, 7)\)</span> con folato adecuado.</p>
 </div>
 <ul>
 <li>Metilación media: 0.6 con folato bajo y 0.3 con folato adecuado.</li>
@@ -444,7 +444,7 @@ f(x) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)
 <section id="distribución-de-dirichlet" class="title-slide slide level2 smaller center">
 <h2>Distribución de Dirichlet</h2>
 <div id="def-distribucion-dirichlet" class="theorem definition">
-<p><span class="theorem-title"><strong>Definición 5 (Distribución de Dirichlet)</strong></span> Un vector aleatorio <span class="math inline">\((X_1,\ldots,X_k)\)</span> con <span class="math inline">\(X_i&gt;0\)</span> y <span class="math inline">\(\sum_{i=1}^k X_i = 1\)</span> sigue un <em>modelo de Dirichlet</em> <span class="math inline">\(Dir(\alpha_1,\ldots,\alpha_k)\)</span> si su función de densidad es</p>
+<p><span class="theorem-title"><strong>Definición 5 (Distribución de Dirichlet)</strong></span> Un vector aleatorio <span class="math inline">\((X_1,\ldots,X_k)\)</span> con <span class="math inline">\(X_i&gt;0\)</span> y <span class="math inline">\(\sum_{i=1}^k X_i = 1\)</span> sigue un <em>modelo de Dirichlet</em> <span class="math inline">\((X_1,\ldots,X_k)\sim Dir(\alpha_1,\ldots,\alpha_k)\)</span> si su función de densidad es</p>
 <p><span class="math display">\[
 f(x_1,\ldots,x_k) = \frac{\Gamma(\alpha_0)}{\prod_{i=1}^k\Gamma(\alpha_i)}\prod_{i=1}^k x_i^{\alpha_i-1}, \quad \alpha_0=\sum_{i=1}^k \alpha_i.
 \]</span></p>
@@ -461,7 +461,7 @@ f(x_1,\ldots,x_k) = \frac{\Gamma(\alpha_0)}{\prod_{i=1}^k\Gamma(\alpha_i)}\prod_
 <section class="slide level3">
 
 <div id="exm-dirichlet-microbiota" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> La composición de la microbiota fecal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros) sigue una <span class="math inline">\(Dir(40, 30, 8, 5, 7)\)</span>, con <span class="math inline">\(\alpha_0 = 90\)</span>. A la izquierda, la densidad marginal de cada filo, <span class="math inline">\(Beta(\alpha_i, 90-\alpha_i)\)</span>; a la derecha, la composición de 12 voluntarios simulados.</p>
+<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> La composición de la microbiota fecal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros) es <span class="math inline">\((X_1,\ldots,X_5)\sim Dir(40, 30, 8, 5, 7)\)</span>, con <span class="math inline">\(\alpha_0 = 90\)</span>. A la izquierda, la densidad marginal de cada filo, <span class="math inline">\(X_i\sim Beta(\alpha_i, 90-\alpha_i)\)</span>; a la derecha, la composición de 12 voluntarios simulados.</p>
 </div>
 
 <img data-src="01-distribuciones_files/figure-revealjs/unnamed-chunk-9-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>Las medias son Firmicutes 0.44, Bacteroidetes 0.33, Actinobacteria 0.09, Proteobacteria 0.06, Otros 0.08.</p>
@@ -496,7 +496,7 @@ P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\quad k=0,1,\ldots,n.
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-binomial-mthfr" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> La frecuencia del genotipo TT de <em>MTHFR</em> C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, el número de homocigotos TT sigue una <span class="math inline">\(B(50, 0.16)\)</span>. ¿Cuál es la probabilidad de encontrar al menos 12?</p>
+<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> La frecuencia del genotipo TT de <em>MTHFR</em> C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, el número de homocigotos TT es <span class="math inline">\(X\sim B(50, 0.16)\)</span>. ¿Cuál es la probabilidad de encontrar al menos 12?</p>
 </div>
 <ul>
 <li>Número esperado: <span class="math inline">\(np = 8\)</span> homocigotos TT.</li>
@@ -517,7 +517,7 @@ P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\quad k=0,1,\ldots,n.
 <section id="distribución-multinomial" class="title-slide slide level2 smaller center">
 <h2>Distribución Multinomial</h2>
 <div id="def-distribucion-multinomial" class="theorem definition">
-<p><span class="theorem-title"><strong>Definición 7 (Distribución Multinomial)</strong></span> Si cada uno de <span class="math inline">\(n\)</span> ensayos independientes puede dar <span class="math inline">\(k\)</span> resultados con probabilidades <span class="math inline">\(p_1,\ldots,p_k\)</span>, el vector <span class="math inline">\((X_1,\ldots,X_k)\)</span> con el número de veces que se obtiene cada resultado sigue un <em>modelo multinomial</em> <span class="math inline">\(M(n; p_1,\ldots,p_k)\)</span>:</p>
+<p><span class="theorem-title"><strong>Definición 7 (Distribución Multinomial)</strong></span> Si cada uno de <span class="math inline">\(n\)</span> ensayos independientes puede dar <span class="math inline">\(k\)</span> resultados con probabilidades <span class="math inline">\(p_1,\ldots,p_k\)</span>, el vector <span class="math inline">\((X_1,\ldots,X_k)\)</span> con el número de veces que se obtiene cada resultado sigue un <em>modelo multinomial</em> <span class="math inline">\((X_1,\ldots,X_k)\sim M(n; p_1,\ldots,p_k)\)</span>:</p>
 <p><span class="math display">\[
 P(X_1=x_1,\ldots,X_k=x_k) = \frac{n!}{x_1!\cdots x_k!}p_1^{x_1}\cdots p_k^{x_k}, \quad \sum x_i = n.
 \]</span></p>
@@ -608,7 +608,7 @@ P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}\quad k=0,1,2,\ldots
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-poisson-rnaseq" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas sigue una distribución <span class="math inline">\(P(8)\)</span>. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?</p>
+<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas es <span class="math inline">\(X\sim P(8)\)</span>. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?</p>
 </div>
 <ul>
 <li><span class="math inline">\(P(X = 0) = e^{-8} =\)</span> 0.00034.</li>
@@ -649,7 +649,7 @@ P(X=k) = \frac{\Gamma(k+1/\phi)}{k!\,\Gamma(1/\phi)}\left(\frac{1}{1+\phi\mu}\ri
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-binomial-negativa-rnaseq" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión <span class="math inline">\(\phi = 0.2\)</span>, es decir, sigue una <span class="math inline">\(BN(100, 0.2)\)</span>. Comparémosla con la <span class="math inline">\(P(100)\)</span> de la misma media.</p>
+<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión <span class="math inline">\(\phi = 0.2\)</span>, es decir, <span class="math inline">\(X\sim BN(100, 0.2)\)</span>. Comparémosla con <span class="math inline">\(Y\sim P(100)\)</span>, de la misma media.</p>
 </div>
 <ul>
 <li>Varianza de Poisson: 100.</li>
@@ -703,7 +703,7 @@ P(X=0) = \pi + (1-\pi)g(0), \qquad P(X=k) = (1-\pi)g(k)\quad k\geq 1.
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-zinb-microbiota" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> El 40% de los participantes no tiene <em>Akkermansia</em> en su microbiota (ceros estructurales) y, en los que la tienen, el conteo sigue una <span class="math inline">\(BN(20, 0.5)\)</span>. El conteo sigue una binomial negativa inflada de ceros con <span class="math inline">\(\pi = 0.4\)</span>.</p>
+<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> El 40% de los participantes no tiene <em>Akkermansia</em> en su microbiota (ceros estructurales) y, en los que la tienen, el conteo es <span class="math inline">\(X\sim BN(20, 0.5)\)</span>. El conteo sigue una binomial negativa inflada de ceros con <span class="math inline">\(\pi = 0.4\)</span>.</p>
 </div>
 <ul>
 <li><span class="math inline">\(P(X = 0) = 0.4 + 0.6\cdot P_{BN}(0) =\)</span> 0.405 (<span class="myred">barra roja</span>).</li>
@@ -827,7 +827,7 @@ P(X=0) = \pi + (1-\pi)g(0), \qquad P(X=k) = (1-\pi)g(k)\quad k\geq 1.
 <section id="distribución-uniforme-de-los-p-valores" class="title-slide slide level2 smaller center">
 <h2>Distribución Uniforme de los p-valores</h2>
 <div id="thm-uniforme-pvalores" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 1 (Distribución de los p-valores bajo <span class="math inline">\(H_0\)</span>)</strong></span> Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor sigue una distribución uniforme <span class="math inline">\(U(0,1)\)</span>, con densidad <span class="math inline">\(f(x) = 1\)</span> para <span class="math inline">\(0&lt;x&lt;1\)</span>: <span class="math display">\[
+<p><span class="theorem-title"><strong>Teorema 1 (Distribución de los p-valores bajo <span class="math inline">\(H_0\)</span>)</strong></span> Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor es <span class="math inline">\(p\sim U(0,1)\)</span>, con densidad <span class="math inline">\(f(x) = 1\)</span> para <span class="math inline">\(0&lt;x&lt;1\)</span>: <span class="math display">\[
 P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 \]</span></p>
 </div>
@@ -888,9 +888,9 @@ P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 <section id="distribución-chi-cuadrado" class="title-slide slide level2 smaller center">
 <h2>Distribución Chi-cuadrado</h2>
 <div id="def-distribucion-chi-cuadrado" class="theorem definition">
-<p><span class="theorem-title"><strong>Definición 11 (Distribución Chi-cuadrado)</strong></span> Si <span class="math inline">\(Z_1,\ldots,Z_\nu\)</span> son variables independientes <span class="math inline">\(N(0,1)\)</span>, la variable <span class="math display">\[
+<p><span class="theorem-title"><strong>Definición 11 (Distribución Chi-cuadrado)</strong></span> Si <span class="math inline">\(Z_1,\ldots,Z_\nu\)</span> son variables independientes con <span class="math inline">\(Z_i\sim N(0,1)\)</span>, la variable <span class="math display">\[
 \chi^2 = Z_1^2 + \cdots + Z_\nu^2
-\]</span> sigue una <em>distribución chi-cuadrado</em> con <span class="math inline">\(\nu\)</span> grados de libertad, <span class="math inline">\(\chi^2(\nu)\)</span>.</p>
+\]</span> sigue una <em>distribución chi-cuadrado</em> con <span class="math inline">\(\nu\)</span> grados de libertad, <span class="math inline">\(\chi^2\sim\chi^2(\nu)\)</span>.</p>
 </div>
 <p><strong>Estadísticos</strong>: <span class="math inline">\(E(\chi^2) = \nu\)</span> y <span class="math inline">\(Var(\chi^2) = 2\nu\)</span>.</p>
 <p><strong>Usos en Nutrigenómica</strong></p>
@@ -907,7 +907,7 @@ P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 <div id="def-distribucion-t" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 12 (Distribución T de Student)</strong></span> Si <span class="math inline">\(Z\sim N(0,1)\)</span> y <span class="math inline">\(U\sim\chi^2(\nu)\)</span> son independientes, la variable <span class="math display">\[
 T = \frac{Z}{\sqrt{U/\nu}}
-\]</span> sigue una <em>distribución T de Student</em> con <span class="math inline">\(\nu\)</span> grados de libertad, <span class="math inline">\(T(\nu)\)</span>.</p>
+\]</span> sigue una <em>distribución T de Student</em> con <span class="math inline">\(\nu\)</span> grados de libertad, <span class="math inline">\(T\sim T(\nu)\)</span>.</p>
 </div>
 <p><strong>Estadísticos</strong>: <span class="math inline">\(E(T) = 0\)</span> (<span class="math inline">\(\nu&gt;1\)</span>) y <span class="math inline">\(Var(T) = \dfrac{\nu}{\nu-2}\)</span> (<span class="math inline">\(\nu&gt;2\)</span>).</p>
 <p>Es simétrica como la normal pero con colas más pesadas. Cuando <span class="math inline">\(\nu\to\infty\)</span> se aproxima a la <span class="math inline">\(N(0,1)\)</span>.</p>
@@ -926,7 +926,7 @@ T = \frac{Z}{\sqrt{U/\nu}}
 <div id="def-distribucion-f" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 13 (Distribución F de Fisher-Snedecor)</strong></span> Si <span class="math inline">\(U\sim\chi^2(\nu_1)\)</span> y <span class="math inline">\(V\sim\chi^2(\nu_2)\)</span> son independientes, la variable <span class="math display">\[
 F = \frac{U/\nu_1}{V/\nu_2}
-\]</span> sigue una <em>distribución F de Fisher-Snedecor</em> con <span class="math inline">\(\nu_1\)</span> y <span class="math inline">\(\nu_2\)</span> grados de libertad, <span class="math inline">\(F(\nu_1, \nu_2)\)</span>.</p>
+\]</span> sigue una <em>distribución F de Fisher-Snedecor</em> con <span class="math inline">\(\nu_1\)</span> y <span class="math inline">\(\nu_2\)</span> grados de libertad, <span class="math inline">\(F\sim F(\nu_1, \nu_2)\)</span>.</p>
 </div>
 <p><strong>Estadísticos</strong>: <span class="math inline">\(E(F) = \dfrac{\nu_2}{\nu_2-2}\)</span> (<span class="math inline">\(\nu_2&gt;2\)</span>).</p>
 <p><strong>Usos en Nutrigenómica</strong></p>
