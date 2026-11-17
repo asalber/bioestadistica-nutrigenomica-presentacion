@@ -308,3 +308,15 @@ html .timeline {
   font-size: 0.65em;
 }
 
+
+/* Fórmulas legibles dentro de tablas y bloques destacados */
+.reveal table mjx-container[jax="CHTML"] {
+  font-size: 125% !important;
+}
+.reveal .callout mjx-container[jax="CHTML"],
+.reveal .theorem mjx-container[jax="CHTML"] {
+  font-size: 110% !important;
+}
+.reveal table td {
+  vertical-align: middle;
+}

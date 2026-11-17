@@ -30,74 +30,8 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-      }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-    div.sourceCode
-      { color: #383a42;  }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #383a42; } /* Normal */
-    code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
-    code span.an { color: #50a14f; } /* Annotation */
-    code span.at { color: #a626a4; } /* Attribute */
-    code span.bn { color: #986801; } /* BaseN */
-    code span.bu { color: #a626a4; } /* BuiltIn */
-    code span.cf { color: #a626a4; } /* ControlFlow */
-    code span.ch { color: #50a14f; } /* Char */
-    code span.cn { color: #986801; } /* Constant */
-    code span.co { color: #a0a1a7; font-style: italic; } /* Comment */
-    code span.cv { color: #e45649; font-style: italic; } /* CommentVar */
-    code span.do { color: #e45649; } /* Documentation */
-    code span.dt { color: #a626a4; } /* DataType */
-    code span.dv { color: #986801; } /* DecVal */
-    code span.er { color: #f44747; text-decoration: underline; } /* Error */
-    code span.ex { color: #4078f2; font-weight: bold; } /* Extension */
-    code span.fl { color: #986801; } /* Float */
-    code span.fu { color: #4078f2; } /* Function */
-    code span.im { color: #50a14f; } /* Import */
-    code span.in { color: #c45b00; } /* Information */
-    code span.kw { color: #a626a4; } /* Keyword */
-    code span.op { color: #a626a4; } /* Operator */
-    code span.ot { color: #27ae60; } /* Other */
-    code span.pp { color: #a626a4; } /* Preprocessor */
-    code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
-    code span.sc { color: #0184bc; } /* SpecialChar */
-    code span.ss { color: #da4453; } /* SpecialString */
-    code span.st { color: #50a14f; } /* String */
-    code span.va { color: #e45649; } /* Variable */
-    code span.vs { color: #da4453; } /* VerbatimString */
-    code span.wa { color: #da4453; } /* Warning */
   </style>
-  <link rel="stylesheet" href="03-contrastes_files/libs/revealjs/dist/theme/quarto-f09a277376d8bc89b7dcd1d48775deba.css">
+  <link rel="stylesheet" href="03-contrastes_files/libs/revealjs/dist/theme/quarto-85ac517078cdb0885cb93a388b178469.css">
   <link href="03-contrastes_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="03-contrastes_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="03-contrastes_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -357,37 +291,24 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </ul>
 </div>
 
-<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-3-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="centered">
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-4-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="centered">
 <p><span class="myblue">Región de aceptación</span> y <span class="myred">región de rechazo</span> con <span class="math inline">\(\alpha = 0.05\)</span> y estadístico <span class="math inline">\(N(0,1)\)</span>.</p>
 </div>
 </section>
 <section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
 <div id="exm-regiones-homocisteina" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em>, contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em> (<span class="math inline">\(\bar x = 14.44\)</span>, <span class="math inline">\(s = 2.24\)</span>), contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</div>
+<ul>
+<li>Estadístico: <span class="math inline">\(t = \dfrac{14.44 - 12}{2.24/\sqrt{20}} = 4.880\)</span>.</li>
+<li>Valor crítico: <span class="math inline">\(t^{19}_{0.05} = 1.729\)</span>.</li>
+</ul>
+<p>El estadístico (<span class="mygreen">verde</span>) cae en la región de rechazo: rechazamos <span class="math inline">\(H_0\)</span> y concluimos que la homocisteína media supera los 12 µmol/l.</p>
+</div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>hcy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">14.2</span>, <span class="fl">11.8</span>, <span class="fl">16.5</span>, <span class="fl">13.1</span>, <span class="fl">12.4</span>, <span class="fl">18.0</span>, <span class="fl">15.3</span>,</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="fl">10.9</span>, <span class="fl">14.8</span>, <span class="fl">13.6</span>, <span class="fl">17.2</span>, <span class="fl">12.9</span>, <span class="fl">15.9</span>, <span class="fl">11.5</span>,</span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="fl">16.1</span>, <span class="fl">13.8</span>, <span class="fl">14.5</span>, <span class="fl">12.2</span>, <span class="fl">15.0</span>, <span class="fl">19.1</span>)</span>
-<span id="cb1-4"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hcy)</span>
-<span id="cb1-5"><a href="" aria-hidden="true" tabindex="-1"></a>t_obs <span class="ot">&lt;-</span> (<span class="fu">mean</span>(hcy) <span class="sc">-</span> <span class="dv">12</span>) <span class="sc">/</span> (<span class="fu">sd</span>(hcy) <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
-<span id="cb1-6"><a href="" aria-hidden="true" tabindex="-1"></a>t_crit <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t_obs =</span> t_obs, <span class="at">t_critico =</span> t_crit)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;     t_obs t_critico 
-#&gt;  4.880308  1.729133</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level3">
-
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">7</span>, <span class="at">length.out =</span> <span class="dv">800</span>)</span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dibujar_regiones</span>(\(x) <span class="fu">dt</span>(x, n <span class="sc">-</span> <span class="dv">1</span>), x, \(x) x <span class="sc">&gt;</span> t_crit,</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Distribución T(19) bajo H₀"</span>, <span class="st">"T"</span>, <span class="at">obs =</span> t_obs)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -395,8 +316,8 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </figure>
 </div>
 </div>
+</div>
 </div></div>
-<p>El estadístico observado (<span class="mygreen">verde</span>) cae en la región de rechazo: rechazamos <span class="math inline">\(H_0\)</span> y concluimos que la homocisteína media supera los 12 µmol/l.</p>
 </section></section>
 <section id="section-2" class="title-slide slide level2 myblue center" data-background-color="">
 <h2></h2>
@@ -443,28 +364,33 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section class="slide level3">
 
 <div id="exm-p-valor" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> En el ejemplo de la homocisteína:</p>
+<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una <span class="math inline">\(T(19)\)</span> supere el valor observado: <span class="math display">\[
+\mbox{p-valor} = P(T \geq 4.880) = &lt; 0.0001.
+\]</span></p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(t_obs, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 5.196073e-05</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = 4.880</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">&lt; 0.0001</td>
+<td style="text-align: center;">[13.575, +∞]</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hcy, <span class="at">mu =</span> <span class="dv">12</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  hcy
-#&gt; t = 4.8803, df = 19, p-value = 5.196e-05
-#&gt; alternative hypothesis: true mean is greater than 12
-#&gt; 95 percent confidence interval:
-#&gt;  13.57549      Inf
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;     14.44</code></pre>
 </div>
-</div>
-</div>
+<p>Como el p-valor es menor que <span class="math inline">\(\alpha = 0.05\)</span>, rechazamos <span class="math inline">\(H_0\)</span>. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
 </section></section>
 <section id="interpretación-del-p-valor" class="title-slide slide level2 center">
 <h2>Interpretación del p-valor</h2>
@@ -504,16 +430,28 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <h2>Relación entre contrastes e intervalos de confianza</h2>
 <p>Un contraste bilateral con nivel de significación <span class="math inline">\(\alpha\)</span> rechaza <span class="math inline">\(H_0: \theta = \theta_0\)</span> si y solo si <span class="math inline">\(\theta_0\)</span> queda fuera del intervalo de confianza de nivel <span class="math inline">\(1-\alpha\)</span>.</p>
 <div id="exm-contraste-intervalo" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> En el ejemplo de la suplementación con omega-3:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>tg_antes   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">312</span>, <span class="dv">276</span>, <span class="dv">221</span>, <span class="dv">189</span>, <span class="dv">260</span>, <span class="dv">298</span>, <span class="dv">233</span>, <span class="dv">215</span>, <span class="dv">284</span>, <span class="dv">207</span>, <span class="dv">251</span>, <span class="dv">269</span>)</span>
-<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a>tg_despues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">201</span>, <span class="dv">185</span>, <span class="dv">240</span>, <span class="dv">230</span>, <span class="dv">210</span>, <span class="dv">160</span>, <span class="dv">228</span>, <span class="dv">251</span>, <span class="dv">219</span>, <span class="dv">170</span>, <span class="dv">236</span>, <span class="dv">199</span>, <span class="dv">205</span>, <span class="dv">238</span>)</span>
-<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">t.test</span>(tg_despues, tg_antes, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_valor =</span> res<span class="sc">$</span>p.value, <span class="at">li =</span> res<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="at">ls =</span> res<span class="sc">$</span>conf.int[<span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;       p_valor            li            ls 
-#&gt;  8.487908e-06 -4.533037e+01 -2.409820e+01</code></pre>
+<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> En el ejemplo de la suplementación con omega-3, contrastamos si el cambio medio de los triglicéridos es 0, <span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d \neq 0\)</span>.</p>
 </div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = -7.064</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">&lt; 0.0001</td>
+<td style="text-align: center;">[-45.330, -24.098]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <p>El 0 queda fuera del intervalo y el p-valor es menor que 0.05: las dos conclusiones coinciden. El intervalo, además, informa de la magnitud del efecto.</p>
@@ -633,28 +571,12 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 
 <div id="exm-tamano-muestral" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Queremos diseñar un estudio para detectar una diferencia de 2 kg en la pérdida de peso entre portadores AA y TT de <em>FTO</em> tras una dieta hipocalórica. Por estudios previos, la desviación típica de la pérdida de peso es de 4 kg. ¿Cuántos participantes necesitamos por grupo para tener una potencia del 80% con <span class="math inline">\(\alpha = 0.05\)</span>?</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">/</span> <span class="dv">4</span>  <span class="co"># d de Cohen</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">4</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.80</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;      Two-sample t test power calculation 
-#&gt; 
-#&gt;               n = 63.76576
-#&gt;           delta = 2
-#&gt;              sd = 4
-#&gt;       sig.level = 0.05
-#&gt;           power = 0.8
-#&gt;     alternative = two.sided
-#&gt; 
-#&gt; NOTE: n is number in *each* group</code></pre>
-</div>
-</div>
-</div>
-<p>¿Y si el efecto fuese de solo 1 kg (<span class="math inline">\(d = 0.25\)</span>)? Hace falta multiplicar el tamaño muestral por 4: 253 participantes por grupo.</p>
+<ul>
+<li>Tamaño del efecto: <span class="math inline">\(d = 2/4 = 0.5\)</span> (mediano).</li>
+<li>Para una potencia del 80% hacen falta <strong>64 participantes por grupo</strong>, 128 en total.</li>
+</ul>
+<p>Si el efecto fuese de solo 1 kg (<span class="math inline">\(d = 0.25\)</span>), harían falta 253 participantes por grupo: al reducir el efecto a la mitad, el tamaño muestral se multiplica por 4.</p>
 </section></section>
 <section id="section-4" class="title-slide slide level2 myblue center" data-background-color="">
 <h2></h2>
@@ -681,28 +603,26 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <p><strong>Ayuda</strong></p>
 </div>
 <div class="callout-content">
-<p>Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con un gráfico Q-Q y <code>shapiro.test()</code>, sobre todo con muestras pequeñas.</p>
+<p>Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con un gráfico Q-Q y el contraste de Shapiro-Wilk, sobre todo con muestras pequeñas.</p>
 </div>
 </div>
 </div>
 </section>
 
-<section id="resumen-de-contrastes-paramétricos" class="title-slide slide level2 smaller scrollable center">
+<section id="resumen-de-contrastes-paramétricos" class="title-slide slide level2 smaller center">
 <h2>Resumen de contrastes paramétricos</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
 <col style="width: 23%">
-<col style="width: 19%">
-<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Objetivo</th>
 <th style="text-align: left;">Contraste</th>
 <th style="text-align: center;">Estadístico</th>
-<th style="text-align: left;">Función de R</th>
 <th style="text-align: left;">Ejemplo</th>
 </tr>
 </thead>
@@ -711,56 +631,48 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <td style="text-align: left;">Media de una población</td>
 <td style="text-align: left;">T para una muestra</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-1)\)</span></td>
-<td style="text-align: left;"><code>t.test(x, mu = )</code></td>
 <td style="text-align: left;">Homocisteína en TT de <em>MTHFR</em> frente a 12 µmol/l</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Proporción de una población</td>
 <td style="text-align: left;">Binomial / Z</td>
 <td style="text-align: center;"><span class="math inline">\(N(0,1)\)</span></td>
-<td style="text-align: left;"><code>binom.test</code>, <code>prop.test</code></td>
 <td style="text-align: left;">Prevalencia de TT frente a la de referencia</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Varianza de una población</td>
 <td style="text-align: left;">Chi-cuadrado</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(n-1)\)</span></td>
-<td style="text-align: left;"><code>qchisq</code>, <code>pchisq</code></td>
 <td style="text-align: left;">Precisión de un método de medida de HbA1c</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Medias de dos poblaciones independientes</td>
 <td style="text-align: left;">T de Student / Welch</td>
 <td style="text-align: center;"><span class="math inline">\(T\)</span></td>
-<td style="text-align: left;"><code>t.test(x, y)</code></td>
 <td style="text-align: left;">Pérdida de peso en AA frente a TT de <em>FTO</em></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medias de dos poblaciones pareadas</td>
 <td style="text-align: left;">T pareada</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-1)\)</span></td>
-<td style="text-align: left;"><code>t.test(x, y, paired = TRUE)</code></td>
 <td style="text-align: left;">Triglicéridos antes y después de omega-3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Varianzas de dos poblaciones</td>
 <td style="text-align: left;">F de Fisher</td>
 <td style="text-align: center;"><span class="math inline">\(F(n_1-1, n_2-1)\)</span></td>
-<td style="text-align: left;"><code>var.test</code></td>
 <td style="text-align: left;">Variabilidad glucémica según <em>TCF7L2</em></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Medias de más de dos poblaciones</td>
 <td style="text-align: left;">ANOVA</td>
 <td style="text-align: center;"><span class="math inline">\(F(k-1, n-k)\)</span></td>
-<td style="text-align: left;"><code>aov</code>, <code>oneway.test</code></td>
 <td style="text-align: left;">IMC según genotipo AA, AT, TT de <em>FTO</em></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Correlación lineal</td>
 <td style="text-align: left;">T de Pearson</td>
 <td style="text-align: center;"><span class="math inline">\(T(n-2)\)</span></td>
-<td style="text-align: left;"><code>cor.test</code></td>
 <td style="text-align: left;">Ingesta de folato y homocisteína</td>
 </tr>
 </tbody>
@@ -772,18 +684,16 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <h2>Resumen de contrastes para datos categóricos y no paramétricos</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
 <col style="width: 23%">
-<col style="width: 19%">
-<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 23%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Objetivo</th>
 <th style="text-align: left;">Contraste</th>
 <th style="text-align: center;">Estadístico</th>
-<th style="text-align: left;">Función de R</th>
 <th style="text-align: left;">Ejemplo</th>
 </tr>
 </thead>
@@ -792,63 +702,54 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <td style="text-align: left;">Proporciones de dos poblaciones</td>
 <td style="text-align: left;">Z / Chi-cuadrado 2×2</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(1)\)</span></td>
-<td style="text-align: left;"><code>prop.test</code></td>
 <td style="text-align: left;">Normalización de homocisteína según <em>MTHFR</em></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Independencia de dos variables cualitativas</td>
 <td style="text-align: left;">Chi-cuadrado de independencia</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2((r-1)(c-1))\)</span></td>
-<td style="text-align: left;"><code>chisq.test</code></td>
 <td style="text-align: left;">Genotipo de <em>FTO</em> y obesidad</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Ajuste a una distribución teórica</td>
 <td style="text-align: left;">Chi-cuadrado de bondad de ajuste</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(k-1-m)\)</span></td>
-<td style="text-align: left;"><code>chisq.test(p = )</code></td>
 <td style="text-align: left;">Equilibrio de Hardy-Weinberg</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Independencia con frecuencias esperadas &lt; 5</td>
 <td style="text-align: left;">Exacto de Fisher</td>
 <td style="text-align: center;">—</td>
-<td style="text-align: left;"><code>fisher.test</code></td>
 <td style="text-align: left;">Variante rara y respuesta a la dieta</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Dos poblaciones independientes sin normalidad</td>
 <td style="text-align: left;">U de Mann-Whitney</td>
 <td style="text-align: center;"><span class="math inline">\(W\)</span></td>
-<td style="text-align: left;"><code>wilcox.test</code></td>
 <td style="text-align: left;">PCR según tipo de dieta</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Dos poblaciones pareadas sin normalidad</td>
 <td style="text-align: left;">Rangos con signo de Wilcoxon</td>
 <td style="text-align: center;"><span class="math inline">\(V\)</span></td>
-<td style="text-align: left;"><code>wilcox.test(paired = TRUE)</code></td>
 <td style="text-align: left;">Insulina antes y después de una intervención</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Más de dos poblaciones sin normalidad</td>
 <td style="text-align: left;">Kruskal-Wallis</td>
 <td style="text-align: center;"><span class="math inline">\(\chi^2(k-1)\)</span></td>
-<td style="text-align: left;"><code>kruskal.test</code></td>
 <td style="text-align: left;">Diversidad de la microbiota según dieta</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Correlación monótona</td>
 <td style="text-align: left;">Spearman</td>
 <td style="text-align: center;"><span class="math inline">\(\rho\)</span></td>
-<td style="text-align: left;"><code>cor.test(method = "spearman")</code></td>
 <td style="text-align: left;">Fibra dietética y abundancia de <em>Bifidobacterium</em></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Muchos contrastes simultáneos</td>
 <td style="text-align: left;">Corrección de Bonferroni / FDR</td>
 <td style="text-align: center;">—</td>
-<td style="text-align: left;"><code>p.adjust</code></td>
 <td style="text-align: left;">Expresión diferencial, EWAS, GWAS</td>
 </tr>
 </tbody>
@@ -859,230 +760,369 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div id="exm-t-una-muestra" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 8</strong></span> ¿Supera la homocisteína media de los homocigotos TT de <em>MTHFR</em> con baja ingesta de folato el umbral de 12 µmol/l?</p>
 <p><span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(hcy)<span class="sc">$</span>p.value  <span class="co"># Comprobación de normalidad</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.9211623</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Homocisteína (µmol/l)</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">14.44</td>
+<td style="text-align: center;">2.24</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hcy, <span class="at">mu =</span> <span class="dv">12</span>, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  One Sample t-test
-#&gt; 
-#&gt; data:  hcy
-#&gt; t = 4.8803, df = 19, p-value = 5.196e-05
-#&gt; alternative hypothesis: true mean is greater than 12
-#&gt; 95 percent confidence interval:
-#&gt;  13.57549      Inf
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;     14.44</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = 4.880</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">&lt; 0.0001</td>
+<td style="text-align: center;">[13.575, +∞]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>El contraste de Shapiro-Wilk no detecta falta de normalidad (p = 0.921). Rechazamos <span class="math inline">\(H_0\)</span>: la homocisteína media supera los 12 µmol/l.</p>
 </section>
 <section id="contraste-para-una-proporción" class="slide level3">
 <h3>Contraste para una proporción</h3>
 <div id="exm-contraste-proporcion" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En una cohorte de 250 personas se encuentran 38 homocigotos TT de <em>MTHFR</em> C677T. ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?</p>
+<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En una cohorte de 250 personas se encuentran 38 homocigotos TT de <em>MTHFR</em> C677T (<span class="math inline">\(\hat p = 0.152\)</span>). ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?</p>
 <p><span class="math inline">\(H_0: p = 0.10\)</span> frente a <span class="math inline">\(H_1: p \neq 0.10\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">38</span>, <span class="dv">250</span>, <span class="at">p =</span> <span class="fl">0.10</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Exact binomial test
-#&gt; 
-#&gt; data:  38 and 250
-#&gt; number of successes = 38, number of trials = 250, p-value = 0.01085
-#&gt; alternative hypothesis: true probability of success is not equal to 0.1
-#&gt; 95 percent confidence interval:
-#&gt;  0.1098640 0.2026108
-#&gt; sample estimates:
-#&gt; probability of success 
-#&gt;                  0.152</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 26%">
+<col style="width: 11%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Número de TT = 38.000</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">0.0109</td>
+<td style="text-align: center;">[0.110, 0.203]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>Con el contraste exacto binomial el p-valor es menor que 0.05: la prevalencia de TT en la cohorte es mayor que el 10%.</p>
 </section>
 <section id="contraste-para-una-varianza" class="slide level3">
 <h3>Contraste para una varianza</h3>
 <div id="exm-contraste-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. ¿Cumple el nuevo protocolo este requisito?</p>
+<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene <span class="math inline">\(s = 0.252\)</span>. ¿Cumple el nuevo protocolo este requisito?</p>
 <p><span class="math inline">\(H_0: \sigma = 0.3\)</span> frente a <span class="math inline">\(H_1: \sigma &lt; 0.3\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a>hba1c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.8</span>, <span class="fl">6.1</span>, <span class="fl">6.6</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>, <span class="fl">6.9</span>, <span class="fl">6.2</span>, <span class="fl">6.4</span>, <span class="fl">6.3</span>, <span class="fl">7.0</span>, <span class="fl">6.5</span>, <span class="fl">6.4</span>, <span class="fl">6.6</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>)</span>
-<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hba1c)</span>
-<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a>chi_obs <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">var</span>(hba1c) <span class="sc">/</span> <span class="fl">0.3</span><span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">chi_obs =</span> chi_obs, <span class="at">p_valor =</span> <span class="fu">pchisq</span>(chi_obs, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;   chi_obs   p_valor 
-#&gt; 9.8814815 0.2292038</code></pre>
 </div>
-</div>
-</div>
-<p>Aunque la desviación típica muestral es 0.25, con solo 15 mediciones no hay evidencia suficiente para afirmar que <span class="math inline">\(\sigma &lt; 0.3\)</span>. Haría falta una muestra mayor.</p>
+<p><span class="math display">\[
+\chi^2 = \frac{(n-1)s^2}{0.3^2} = \frac{14\cdot 0.0635}{0.09} = 9.881 \qquad \mbox{p-valor} = P(\chi^2(14) \leq 9.881) = 0.2292.
+\]</span></p>
+<p>Aunque la desviación típica muestral es menor que 0.3, con solo 15 mediciones no hay evidencia suficiente para afirmar que <span class="math inline">\(\sigma &lt; 0.3\)</span>. Haría falta una muestra mayor.</p>
 </section>
 <section id="contraste-t-para-dos-muestras-independientes" class="slide level3">
 <h3>Contraste T para dos muestras independientes</h3>
 <div id="exm-t-dos-muestras" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 11</strong></span> ¿Pierden menos peso los homocigotos AA de <em>FTO</em> que los TT tras 6 meses de dieta hipocalórica?</p>
 <p><span class="math inline">\(H_0: \mu_{AA} = \mu_{TT}\)</span> frente a <span class="math inline">\(H_1: \mu_{AA} &lt; \mu_{TT}\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a>perdida_AA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">2.1</span>, <span class="fl">6.2</span>, <span class="fl">4.7</span>, <span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">5.6</span>, <span class="fl">4.6</span>, <span class="fl">6.7</span>, <span class="fl">3.6</span>, <span class="fl">4.7</span>, <span class="fl">1.8</span>, <span class="fl">4.6</span>, <span class="fl">7.5</span>, <span class="fl">4.5</span>, <span class="fl">4.7</span>, <span class="fl">6.3</span>, <span class="fl">4.4</span>)</span>
-<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a>perdida_TT <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.9</span>, <span class="fl">7.6</span>, <span class="fl">6.2</span>, <span class="dv">3</span>, <span class="fl">6.4</span>, <span class="fl">3.3</span>, <span class="fl">8.7</span>, <span class="fl">5.7</span>, <span class="fl">6.4</span>, <span class="fl">4.6</span>, <span class="fl">9.3</span>, <span class="dv">7</span>, <span class="fl">8.7</span>, <span class="fl">8.1</span>, <span class="dv">6</span>, <span class="fl">5.1</span>, <span class="fl">6.6</span>, <span class="fl">12.5</span>,</span>
-<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="fl">1.2</span>, <span class="dv">11</span>, <span class="fl">9.1</span>, <span class="fl">3.9</span>, <span class="fl">9.7</span>, <span class="fl">7.6</span>, <span class="fl">1.8</span>)</span>
-<span id="cb22-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(perdida_AA, perdida_TT, <span class="at">alternative =</span> <span class="st">"less"</span>)  <span class="co"># Welch</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Welch Two Sample t-test
-#&gt; 
-#&gt; data:  perdida_AA and perdida_TT
-#&gt; t = -3.382, df = 40.94, p-value = 0.0007969
-#&gt; alternative hypothesis: true difference in means is less than 0
-#&gt; 95 percent confidence interval:
-#&gt;       -Inf -1.218228
-#&gt; sample estimates:
-#&gt; mean of x mean of y 
-#&gt;  4.311111  6.736000</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AA (alelo de riesgo)</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">4.31</td>
+<td style="text-align: center;">1.91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TT (alelo protector)</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">6.74</td>
+<td style="text-align: center;">2.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = -3.382</td>
+<td style="text-align: center;">40.94</td>
+<td style="text-align: center;">0.0008</td>
+<td style="text-align: center;">[−∞, -1.218]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>Con el contraste de Welch (varianzas distintas) rechazamos <span class="math inline">\(H_0\)</span>: los homocigotos AA pierden de media menos peso.</p>
 </section>
 <section id="contraste-t-para-dos-muestras-pareadas" class="slide level3">
 <h3>Contraste T para dos muestras pareadas</h3>
 <div id="exm-t-pareada" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 12</strong></span> ¿Reduce la suplementación con omega-3 los triglicéridos?</p>
 <p><span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d &lt; 0\)</span>, con <span class="math inline">\(d = \mbox{después} - \mbox{antes}\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(tg_despues <span class="sc">-</span> tg_antes)<span class="sc">$</span>p.value</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.1882036</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Antes</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">247.00</td>
+<td style="text-align: center;">38.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Después</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">212.29</td>
+<td style="text-align: center;">27.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diferencia</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">-34.71</td>
+<td style="text-align: center;">18.39</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tg_despues, tg_antes, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Paired t-test
-#&gt; 
-#&gt; data:  tg_despues and tg_antes
-#&gt; t = -7.0643, df = 13, p-value = 4.244e-06
-#&gt; alternative hypothesis: true mean difference is less than 0
-#&gt; 95 percent confidence interval:
-#&gt;       -Inf -26.01189
-#&gt; sample estimates:
-#&gt; mean difference 
-#&gt;       -34.71429</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = -7.064</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">&lt; 0.0001</td>
+<td style="text-align: center;">[−∞, -26.012]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>Las diferencias son compatibles con la normalidad (Shapiro-Wilk, p = 0.188). Rechazamos <span class="math inline">\(H_0\)</span>: el omega-3 reduce los triglicéridos.</p>
 </section>
 <section id="contraste-f-de-comparación-de-varianzas" class="slide level3">
 <h3>Contraste F de comparación de varianzas</h3>
 <div id="exm-f-varianzas" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 13</strong></span> ¿Es más variable la respuesta glucémica postprandial en los portadores TT de <em>TCF7L2</em> que en los CC?</p>
 <p><span class="math inline">\(H_0: \sigma^2_{TT} = \sigma^2_{CC}\)</span> frente a <span class="math inline">\(H_1: \sigma^2_{TT} &gt; \sigma^2_{CC}\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a>auc_TT <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">219</span>, <span class="dv">170</span>, <span class="dv">287</span>, <span class="dv">226</span>, <span class="dv">171</span>, <span class="dv">233</span>, <span class="dv">245</span>, <span class="dv">238</span>, <span class="dv">195</span>, <span class="dv">283</span>, <span class="dv">229</span>, <span class="dv">180</span>, <span class="dv">104</span>, <span class="dv">264</span>, <span class="dv">208</span>)</span>
-<span id="cb28-2"><a href="" aria-hidden="true" tabindex="-1"></a>auc_CC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">190</span>, <span class="dv">216</span>, <span class="dv">213</span>, <span class="dv">207</span>, <span class="dv">216</span>, <span class="dv">212</span>, <span class="dv">192</span>, <span class="dv">134</span>, <span class="dv">207</span>, <span class="dv">188</span>, <span class="dv">186</span>, <span class="dv">149</span>, <span class="dv">177</span>, <span class="dv">202</span>, <span class="dv">228</span>, <span class="dv">187</span>, <span class="dv">201</span>,</span>
-<span id="cb28-3"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="dv">188</span>, <span class="dv">151</span>, <span class="dv">178</span>)</span>
-<span id="cb28-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(auc_TT, auc_CC, <span class="at">alternative =</span> <span class="st">"greater"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  F test to compare two variances
-#&gt; 
-#&gt; data:  auc_TT and auc_CC
-#&gt; F = 3.7468, num df = 15, denom df = 19, p-value = 0.003909
-#&gt; alternative hypothesis: true ratio of variances is greater than 1
-#&gt; 95 percent confidence interval:
-#&gt;  1.677117      Inf
-#&gt; sample estimates:
-#&gt; ratio of variances 
-#&gt;           3.746785</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TT</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">214.5</td>
+<td style="text-align: center;">47.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CC</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">191.1</td>
+<td style="text-align: center;">24.40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">F = 3.747</td>
+<td style="text-align: center;">15 y 19</td>
+<td style="text-align: center;">0.0039</td>
+<td style="text-align: center;">[1.677, +∞]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: la respuesta glucémica es más variable en los portadores TT.</p>
 </section>
 <section id="anova-de-un-factor" class="slide level3">
 <h3>ANOVA de un factor</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div id="exm-anova" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 14</strong></span> ¿Difiere el IMC medio entre los tres genotipos de <em>FTO</em> rs9939609?</p>
 <p><span class="math inline">\(H_0: \mu_{AA} = \mu_{AT} = \mu_{TT}\)</span> frente a <span class="math inline">\(H_1\)</span>: al menos una media es distinta.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">31</span>)</span>
-<span id="cb30-2"><a href="" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb30-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"AA"</span>, <span class="st">"AT"</span>, <span class="st">"TT"</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">120</span>, <span class="dv">85</span>)),</span>
-<span id="cb30-4"><a href="" aria-hidden="true" tabindex="-1"></a>                    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"AA"</span>, <span class="st">"AT"</span>, <span class="st">"TT"</span>)),</span>
-<span id="cb30-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">imc =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">45</span>, <span class="fl">28.4</span>, <span class="dv">4</span>), <span class="fu">rnorm</span>(<span class="dv">120</span>, <span class="fl">27.2</span>, <span class="dv">4</span>), <span class="fu">rnorm</span>(<span class="dv">85</span>, <span class="fl">26.1</span>, <span class="dv">4</span>)))</span>
-<span id="cb30-6"><a href="" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">aov</span>(imc <span class="sc">~</span> genotipo, <span class="at">data =</span> imc)</span>
-<span id="cb30-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)  
-#&gt; genotipo      2    137   68.55   4.509 0.0119 *
-#&gt; Residuals   247   3755   15.20                 
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Fuente</th>
+<th style="text-align: center;">gl</th>
+<th style="text-align: center;">Suma de cuadrados</th>
+<th style="text-align: center;">Cuadrado medio</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;">p-valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Genotipo</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">137.1</td>
+<td style="text-align: center;">68.55</td>
+<td style="text-align: center;">4.509</td>
+<td style="text-align: center;">0.0119</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residual</td>
+<td style="text-align: center;">247</td>
+<td style="text-align: center;">3755.0</td>
+<td style="text-align: center;">15.20</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-</section>
-<section class="slide level3">
-
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(imc, <span class="fu">aes</span>(genotipo, imc, <span class="at">fill =</span> genotipo)) <span class="sc">+</span></span>
-<span id="cb32-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb32-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(myred, mypurple, myblue)) <span class="sc">+</span></span>
-<span id="cb32-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Genotipo FTO"</span>, <span class="at">y =</span> <span class="st">"IMC (kg/m²)"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<p>Rechazamos <span class="math inline">\(H_0\)</span>. Las comparaciones dos a dos se hacen después con correcciones como la de Tukey.</p>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-19-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-20-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
+</div>
 </div>
 </div>
 </div></div>
-<p>Si se rechaza <span class="math inline">\(H_0\)</span>, las comparaciones dos a dos se hacen con correcciones como la de Tukey (<code>TukeyHSD(modelo)</code>).</p>
 </section>
 <section id="correlación-de-pearson" class="slide level3">
 <h3>Correlación de Pearson</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div id="exm-correlacion" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 15</strong></span> ¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática?</p>
+<p><span class="theorem-title"><strong>Ejemplo 15</strong></span> ¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática en 40 adultos?</p>
 <p><span class="math inline">\(H_0: \rho = 0\)</span> frente a <span class="math inline">\(H_1: \rho \neq 0\)</span>.</p>
+</div>
+<ul>
+<li>Coeficiente de correlación: <span class="math inline">\(r = -0.694\)</span>.</li>
+</ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
-<span id="cb33-2"><a href="" aria-hidden="true" tabindex="-1"></a>folato <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">40</span>, <span class="dv">150</span>, <span class="dv">550</span>))</span>
-<span id="cb33-3"><a href="" aria-hidden="true" tabindex="-1"></a>homocisteina <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">17</span> <span class="sc">-</span> <span class="fl">0.015</span> <span class="sc">*</span> folato <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">40</span>, <span class="dv">0</span>, <span class="fl">1.8</span>), <span class="dv">1</span>)</span>
-<span id="cb33-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(folato, homocisteina)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Pearson's product-moment correlation
-#&gt; 
-#&gt; data:  folato and homocisteina
-#&gt; t = -5.9414, df = 38, p-value = 6.851e-07
-#&gt; alternative hypothesis: true correlation is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;  -0.8267479 -0.4879303
-#&gt; sample estimates:
-#&gt;        cor 
-#&gt; -0.6939611</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">t = -5.941</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">&lt; 0.0001</td>
+<td style="text-align: center;">[-0.827, -0.488]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-</section>
-<section class="slide level3">
-
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(folato, homocisteina), <span class="fu">aes</span>(folato, homocisteina)) <span class="sc">+</span></span>
-<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> myblue, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">colour =</span> myred) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Ingesta de folato (µg/día)"</span>, <span class="at">y =</span> <span class="st">"Homocisteína (µmol/l)"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: a mayor ingesta de folato, menor homocisteína.</p>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-21-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-23-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
+</div>
 </div>
 </div>
 </div></div>
@@ -1090,277 +1130,412 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-de-comparación-de-dos-proporciones" class="slide level3">
 <h3>Contraste de comparación de dos proporciones</h3>
 <div id="exm-dos-proporciones" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 16</strong></span> Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de <em>MTHFR</em> y en 24 de 45 homocigotos TT. ¿Es distinta la proporción de normalización según el genotipo?</p>
+<p><span class="theorem-title"><strong>Ejemplo 16</strong></span> Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de <em>MTHFR</em> (74.3%) y en 24 de 45 homocigotos TT (53.3%). ¿Es distinta la proporción de normalización según el genotipo?</p>
 <p><span class="math inline">\(H_0: p_{CC/CT} = p_{TT}\)</span> frente a <span class="math inline">\(H_1: p_{CC/CT} \neq p_{TT}\)</span>.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">24</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">45</span>), <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  2-sample test for equality of proportions without continuity correction
-#&gt; 
-#&gt; data:  c(52, 24) out of c(70, 45)
-#&gt; X-squared = 5.3653, df = 1, p-value = 0.02054
-#&gt; alternative hypothesis: two.sided
-#&gt; 95 percent confidence interval:
-#&gt;  0.03139632 0.38765130
-#&gt; sample estimates:
-#&gt;    prop 1    prop 2 
-#&gt; 0.7428571 0.5333333</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">χ² = 5.365</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.0205</td>
+<td style="text-align: center;">[0.031, 0.388]</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: la proporción de normalización es mayor en los portadores CC/CT.</p>
 </section>
-<section id="contraste-chi-cuadrado-de-independencia" class="slide level3">
+<section id="contraste-chi-cuadrado-de-independencia" class="slide level3 smaller">
 <h3>Contraste chi-cuadrado de independencia</h3>
 <div id="exm-chi-independencia" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 17</strong></span> En una muestra de 600 adultos se clasifica a cada persona según su genotipo de <em>FTO</em> y su estado ponderal. ¿Son independientes ambas variables?</p>
 <p><span class="math inline">\(H_0\)</span>: el genotipo y el estado ponderal son independientes frente a <span class="math inline">\(H_1\)</span>: están asociados.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Frecuencias observadas</strong></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">45</span>, <span class="dv">35</span>,</span>
-<span id="cb38-2"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">110</span>, <span class="dv">105</span>, <span class="dv">85</span>,</span>
-<span id="cb38-3"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">95</span>, <span class="dv">55</span>, <span class="dv">30</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb38-4"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="at">Genotipo =</span> <span class="fu">c</span>(<span class="st">"TT"</span>, <span class="st">"AT"</span>, <span class="st">"AA"</span>),</span>
-<span id="cb38-5"><a href="" aria-hidden="true" tabindex="-1"></a>                                <span class="at">Estado =</span> <span class="fu">c</span>(<span class="st">"Normopeso"</span>, <span class="st">"Sobrepeso"</span>, <span class="st">"Obesidad"</span>)))</span>
-<span id="cb38-6"><a href="" aria-hidden="true" tabindex="-1"></a>tabla</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;         Estado
-#&gt; Genotipo Normopeso Sobrepeso Obesidad
-#&gt;       TT        40        45       35
-#&gt;       AT       110       105       85
-#&gt;       AA        95        55       30</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Genotipo</th>
+<th style="text-align: center;">Normopeso</th>
+<th style="text-align: center;">Sobrepeso</th>
+<th style="text-align: center;">Obesidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TT</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">35</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AT</td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">105</td>
+<td style="text-align: center;">85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AA</td>
+<td style="text-align: center;">95</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">30</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla)</span>
-<span id="cb40-2"><a href="" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Pearson's Chi-squared test
-#&gt; 
-#&gt; data:  tabla
-#&gt; X-squared = 17.523, df = 4, p-value = 0.001529</code></pre>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Frecuencias esperadas bajo <span class="math inline">\(H_0\)</span></strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Genotipo</th>
+<th style="text-align: center;">Normopeso</th>
+<th style="text-align: center;">Sobrepeso</th>
+<th style="text-align: center;">Obesidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TT</td>
+<td style="text-align: center;">49.0</td>
+<td style="text-align: center;">41.0</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AT</td>
+<td style="text-align: center;">122.5</td>
+<td style="text-align: center;">102.5</td>
+<td style="text-align: center;">75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">AA</td>
+<td style="text-align: center;">73.5</td>
+<td style="text-align: center;">61.5</td>
+<td style="text-align: center;">45</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
+</div></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">χ² = 17.523</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.0015</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: el estado ponderal está asociado con el genotipo de <em>FTO</em>.</p>
 </section>
 <section id="contraste-del-equilibrio-de-hardy-weinberg" class="slide level3">
 <h3>Contraste del equilibrio de Hardy-Weinberg</h3>
 <div id="exm-hardy-weinberg-contraste" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 18</strong></span> En una muestra de 500 personas se observan 92 AA, 236 AT y 172 TT para rs9939609. ¿Está la muestra en equilibrio de Hardy-Weinberg?</p>
 <p><span class="math inline">\(H_0\)</span>: las frecuencias genotípicas son <span class="math inline">\(p^2\)</span>, <span class="math inline">\(2pq\)</span>, <span class="math inline">\(q^2\)</span> frente a <span class="math inline">\(H_1\)</span>: no lo son.</p>
+</div>
+<p>La frecuencia estimada del alelo A es <span class="math inline">\(\hat p = \frac{2\cdot 92 + 236}{1000} = 0.42\)</span>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">AA =</span> <span class="dv">92</span>, <span class="at">AT =</span> <span class="dv">236</span>, <span class="at">TT =</span> <span class="dv">172</span>); n <span class="ot">&lt;-</span> <span class="fu">sum</span>(obs)</span>
-<span id="cb42-2"><a href="" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> obs[<span class="st">"AA"</span>] <span class="sc">+</span> obs[<span class="st">"AT"</span>]) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> n)  <span class="co"># Frecuencia estimada del alelo A</span></span>
-<span id="cb42-3"><a href="" aria-hidden="true" tabindex="-1"></a>esp <span class="ot">&lt;-</span> n <span class="sc">*</span> <span class="fu">c</span>(p<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span> <span class="sc">*</span> p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p), (<span class="dv">1</span> <span class="sc">-</span> p)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb42-4"><a href="" aria-hidden="true" tabindex="-1"></a>chi <span class="ot">&lt;-</span> <span class="fu">sum</span>((obs <span class="sc">-</span> esp)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esp)</span>
-<span id="cb42-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># gl = 3 categorías - 1 - 1 parámetro estimado = 1</span></span>
-<span id="cb42-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">p_A =</span> <span class="fu">unname</span>(p), <span class="at">chi =</span> chi, <span class="at">p_valor =</span> <span class="fu">pchisq</span>(chi, <span class="at">df =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;       p_A       chi   p_valor 
-#&gt; 0.4200000 0.4866790 0.4854125</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Genotipo</th>
+<th style="text-align: center;">Observados</th>
+<th style="text-align: center;">Esperados</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">AA</td>
+<td style="text-align: center;">92</td>
+<td style="text-align: center;">88.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AT</td>
+<td style="text-align: center;">236</td>
+<td style="text-align: center;">243.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">TT</td>
+<td style="text-align: center;">172</td>
+<td style="text-align: center;">168.2</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p><span class="math inline">\(\chi^2 = \sum\frac{(O-E)^2}{E} = 0.487\)</span> con <span class="math inline">\(3 - 1 - 1 = 1\)</span> grado de libertad (se descuenta el parámetro <span class="math inline">\(p\)</span> estimado), p-valor = 0.4854.</p>
 <p>No hay evidencia de desviación del equilibrio de Hardy-Weinberg, lo que respalda la calidad del genotipado.</p>
-<div class="callout callout-caution callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Precaución</strong></p>
-</div>
-<div class="callout-content">
-<p><code>chisq.test(obs, p = esp / n)</code> daría 2 grados de libertad, porque no sabe que hemos estimado <span class="math inline">\(p\)</span> a partir de los datos.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="contraste-exacto-de-fisher" class="slide level3 smaller">
 <h3>Contraste exacto de Fisher</h3>
 <div id="exm-fisher" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 19</strong></span> Se estudia la respuesta a una dieta cetogénica en portadores de una variante rara de <em>PPARG</em> (Pro12Ala). Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.</p>
+<p><span class="theorem-title"><strong>Ejemplo 19</strong></span> Se estudia la respuesta a una dieta cetogénica en portadores de la variante Pro12Ala de <em>PPARG</em>. Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.</p>
+<p><span class="math inline">\(H_0\)</span>: la respuesta es independiente de la variante frente a <span class="math inline">\(H_1\)</span>: están asociadas.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>,</span>
-<span id="cb44-2"><a href="" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">18</span>, <span class="dv">33</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb44-3"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="at">Variante =</span> <span class="fu">c</span>(<span class="st">"Ala12"</span>, <span class="st">"Pro12Pro"</span>),</span>
-<span id="cb44-4"><a href="" aria-hidden="true" tabindex="-1"></a>                                <span class="at">Respuesta =</span> <span class="fu">c</span>(<span class="st">"Respondedor"</span>, <span class="st">"No respondedor"</span>)))</span>
-<span id="cb44-5"><a href="" aria-hidden="true" tabindex="-1"></a>tabla</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;           Respuesta
-#&gt; Variante   Respondedor No respondedor
-#&gt;   Ala12              7              2
-#&gt;   Pro12Pro          18             33</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(tabla)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Fisher's Exact Test for Count Data
-#&gt; 
-#&gt; data:  tabla
-#&gt; p-value = 0.02682
-#&gt; alternative hypothesis: true odds ratio is not equal to 1
-#&gt; 95 percent confidence interval:
-#&gt;   1.038305 67.543483
-#&gt; sample estimates:
-#&gt; odds ratio 
-#&gt;   6.214462</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variante</th>
+<th style="text-align: center;">Respondedor</th>
+<th style="text-align: center;">No respondedor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ala12</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pro12Pro</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">33</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Odds ratio</th>
+<th style="text-align: center;">Intervalo de confianza del 95%</th>
+<th style="text-align: center;">p-valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6.21</td>
+<td style="text-align: center;">[1.04, 67.54]</td>
+<td style="text-align: center;">0.0268</td>
+</tr>
+</tbody>
+</table>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: los portadores de Ala12 responden más a la dieta.</p>
 </section>
 <section id="contraste-u-de-mann-whitney" class="slide level3">
 <h3>Contraste U de Mann-Whitney</h3>
 <div id="exm-mann-whitney" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 20</strong></span> La PCR ultrasensible es muy asimétrica. ¿Es distinta entre participantes con dieta mediterránea y con dieta control?</p>
 <p><span class="math inline">\(H_0\)</span>: ambas distribuciones son iguales frente a <span class="math inline">\(H_1\)</span>: una tiende a dar valores mayores que la otra.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
-<span id="cb48-2"><a href="" aria-hidden="true" tabindex="-1"></a>pcr_med <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rlnorm</span>(<span class="dv">22</span>, <span class="fu">log</span>(<span class="fl">1.4</span>), <span class="fl">0.8</span>), <span class="dv">2</span>)</span>
-<span id="cb48-3"><a href="" aria-hidden="true" tabindex="-1"></a>pcr_control <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rlnorm</span>(<span class="dv">24</span>, <span class="fu">log</span>(<span class="fl">2.6</span>), <span class="fl">0.8</span>), <span class="dv">2</span>)</span>
-<span id="cb48-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(pcr_med, pcr_control, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Wilcoxon rank sum test with continuity correction
-#&gt; 
-#&gt; data:  pcr_med and pcr_control
-#&gt; W = 97, p-value = 0.0002507
-#&gt; alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dieta</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Mediana</th>
+<th style="text-align: center;">Rango intercuartílico</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mediterránea</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">1.46</td>
+<td style="text-align: center;">0.79</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Control</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">3.07</td>
+<td style="text-align: center;">2.68</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">W = 97.000</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">0.0003</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <p>El p-valor es muy pequeño: la PCR tiende a ser menor con la dieta mediterránea.</p>
 </section>
 <section id="contraste-de-kruskal-wallis" class="slide level3">
 <h3>Contraste de Kruskal-Wallis</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div id="exm-kruskal" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 21</strong></span> ¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana?</p>
+<p><span class="theorem-title"><strong>Ejemplo 21</strong></span> ¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana (20 por grupo)?</p>
+<p><span class="math inline">\(H_0\)</span>: las tres distribuciones son iguales frente a <span class="math inline">\(H_1\)</span>: al menos una es distinta.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">34</span>)</span>
-<span id="cb50-2"><a href="" aria-hidden="true" tabindex="-1"></a>microbiota <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb50-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">dieta =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Omnívora"</span>, <span class="st">"Vegetariana"</span>, <span class="st">"Vegana"</span>), <span class="at">each =</span> <span class="dv">20</span>),</span>
-<span id="cb50-4"><a href="" aria-hidden="true" tabindex="-1"></a>                 <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Omnívora"</span>, <span class="st">"Vegetariana"</span>, <span class="st">"Vegana"</span>)),</span>
-<span id="cb50-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">shannon =</span> <span class="fu">c</span>(<span class="fu">rbeta</span>(<span class="dv">20</span>, <span class="dv">8</span>, <span class="fl">3.5</span>), <span class="fu">rbeta</span>(<span class="dv">20</span>, <span class="dv">10</span>, <span class="fl">2.6</span>), <span class="fu">rbeta</span>(<span class="dv">20</span>, <span class="dv">12</span>, <span class="dv">2</span>)) <span class="sc">*</span> <span class="dv">5</span>)</span>
-<span id="cb50-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(shannon <span class="sc">~</span> dieta, <span class="at">data =</span> microbiota)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  Kruskal-Wallis rank sum test
-#&gt; 
-#&gt; data:  shannon by dieta
-#&gt; Kruskal-Wallis chi-squared = 14.684, df = 2, p-value = 0.0006477</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level3">
-
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(microbiota, <span class="fu">aes</span>(dieta, shannon, <span class="at">fill =</span> dieta)) <span class="sc">+</span></span>
-<span id="cb52-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb52-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(myred, mypurple, mygreen)) <span class="sc">+</span></span>
-<span id="cb52-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Índice de Shannon"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-28-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
-</figure>
-</div>
-</div>
-</div></div>
-</section>
-<section id="corrección-por-comparaciones-múltiples" class="slide level3 smaller scrollable">
-<h3>Corrección por comparaciones múltiples</h3>
-<div id="exm-comparaciones-multiples" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 22</strong></span> Se estudia la expresión de 10 genes del metabolismo lipídico tras una intervención con dieta mediterránea. Ajustamos los p-valores con Bonferroni y con la FDR de Benjamini-Hochberg.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-hidden="true" tabindex="-1"></a>pvalores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">SREBF1 =</span> <span class="fl">0.0004</span>, <span class="at">PPARA =</span> <span class="fl">0.003</span>, <span class="at">CPT1A =</span> <span class="fl">0.009</span>, <span class="at">FASN =</span> <span class="fl">0.012</span>, <span class="at">LPL =</span> <span class="fl">0.021</span>,</span>
-<span id="cb53-2"><a href="" aria-hidden="true" tabindex="-1"></a>              <span class="at">SCD =</span> <span class="fl">0.034</span>, <span class="at">ACACA =</span> <span class="fl">0.048</span>, <span class="at">CD36 =</span> <span class="fl">0.21</span>, <span class="at">APOA1 =</span> <span class="fl">0.47</span>, <span class="at">LIPE =</span> <span class="fl">0.83</span>)</span>
-<span id="cb53-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">gen =</span> <span class="fu">names</span>(pvalores), <span class="at">p =</span> pvalores,</span>
-<span id="cb53-4"><a href="" aria-hidden="true" tabindex="-1"></a>       <span class="at">Bonferroni =</span> <span class="fu">p.adjust</span>(pvalores, <span class="st">"bonferroni"</span>),</span>
-<span id="cb53-5"><a href="" aria-hidden="true" tabindex="-1"></a>       <span class="at">BH =</span> <span class="fu">p.adjust</span>(pvalores, <span class="st">"BH"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb53-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th style="text-align: left;">gen</th>
-<th style="text-align: right;">p</th>
-<th style="text-align: right;">Bonferroni</th>
-<th style="text-align: right;">BH</th>
+<th style="text-align: center;">Estadístico</th>
+<th style="text-align: center;">Grados de libertad</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Intervalo de confianza</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">SREBF1</td>
-<td style="text-align: right;">0.0004</td>
-<td style="text-align: right;">0.004</td>
-<td style="text-align: right;">0.0040</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PPARA</td>
-<td style="text-align: right;">0.0030</td>
-<td style="text-align: right;">0.030</td>
-<td style="text-align: right;">0.0150</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CPT1A</td>
-<td style="text-align: right;">0.0090</td>
-<td style="text-align: right;">0.090</td>
-<td style="text-align: right;">0.0300</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">FASN</td>
-<td style="text-align: right;">0.0120</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: right;">0.0300</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">LPL</td>
-<td style="text-align: right;">0.0210</td>
-<td style="text-align: right;">0.210</td>
-<td style="text-align: right;">0.0420</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SCD</td>
-<td style="text-align: right;">0.0340</td>
-<td style="text-align: right;">0.340</td>
-<td style="text-align: right;">0.0567</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ACACA</td>
-<td style="text-align: right;">0.0480</td>
-<td style="text-align: right;">0.480</td>
-<td style="text-align: right;">0.0686</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CD36</td>
-<td style="text-align: right;">0.2100</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.2625</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">APOA1</td>
-<td style="text-align: right;">0.4700</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.5222</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LIPE</td>
-<td style="text-align: right;">0.8300</td>
-<td style="text-align: right;">1.000</td>
-<td style="text-align: right;">0.8300</td>
+<td style="text-align: center;">H = 14.684</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0.0006</td>
+<td style="text-align: center;">—</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
+<p>Rechazamos <span class="math inline">\(H_0\)</span>: la diversidad de la microbiota depende del tipo de dieta.</p>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-37-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
 </div>
-<p>Sin corregir, 7 genes serían significativos al 5%. Bonferroni controla la probabilidad de algún falso positivo y es muy conservador; la FDR controla la proporción esperada de falsos descubrimientos y es la más usada en ómicas.</p>
+</div>
+</div>
+</div></div>
+</section>
+<section id="corrección-por-comparaciones-múltiples" class="slide level3 smaller">
+<h3>Corrección por comparaciones múltiples</h3>
+<div id="exm-comparaciones-multiples" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 22</strong></span> Se estudia la expresión de 10 genes del metabolismo lipídico tras una intervención con dieta mediterránea. Ajustamos los p-valores con Bonferroni y con la FDR de Benjamini-Hochberg.</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Gen</th>
+<th style="text-align: center;">p-valor</th>
+<th style="text-align: center;">Bonferroni</th>
+<th style="text-align: center;">FDR (BH)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SREBF1</td>
+<td style="text-align: center;">0.0004</td>
+<td style="text-align: center;">0.004</td>
+<td style="text-align: center;">0.0040</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PPARA</td>
+<td style="text-align: center;">0.0030</td>
+<td style="text-align: center;">0.030</td>
+<td style="text-align: center;">0.0150</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CPT1A</td>
+<td style="text-align: center;">0.0090</td>
+<td style="text-align: center;">0.090</td>
+<td style="text-align: center;">0.0300</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FASN</td>
+<td style="text-align: center;">0.0120</td>
+<td style="text-align: center;">0.120</td>
+<td style="text-align: center;">0.0300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LPL</td>
+<td style="text-align: center;">0.0210</td>
+<td style="text-align: center;">0.210</td>
+<td style="text-align: center;">0.0420</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCD</td>
+<td style="text-align: center;">0.0340</td>
+<td style="text-align: center;">0.340</td>
+<td style="text-align: center;">0.0567</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ACACA</td>
+<td style="text-align: center;">0.0480</td>
+<td style="text-align: center;">0.480</td>
+<td style="text-align: center;">0.0686</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CD36</td>
+<td style="text-align: center;">0.2100</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">0.2625</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">APOA1</td>
+<td style="text-align: center;">0.4700</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">0.5222</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LIPE</td>
+<td style="text-align: center;">0.8300</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">0.8300</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Sin corregir, 7 genes serían significativos al 5%; con Bonferroni, 2, y con la FDR, 5. Bonferroni controla la probabilidad de algún falso positivo y es muy conservador; la FDR controla la proporción esperada de falsos descubrimientos y es la más usada en ómicas.</p>
 </section>
 <section class="slide level3">
 
 <div id="exr-contrastes" class="theorem exercise">
-<p><span class="theorem-title"><strong>Ejercicio 1</strong></span> Para cada uno de los siguientes estudios, indicar las hipótesis, el contraste más adecuado y la función de R que utilizarías.</p>
+<p><span class="theorem-title"><strong>Ejercicio 1</strong></span> Para cada uno de los siguientes estudios, indicar las hipótesis y el contraste más adecuado.</p>
 <ol type="a">
 <li>Comparar la presión arterial sistólica de 30 hipertensos antes y después de 12 semanas de dieta DASH.</li>
 <li>Comprobar si la frecuencia de genotipos de <em>APOE</em> en una muestra está en equilibrio de Hardy-Weinberg.</li>
@@ -1377,11 +1552,11 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 Solución
 </summary>
 <ol type="a">
-<li><span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d &lt; 0\)</span>. Contraste T pareado: <code>t.test(despues, antes, paired = TRUE, alternative = "less")</code>.</li>
-<li><span class="math inline">\(H_0\)</span>: equilibrio de Hardy-Weinberg. Chi-cuadrado de bondad de ajuste con los grados de libertad corregidos (o el contraste exacto de Hardy-Weinberg).</li>
-<li><span class="math inline">\(H_0\)</span>: distribuciones iguales. U de Mann-Whitney: <code>wilcox.test(x, y)</code>, o T de Welch sobre el logaritmo de la insulina.</li>
-<li><span class="math inline">\(H_0: \mu_{E2} = \mu_{E3} = \mu_{E4}\)</span>. ANOVA de un factor: <code>aov(ldl ~ apoe)</code>.</li>
-<li><span class="math inline">\(H_0\)</span>: independencia. Con 40 pacientes probablemente habrá frecuencias esperadas &lt; 5, así que contraste exacto de Fisher: <code>fisher.test(tabla)</code>.</li>
+<li><span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d &lt; 0\)</span>. Contraste T para muestras pareadas.</li>
+<li><span class="math inline">\(H_0\)</span>: equilibrio de Hardy-Weinberg. Chi-cuadrado de bondad de ajuste descontando los parámetros estimados (o el contraste exacto de Hardy-Weinberg).</li>
+<li><span class="math inline">\(H_0\)</span>: distribuciones iguales. U de Mann-Whitney, o T de Welch sobre el logaritmo de la insulina.</li>
+<li><span class="math inline">\(H_0: \mu_{E2} = \mu_{E3} = \mu_{E4}\)</span>. ANOVA de un factor.</li>
+<li><span class="math inline">\(H_0\)</span>: independencia. Con 40 pacientes probablemente habrá frecuencias esperadas &lt; 5, así que contraste exacto de Fisher.</li>
 </ol>
 </details>
 

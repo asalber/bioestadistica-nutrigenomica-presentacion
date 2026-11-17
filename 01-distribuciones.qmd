@@ -9,6 +9,40 @@ lang: es
 
 {{< include _configuracion-r.qmd >}}
 
+```{r}
+#| include: false
+# Gráficas de densidad (continuas) y de probabilidad (discretas)
+dibujar_densidades <- function(df, x_lab, colores = c(myblue, myred, mypurple, mygreen, myorange),
+                               corte = NULL, sombrear = NULL) {
+  g <- ggplot(df, aes(x, d, colour = grupo, fill = grupo))
+  if (!is.null(sombrear)) {
+    g <- g + geom_area(data = filter(df, sombrear(x)), alpha = 0.5, position = "identity", colour = NA)
+  }
+  g <- g + geom_area(alpha = 0.15, position = "identity") +
+    geom_line(linewidth = 1) +
+    scale_colour_manual(values = colores, name = NULL) +
+    scale_fill_manual(values = colores, name = NULL) +
+    labs(x = x_lab, y = "Densidad") +
+    theme(legend.position = "top")
+  if (!is.null(corte)) g <- g + geom_vline(xintercept = corte, linetype = 2)
+  g
+}
+densidades <- function(x, ...) {
+  fs <- list(...)
+  map2_dfr(fs, names(fs), \(f, n) tibble(x = x, d = f(x), grupo = n)) |>
+    mutate(grupo = factor(grupo, levels = names(fs)))
+}
+dibujar_probabilidades <- function(df, x_lab, destacar = NULL, etiquetas = NULL) {
+  df <- mutate(df, destacado = if (is.null(destacar)) FALSE else destacar(x))
+  ggplot(df, aes(x, p, fill = destacado)) +
+    geom_col(width = 0.6) +
+    scale_fill_manual(values = c(`FALSE` = myblue, `TRUE` = myred), labels = etiquetas,
+                      name = NULL, guide = if (is.null(etiquetas)) "none" else "legend") +
+    labs(x = x_lab, y = "Probabilidad") +
+    theme(legend.position = "top")
+}
+```
+
 ## {background-color= .myblue}
 
 :::{.main-title}
@@ -55,7 +89,7 @@ donde $\mu$ es la _media_ y $\sigma>0$ la _desviación típica_.
 
 **Estadísticos**: $E(X) = \mu$ y $Var(X) = \sigma^2$.
 
-Es simétrica, el 68%, 95% y 99,7% de los valores están a menos de 1, 2 y 3 desviaciones típicas de la media.
+Es simétrica, y el 68%, 95% y 99,7% de los valores están a menos de 1, 2 y 3 desviaciones típicas de la media.
 
 **Ejemplos en Nutrigenómica**
 
@@ -66,46 +100,61 @@ Es simétrica, el 68%, 95% y 99,7% de los valores están a menos de 1, 2 y 3 des
 
 ---
 
+:::: {.columns}
+
+::: {.column width="45%"}
 :::{#exm-normal-imc}
 En adultos europeos el IMC de los homocigotos TT del gen _FTO_ (rs9939609) sigue aproximadamente una distribución $N(26, 4)$, mientras que el de los homocigotos AA (alelo de riesgo) sigue una $N(27.5, 4)$. ¿Qué proporción de cada grupo tiene obesidad (IMC $\geq 30$)?
-
-```{r}
-# P(IMC >= 30) en cada genotipo
-1 - pnorm(30, mean = 26, sd = 4)
-1 - pnorm(30, mean = 27.5, sd = 4)
-```
 :::
 
----
+$P(X\geq 30)$ es el área a la derecha de 30:
 
+- TT: `r fmt_pct(1 - pnorm(30, 26, 4))`.
+- AA: `r fmt_pct(1 - pnorm(30, 27.5, 4))`.
+
+Una diferencia de 1,5 puntos en la media aumenta la proporción de obesos en un `r fmt_pct((1 - pnorm(30, 27.5, 4)) / (1 - pnorm(30, 26, 4)) - 1, 0)`.
+:::
+
+::: {.column width="55%"}
 ```{r}
-#| output-location: column
 #| fig-width: 6
 #| fig-height: 5
-tibble(x = seq(10, 42, length.out = 400)) |>
-  mutate(TT = dnorm(x, 26, 4), AA = dnorm(x, 27.5, 4)) |>
-  pivot_longer(-x, names_to = "Genotipo", values_to = "densidad") |>
-  ggplot(aes(x, densidad, colour = Genotipo, fill = Genotipo)) +
-  geom_area(alpha = 0.25, position = "identity") +
-  geom_vline(xintercept = 30, linetype = 2) +
-  scale_colour_manual(values = c(myred, myblue)) +
-  scale_fill_manual(values = c(myred, myblue)) +
-  labs(x = "IMC (kg/m²)", y = "Densidad")
-```
-
----
-
-:::{#exm-normal-ldl}
-El colesterol LDL en una población adulta sigue una distribución $N(130, 30)$ mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL $\geq 160$ mg/dl?
-
-```{r}
-p_antes <- 1 - pnorm(160, 130, 30)
-p_despues <- 1 - pnorm(160, 120, 30)
-c(antes = p_antes, despues = p_despues, reduccion_relativa = 1 - p_despues / p_antes)
+densidades(seq(10, 42, length.out = 500),
+           `TT: N(26, 4)` = \(x) dnorm(x, 26, 4),
+           `AA: N(27.5, 4)` = \(x) dnorm(x, 27.5, 4)) |>
+  dibujar_densidades("IMC (kg/m²)", corte = 30, sombrear = \(x) x >= 30)
 ```
 :::
 
-Un pequeño desplazamiento de la media produce una reducción importante de la proporción en la cola de la distribución. Este es el fundamento de las estrategias poblacionales de prevención.
+::::
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-normal-ldl}
+El colesterol LDL en una población adulta sigue una distribución $N(130, 30)$ mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL $\geq 160$ mg/dl?
+:::
+
+- Antes: $P(X\geq 160) =$ `r fmt_pct(1 - pnorm(160, 130, 30))`.
+- Después: $P(X\geq 160) =$ `r fmt_pct(1 - pnorm(160, 120, 30))`.
+
+Un pequeño desplazamiento de la media reduce un `r fmt_pct(1 - (1 - pnorm(160, 120, 30)) / (1 - pnorm(160, 130, 30)), 0)` la proporción en la cola. Es el fundamento de las estrategias poblacionales de prevención.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(20, 240, length.out = 500),
+           `Antes: N(130, 30)` = \(x) dnorm(x, 130, 30),
+           `Después: N(120, 30)` = \(x) dnorm(x, 120, 30)) |>
+  dibujar_densidades("Colesterol LDL (mg/dl)", corte = 160, sombrear = \(x) x >= 160)
+```
+:::
+
+::::
 
 ## Distribución Lognormal
 
@@ -127,35 +176,38 @@ Aparece cuando la variable es el resultado de muchos efectos multiplicativos. Es
 
 ---
 
-:::{#exm-lognormal-trigliceridos}
-Los triglicéridos en ayunas siguen una distribución lognormal con mediana 110 mg/dl y $\sigma = 0.45$ en escala logarítmica. ¿Qué proporción supera 150 mg/dl (hipertrigliceridemia)?
+:::: {.columns}
 
-```{r}
-mu <- log(110); sigma <- 0.45
-1 - plnorm(150, meanlog = mu, sdlog = sigma)
-set.seed(123)
-tg <- rlnorm(2000, mu, sigma)
-```
+::: {.column width="45%"}
+:::{#exm-lognormal-trigliceridos}
+Los triglicéridos en ayunas siguen una distribución lognormal con mediana 110 mg/dl y $\sigma = 0.45$ en escala logarítmica, es decir, $LN(\log 110, 0.45)$. ¿Qué proporción supera 150 mg/dl (hipertrigliceridemia)?
 :::
 
----
+$P(X > 150) = P(\log X > \log 150) =$ `r fmt_pct(1 - plnorm(150, log(110), 0.45))`.
 
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-p1 <- ggplot(tibble(tg), aes(tg)) +
-  geom_histogram(bins = 40, fill = myblue, colour = "white") +
-  labs(x = "Triglicéridos (mg/dl)", y = "Frecuencia")
-p2 <- ggplot(tibble(tg), aes(log(tg))) +
-  geom_histogram(bins = 40, fill = mypurple, colour = "white") +
-  labs(x = "log(Triglicéridos)", y = "Frecuencia")
-p1 / p2
-```
+La media, `r fmt(exp(log(110) + 0.45^2/2), 1)` mg/dl, es mayor que la mediana por la asimetría.
 
 :::{.callout-tip}
-Al tomar logaritmos la variable se vuelve normal y podemos aplicar los métodos basados en la normal. Los resultados se interpretan entonces como cocientes de medias geométricas.
+En escala logarítmica la variable es normal y se interpretan cocientes de medias geométricas.
 :::
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+p1 <- densidades(seq(1, 400, length.out = 600), `LN(log 110, 0.45)` = \(x) dlnorm(x, log(110), 0.45)) |>
+  dibujar_densidades("Triglicéridos (mg/dl)", corte = 150, sombrear = \(x) x > 150) +
+  theme(legend.position = "none")
+p2 <- densidades(seq(3, 6.5, length.out = 600), `N(log 110, 0.45)` = \(x) dnorm(x, log(110), 0.45)) |>
+  dibujar_densidades("log(Triglicéridos)", colores = mypurple, corte = log(150),
+                     sombrear = \(x) x > log(150)) +
+  theme(legend.position = "none")
+p1 / p2
+```
+:::
+
+::::
 
 ## Distribución Gamma
 
@@ -180,32 +232,29 @@ donde $\alpha>0$ es el parámetro de _forma_ y $\beta>0$ el de _tasa_.
 
 ---
 
-:::{#exm-gamma-vitamina-d}
-La 25(OH)D en una población mediterránea en invierno sigue una distribución $Gamma(6, 0.25)$ (ng/ml), con media 24 ng/ml. ¿Qué proporción tiene deficiencia (< 20 ng/ml)? ¿Y si los portadores de una variante de _GC_ (proteína transportadora de vitamina D) tienen media 20 ng/ml con la misma forma?
+:::: {.columns}
 
+::: {.column width="45%"}
+:::{#exm-gamma-vitamina-d}
+La 25(OH)D en una población mediterránea en invierno sigue una distribución $Gamma(6, 0.25)$ (ng/ml), con media 24 ng/ml. En los portadores de una variante del gen _GC_ (proteína transportadora de la vitamina D) sigue una $Gamma(6, 0.30)$, con media 20 ng/ml. ¿Qué proporción tiene deficiencia (< 20 ng/ml)?
+:::
+
+- No portadores: `r fmt_pct(pgamma(20, 6, 0.25))`.
+- Portadores de _GC_: `r fmt_pct(pgamma(20, 6, 0.30))`.
+:::
+
+::: {.column width="55%"}
 ```{r}
-pgamma(20, shape = 6, rate = 0.25)
-pgamma(20, shape = 6, rate = 0.30)
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(0.1, 70, length.out = 500),
+           `No portador: Gamma(6, 0.25)` = \(x) dgamma(x, 6, 0.25),
+           `Portador GC: Gamma(6, 0.30)` = \(x) dgamma(x, 6, 0.30)) |>
+  dibujar_densidades("25(OH)D (ng/ml)", corte = 20, sombrear = \(x) x < 20)
 ```
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-tibble(x = seq(0, 70, length.out = 400)) |>
-  mutate(`No portador` = dgamma(x, 6, 0.25),
-         `Portador GC` = dgamma(x, 6, 0.30)) |>
-  pivot_longer(-x, names_to = "Grupo", values_to = "d") |>
-  ggplot(aes(x, d, colour = Grupo, fill = Grupo)) +
-  geom_area(alpha = 0.25, position = "identity") +
-  geom_vline(xintercept = 20, linetype = 2) +
-  scale_colour_manual(values = c(myblue, myred)) +
-  scale_fill_manual(values = c(myblue, myred)) +
-  labs(x = "25(OH)D (ng/ml)", y = "Densidad")
-```
+::::
 
 ## Distribución Beta
 
@@ -230,34 +279,33 @@ Es muy flexible: puede ser simétrica, asimétrica, en forma de U o concentrada 
 
 ---
 
-:::{#exm-beta-metilacion}
-En un estudio de epigenética nutricional se mide la metilación de un CpG del promotor del gen _MTHFR_ en sujetos con ingesta baja y adecuada de folato. Las distribuciones del valor $\beta$ son $Beta(6, 4)$ y $Beta(3, 7)$, respectivamente.
+:::: {.columns}
 
-```{r}
-c(media_baja = 6 / (6 + 4), media_adecuada = 3 / (3 + 7))
-```
+::: {.column width="45%"}
+:::{#exm-beta-metilacion}
+Se mide la metilación de un CpG del promotor del gen _MTHFR_ en sujetos con ingesta baja y adecuada de folato. El valor $\beta$ de metilación sigue una $Beta(6, 4)$ con folato bajo y una $Beta(3, 7)$ con folato adecuado.
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-tibble(x = seq(0, 1, length.out = 400)) |>
-  mutate(`Folato bajo` = dbeta(x, 6, 4),
-         `Folato adecuado` = dbeta(x, 3, 7)) |>
-  pivot_longer(-x, names_to = "Ingesta", values_to = "d") |>
-  ggplot(aes(x, d, colour = Ingesta, fill = Ingesta)) +
-  geom_area(alpha = 0.25, position = "identity") +
-  scale_colour_manual(values = c(myblue, myred)) +
-  scale_fill_manual(values = c(myblue, myred)) +
-  labs(x = "Valor beta de metilación", y = "Densidad")
-```
+- Metilación media: 0.6 con folato bajo y 0.3 con folato adecuado.
+- Proporción con metilación > 0.5: `r fmt_pct(1 - pbeta(0.5, 6, 4))` y `r fmt_pct(1 - pbeta(0.5, 3, 7))`.
 
 :::{.callout-note}
-En los análisis de metilación se suele trabajar con el _valor M_, $M = \log_2\left(\frac{\beta}{1-\beta}\right)$, que es aproximadamente normal.
+En los análisis de metilación se usa también el _valor M_, $M = \log_2\frac{\beta}{1-\beta}$, que es aproximadamente normal.
 :::
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(0.001, 0.999, length.out = 500),
+           `Folato bajo: Beta(6, 4)` = \(x) dbeta(x, 6, 4),
+           `Folato adecuado: Beta(3, 7)` = \(x) dbeta(x, 3, 7)) |>
+  dibujar_densidades("Valor beta de metilación", corte = 0.5, sombrear = \(x) x > 0.5)
+```
+:::
+
+::::
 
 ## Distribución de Dirichlet {.smaller}
 
@@ -283,38 +331,43 @@ Es la generalización multivariante de la Beta y el modelo natural para _datos c
 ---
 
 :::{#exm-dirichlet-microbiota}
-La composición de la microbiota fecal de 12 voluntarios se modela con una $Dir(40, 30, 8, 5, 7)$ para los filos Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros.
-
-```{r}
-rdirichlet <- function(n, alpha) {
-  x <- matrix(rgamma(n * length(alpha), shape = alpha),
-              ncol = length(alpha), byrow = TRUE)
-  x / rowSums(x)
-}
-filos <- c("Firmicutes", "Bacteroidetes",
-           "Actinobacteria", "Proteobacteria", "Otros")
-set.seed(1)
-comp <- rdirichlet(12, c(40, 30, 8, 5, 7))
-colnames(comp) <- filos
-```
+La composición de la microbiota fecal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros) sigue una $Dir(40, 30, 8, 5, 7)$, con $\alpha_0 = 90$. A la izquierda, la densidad marginal de cada filo, $Beta(\alpha_i, 90-\alpha_i)$; a la derecha, la composición de 12 voluntarios simulados.
 :::
 
----
-
 ```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-as_tibble(comp) |>
+#| fig-width: 12
+#| fig-height: 4.5
+filos <- c("Firmicutes", "Bacteroidetes", "Actinobacteria", "Proteobacteria", "Otros")
+alfa <- c(40, 30, 8, 5, 7)
+colores_filos <- c(myblue, mypurple, mygreen, myred, mygray)
+marg <- map2_dfr(alfa, filos, \(a, f) {
+  x <- seq(0.001, 0.8, length.out = 500)
+  tibble(x = x, d = dbeta(x, a, sum(alfa) - a), grupo = f)
+}) |> mutate(grupo = factor(grupo, levels = filos))
+p1 <- ggplot(marg, aes(x, d, colour = grupo, fill = grupo)) +
+  geom_area(alpha = 0.15, position = "identity") + geom_line(linewidth = 1) +
+  scale_colour_manual(values = colores_filos, name = NULL) +
+  scale_fill_manual(values = colores_filos, name = NULL) +
+  labs(x = "Abundancia relativa", y = "Densidad marginal")
+rdirichlet <- function(n, alpha) {
+  x <- matrix(rgamma(n * length(alpha), shape = alpha), ncol = length(alpha), byrow = TRUE)
+  x / rowSums(x)
+}
+set.seed(1)
+comp <- rdirichlet(12, alfa)
+colnames(comp) <- filos
+p2 <- as_tibble(comp) |>
   mutate(sujeto = factor(1:12)) |>
-  pivot_longer(-sujeto, names_to = "Filo",
-               values_to = "abundancia") |>
+  pivot_longer(-sujeto, names_to = "Filo", values_to = "abundancia") |>
   mutate(Filo = factor(Filo, levels = filos)) |>
   ggplot(aes(sujeto, abundancia, fill = Filo)) +
-  geom_col() +
-  scale_fill_manual(values = c(myblue, mypurple, mygreen, myred, mygray)) +
+  geom_col(show.legend = FALSE) +
+  scale_fill_manual(values = colores_filos) +
   labs(x = "Sujeto", y = "Abundancia relativa")
+p1 + p2 + plot_layout(widths = c(1.2, 1))
 ```
+
+Las medias son `r paste(paste0(filos, " ", fmt(alfa / sum(alfa), 2)), collapse = ", ")`.
 
 ## {background-color= .myblue}
 
@@ -322,7 +375,7 @@ as_tibble(comp) |>
 Distribuciones discretas
 :::
 
-## Distribución Binomial
+## Distribución Binomial {.smaller}
 
 :::{#def-distribucion-binomial}
 ## Distribución Binomial
@@ -344,28 +397,28 @@ $$
 
 ---
 
-:::{#exm-binomial-mthfr}
-La frecuencia del genotipo TT de _MTHFR_ C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, ¿cuál es la probabilidad de encontrar al menos 12 homocigotos TT?
+:::: {.columns}
 
-```{r}
-# P(X >= 12) con X ~ B(50, 0.16)
-1 - pbinom(11, size = 50, prob = 0.16)
-```
+::: {.column width="45%"}
+:::{#exm-binomial-mthfr}
+La frecuencia del genotipo TT de _MTHFR_ C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, el número de homocigotos TT sigue una $B(50, 0.16)$. ¿Cuál es la probabilidad de encontrar al menos 12?
 :::
 
----
+- Número esperado: $np = 8$ homocigotos TT.
+- $P(X\geq 12) =$ `r fmt_pct(1 - pbinom(11, 50, 0.16))` ([barras rojas]{.myred}).
+:::
 
+::: {.column width="55%"}
 ```{r}
-#| output-location: column
 #| fig-width: 6
 #| fig-height: 5
 tibble(x = 0:25, p = dbinom(0:25, 50, 0.16)) |>
-  ggplot(aes(x, p, fill = x >= 12)) +
-  geom_col(width = 0.6) +
-  scale_fill_manual(values = c(myblue, myred),
-                    labels = c("< 12", "≥ 12"), name = NULL) +
-  labs(x = "Número de homocigotos TT", y = "Probabilidad")
+  dibujar_probabilidades("Número de homocigotos TT", destacar = \(x) x >= 12,
+                         etiquetas = c("X < 12", "X ≥ 12"))
 ```
+:::
+
+::::
 
 ## Distribución Multinomial
 
@@ -389,23 +442,38 @@ $$
 ## Equilibrio de Hardy-Weinberg {.smaller}
 
 Si en un locus bialélico con alelos A y T las frecuencias alélicas son $p$ y $q=1-p$, en una población en equilibrio de Hardy-Weinberg los genotipos siguen una distribución multinomial con probabilidades
-
 $$
 P(AA) = p^2,\quad P(AT) = 2pq,\quad P(TT) = q^2.
 $$
 
+:::: {.columns}
+
+::: {.column width="50%"}
 :::{#exm-hardy-weinberg}
-La frecuencia del alelo de riesgo A del SNP rs9939609 de _FTO_ en europeos es $p\approx 0.42$. En una muestra de 500 personas, el número esperado de cada genotipo es
+La frecuencia del alelo de riesgo A del SNP rs9939609 de _FTO_ en europeos es $p\approx 0.42$. En una muestra de 500 personas en equilibrio, los genotipos siguen una $M(500;\ 0.42^2,\ 2\cdot 0.42\cdot 0.58,\ 0.58^2)$.
+:::
 
 ```{r}
 p <- 0.42; n <- 500
 probs <- c(AA = p^2, AT = 2 * p * (1 - p), TT = (1 - p)^2)
-rbind(probabilidad = probs, esperados = n * probs)
-# Una muestra simulada bajo equilibrio de Hardy-Weinberg
-set.seed(2)
-rmultinom(1, size = n, prob = probs) |> t()
+tibble(Genotipo = names(probs), Probabilidad = fmt(probs, 4), `Número esperado` = fmt(n * probs, 1)) |>
+  kable(align = "c")
 ```
 :::
+
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 4.5
+tibble(x = factor(names(probs), levels = names(probs)), p = probs) |>
+  ggplot(aes(x, p)) +
+  geom_col(width = 0.5, fill = myblue) +
+  geom_text(aes(label = fmt(p, 3)), vjust = -0.4, size = 5) +
+  labs(x = "Genotipo FTO", y = "Probabilidad")
+```
+:::
+
+::::
 
 La desviación del equilibrio puede deberse a errores de genotipado, estratificación o selección. Se comprueba con un contraste $\chi^2$ que veremos más adelante.
 
@@ -431,25 +499,28 @@ $$
 
 ---
 
+:::: {.columns}
+
+::: {.column width="45%"}
 :::{#exm-poisson-rnaseq}
 En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas sigue una distribución $P(8)$. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?
-
-```{r}
-c(cero = dpois(0, 8), mas_de_15 = 1 - ppois(15, 8))
-```
 :::
 
----
+- $P(X = 0) = e^{-8} =$ `r fmt(dpois(0, 8), 5)`.
+- $P(X > 15) =$ `r fmt_pct(1 - ppois(15, 8), 2)` ([barras rojas]{.myred}).
+:::
 
+::: {.column width="55%"}
 ```{r}
-#| output-location: column
 #| fig-width: 6
 #| fig-height: 5
 tibble(x = 0:22, p = dpois(0:22, 8)) |>
-  ggplot(aes(x, p)) +
-  geom_col(width = 0.5, fill = myblue) +
-  labs(x = "Número de lecturas", y = "Probabilidad")
+  dibujar_probabilidades("Número de lecturas", destacar = \(x) x > 15,
+                         etiquetas = c("X ≤ 15", "X > 15"))
 ```
+:::
+
+::::
 
 ## Distribución Binomial Negativa {.smaller}
 
@@ -468,41 +539,44 @@ Se obtiene como una mezcla de Poisson cuya tasa $\lambda$ varía entre individuo
 
 **Ejemplos en Nutrigenómica**
 
-- Conteos de lecturas de RNA-seq entre réplicas biológicas (DESeq2, edgeR).
+- Conteos de lecturas de RNA-seq entre réplicas biológicas.
 - Conteos de un taxón bacteriano en muestras de microbiota (16S rRNA o metagenómica).
 - Número de raciones de un alimento consumidas por semana.
 
 ---
 
-:::{#exm-binomial-negativa-rnaseq}
-Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión $\phi = 0.2$. Comparemos su distribución con la de Poisson de la misma media.
+:::: {.columns}
 
-```{r}
-mu <- 100; phi <- 0.2
-c(var_poisson = mu, var_bn = mu + phi * mu^2)
-```
+::: {.column width="45%"}
+:::{#exm-binomial-negativa-rnaseq}
+Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión $\phi = 0.2$, es decir, sigue una $BN(100, 0.2)$. Comparémosla con la $P(100)$ de la misma media.
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-tibble(x = 0:300) |>
-  mutate(Poisson = dpois(x, mu),
-         `Binomial negativa` = dnbinom(x, mu = mu,
-                                        size = 1 / phi)) |>
-  pivot_longer(-x, names_to = "Modelo", values_to = "p") |>
-  ggplot(aes(x, p, colour = Modelo)) +
-  geom_line(linewidth = 1) +
-  scale_colour_manual(values = c(myred, myblue)) +
-  labs(x = "Número de lecturas", y = "Probabilidad")
-```
+- Varianza de Poisson: 100.
+- Varianza binomial negativa: $100 + 0.2\cdot 100^2 = 2100$.
+- $P(X\geq 150)$: `r fmt(1 - ppois(149, 100), 6)` con Poisson y `r fmt(1 - pnbinom(149, mu = 100, size = 5), 3)` con binomial negativa.
 
 :::{.callout-warning}
-Si usamos un modelo de Poisson con datos sobredispersos se subestima la varianza y aparecen muchos falsos positivos en la expresión diferencial.
+Un modelo de Poisson con datos sobredispersos subestima la varianza y da muchos falsos positivos en expresión diferencial.
 :::
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+bind_rows(tibble(x = 0:300, p = dpois(0:300, 100), grupo = "P(100)"),
+          tibble(x = 0:300, p = dnbinom(0:300, mu = 100, size = 5), grupo = "BN(100, 0.2)")) |>
+  mutate(grupo = factor(grupo, levels = c("P(100)", "BN(100, 0.2)"))) |>
+  ggplot(aes(x, p, fill = grupo)) +
+  geom_col(width = 1, position = "identity", alpha = 0.6) +
+  scale_fill_manual(values = c(myred, myblue), name = NULL) +
+  labs(x = "Número de lecturas", y = "Probabilidad") +
+  theme(legend.position = "top")
+```
+:::
+
+::::
 
 ## Modelos inflados de ceros
 
@@ -525,29 +599,30 @@ $$
 
 ---
 
-:::{#exm-zinb-microbiota}
-El 40% de los participantes no tiene _Akkermansia_ en su microbiota (ceros estructurales) y, en los que la tienen, el conteo sigue una $BN(\mu = 20, \phi = 0.5)$.
+:::: {.columns}
 
+::: {.column width="45%"}
+:::{#exm-zinb-microbiota}
+El 40% de los participantes no tiene _Akkermansia_ en su microbiota (ceros estructurales) y, en los que la tienen, el conteo sigue una $BN(20, 0.5)$. El conteo sigue una binomial negativa inflada de ceros con $\pi = 0.4$.
+:::
+
+- $P(X = 0) = 0.4 + 0.6\cdot P_{BN}(0) =$ `r fmt(0.4 + 0.6 * dnbinom(0, mu = 20, size = 2), 3)` ([barra roja]{.myred}).
+- $E(X) = 0.6\cdot 20 = 12$ lecturas.
+- $Var(X) =$ `r fmt(0.6 * (20 + 0.5 * 20^2) + 0.4 * 0.6 * 20^2, 0)`, mucho mayor que la media.
+:::
+
+::: {.column width="55%"}
 ```{r}
-rzinb <- function(n, pi, mu, phi) {
-  ifelse(runif(n) < pi, 0, rnbinom(n, mu = mu, size = 1 / phi))
-}
-set.seed(3)
-x <- rzinb(1000, pi = 0.4, mu = 20, phi = 0.5)
-c(media = mean(x), varianza = var(x), prop_ceros = mean(x == 0))
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = 0:80) |>
+  mutate(p = 0.6 * dnbinom(x, mu = 20, size = 2) + 0.4 * (x == 0)) |>
+  dibujar_probabilidades("Conteo de Akkermansia", destacar = \(x) x == 0,
+                         etiquetas = c("Conteo > 0", "Ceros"))
 ```
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-ggplot(tibble(x), aes(x)) +
-  geom_histogram(binwidth = 2, fill = myblue, colour = "white") +
-  labs(x = "Conteo de Akkermansia", y = "Frecuencia")
-```
+::::
 
 ## Resumen de distribuciones en Nutrigenómica {.smaller .scrollable}
 
@@ -574,7 +649,7 @@ Distribuciones de p-valores y de estadísticos
 
 :::{#thm-uniforme-pvalores}
 ## Distribución de los p-valores bajo $H_0$
-Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor sigue una distribución uniforme $U(0,1)$:
+Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor sigue una distribución uniforme $U(0,1)$, con densidad $f(x) = 1$ para $0<x<1$:
 $$
 P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 $$
@@ -592,34 +667,42 @@ Por eso se usan correcciones por comparaciones múltiples: Bonferroni ($\alpha/m
 
 ---
 
-:::{#exm-uniforme-pvalores}
-Simulamos un estudio de expresión diferencial con 10 000 genes, de los que 500 cambian realmente con la dieta. El histograma de los p-valores es una mezcla de una uniforme (genes nulos) y un pico cerca de 0 (genes con efecto).
-
 ```{r}
+#| include: false
 set.seed(4)
 m <- 10000; m1 <- 500
 efecto <- c(rep(1, m1), rep(0, m - m1))
 pval <- map_dbl(efecto, \(d) t.test(rnorm(10, d), rnorm(10, 0))$p.value)
-c(sin_corregir = sum(pval < 0.05),
-  falsos_pos = sum(pval[efecto == 0] < 0.05),
-  BH = sum(p.adjust(pval, "BH") < 0.05),
-  Bonferroni = sum(p.adjust(pval, "bonferroni") < 0.05))
 ```
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-uniforme-pvalores}
+Simulamos un estudio de expresión diferencial con 10 000 genes, de los que 500 cambian realmente con la dieta. Los p-valores de los 9500 genes nulos siguen una $U(0,1)$ ([línea roja]{.myred}); los de los genes con efecto se acumulan cerca de 0.
 :::
 
----
+| Criterio | Genes significativos |
+|:---|:---:|
+| p < 0.05 sin corregir | `r sum(pval < 0.05)` |
+| De ellos, falsos positivos | `r sum(pval[efecto == 0] < 0.05)` |
+| FDR (Benjamini-Hochberg) < 0.05 | `r sum(p.adjust(pval, "BH") < 0.05)` |
+| Bonferroni < 0.05 | `r sum(p.adjust(pval, "bonferroni") < 0.05)` |
+:::
 
+::: {.column width="55%"}
 ```{r}
-#| output-location: column
 #| fig-width: 6
 #| fig-height: 5
 ggplot(tibble(pval), aes(pval)) +
-  geom_histogram(breaks = seq(0, 1, 0.025), fill = myblue,
-                 colour = "white") +
-  geom_hline(yintercept = (m - m1) * 0.025, linetype = 2,
-             colour = myred) +
-  labs(x = "p-valor", y = "Frecuencia")
+  geom_histogram(aes(y = after_stat(density)), breaks = seq(0, 1, 0.025),
+                 fill = myblue, colour = "white") +
+  geom_hline(yintercept = (m - m1) / m, colour = myred, linewidth = 1) +
+  labs(x = "p-valor", y = "Densidad")
 ```
+:::
+
+::::
 
 ## Distribución Chi-cuadrado {.smaller}
 
@@ -687,7 +770,6 @@ sigue una _distribución F de Fisher-Snedecor_ con $\nu_1$ y $\nu_2$ grados de l
 ### Forma de las distribuciones de los estadísticos
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 4.5
 p_chi <- tibble(x = seq(0.01, 30, length.out = 400)) |>

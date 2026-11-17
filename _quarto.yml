@@ -13,7 +13,7 @@ language:
 author: "Alfredo Sánchez Alberca"
 
 execute: 
-  echo: true
+  echo: false
   cache: true
   freeze: auto
 

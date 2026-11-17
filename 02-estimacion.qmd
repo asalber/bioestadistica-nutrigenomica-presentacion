@@ -9,6 +9,29 @@ lang: es
 
 {{< include _configuracion-r.qmd >}}
 
+```{r}
+#| include: false
+# Datos de los ejemplos
+hcy <- c(14.2, 11.8, 16.5, 13.1, 12.4, 18.0, 15.3, 10.9, 14.8, 13.6,
+         17.2, 12.9, 15.9, 11.5, 16.1, 13.8, 14.5, 12.2, 15.0, 19.1)
+hba1c <- c(6.8, 6.1, 6.6, 6.4, 6.5, 6.9, 6.2, 6.4, 6.3, 7.0, 6.5, 6.4, 6.6, 6.3, 6.4)
+perdida_AA <- c(4, 2.1, 6.2, 4.7, 0.6, 1, 5.6, 4.6, 6.7, 3.6, 4.7, 1.8, 4.6, 7.5, 4.5, 4.7, 6.3, 4.4)
+perdida_TT <- c(8.9, 7.6, 6.2, 3, 6.4, 3.3, 8.7, 5.7, 6.4, 4.6, 9.3, 7, 8.7, 8.1, 6, 5.1, 6.6, 12.5,
+                1.2, 11, 9.1, 3.9, 9.7, 7.6, 1.8)
+tg_antes   <- c(245, 198, 312, 276, 221, 189, 260, 298, 233, 215, 284, 207, 251, 269)
+tg_despues <- c(201, 185, 240, 230, 210, 160, 228, 251, 219, 170, 236, 199, 205, 238)
+auc_TT <- c(180, 219, 170, 287, 226, 171, 233, 245, 238, 195, 283, 229, 180, 104, 264, 208)
+auc_CC <- c(190, 216, 213, 207, 216, 212, 192, 134, 207, 188, 186, 149, 177, 202, 228, 187, 201,
+            188, 151, 178)
+resumen <- function(...) {
+  xs <- list(...)
+  tibble(Grupo = names(xs), n = map_int(xs, length), Media = map_dbl(xs, mean),
+         `Desv. típica` = map_dbl(xs, sd)) |>
+    kable(digits = 2, align = "lccc")
+}
+ic_texto <- function(ic, d = 2) paste0("[", fmt(ic[1], d), ", ", fmt(ic[2], d), "]")
+```
+
 ## {background-color= .myblue}
 
 :::{.main-title}
@@ -83,9 +106,9 @@ En la práctica la aproximación es buena para $n\geq 30$, aunque con distribuci
 
 :::{#exm-tcl-insulina}
 La insulina en ayunas sigue una distribución lognormal muy asimétrica (mediana 8 µU/ml, $\sigma = 0.6$ en escala log). Simulamos 5000 muestras de distintos tamaños y calculamos la media de cada una.
+:::
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 4.5
 set.seed(10)
@@ -98,9 +121,8 @@ sims |>
   facet_wrap(~ n, nrow = 1, scales = "free") +
   labs(x = "Media muestral de insulina (µU/ml)", y = "Densidad")
 ```
-:::
 
-A medida que crece $n$, la distribución de la media se vuelve simétrica, normal y más concentrada en torno a $\mu = e^{\log 8 + 0.6^2/2} \approx `r round(exp(log(8) + 0.6^2/2), 2)`$ µU/ml.
+A medida que crece $n$, la distribución de la media se vuelve simétrica, normal y más concentrada en torno a $\mu = e^{\log 8 + 0.6^2/2} \approx `r fmt(exp(log(8) + 0.6^2/2), 2)`$ µU/ml.
 
 ## Distribución de la varianza muestral {.smaller}
 
@@ -125,29 +147,31 @@ que es la base de los intervalos y contrastes para la media cuando no conocemos 
 
 ---
 
-:::{#exm-distribucion-varianza}
-La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución $N(6.5, 0.4)$. Simulamos 5000 muestras de tamaño 15 y comparamos la distribución de $14S^2/0.4^2$ con la $\chi^2(14)$.
+:::: {.columns}
 
+::: {.column width="45%"}
+:::{#exm-distribucion-varianza}
+La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución $N(6.5, 0.4)$. Simulamos 5000 muestras de tamaño 15 y calculamos $14S^2/0.4^2$ en cada una.
+:::
+
+El histograma de las simulaciones coincide con la densidad de la $\chi^2(14)$ ([línea roja]{.myred}), cuya media es 14.
+:::
+
+::: {.column width="55%"}
 ```{r}
+#| fig-width: 6
+#| fig-height: 5
 set.seed(11)
 n <- 15; sigma <- 0.4
 estad <- replicate(5000, (n - 1) * var(rnorm(n, 6.5, sigma)) / sigma^2)
+ggplot(tibble(estad), aes(estad)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 40, fill = myblue, colour = "white") +
+  stat_function(fun = dchisq, args = list(df = n - 1), colour = myred, linewidth = 1) +
+  labs(x = expression((n-1)*S^2/sigma^2), y = "Densidad")
 ```
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-ggplot(tibble(estad), aes(estad)) +
-  geom_histogram(aes(y = after_stat(density)), bins = 40,
-                 fill = myblue, colour = "white") +
-  stat_function(fun = dchisq, args = list(df = n - 1),
-                colour = myred, linewidth = 1) +
-  labs(x = expression((n-1)*S^2/sigma^2), y = "Densidad")
-```
+::::
 
 ## Distribución de la proporción muestral
 
@@ -164,7 +188,7 @@ $$
 :::
 
 :::{#exm-proporcion-muestral}
-Si la frecuencia real del alelo A de _FTO_ es $p = 0.42$ y genotipamos $n = 300$ alelos (150 personas), la proporción muestral tiene error estándar $\sqrt{0.42\cdot 0.58/300} = `r round(sqrt(0.42*0.58/300), 3)`$, de modo que el 95% de las muestras darán una frecuencia entre `r round(0.42 - 1.96*sqrt(0.42*0.58/300), 3)` y `r round(0.42 + 1.96*sqrt(0.42*0.58/300), 3)`.
+Si la frecuencia real del alelo A de _FTO_ es $p = 0.42$ y genotipamos $n = 300$ alelos (150 personas), la proporción muestral tiene error estándar $\sqrt{0.42\cdot 0.58/300} = `r fmt(sqrt(0.42*0.58/300), 3)`$, de modo que el 95% de las muestras darán una frecuencia entre `r fmt(0.42 - 1.96*sqrt(0.42*0.58/300), 3)` y `r fmt(0.42 + 1.96*sqrt(0.42*0.58/300), 3)`.
 :::
 
 ## {background-color= .myblue}
@@ -194,7 +218,6 @@ Lo habitual es usar niveles de confianza del 90%, 95% o 99%. La semiamplitud del
 El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiéramos el estudio muchas veces y construyéramos un intervalo del 95% con cada muestra, aproximadamente el 95% de esos intervalos contendrían el verdadero valor del parámetro.
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 4.5
 set.seed(12)
@@ -242,18 +265,15 @@ Para conseguir un margen de error $E$ hace falta un tamaño muestral $n = \left(
 
 :::{#exm-ic-media-varianza-conocida}
 Por estudios previos se sabe que la desviación típica de la glucosa en ayunas en adultos sin diabetes es $\sigma = 12$ mg/dl. En una muestra de 40 portadores del alelo de riesgo T del SNP rs7903146 de _TCF7L2_ se obtiene una media de 98.5 mg/dl. Calcular el intervalo de confianza del 95% para la glucosa media de los portadores.
-
-```{r}
-xbar <- 98.5; sigma <- 12; n <- 40; alfa <- 0.05
-z <- qnorm(1 - alfa / 2)
-error <- z * sigma / sqrt(n)
-c(z = z, error = error, li = xbar - error, ls = xbar + error)
-# Tamaño muestral para un margen de error de 2 mg/dl
-ceiling((z * sigma / 2)^2)
-```
 :::
 
-Con una confianza del 95%, la glucosa media de los portadores está entre `r round(98.5 - qnorm(0.975)*12/sqrt(40), 1)` y `r round(98.5 + qnorm(0.975)*12/sqrt(40), 1)` mg/dl.
+$$
+98.5 \pm 1.96\cdot\frac{12}{\sqrt{40}} = 98.5 \pm `r fmt(qnorm(0.975) * 12 / sqrt(40), 2)` = [`r fmt(98.5 - qnorm(0.975) * 12 / sqrt(40), 2)`,\ `r fmt(98.5 + qnorm(0.975) * 12 / sqrt(40), 2)`] \mbox{ mg/dl}.
+$$
+
+Con una confianza del 95%, la glucosa media de los portadores está entre `r fmt(98.5 - qnorm(0.975)*12/sqrt(40), 1)` y `r fmt(98.5 + qnorm(0.975)*12/sqrt(40), 1)` mg/dl.
+
+Para reducir el margen de error a 2 mg/dl harían falta $n = \left(\frac{1.96\cdot 12}{2}\right)^2 \approx `r ceiling((qnorm(0.975) * 12 / 2)^2)`$ portadores.
 
 ## Intervalo para la media con varianza desconocida {.smaller}
 
@@ -274,9 +294,9 @@ donde $t^{n-1}_{\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su
 Como $t^{n-1}_{\alpha/2} > z_{\alpha/2}$, el intervalo es más ancho: pagamos la incertidumbre de no conocer $\sigma$. Para $n$ grande ambos intervalos casi coinciden.
 
 ```{r}
-#| echo: false
 tibble(n = c(5, 10, 20, 30, 50, 100, Inf)) |>
   mutate(`t(n-1) al 95%` = ifelse(is.infinite(n), qnorm(0.975), qt(0.975, n - 1))) |>
+  mutate(n = ifelse(is.infinite(n), "∞", as.character(n))) |>
   t() |> kable(digits = 3)
 ```
 
@@ -284,15 +304,15 @@ tibble(n = c(5, 10, 20, 30, 50, 100, Inf)) |>
 
 :::{#exm-ic-media-varianza-desconocida}
 Se mide la homocisteína plasmática (µmol/l) en 20 adultos homocigotos TT de _MTHFR_ C677T con ingesta baja de folato. Calcular el intervalo de confianza del 95% para la homocisteína media.
+:::
 
 ```{r}
-hcy <- c(14.2, 11.8, 16.5, 13.1, 12.4, 18.0, 15.3, 10.9, 14.8, 13.6,
-         17.2, 12.9, 15.9, 11.5, 16.1, 13.8, 14.5, 12.2, 15.0, 19.1)
-n <- length(hcy); t <- qt(0.975, n - 1)
-mean(hcy) + c(-1, 1) * t * sd(hcy) / sqrt(n)
-t.test(hcy, conf.level = 0.95)$conf.int
+resumen(`Homocisteína (µmol/l)` = hcy)
 ```
-:::
+
+$$
+\bar x \pm t^{19}_{0.025}\frac{s}{\sqrt{n}} = `r fmt(mean(hcy), 2)` \pm `r fmt(qt(0.975, 19), 3)`\cdot\frac{`r fmt(sd(hcy), 2)`}{\sqrt{20}} = `r ic_texto(t.test(hcy)$conf.int)` \mbox{ µmol/l}.
+$$
 
 Con una confianza del 95% la homocisteína media está por encima de 12 µmol/l, el umbral habitual de hiperhomocisteinemia leve.
 
@@ -309,26 +329,30 @@ $$
 :::
 
 :::{.callout-warning}
-Con muestras pequeñas o proporciones cercanas a 0 o 1 (variantes raras) el intervalo de Wald funciona mal. Es mejor usar el intervalo de **Wilson** (`prop.test`) o el **exacto de Clopper-Pearson** (`binom.test`).
+Con muestras pequeñas o proporciones cercanas a 0 o 1 (variantes raras) el intervalo de Wald funciona mal. Es mejor usar el intervalo de **Wilson** o el **exacto de Clopper-Pearson**, basado directamente en la distribución binomial.
 :::
 
 ---
 
 :::{#exm-ic-proporcion}
 En una muestra de 250 personas de una cohorte española, 38 son homocigotas TT de _MTHFR_ C677T. Calcular un intervalo de confianza del 95% para la prevalencia del genotipo TT.
+:::
+
+$$
+\hat p = \frac{38}{250} = 0.152 \qquad 0.152 \pm 1.96\sqrt{\frac{0.152\cdot 0.848}{250}} = 0.152 \pm `r fmt(qnorm(0.975) * sqrt(0.152 * 0.848 / 250), 3)`
+$$
 
 ```{r}
 x <- 38; n <- 250; p <- x / n
-# Intervalo de Wald
-p + c(-1, 1) * qnorm(0.975) * sqrt(p * (1 - p) / n)
-# Intervalo de Wilson
-prop.test(x, n, correct = FALSE)$conf.int
-# Intervalo exacto de Clopper-Pearson
-binom.test(x, n)$conf.int
+wald <- p + c(-1, 1) * qnorm(0.975) * sqrt(p * (1 - p) / n)
+tibble(Método = c("Wald", "Wilson", "Exacto de Clopper-Pearson"),
+       `Intervalo del 95%` = c(ic_texto(wald, 3),
+                               ic_texto(prop.test(x, n, correct = FALSE)$conf.int, 3),
+                               ic_texto(binom.test(x, n)$conf.int, 3))) |>
+  kable(align = "lc")
 ```
-:::
 
-Los tres intervalos son muy parecidos porque $n\hat p = 38 \geq 5$.
+Los tres intervalos son muy parecidos porque $n\hat p = 38 \geq 5$. Con una confianza del 95%, la prevalencia del genotipo TT está entre el 11% y el 20%.
 
 ## {background-color= .myblue}
 
@@ -336,14 +360,14 @@ Los tres intervalos son muy parecidos porque $n\hat p = 38 \geq 5$.
 Principales intervalos de confianza
 :::
 
-## Intervalos de confianza para una población {.smaller .scrollable}
+## Intervalos de confianza para una población
 
-| Parámetro | Condiciones | Intervalo | Función de R |
-|:---|:---|:---:|:---|
-| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ | `qnorm` |
-| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{s}{\sqrt{n}}$ | `t.test` |
-| Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ | `prop.test`, `binom.test` |
-| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ | `qchisq` |
+| Parámetro | Condiciones | Intervalo |
+|:---|:---|:---:|
+| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ |
+| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{s}{\sqrt{n}}$ |
+| Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ |
+| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
 
 :::{.callout-note}
 $\chi^2_{n-1,\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $\chi^2(n-1)$. El intervalo para la desviación típica se obtiene tomando raíces cuadradas.
@@ -353,26 +377,31 @@ $\chi^2_{n-1,\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su de
 
 ### Intervalo para la varianza
 
-:::{#exm-ic-varianza}
-Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes. Calcular el intervalo de confianza del 95% para la desviación típica.
-
 ```{r}
-hba1c <- c(6.8, 6.1, 6.6, 6.4, 6.5, 6.9, 6.2, 6.4, 6.3, 7.0, 6.5, 6.4, 6.6, 6.3, 6.4)
-n <- length(hba1c); s2 <- var(hba1c)
-ic_var <- (n - 1) * s2 / qchisq(c(0.975, 0.025), df = n - 1)
-rbind(varianza = ic_var, desv_tipica = sqrt(ic_var))
+#| include: false
+n <- length(hba1c)
+ic_var <- (n - 1) * var(hba1c) / qchisq(c(0.975, 0.025), df = n - 1)
 ```
+
+:::{#exm-ic-varianza}
+Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una desviación típica $s = `r fmt(sd(hba1c), 3)`$ %. Calcular el intervalo de confianza del 95% para la desviación típica.
 :::
+
+$$
+\left[\frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.975, 14), 2)`},\ \frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.025, 14), 2)`}\right] = `r ic_texto(ic_var, 4)`
+$$
+
+Tomando raíces cuadradas, con una confianza del 95% la desviación típica del método está entre `r fmt(sqrt(ic_var[1]), 3)` y `r fmt(sqrt(ic_var[2]), 3)` %.
 
 ## Intervalos de confianza para dos poblaciones {.smaller .scrollable}
 
-| Parámetro | Condiciones | Intervalo | Función de R |
-|:---|:---|:---:|:---|
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ | `t.test(var.equal = TRUE)` |
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$ | `t.test` |
-| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{s_d}{\sqrt{n}}$ | `t.test(paired = TRUE)` |
-| $p_1-p_2$ | Muestras independientes grandes | $\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}$ | `prop.test` |
-| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ | `var.test` |
+| Parámetro | Condiciones | Intervalo |
+|:---|:---|:---:|
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ |
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$ |
+| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{s_d}{\sqrt{n}}$ |
+| $p_1-p_2$ | Muestras independientes grandes | $\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}$ |
+| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ |
 
 Donde $s_p^2 = \dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ es la varianza ponderada y $g$ son los grados de libertad de Welch-Satterthwaite.
 
@@ -385,18 +414,17 @@ Si el intervalo para $\mu_1-\mu_2$ o $p_1-p_2$ no contiene el 0, o el intervalo 
 ### Diferencia de medias en muestras independientes
 
 :::{#exm-ic-diferencia-medias}
-Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de _FTO_ rs9939609.
+Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de _FTO_ rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.
+:::
 
 ```{r}
-# Homocigotos para el alelo de riesgo
-perdida_AA <- c(4, 2.1, 6.2, 4.7, 0.6, 1, 5.6, 4.6, 6.7, 3.6, 4.7, 1.8, 4.6, 7.5, 4.5, 4.7, 6.3, 4.4)
-# Homocigotos para el alelo protector
-perdida_TT <- c(8.9, 7.6, 6.2, 3, 6.4, 3.3, 8.7, 5.7, 6.4, 4.6, 9.3, 7, 8.7, 8.1, 6, 5.1, 6.6, 12.5,
-                1.2, 11, 9.1, 3.9, 9.7, 7.6, 1.8)
-t.test(perdida_AA, perdida_TT)$conf.int                   # Welch
-t.test(perdida_AA, perdida_TT, var.equal = TRUE)$conf.int # Varianzas iguales
+resumen(`AA (alelo de riesgo)` = perdida_AA, `TT (alelo protector)` = perdida_TT)
 ```
-:::
+
+| Método | Intervalo del 95% para $\mu_{AA}-\mu_{TT}$ |
+|:---|:---:|
+| Varianzas iguales | `r ic_texto(t.test(perdida_AA, perdida_TT, var.equal = TRUE)$conf.int)` |
+| Varianzas distintas (Welch) | `r ic_texto(t.test(perdida_AA, perdida_TT)$conf.int)` |
 
 El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.
 
@@ -404,45 +432,70 @@ El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso qu
 
 ### Diferencia de medias en muestras pareadas
 
+```{r}
+#| include: false
+d <- tg_despues - tg_antes
+ic_pareado <- t.test(tg_despues, tg_antes, paired = TRUE)$conf.int
+```
+
 :::{#exm-ic-pareadas}
 Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).
-
-```{r}
-tg_antes   <- c(245, 198, 312, 276, 221, 189, 260, 298, 233, 215, 284, 207, 251, 269)
-tg_despues <- c(201, 185, 240, 230, 210, 160, 228, 251, 219, 170, 236, 199, 205, 238)
-ic <- t.test(tg_despues, tg_antes, paired = TRUE)$conf.int
-ic
-```
 :::
 
-Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias $d_i = x_{i,\text{después}}-x_{i,\text{antes}}$. Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic[2])` y `r round(-ic[1])` mg/dl de media.
+```{r}
+resumen(Antes = tg_antes, Después = tg_despues, `Diferencia (después − antes)` = d)
+```
+
+Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias $d_i$:
+$$
+\bar d \pm t^{13}_{0.025}\frac{s_d}{\sqrt{14}} = `r fmt(mean(d), 2)` \pm `r fmt(qt(0.975, 13), 3)`\cdot\frac{`r fmt(sd(d), 2)`}{\sqrt{14}} = `r ic_texto(ic_pareado)`.
+$$
+
+Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic_pareado[2])` y `r round(-ic_pareado[1])` mg/dl de media.
 
 ---
 
 ### Diferencia de proporciones
 
+```{r}
+#| include: false
+ic_prop <- prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE)$conf.int
+```
+
 :::{#exm-ic-diferencia-proporciones}
 En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (< 12 µmol/l) en 52 de 70 portadores CC/CT de _MTHFR_ y en 24 de 45 homocigotos TT.
-
-```{r}
-prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE)
-```
 :::
+
+$$
+\hat p_{CC/CT} = \frac{52}{70} = `r fmt(52/70, 3)` \qquad \hat p_{TT} = \frac{24}{45} = `r fmt(24/45, 3)`
+$$
+
+$$
+`r fmt(52/70, 3)` - `r fmt(24/45, 3)` \pm 1.96\sqrt{\frac{`r fmt(52/70, 3)`\cdot `r fmt(1 - 52/70, 3)`}{70}+\frac{`r fmt(24/45, 3)`\cdot `r fmt(1 - 24/45, 3)`}{45}} = `r ic_texto(ic_prop, 3)`.
+$$
+
+El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre `r round(100 * ic_prop[1])` y `r round(100 * ic_prop[2])` puntos porcentuales.
 
 ---
 
 ### Cociente de varianzas
 
+```{r}
+#| include: false
+ic_f <- var.test(auc_TT, auc_CC)$conf.int
+```
+
 :::{#exm-ic-cociente-varianzas}
 Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de _TCF7L2_ rs7903146.
+:::
 
 ```{r}
-auc_TT <- c(180, 219, 170, 287, 226, 171, 233, 245, 238, 195, 283, 229, 180, 104, 264, 208)
-auc_CC <- c(190, 216, 213, 207, 216, 212, 192, 134, 207, 188, 186, 149, 177, 202, 228, 187, 201,
-            188, 151, 178)
-var.test(auc_TT, auc_CC)
+resumen(TT = auc_TT, CC = auc_CC)
 ```
-:::
+
+$$
+\frac{s_{TT}^2}{s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95%: } `r ic_texto(ic_f, 3)`.
+$$
 
 El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.
 
@@ -461,12 +514,8 @@ a. ¿Qué tamaño muestral haría falta para estimar el cambio medio con un marg
 <details>
 <summary>Solución</summary>
 
-```{r}
-n <- 30; dbar <- 4.2; sd <- 6.1
-dbar + c(-1, 1) * qt(0.975, n - 1) * sd / sqrt(n)
-ceiling((qnorm(0.975) * sd / 1.5)^2)
-```
-
-El intervalo no contiene el 0, así que hay evidencia de que la dieta aumenta el butirato fecal.
+a. $4.2 \pm t^{29}_{0.025}\dfrac{6.1}{\sqrt{30}} = 4.2 \pm `r fmt(qt(0.975, 29), 3)`\cdot `r fmt(6.1 / sqrt(30), 3)` = `r ic_texto(4.2 + c(-1, 1) * qt(0.975, 29) * 6.1 / sqrt(30))`$ µmol/g.
+a. Sí. El intervalo no contiene el 0 y todos sus valores son positivos, así que la dieta aumenta el butirato fecal.
+a. $n = \left(\dfrac{1.96\cdot 6.1}{1.5}\right)^2 \approx `r ceiling((qnorm(0.975) * 6.1 / 1.5)^2)`$ voluntarios.
 
 </details>

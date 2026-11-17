@@ -10,7 +10,7 @@ lang: es
 {{< include _configuracion-r.qmd >}}
 
 ```{r}
-#| echo: false
+#| include: false
 # Función auxiliar para dibujar regiones de rechazo
 dibujar_regiones <- function(dens, x, rechazo, titulo = NULL, etiqueta = NULL, obs = NULL) {
   df <- tibble(x = x, y = dens(x), rechazo = rechazo(x))
@@ -23,6 +23,27 @@ dibujar_regiones <- function(dens, x, rechazo, titulo = NULL, etiqueta = NULL, o
   if (!is.null(obs)) g <- g + geom_vline(xintercept = obs, colour = mygreen, linewidth = 1)
   g
 }
+resumen <- function(...) {
+  xs <- list(...)
+  tibble(Grupo = names(xs), n = map_int(xs, length), Media = map_dbl(xs, mean),
+         `Desv. típica` = map_dbl(xs, sd)) |>
+    kable(digits = 2, align = "lccc")
+}
+# Datos de los ejemplos
+hcy <- c(14.2, 11.8, 16.5, 13.1, 12.4, 18.0, 15.3, 10.9, 14.8, 13.6,
+         17.2, 12.9, 15.9, 11.5, 16.1, 13.8, 14.5, 12.2, 15.0, 19.1)
+hba1c <- c(6.8, 6.1, 6.6, 6.4, 6.5, 6.9, 6.2, 6.4, 6.3, 7.0, 6.5, 6.4, 6.6, 6.3, 6.4)
+perdida_AA <- c(4, 2.1, 6.2, 4.7, 0.6, 1, 5.6, 4.6, 6.7, 3.6, 4.7, 1.8, 4.6, 7.5, 4.5, 4.7, 6.3, 4.4)
+perdida_TT <- c(8.9, 7.6, 6.2, 3, 6.4, 3.3, 8.7, 5.7, 6.4, 4.6, 9.3, 7, 8.7, 8.1, 6, 5.1, 6.6, 12.5,
+                1.2, 11, 9.1, 3.9, 9.7, 7.6, 1.8)
+tg_antes   <- c(245, 198, 312, 276, 221, 189, 260, 298, 233, 215, 284, 207, 251, 269)
+tg_despues <- c(201, 185, 240, 230, 210, 160, 228, 251, 219, 170, 236, 199, 205, 238)
+auc_TT <- c(180, 219, 170, 287, 226, 171, 233, 245, 238, 195, 283, 229, 180, 104, 264, 208)
+auc_CC <- c(190, 216, 213, 207, 216, 212, 192, 134, 207, 188, 186, 149, 177, 202, 228, 187, 201,
+            188, 151, 178)
+n_hcy <- length(hcy)
+t_obs <- (mean(hcy) - 12) / (sd(hcy) / sqrt(n_hcy))
+t_crit <- qt(0.95, df = n_hcy - 1)
 ```
 
 ## {background-color= .myblue}
@@ -148,7 +169,6 @@ Valores de $T$ próximos a 0 son compatibles con $H_0$; valores grandes son evid
 :::
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 3.5
 x <- seq(-4, 4, length.out = 800)
@@ -165,32 +185,29 @@ p1 | p2 | p3
 
 ---
 
-:::{#exm-regiones-homocisteina}
-Con las 20 mediciones de homocisteína de los homocigotos TT de _MTHFR_, contrastar $H_0: \mu = 12$ frente a $H_1: \mu > 12$ con $\alpha = 0.05$.
+:::: {.columns}
 
+::: {.column width="45%"}
+:::{#exm-regiones-homocisteina}
+Con las 20 mediciones de homocisteína de los homocigotos TT de _MTHFR_ ($\bar x = `r fmt(mean(hcy), 2)`$, $s = `r fmt(sd(hcy), 2)`$), contrastar $H_0: \mu = 12$ frente a $H_1: \mu > 12$ con $\alpha = 0.05$.
+:::
+
+- Estadístico: $t = \dfrac{`r fmt(mean(hcy), 2)` - 12}{`r fmt(sd(hcy), 2)`/\sqrt{20}} = `r fmt(t_obs, 3)`$.
+- Valor crítico: $t^{19}_{0.05} = `r fmt(t_crit, 3)`$.
+
+El estadístico ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_0$ y concluimos que la homocisteína media supera los 12 µmol/l.
+:::
+
+::: {.column width="55%"}
 ```{r}
-hcy <- c(14.2, 11.8, 16.5, 13.1, 12.4, 18.0, 15.3,
-         10.9, 14.8, 13.6, 17.2, 12.9, 15.9, 11.5,
-         16.1, 13.8, 14.5, 12.2, 15.0, 19.1)
-n <- length(hcy)
-t_obs <- (mean(hcy) - 12) / (sd(hcy) / sqrt(n))
-t_crit <- qt(0.95, df = n - 1)
-c(t_obs = t_obs, t_critico = t_crit)
+#| fig-width: 6
+#| fig-height: 5
+dibujar_regiones(\(x) dt(x, n_hcy - 1), seq(-4, 7, length.out = 800), \(x) x > t_crit,
+                 "Distribución T(19) bajo H₀", "T", obs = t_obs)
 ```
 :::
 
----
-
-```{r}
-#| output-location: column
-#| fig-width: 6
-#| fig-height: 5
-x <- seq(-4, 7, length.out = 800)
-dibujar_regiones(\(x) dt(x, n - 1), x, \(x) x > t_crit,
-                 "Distribución T(19) bajo H₀", "T", obs = t_obs)
-```
-
-El estadístico observado ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_0$ y concluimos que la homocisteína media supera los 12 µmol/l.
+::::
 
 ## {background-color= .myblue}
 
@@ -223,7 +240,6 @@ El _p-valor_ es la probabilidad de obtener, si $H_0$ es cierta, un valor del est
 **Regla de decisión**: si p-valor $\leq \alpha$ se rechaza $H_0$; si p-valor $> \alpha$ no se rechaza.
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 3.5
 x <- seq(-4, 4, length.out = 800)
@@ -237,13 +253,17 @@ El p-valor ([área roja]{.myred}) mide la compatibilidad de los datos con $H_0$:
 ---
 
 :::{#exm-p-valor}
-En el ejemplo de la homocisteína:
+En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una $T(19)$ supere el valor observado:
+$$
+\mbox{p-valor} = P(T \geq `r fmt(t_obs, 3)`) = `r fmt_p(pt(t_obs, n_hcy - 1, lower.tail = FALSE))`.
+$$
+:::
 
 ```{r}
-pt(t_obs, df = n - 1, lower.tail = FALSE)
-t.test(hcy, mu = 12, alternative = "greater")
+tabla_contraste(t.test(hcy, mu = 12, alternative = "greater"))
 ```
-:::
+
+Como el p-valor es menor que $\alpha = 0.05$, rechazamos $H_0$. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de $H_0$.
 
 ## Interpretación del p-valor
 
@@ -278,15 +298,12 @@ En un biobanco con 400 000 personas, una diferencia de 0.1 kg/m² de IMC entre g
 Un contraste bilateral con nivel de significación $\alpha$ rechaza $H_0: \theta = \theta_0$ si y solo si $\theta_0$ queda fuera del intervalo de confianza de nivel $1-\alpha$.
 
 :::{#exm-contraste-intervalo}
-En el ejemplo de la suplementación con omega-3:
+En el ejemplo de la suplementación con omega-3, contrastamos si el cambio medio de los triglicéridos es 0, $H_0: \mu_d = 0$ frente a $H_1: \mu_d \neq 0$.
+:::
 
 ```{r}
-tg_antes   <- c(245, 198, 312, 276, 221, 189, 260, 298, 233, 215, 284, 207, 251, 269)
-tg_despues <- c(201, 185, 240, 230, 210, 160, 228, 251, 219, 170, 236, 199, 205, 238)
-res <- t.test(tg_despues, tg_antes, paired = TRUE)
-c(p_valor = res$p.value, li = res$conf.int[1], ls = res$conf.int[2])
+tabla_contraste(t.test(tg_despues, tg_antes, paired = TRUE))
 ```
-:::
 
 El 0 queda fuera del intervalo y el p-valor es menor que 0.05: las dos conclusiones coinciden. El intervalo, además, informa de la magnitud del efecto.
 
@@ -309,7 +326,6 @@ $$
 A diferencia de $\alpha$, $\beta$ depende del verdadero valor del parámetro bajo $H_1$. Se suele exigir una potencia de al menos el 80% ($\beta\leq 0.2$).
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 3.8
 delta <- 2.5; zc <- qnorm(0.95)
@@ -366,7 +382,6 @@ También son tamaños del efecto las medidas en la escala original (diferencia d
 ### Curvas de potencia
 
 ```{r}
-#| echo: false
 #| fig-width: 12
 #| fig-height: 4.5
 expand_grid(n = seq(5, 200, by = 1), d = c(0.2, 0.5, 0.8)) |>
@@ -383,16 +398,20 @@ expand_grid(n = seq(5, 200, by = 1), d = c(0.2, 0.5, 0.8)) |>
 
 ---
 
+```{r}
+#| include: false
+n_2kg <- ceiling(power.t.test(delta = 2, sd = 4, sig.level = 0.05, power = 0.80)$n)
+n_1kg <- ceiling(power.t.test(delta = 1, sd = 4, sig.level = 0.05, power = 0.80)$n)
+```
+
 :::{#exm-tamano-muestral}
 Queremos diseñar un estudio para detectar una diferencia de 2 kg en la pérdida de peso entre portadores AA y TT de _FTO_ tras una dieta hipocalórica. Por estudios previos, la desviación típica de la pérdida de peso es de 4 kg. ¿Cuántos participantes necesitamos por grupo para tener una potencia del 80% con $\alpha = 0.05$?
-
-```{r}
-2 / 4  # d de Cohen
-power.t.test(delta = 2, sd = 4, sig.level = 0.05, power = 0.80)
-```
 :::
 
-¿Y si el efecto fuese de solo 1 kg ($d = 0.25$)? Hace falta multiplicar el tamaño muestral por 4: `r ceiling(power.t.test(delta = 1, sd = 4, power = 0.8)$n)` participantes por grupo.
+- Tamaño del efecto: $d = 2/4 = 0.5$ (mediano).
+- Para una potencia del 80% hacen falta **`r n_2kg` participantes por grupo**, `r 2 * n_2kg` en total.
+
+Si el efecto fuese de solo 1 kg ($d = 0.25$), harían falta `r n_1kg` participantes por grupo: al reducir el efecto a la mitad, el tamaño muestral se multiplica por 4.
 
 ## {background-color= .myblue}
 
@@ -410,35 +429,35 @@ La elección del contraste depende de:
 4. **Las condiciones de aplicación**: normalidad (Shapiro-Wilk) e igualdad de varianzas (F, Levene). Si no se cumplen, se usan contrastes no paramétricos o transformaciones (logaritmo).
 
 :::{.callout-tip}
-Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con un gráfico Q-Q y `shapiro.test()`, sobre todo con muestras pequeñas.
+Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con un gráfico Q-Q y el contraste de Shapiro-Wilk, sobre todo con muestras pequeñas.
 :::
 
-## Resumen de contrastes paramétricos {.smaller .scrollable}
+## Resumen de contrastes paramétricos {.smaller}
 
-| Objetivo | Contraste | Estadístico | Función de R | Ejemplo |
-|:---|:---|:---:|:---|:---|
-| Media de una población | T para una muestra | $T(n-1)$ | `t.test(x, mu = )` | Homocisteína en TT de _MTHFR_ frente a 12 µmol/l |
-| Proporción de una población | Binomial / Z | $N(0,1)$ | `binom.test`, `prop.test` | Prevalencia de TT frente a la de referencia |
-| Varianza de una población | Chi-cuadrado | $\chi^2(n-1)$ | `qchisq`, `pchisq` | Precisión de un método de medida de HbA1c |
-| Medias de dos poblaciones independientes | T de Student / Welch | $T$ | `t.test(x, y)` | Pérdida de peso en AA frente a TT de _FTO_ |
-| Medias de dos poblaciones pareadas | T pareada | $T(n-1)$ | `t.test(x, y, paired = TRUE)` | Triglicéridos antes y después de omega-3 |
-| Varianzas de dos poblaciones | F de Fisher | $F(n_1-1, n_2-1)$ | `var.test` | Variabilidad glucémica según _TCF7L2_ |
-| Medias de más de dos poblaciones | ANOVA | $F(k-1, n-k)$ | `aov`, `oneway.test` | IMC según genotipo AA, AT, TT de _FTO_ |
-| Correlación lineal | T de Pearson | $T(n-2)$ | `cor.test` | Ingesta de folato y homocisteína |
+| Objetivo | Contraste | Estadístico | Ejemplo |
+|:---|:---|:---:|:---|
+| Media de una población | T para una muestra | $T(n-1)$ | Homocisteína en TT de _MTHFR_ frente a 12 µmol/l |
+| Proporción de una población | Binomial / Z | $N(0,1)$ | Prevalencia de TT frente a la de referencia |
+| Varianza de una población | Chi-cuadrado | $\chi^2(n-1)$ | Precisión de un método de medida de HbA1c |
+| Medias de dos poblaciones independientes | T de Student / Welch | $T$ | Pérdida de peso en AA frente a TT de _FTO_ |
+| Medias de dos poblaciones pareadas | T pareada | $T(n-1)$ | Triglicéridos antes y después de omega-3 |
+| Varianzas de dos poblaciones | F de Fisher | $F(n_1-1, n_2-1)$ | Variabilidad glucémica según _TCF7L2_ |
+| Medias de más de dos poblaciones | ANOVA | $F(k-1, n-k)$ | IMC según genotipo AA, AT, TT de _FTO_ |
+| Correlación lineal | T de Pearson | $T(n-2)$ | Ingesta de folato y homocisteína |
 
 ## Resumen de contrastes para datos categóricos y no paramétricos {.smaller .scrollable}
 
-| Objetivo | Contraste | Estadístico | Función de R | Ejemplo |
-|:---|:---|:---:|:---|:---|
-| Proporciones de dos poblaciones | Z / Chi-cuadrado 2×2 | $\chi^2(1)$ | `prop.test` | Normalización de homocisteína según _MTHFR_ |
-| Independencia de dos variables cualitativas | Chi-cuadrado de independencia | $\chi^2((r-1)(c-1))$ | `chisq.test` | Genotipo de _FTO_ y obesidad |
-| Ajuste a una distribución teórica | Chi-cuadrado de bondad de ajuste | $\chi^2(k-1-m)$ | `chisq.test(p = )` | Equilibrio de Hardy-Weinberg |
-| Independencia con frecuencias esperadas < 5 | Exacto de Fisher | — | `fisher.test` | Variante rara y respuesta a la dieta |
-| Dos poblaciones independientes sin normalidad | U de Mann-Whitney | $W$ | `wilcox.test` | PCR según tipo de dieta |
-| Dos poblaciones pareadas sin normalidad | Rangos con signo de Wilcoxon | $V$ | `wilcox.test(paired = TRUE)` | Insulina antes y después de una intervención |
-| Más de dos poblaciones sin normalidad | Kruskal-Wallis | $\chi^2(k-1)$ | `kruskal.test` | Diversidad de la microbiota según dieta |
-| Correlación monótona | Spearman | $\rho$ | `cor.test(method = "spearman")` | Fibra dietética y abundancia de _Bifidobacterium_ |
-| Muchos contrastes simultáneos | Corrección de Bonferroni / FDR | — | `p.adjust` | Expresión diferencial, EWAS, GWAS |
+| Objetivo | Contraste | Estadístico | Ejemplo |
+|:---|:---|:---:|:---|
+| Proporciones de dos poblaciones | Z / Chi-cuadrado 2×2 | $\chi^2(1)$ | Normalización de homocisteína según _MTHFR_ |
+| Independencia de dos variables cualitativas | Chi-cuadrado de independencia | $\chi^2((r-1)(c-1))$ | Genotipo de _FTO_ y obesidad |
+| Ajuste a una distribución teórica | Chi-cuadrado de bondad de ajuste | $\chi^2(k-1-m)$ | Equilibrio de Hardy-Weinberg |
+| Independencia con frecuencias esperadas < 5 | Exacto de Fisher | — | Variante rara y respuesta a la dieta |
+| Dos poblaciones independientes sin normalidad | U de Mann-Whitney | $W$ | PCR según tipo de dieta |
+| Dos poblaciones pareadas sin normalidad | Rangos con signo de Wilcoxon | $V$ | Insulina antes y después de una intervención |
+| Más de dos poblaciones sin normalidad | Kruskal-Wallis | $\chi^2(k-1)$ | Diversidad de la microbiota según dieta |
+| Correlación monótona | Spearman | $\rho$ | Fibra dietética y abundancia de _Bifidobacterium_ |
+| Muchos contrastes simultáneos | Corrección de Bonferroni / FDR | — | Expresión diferencial, EWAS, GWAS |
 
 ---
 
@@ -448,45 +467,51 @@ Antes de aplicar un contraste paramétrico conviene comprobar la normalidad con 
 ¿Supera la homocisteína media de los homocigotos TT de _MTHFR_ con baja ingesta de folato el umbral de 12 µmol/l?
 
 $H_0: \mu = 12$ frente a $H_1: \mu > 12$.
+:::
 
 ```{r}
-shapiro.test(hcy)$p.value  # Comprobación de normalidad
-t.test(hcy, mu = 12, alternative = "greater")
+resumen(`Homocisteína (µmol/l)` = hcy)
+tabla_contraste(t.test(hcy, mu = 12, alternative = "greater"))
 ```
-:::
+
+El contraste de Shapiro-Wilk no detecta falta de normalidad (p = `r fmt(shapiro.test(hcy)$p.value, 3)`). Rechazamos $H_0$: la homocisteína media supera los 12 µmol/l.
 
 ---
 
 ### Contraste para una proporción
 
 :::{#exm-contraste-proporcion}
-En una cohorte de 250 personas se encuentran 38 homocigotos TT de _MTHFR_ C677T. ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?
+En una cohorte de 250 personas se encuentran 38 homocigotos TT de _MTHFR_ C677T ($\hat p = 0.152$). ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?
 
 $H_0: p = 0.10$ frente a $H_1: p \neq 0.10$.
+:::
 
 ```{r}
-binom.test(38, 250, p = 0.10)
+tabla_contraste(binom.test(38, 250, p = 0.10), estadistico = "Número de TT", gl = FALSE)
 ```
-:::
+
+Con el contraste exacto binomial el p-valor es menor que 0.05: la prevalencia de TT en la cohorte es mayor que el 10%.
 
 ---
 
 ### Contraste para una varianza
 
+```{r}
+#| include: false
+chi_obs <- (length(hba1c) - 1) * var(hba1c) / 0.3^2
+```
+
 :::{#exm-contraste-varianza}
-Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. ¿Cumple el nuevo protocolo este requisito?
+Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene $s = `r fmt(sd(hba1c), 3)`$. ¿Cumple el nuevo protocolo este requisito?
 
 $H_0: \sigma = 0.3$ frente a $H_1: \sigma < 0.3$.
-
-```{r}
-hba1c <- c(6.8, 6.1, 6.6, 6.4, 6.5, 6.9, 6.2, 6.4, 6.3, 7.0, 6.5, 6.4, 6.6, 6.3, 6.4)
-n <- length(hba1c)
-chi_obs <- (n - 1) * var(hba1c) / 0.3^2
-c(chi_obs = chi_obs, p_valor = pchisq(chi_obs, df = n - 1))
-```
 :::
 
-Aunque la desviación típica muestral es `r round(sd(hba1c), 2)`, con solo 15 mediciones no hay evidencia suficiente para afirmar que $\sigma < 0.3$. Haría falta una muestra mayor.
+$$
+\chi^2 = \frac{(n-1)s^2}{0.3^2} = \frac{14\cdot `r fmt(var(hba1c), 4)`}{0.09} = `r fmt(chi_obs, 3)` \qquad \mbox{p-valor} = P(\chi^2(14) \leq `r fmt(chi_obs, 3)`) = `r fmt_p(pchisq(chi_obs, 14))`.
+$$
+
+Aunque la desviación típica muestral es menor que 0.3, con solo 15 mediciones no hay evidencia suficiente para afirmar que $\sigma < 0.3$. Haría falta una muestra mayor.
 
 ---
 
@@ -496,14 +521,14 @@ Aunque la desviación típica muestral es `r round(sd(hba1c), 2)`, con solo 15 m
 ¿Pierden menos peso los homocigotos AA de _FTO_ que los TT tras 6 meses de dieta hipocalórica?
 
 $H_0: \mu_{AA} = \mu_{TT}$ frente a $H_1: \mu_{AA} < \mu_{TT}$.
+:::
 
 ```{r}
-perdida_AA <- c(4, 2.1, 6.2, 4.7, 0.6, 1, 5.6, 4.6, 6.7, 3.6, 4.7, 1.8, 4.6, 7.5, 4.5, 4.7, 6.3, 4.4)
-perdida_TT <- c(8.9, 7.6, 6.2, 3, 6.4, 3.3, 8.7, 5.7, 6.4, 4.6, 9.3, 7, 8.7, 8.1, 6, 5.1, 6.6, 12.5,
-                1.2, 11, 9.1, 3.9, 9.7, 7.6, 1.8)
-t.test(perdida_AA, perdida_TT, alternative = "less")  # Welch
+resumen(`AA (alelo de riesgo)` = perdida_AA, `TT (alelo protector)` = perdida_TT)
+tabla_contraste(t.test(perdida_AA, perdida_TT, alternative = "less"))
 ```
-:::
+
+Con el contraste de Welch (varianzas distintas) rechazamos $H_0$: los homocigotos AA pierden de media menos peso.
 
 ---
 
@@ -513,12 +538,14 @@ t.test(perdida_AA, perdida_TT, alternative = "less")  # Welch
 ¿Reduce la suplementación con omega-3 los triglicéridos?
 
 $H_0: \mu_d = 0$ frente a $H_1: \mu_d < 0$, con $d = \mbox{después} - \mbox{antes}$.
+:::
 
 ```{r}
-shapiro.test(tg_despues - tg_antes)$p.value
-t.test(tg_despues, tg_antes, paired = TRUE, alternative = "less")
+resumen(Antes = tg_antes, Después = tg_despues, `Diferencia` = tg_despues - tg_antes)
+tabla_contraste(t.test(tg_despues, tg_antes, paired = TRUE, alternative = "less"))
 ```
-:::
+
+Las diferencias son compatibles con la normalidad (Shapiro-Wilk, p = `r fmt(shapiro.test(tg_despues - tg_antes)$p.value, 3)`). Rechazamos $H_0$: el omega-3 reduce los triglicéridos.
 
 ---
 
@@ -528,39 +555,51 @@ t.test(tg_despues, tg_antes, paired = TRUE, alternative = "less")
 ¿Es más variable la respuesta glucémica postprandial en los portadores TT de _TCF7L2_ que en los CC?
 
 $H_0: \sigma^2_{TT} = \sigma^2_{CC}$ frente a $H_1: \sigma^2_{TT} > \sigma^2_{CC}$.
+:::
 
 ```{r}
-auc_TT <- c(180, 219, 170, 287, 226, 171, 233, 245, 238, 195, 283, 229, 180, 104, 264, 208)
-auc_CC <- c(190, 216, 213, 207, 216, 212, 192, 134, 207, 188, 186, 149, 177, 202, 228, 187, 201,
-            188, 151, 178)
-var.test(auc_TT, auc_CC, alternative = "greater")
+resumen(TT = auc_TT, CC = auc_CC)
+tabla_contraste(var.test(auc_TT, auc_CC, alternative = "greater"))
 ```
-:::
+
+Rechazamos $H_0$: la respuesta glucémica es más variable en los portadores TT.
 
 ---
 
 ### ANOVA de un factor
 
+```{r}
+#| include: false
+set.seed(31)
+imc <- tibble(
+  genotipo = factor(rep(c("AA", "AT", "TT"), times = c(45, 120, 85)), levels = c("AA", "AT", "TT")),
+  imc = c(rnorm(45, 28.4, 4), rnorm(120, 27.2, 4), rnorm(85, 26.1, 4)))
+anova_imc <- summary(aov(imc ~ genotipo, data = imc))[[1]]
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
 :::{#exm-anova}
 ¿Difiere el IMC medio entre los tres genotipos de _FTO_ rs9939609?
 
 $H_0: \mu_{AA} = \mu_{AT} = \mu_{TT}$ frente a $H_1$: al menos una media es distinta.
-
-```{r}
-set.seed(31)
-imc <- tibble(
-  genotipo = factor(rep(c("AA", "AT", "TT"), times = c(45, 120, 85)),
-                    levels = c("AA", "AT", "TT")),
-  imc = c(rnorm(45, 28.4, 4), rnorm(120, 27.2, 4), rnorm(85, 26.1, 4)))
-modelo <- aov(imc ~ genotipo, data = imc)
-summary(modelo)
-```
 :::
 
----
-
 ```{r}
-#| output-location: column
+tibble(Fuente = c("Genotipo", "Residual"), `gl` = anova_imc$Df,
+       `Suma de cuadrados` = fmt(anova_imc$`Sum Sq`, 1),
+       `Cuadrado medio` = fmt(anova_imc$`Mean Sq`, 2),
+       F = c(fmt(anova_imc$`F value`[1], 3), ""),
+       `p-valor` = c(fmt_p(anova_imc$`Pr(>F)`[1]), "")) |>
+  kable(align = "lccccc")
+```
+
+Rechazamos $H_0$. Las comparaciones dos a dos se hacen después con correcciones como la de Tukey.
+:::
+
+::: {.column width="50%"}
+```{r}
 #| fig-width: 6
 #| fig-height: 5
 ggplot(imc, aes(genotipo, imc, fill = genotipo)) +
@@ -568,30 +607,42 @@ ggplot(imc, aes(genotipo, imc, fill = genotipo)) +
   scale_fill_manual(values = c(myred, mypurple, myblue)) +
   labs(x = "Genotipo FTO", y = "IMC (kg/m²)")
 ```
+:::
 
-Si se rechaza $H_0$, las comparaciones dos a dos se hacen con correcciones como la de Tukey (`TukeyHSD(modelo)`).
+::::
 
 ---
 
 ### Correlación de Pearson
 
-:::{#exm-correlacion}
-¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática?
-
-$H_0: \rho = 0$ frente a $H_1: \rho \neq 0$.
-
 ```{r}
+#| include: false
 set.seed(32)
 folato <- round(runif(40, 150, 550))
 homocisteina <- round(17 - 0.015 * folato + rnorm(40, 0, 1.8), 1)
-cor.test(folato, homocisteina)
+cor_res <- cor.test(folato, homocisteina)
 ```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::{#exm-correlacion}
+¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática en 40 adultos?
+
+$H_0: \rho = 0$ frente a $H_1: \rho \neq 0$.
 :::
 
----
+- Coeficiente de correlación: $r = `r fmt(cor_res$estimate, 3)`$.
 
 ```{r}
-#| output-location: column
+tabla_contraste(cor_res)
+```
+
+Rechazamos $H_0$: a mayor ingesta de folato, menor homocisteína.
+:::
+
+::: {.column width="50%"}
+```{r}
 #| fig-width: 6
 #| fig-height: 5
 ggplot(tibble(folato, homocisteina), aes(folato, homocisteina)) +
@@ -599,100 +650,155 @@ ggplot(tibble(folato, homocisteina), aes(folato, homocisteina)) +
   geom_smooth(method = "lm", formula = y ~ x, colour = myred) +
   labs(x = "Ingesta de folato (µg/día)", y = "Homocisteína (µmol/l)")
 ```
+:::
+
+::::
 
 ---
 
 ### Contraste de comparación de dos proporciones
 
 :::{#exm-dos-proporciones}
-Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de _MTHFR_ y en 24 de 45 homocigotos TT. ¿Es distinta la proporción de normalización según el genotipo?
+Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de _MTHFR_ (74.3%) y en 24 de 45 homocigotos TT (53.3%). ¿Es distinta la proporción de normalización según el genotipo?
 
 $H_0: p_{CC/CT} = p_{TT}$ frente a $H_1: p_{CC/CT} \neq p_{TT}$.
+:::
 
 ```{r}
-prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE)
+tabla_contraste(prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE), estadistico = "χ²")
 ```
-:::
+
+Rechazamos $H_0$: la proporción de normalización es mayor en los portadores CC/CT.
 
 ---
 
-### Contraste chi-cuadrado de independencia
-
-:::{#exm-chi-independencia}
-En una muestra de 600 adultos se clasifica a cada persona según su genotipo de _FTO_ y su estado ponderal. ¿Son independientes ambas variables?
-
-$H_0$: el genotipo y el estado ponderal son independientes frente a $H_1$: están asociados.
+### Contraste chi-cuadrado de independencia {.smaller}
 
 ```{r}
+#| include: false
 tabla <- matrix(c(40, 45, 35,
                   110, 105, 85,
                   95, 55, 30), nrow = 3, byrow = TRUE,
                 dimnames = list(Genotipo = c("TT", "AT", "AA"),
                                 Estado = c("Normopeso", "Sobrepeso", "Obesidad")))
-tabla
-res <- chisq.test(tabla)
-res
+chi_ind <- chisq.test(tabla)
+```
+
+:::{#exm-chi-independencia}
+En una muestra de 600 adultos se clasifica a cada persona según su genotipo de _FTO_ y su estado ponderal. ¿Son independientes ambas variables?
+
+$H_0$: el genotipo y el estado ponderal son independientes frente a $H_1$: están asociados.
+:::
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Frecuencias observadas**
+
+```{r}
+tabla |> as.data.frame.matrix() |> rownames_to_column("Genotipo") |> kable(align = "lccc")
 ```
 :::
+
+::: {.column width="50%"}
+**Frecuencias esperadas bajo $H_0$**
+
+```{r}
+chi_ind$expected |> round(1) |> as.data.frame.matrix() |> rownames_to_column("Genotipo") |>
+  kable(align = "lccc")
+```
+:::
+
+::::
+
+```{r}
+tabla_contraste(chi_ind, estadistico = "χ²")
+```
+
+Rechazamos $H_0$: el estado ponderal está asociado con el genotipo de _FTO_.
 
 ---
 
 ### Contraste del equilibrio de Hardy-Weinberg
 
+```{r}
+#| include: false
+obs <- c(AA = 92, AT = 236, TT = 172); n <- sum(obs)
+p_A <- unname((2 * obs["AA"] + obs["AT"]) / (2 * n))
+esp <- n * c(p_A^2, 2 * p_A * (1 - p_A), (1 - p_A)^2)
+chi_hw <- sum((obs - esp)^2 / esp)
+```
+
 :::{#exm-hardy-weinberg-contraste}
 En una muestra de 500 personas se observan 92 AA, 236 AT y 172 TT para rs9939609. ¿Está la muestra en equilibrio de Hardy-Weinberg?
 
 $H_0$: las frecuencias genotípicas son $p^2$, $2pq$, $q^2$ frente a $H_1$: no lo son.
+:::
+
+La frecuencia estimada del alelo A es $\hat p = \frac{2\cdot 92 + 236}{1000} = `r fmt(p_A, 2)`$.
 
 ```{r}
-obs <- c(AA = 92, AT = 236, TT = 172); n <- sum(obs)
-p <- (2 * obs["AA"] + obs["AT"]) / (2 * n)  # Frecuencia estimada del alelo A
-esp <- n * c(p^2, 2 * p * (1 - p), (1 - p)^2)
-chi <- sum((obs - esp)^2 / esp)
-# gl = 3 categorías - 1 - 1 parámetro estimado = 1
-c(p_A = unname(p), chi = chi, p_valor = pchisq(chi, df = 1, lower.tail = FALSE))
+tibble(Genotipo = names(obs), Observados = obs, Esperados = fmt(esp, 1)) |> kable(align = "ccc")
 ```
-:::
+
+$\chi^2 = \sum\frac{(O-E)^2}{E} = `r fmt(chi_hw, 3)`$ con $3 - 1 - 1 = 1$ grado de libertad (se descuenta el parámetro $p$ estimado), p-valor = `r fmt_p(pchisq(chi_hw, 1, lower.tail = FALSE))`.
 
 No hay evidencia de desviación del equilibrio de Hardy-Weinberg, lo que respalda la calidad del genotipado.
-
-:::{.callout-caution}
-`chisq.test(obs, p = esp / n)` daría 2 grados de libertad, porque no sabe que hemos estimado $p$ a partir de los datos.
-:::
 
 ---
 
 ### Contraste exacto de Fisher {.smaller}
 
+```{r}
+#| include: false
+tabla_f <- matrix(c(7, 2,
+                    18, 33), nrow = 2, byrow = TRUE,
+                  dimnames = list(Variante = c("Ala12", "Pro12Pro"),
+                                  Respuesta = c("Respondedor", "No respondedor")))
+fisher_res <- fisher.test(tabla_f)
+```
+
 :::{#exm-fisher}
-Se estudia la respuesta a una dieta cetogénica en portadores de una variante rara de _PPARG_ (Pro12Ala). Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.
+Se estudia la respuesta a una dieta cetogénica en portadores de la variante Pro12Ala de _PPARG_. Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.
+
+$H_0$: la respuesta es independiente de la variante frente a $H_1$: están asociadas.
+:::
 
 ```{r}
-tabla <- matrix(c(7, 2,
-                  18, 33), nrow = 2, byrow = TRUE,
-                dimnames = list(Variante = c("Ala12", "Pro12Pro"),
-                                Respuesta = c("Respondedor", "No respondedor")))
-tabla
-fisher.test(tabla)
+tabla_f |> as.data.frame.matrix() |> rownames_to_column("Variante") |> kable(align = "lcc")
 ```
-:::
+
+| Odds ratio | Intervalo de confianza del 95% | p-valor |
+|:---:|:---:|:---:|
+| `r fmt(fisher_res$estimate, 2)` | [`r fmt(fisher_res$conf.int[1], 2)`, `r fmt(fisher_res$conf.int[2], 2)`] | `r fmt_p(fisher_res$p.value)` |
+
+Rechazamos $H_0$: los portadores de Ala12 responden más a la dieta.
 
 ---
 
 ### Contraste U de Mann-Whitney
 
+```{r}
+#| include: false
+set.seed(33)
+pcr_med <- round(rlnorm(22, log(1.4), 0.8), 2)
+pcr_control <- round(rlnorm(24, log(2.6), 0.8), 2)
+mw <- wilcox.test(pcr_med, pcr_control, exact = FALSE)
+```
+
 :::{#exm-mann-whitney}
 La PCR ultrasensible es muy asimétrica. ¿Es distinta entre participantes con dieta mediterránea y con dieta control?
 
 $H_0$: ambas distribuciones son iguales frente a $H_1$: una tiende a dar valores mayores que la otra.
+:::
 
 ```{r}
-set.seed(33)
-pcr_med <- round(rlnorm(22, log(1.4), 0.8), 2)
-pcr_control <- round(rlnorm(24, log(2.6), 0.8), 2)
-wilcox.test(pcr_med, pcr_control, exact = FALSE)
+tibble(Dieta = c("Mediterránea", "Control"), n = c(length(pcr_med), length(pcr_control)),
+       Mediana = c(median(pcr_med), median(pcr_control)),
+       `Rango intercuartílico` = c(IQR(pcr_med), IQR(pcr_control))) |>
+  kable(digits = 2, align = "lccc")
+tabla_contraste(mw)
 ```
-:::
 
 El p-valor es muy pequeño: la PCR tiende a ser menor con la dieta mediterránea.
 
@@ -700,23 +806,34 @@ El p-valor es muy pequeño: la PCR tiende a ser menor con la dieta mediterránea
 
 ### Contraste de Kruskal-Wallis
 
-:::{#exm-kruskal}
-¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana?
-
 ```{r}
+#| include: false
 set.seed(34)
 microbiota <- tibble(
   dieta = factor(rep(c("Omnívora", "Vegetariana", "Vegana"), each = 20),
                  levels = c("Omnívora", "Vegetariana", "Vegana")),
   shannon = c(rbeta(20, 8, 3.5), rbeta(20, 10, 2.6), rbeta(20, 12, 2)) * 5)
-kruskal.test(shannon ~ dieta, data = microbiota)
+kw <- kruskal.test(shannon ~ dieta, data = microbiota)
 ```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+:::{#exm-kruskal}
+¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana (20 por grupo)?
+
+$H_0$: las tres distribuciones son iguales frente a $H_1$: al menos una es distinta.
 :::
 
----
-
 ```{r}
-#| output-location: column
+tabla_contraste(kw, estadistico = "H")
+```
+
+Rechazamos $H_0$: la diversidad de la microbiota depende del tipo de dieta.
+:::
+
+::: {.column width="50%"}
+```{r}
 #| fig-width: 6
 #| fig-height: 5
 ggplot(microbiota, aes(dieta, shannon, fill = dieta)) +
@@ -724,30 +841,33 @@ ggplot(microbiota, aes(dieta, shannon, fill = dieta)) +
   scale_fill_manual(values = c(myred, mypurple, mygreen)) +
   labs(x = NULL, y = "Índice de Shannon")
 ```
+:::
+
+::::
 
 ---
 
-### Corrección por comparaciones múltiples {.smaller .scrollable}
+### Corrección por comparaciones múltiples {.smaller}
 
 :::{#exm-comparaciones-multiples}
 Se estudia la expresión de 10 genes del metabolismo lipídico tras una intervención con dieta mediterránea. Ajustamos los p-valores con Bonferroni y con la FDR de Benjamini-Hochberg.
+:::
 
 ```{r}
 pvalores <- c(SREBF1 = 0.0004, PPARA = 0.003, CPT1A = 0.009, FASN = 0.012, LPL = 0.021,
               SCD = 0.034, ACACA = 0.048, CD36 = 0.21, APOA1 = 0.47, LIPE = 0.83)
-tibble(gen = names(pvalores), p = pvalores,
+tibble(Gen = names(pvalores), `p-valor` = pvalores,
        Bonferroni = p.adjust(pvalores, "bonferroni"),
-       BH = p.adjust(pvalores, "BH")) |>
-  kable(digits = 4)
+       `FDR (BH)` = p.adjust(pvalores, "BH")) |>
+  kable(digits = 4, align = "lccc")
 ```
-:::
 
-Sin corregir, 7 genes serían significativos al 5%. Bonferroni controla la probabilidad de algún falso positivo y es muy conservador; la FDR controla la proporción esperada de falsos descubrimientos y es la más usada en ómicas.
+Sin corregir, 7 genes serían significativos al 5%; con Bonferroni, `r sum(p.adjust(pvalores, "bonferroni") < 0.05)`, y con la FDR, `r sum(p.adjust(pvalores, "BH") < 0.05)`. Bonferroni controla la probabilidad de algún falso positivo y es muy conservador; la FDR controla la proporción esperada de falsos descubrimientos y es la más usada en ómicas.
 
 ---
 
 :::{#exr-contrastes}
-Para cada uno de los siguientes estudios, indicar las hipótesis, el contraste más adecuado y la función de R que utilizarías.
+Para cada uno de los siguientes estudios, indicar las hipótesis y el contraste más adecuado.
 
 a. Comparar la presión arterial sistólica de 30 hipertensos antes y después de 12 semanas de dieta DASH.
 a. Comprobar si la frecuencia de genotipos de _APOE_ en una muestra está en equilibrio de Hardy-Weinberg.
@@ -761,10 +881,10 @@ a. Estudiar la asociación entre ser portador del alelo T de _MTHFR_ y tener def
 <details>
 <summary>Solución</summary>
 
-a. $H_0: \mu_d = 0$ frente a $H_1: \mu_d < 0$. Contraste T pareado: `t.test(despues, antes, paired = TRUE, alternative = "less")`.
-a. $H_0$: equilibrio de Hardy-Weinberg. Chi-cuadrado de bondad de ajuste con los grados de libertad corregidos (o el contraste exacto de Hardy-Weinberg).
-a. $H_0$: distribuciones iguales. U de Mann-Whitney: `wilcox.test(x, y)`, o T de Welch sobre el logaritmo de la insulina.
-a. $H_0: \mu_{E2} = \mu_{E3} = \mu_{E4}$. ANOVA de un factor: `aov(ldl ~ apoe)`.
-a. $H_0$: independencia. Con 40 pacientes probablemente habrá frecuencias esperadas < 5, así que contraste exacto de Fisher: `fisher.test(tabla)`.
+a. $H_0: \mu_d = 0$ frente a $H_1: \mu_d < 0$. Contraste T para muestras pareadas.
+a. $H_0$: equilibrio de Hardy-Weinberg. Chi-cuadrado de bondad de ajuste descontando los parámetros estimados (o el contraste exacto de Hardy-Weinberg).
+a. $H_0$: distribuciones iguales. U de Mann-Whitney, o T de Welch sobre el logaritmo de la insulina.
+a. $H_0: \mu_{E2} = \mu_{E3} = \mu_{E4}$. ANOVA de un factor.
+a. $H_0$: independencia. Con 40 pacientes probablemente habrá frecuencias esperadas < 5, así que contraste exacto de Fisher.
 
 </details>

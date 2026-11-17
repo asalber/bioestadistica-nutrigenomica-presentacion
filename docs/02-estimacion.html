@@ -30,74 +30,8 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-      }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-    div.sourceCode
-      { color: #383a42;  }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #383a42; } /* Normal */
-    code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
-    code span.an { color: #50a14f; } /* Annotation */
-    code span.at { color: #a626a4; } /* Attribute */
-    code span.bn { color: #986801; } /* BaseN */
-    code span.bu { color: #a626a4; } /* BuiltIn */
-    code span.cf { color: #a626a4; } /* ControlFlow */
-    code span.ch { color: #50a14f; } /* Char */
-    code span.cn { color: #986801; } /* Constant */
-    code span.co { color: #a0a1a7; font-style: italic; } /* Comment */
-    code span.cv { color: #e45649; font-style: italic; } /* CommentVar */
-    code span.do { color: #e45649; } /* Documentation */
-    code span.dt { color: #a626a4; } /* DataType */
-    code span.dv { color: #986801; } /* DecVal */
-    code span.er { color: #f44747; text-decoration: underline; } /* Error */
-    code span.ex { color: #4078f2; font-weight: bold; } /* Extension */
-    code span.fl { color: #986801; } /* Float */
-    code span.fu { color: #4078f2; } /* Function */
-    code span.im { color: #50a14f; } /* Import */
-    code span.in { color: #c45b00; } /* Information */
-    code span.kw { color: #a626a4; } /* Keyword */
-    code span.op { color: #a626a4; } /* Operator */
-    code span.ot { color: #27ae60; } /* Other */
-    code span.pp { color: #a626a4; } /* Preprocessor */
-    code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
-    code span.sc { color: #0184bc; } /* SpecialChar */
-    code span.ss { color: #da4453; } /* SpecialString */
-    code span.st { color: #50a14f; } /* String */
-    code span.va { color: #e45649; } /* Variable */
-    code span.vs { color: #da4453; } /* VerbatimString */
-    code span.wa { color: #da4453; } /* Warning */
   </style>
-  <link rel="stylesheet" href="02-estimacion_files/libs/revealjs/dist/theme/quarto-f09a277376d8bc89b7dcd1d48775deba.css">
+  <link rel="stylesheet" href="02-estimacion_files/libs/revealjs/dist/theme/quarto-85ac517078cdb0885cb93a388b178469.css">
   <link href="02-estimacion_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="02-estimacion_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="02-estimacion_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -307,17 +241,9 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 
 <div id="exm-tcl-insulina" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 1</strong></span> La insulina en ayunas sigue una distribución lognormal muy asimétrica (mediana 8 µU/ml, <span class="math inline">\(\sigma = 0.6\)</span> en escala log). Simulamos 5000 muestras de distintos tamaños y calculamos la media de cada una.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-2-1.svg" class="quarto-figure quarto-figure-center" width="1152"></p>
-</figure>
 </div>
-</div>
-</div>
-</div>
-<p>A medida que crece <span class="math inline">\(n\)</span>, la distribución de la media se vuelve simétrica, normal y más concentrada en torno a <span class="math inline">\(\mu = e^{\log 8 + 0.6^2/2} \approx 9.58\)</span> µU/ml.</p>
+
+<img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-4-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>A medida que crece <span class="math inline">\(n\)</span>, la distribución de la media se vuelve simétrica, normal y más concentrada en torno a <span class="math inline">\(\mu = e^{\log 8 + 0.6^2/2} \approx 9.58\)</span> µU/ml.</p>
 </section></section>
 <section>
 <section id="distribución-de-la-varianza-muestral" class="title-slide slide level2 smaller center">
@@ -338,31 +264,20 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 </section>
 <section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
 <div id="exm-distribucion-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución <span class="math inline">\(N(6.5, 0.4)\)</span>. Simulamos 5000 muestras de tamaño 15 y comparamos la distribución de <span class="math inline">\(14S^2/0.4^2\)</span> con la <span class="math inline">\(\chi^2(14)\)</span>.</p>
+<p><span class="theorem-title"><strong>Ejemplo 2</strong></span> La HbA1c en pacientes con diabetes tipo 2 bien controlados sigue una distribución <span class="math inline">\(N(6.5, 0.4)\)</span>. Simulamos 5000 muestras de tamaño 15 y calculamos <span class="math inline">\(14S^2/0.4^2\)</span> en cada una.</p>
+</div>
+<p>El histograma de las simulaciones coincide con la densidad de la <span class="math inline">\(\chi^2(14)\)</span> (<span class="myred">línea roja</span>), cuya media es 14.</p>
+</div><div class="column" style="width:55%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
-<span id="cb1-2"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">15</span>; sigma <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
-<span id="cb1-3"><a href="" aria-hidden="true" tabindex="-1"></a>estad <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">var</span>(<span class="fu">rnorm</span>(n, <span class="fl">6.5</span>, sigma)) <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section>
-<section class="slide level3">
-
-<div class="cell columns column-output-location" data-layout-align="center">
-<div class="column">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(estad), <span class="fu">aes</span>(estad)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">bins =</span> <span class="dv">40</span>,</span>
-<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> myblue, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>),</span>
-<span id="cb2-5"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour =</span> myred, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>((n<span class="dv">-1</span>)<span class="sc">*</span>S<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>sigma<span class="sc">^</span><span class="dv">2</span>), <span class="at">y =</span> <span class="st">"Densidad"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-4-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-5-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
+</div>
 </div>
 </div>
 </div></div>
@@ -404,7 +319,7 @@ P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 <h2>Interpretación de un intervalo de confianza</h2>
 <p>El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiéramos el estudio muchas veces y construyéramos un intervalo del 95% con cada muestra, aproximadamente el 95% de esos intervalos contendrían el verdadero valor del parámetro.</p>
 
-<img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-5-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="callout callout-caution callout-titled callout-style-default">
+<img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -448,23 +363,12 @@ Z = \frac{\bar X-\mu}{\sigma/\sqrt{n}} \sim N(0,1) \Rightarrow P\left(-z_{\alpha
 
 <div id="exm-ic-media-varianza-conocida" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Por estudios previos se sabe que la desviación típica de la glucosa en ayunas en adultos sin diabetes es <span class="math inline">\(\sigma = 12\)</span> mg/dl. En una muestra de 40 portadores del alelo de riesgo T del SNP rs7903146 de <em>TCF7L2</em> se obtiene una media de 98.5 mg/dl. Calcular el intervalo de confianza del 95% para la glucosa media de los portadores.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fl">98.5</span>; sigma <span class="ot">&lt;-</span> <span class="dv">12</span>; n <span class="ot">&lt;-</span> <span class="dv">40</span>; alfa <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alfa <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> z <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">z =</span> z, <span class="at">error =</span> error, <span class="at">li =</span> xbar <span class="sc">-</span> error, <span class="at">ls =</span> xbar <span class="sc">+</span> error)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;          z      error         li         ls 
-#&gt;   1.959964   3.718770  94.781230 102.218770</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Tamaño muestral para un margen de error de 2 mg/dl</span></span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>((z <span class="sc">*</span> sigma <span class="sc">/</span> <span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 139</code></pre>
-</div>
-</div>
-</div>
+<p><span class="math display">\[
+98.5 \pm 1.96\cdot\frac{12}{\sqrt{40}} = 98.5 \pm 3.72 = [94.78,\ 102.22] \mbox{ mg/dl}.
+\]</span></p>
 <p>Con una confianza del 95%, la glucosa media de los portadores está entre 94.8 y 102.2 mg/dl.</p>
+<p>Para reducir el margen de error a 2 mg/dl harían falta <span class="math inline">\(n = \left(\frac{1.96\cdot 12}{2}\right)^2 \approx 139\)</span> portadores.</p>
 </section></section>
 <section>
 <section id="intervalo-para-la-media-con-varianza-desconocida" class="title-slide slide level2 smaller center">
@@ -481,26 +385,36 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">n</td>
-<td style="text-align: right;">5.000</td>
-<td style="text-align: right;">10.000</td>
-<td style="text-align: right;">20.000</td>
-<td style="text-align: right;">30.000</td>
-<td style="text-align: right;">50.00</td>
-<td style="text-align: right;">100.000</td>
-<td style="text-align: right;">Inf</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">∞</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">t(n-1) al 95%</td>
-<td style="text-align: right;">2.776</td>
-<td style="text-align: right;">2.262</td>
-<td style="text-align: right;">2.093</td>
-<td style="text-align: right;">2.045</td>
-<td style="text-align: right;">2.01</td>
-<td style="text-align: right;">1.984</td>
-<td style="text-align: right;">1.96</td>
+<td style="text-align: left;">2.776445</td>
+<td style="text-align: left;">2.262157</td>
+<td style="text-align: left;">2.093024</td>
+<td style="text-align: left;">2.045230</td>
+<td style="text-align: left;">2.009575</td>
+<td style="text-align: left;">1.984217</td>
+<td style="text-align: left;">1.959964</td>
 </tr>
 </tbody>
 </table>
@@ -511,22 +425,32 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 
 <div id="exm-ic-media-varianza-desconocida" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Se mide la homocisteína plasmática (µmol/l) en 20 adultos homocigotos TT de <em>MTHFR</em> C677T con ingesta baja de folato. Calcular el intervalo de confianza del 95% para la homocisteína media.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>hcy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">14.2</span>, <span class="fl">11.8</span>, <span class="fl">16.5</span>, <span class="fl">13.1</span>, <span class="fl">12.4</span>, <span class="fl">18.0</span>, <span class="fl">15.3</span>, <span class="fl">10.9</span>, <span class="fl">14.8</span>, <span class="fl">13.6</span>,</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>         <span class="fl">17.2</span>, <span class="fl">12.9</span>, <span class="fl">15.9</span>, <span class="fl">11.5</span>, <span class="fl">16.1</span>, <span class="fl">13.8</span>, <span class="fl">14.5</span>, <span class="fl">12.2</span>, <span class="fl">15.0</span>, <span class="fl">19.1</span>)</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hcy); t <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(hcy) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> t <span class="sc">*</span> <span class="fu">sd</span>(hcy) <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 13.39355 15.48645</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Homocisteína (µmol/l)</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">14.44</td>
+<td style="text-align: center;">2.24</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(hcy, <span class="at">conf.level =</span> <span class="fl">0.95</span>)<span class="sc">$</span>conf.int</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 13.39355 15.48645
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
 </div>
-</div>
-</div>
+<p><span class="math display">\[
+\bar x \pm t^{19}_{0.025}\frac{s}{\sqrt{n}} = 14.44 \pm 2.093\cdot\frac{2.24}{\sqrt{20}} = [13.39, 15.49] \mbox{ µmol/l}.
+\]</span></p>
 <p>Con una confianza del 95% la homocisteína media está por encima de 12 µmol/l, el umbral habitual de hiperhomocisteinemia leve.</p>
 </section></section>
 <section>
@@ -547,7 +471,7 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <p><strong>Advertencia</strong></p>
 </div>
 <div class="callout-content">
-<p>Con muestras pequeñas o proporciones cercanas a 0 o 1 (variantes raras) el intervalo de Wald funciona mal. Es mejor usar el intervalo de <strong>Wilson</strong> (<code>prop.test</code>) o el <strong>exacto de Clopper-Pearson</strong> (<code>binom.test</code>).</p>
+<p>Con muestras pequeñas o proporciones cercanas a 0 o 1 (variantes raras) el intervalo de Wald funciona mal. Es mejor usar el intervalo de <strong>Wilson</strong> o el <strong>exacto de Clopper-Pearson</strong>, basado directamente en la distribución binomial.</p>
 </div>
 </div>
 </div>
@@ -556,30 +480,37 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 
 <div id="exm-ic-proporcion" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 6</strong></span> En una muestra de 250 personas de una cohorte española, 38 son homocigotas TT de <em>MTHFR</em> C677T. Calcular un intervalo de confianza del 95% para la prevalencia del genotipo TT.</p>
+</div>
+<p><span class="math display">\[
+\hat p = \frac{38}{250} = 0.152 \qquad 0.152 \pm 1.96\sqrt{\frac{0.152\cdot 0.848}{250}} = 0.152 \pm 0.045
+\]</span></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">38</span>; n <span class="ot">&lt;-</span> <span class="dv">250</span>; p <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
-<span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalo de Wald</span></span>
-<span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> <span class="fu">sqrt</span>(p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">/</span> n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.1074961 0.1965039</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: center;">Intervalo del 95%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Wald</td>
+<td style="text-align: center;">[0.107, 0.197]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wilson</td>
+<td style="text-align: center;">[0.113, 0.202]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Exacto de Clopper-Pearson</td>
+<td style="text-align: center;">[0.110, 0.203]</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalo de Wilson</span></span>
-<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(x, n, <span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.1127877 0.2017451
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalo exacto de Clopper-Pearson</span></span>
-<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(x, n)<span class="sc">$</span>conf.int</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.1098640 0.2026108
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
-</div>
-</div>
-</div>
-<p>Los tres intervalos son muy parecidos porque <span class="math inline">\(n\hat p = 38 \geq 5\)</span>.</p>
+<p>Los tres intervalos son muy parecidos porque <span class="math inline">\(n\hat p = 38 \geq 5\)</span>. Con una confianza del 95%, la prevalencia del genotipo TT está entre el 11% y el 20%.</p>
 </section></section>
 <section id="section-2" class="title-slide slide level2 myblue center" data-background-color="">
 <h2></h2>
@@ -589,21 +520,19 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 </section>
 
 <section>
-<section id="intervalos-de-confianza-para-una-población" class="title-slide slide level2 smaller scrollable center">
+<section id="intervalos-de-confianza-para-una-población" class="title-slide slide level2 center">
 <h2>Intervalos de confianza para una población</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 29%">
-<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Parámetro</th>
 <th style="text-align: left;">Condiciones</th>
 <th style="text-align: center;">Intervalo</th>
-<th style="text-align: left;">Función de R</th>
 </tr>
 </thead>
 <tbody>
@@ -611,25 +540,21 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <td style="text-align: left;">Media <span class="math inline">\(\mu\)</span></td>
 <td style="text-align: left;">Normal o <span class="math inline">\(n\geq 30\)</span>, <span class="math inline">\(\sigma\)</span> conocida</td>
 <td style="text-align: center;"><span class="math inline">\(\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}\)</span></td>
-<td style="text-align: left;"><code>qnorm</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Media <span class="math inline">\(\mu\)</span></td>
 <td style="text-align: left;">Normal o <span class="math inline">\(n\geq 30\)</span>, <span class="math inline">\(\sigma\)</span> desconocida</td>
 <td style="text-align: center;"><span class="math inline">\(\bar x \pm t^{n-1}_{\alpha/2}\dfrac{s}{\sqrt{n}}\)</span></td>
-<td style="text-align: left;"><code>t.test</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Proporción <span class="math inline">\(p\)</span></td>
 <td style="text-align: left;"><span class="math inline">\(n\hat p\geq 5\)</span>, <span class="math inline">\(n(1-\hat p)\geq 5\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}\)</span></td>
-<td style="text-align: left;"><code>prop.test</code>, <code>binom.test</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Varianza <span class="math inline">\(\sigma^2\)</span></td>
 <td style="text-align: left;">Población normal</td>
 <td style="text-align: center;"><span class="math inline">\(\left[\dfrac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}}\right]\)</span></td>
-<td style="text-align: left;"><code>qchisq</code></td>
 </tr>
 </tbody>
 </table>
@@ -650,36 +575,27 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <section id="intervalo-para-la-varianza" class="slide level3">
 <h3>Intervalo para la varianza</h3>
 <div id="exm-ic-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes. Calcular el intervalo de confianza del 95% para la desviación típica.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a>hba1c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.8</span>, <span class="fl">6.1</span>, <span class="fl">6.6</span>, <span class="fl">6.4</span>, <span class="fl">6.5</span>, <span class="fl">6.9</span>, <span class="fl">6.2</span>, <span class="fl">6.4</span>, <span class="fl">6.3</span>, <span class="fl">7.0</span>, <span class="fl">6.5</span>, <span class="fl">6.4</span>, <span class="fl">6.6</span>, <span class="fl">6.3</span>, <span class="fl">6.4</span>)</span>
-<span id="cb17-2"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(hba1c); s2 <span class="ot">&lt;-</span> <span class="fu">var</span>(hba1c)</span>
-<span id="cb17-3"><a href="" aria-hidden="true" tabindex="-1"></a>ic_var <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2 <span class="sc">/</span> <span class="fu">qchisq</span>(<span class="fu">c</span>(<span class="fl">0.975</span>, <span class="fl">0.025</span>), <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb17-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="at">varianza =</span> ic_var, <span class="at">desv_tipica =</span> <span class="fu">sqrt</span>(ic_var))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;                   [,1]      [,2]
-#&gt; varianza    0.03404935 0.1579990
-#&gt; desv_tipica 0.18452467 0.3974909</code></pre>
+<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una desviación típica <span class="math inline">\(s = 0.252\)</span> %. Calcular el intervalo de confianza del 95% para la desviación típica.</p>
 </div>
-</div>
-</div>
+<p><span class="math display">\[
+\left[\frac{14\cdot 0.0635}{26.12},\ \frac{14\cdot 0.0635}{5.63}\right] = [0.0340, 0.1580]
+\]</span></p>
+<p>Tomando raíces cuadradas, con una confianza del 95% la desviación típica del método está entre 0.185 y 0.397 %.</p>
 </section></section>
 <section>
 <section id="intervalos-de-confianza-para-dos-poblaciones" class="title-slide slide level2 smaller scrollable center">
 <h2>Intervalos de confianza para dos poblaciones</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 29%">
-<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Parámetro</th>
 <th style="text-align: left;">Condiciones</th>
 <th style="text-align: center;">Intervalo</th>
-<th style="text-align: left;">Función de R</th>
 </tr>
 </thead>
 <tbody>
@@ -687,31 +603,26 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <td style="text-align: left;"><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales, <span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}\)</span></td>
-<td style="text-align: left;"><code>t.test(var.equal = TRUE)</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales, <span class="math inline">\(\sigma_1^2\neq\sigma_2^2\)</span> (Welch)</td>
 <td style="text-align: center;"><span class="math inline">\(\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}\)</span></td>
-<td style="text-align: left;"><code>t.test</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\mu_d = \mu_1-\mu_2\)</span></td>
 <td style="text-align: left;">Muestras pareadas, diferencias normales</td>
 <td style="text-align: center;"><span class="math inline">\(\bar d \pm t^{n-1}_{\alpha/2}\dfrac{s_d}{\sqrt{n}}\)</span></td>
-<td style="text-align: left;"><code>t.test(paired = TRUE)</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="math inline">\(p_1-p_2\)</span></td>
 <td style="text-align: left;">Muestras independientes grandes</td>
 <td style="text-align: center;"><span class="math inline">\(\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}\)</span></td>
-<td style="text-align: left;"><code>prop.test</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\sigma_1^2/\sigma_2^2\)</span></td>
 <td style="text-align: left;">Muestras independientes, normales</td>
 <td style="text-align: center;"><span class="math inline">\(\left[\dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{s_1^2/s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]\)</span></td>
-<td style="text-align: left;"><code>var.test</code></td>
 </tr>
 </tbody>
 </table>
@@ -733,93 +644,149 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <section id="diferencia-de-medias-en-muestras-independientes" class="slide level3">
 <h3>Diferencia de medias en muestras independientes</h3>
 <div id="exm-ic-diferencia-medias" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de <em>FTO</em> rs9939609.</p>
+<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de <em>FTO</em> rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Homocigotos para el alelo de riesgo</span></span>
-<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>perdida_AA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">2.1</span>, <span class="fl">6.2</span>, <span class="fl">4.7</span>, <span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">5.6</span>, <span class="fl">4.6</span>, <span class="fl">6.7</span>, <span class="fl">3.6</span>, <span class="fl">4.7</span>, <span class="fl">1.8</span>, <span class="fl">4.6</span>, <span class="fl">7.5</span>, <span class="fl">4.5</span>, <span class="fl">4.7</span>, <span class="fl">6.3</span>, <span class="fl">4.4</span>)</span>
-<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># Homocigotos para el alelo protector</span></span>
-<span id="cb19-4"><a href="" aria-hidden="true" tabindex="-1"></a>perdida_TT <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">8.9</span>, <span class="fl">7.6</span>, <span class="fl">6.2</span>, <span class="dv">3</span>, <span class="fl">6.4</span>, <span class="fl">3.3</span>, <span class="fl">8.7</span>, <span class="fl">5.7</span>, <span class="fl">6.4</span>, <span class="fl">4.6</span>, <span class="fl">9.3</span>, <span class="dv">7</span>, <span class="fl">8.7</span>, <span class="fl">8.1</span>, <span class="dv">6</span>, <span class="fl">5.1</span>, <span class="fl">6.6</span>, <span class="fl">12.5</span>,</span>
-<span id="cb19-5"><a href="" aria-hidden="true" tabindex="-1"></a>                <span class="fl">1.2</span>, <span class="dv">11</span>, <span class="fl">9.1</span>, <span class="fl">3.9</span>, <span class="fl">9.7</span>, <span class="fl">7.6</span>, <span class="fl">1.8</span>)</span>
-<span id="cb19-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(perdida_AA, perdida_TT)<span class="sc">$</span>conf.int                   <span class="co"># Welch</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -3.8729602 -0.9768175
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AA (alelo de riesgo)</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">4.31</td>
+<td style="text-align: center;">1.91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TT (alelo protector)</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">6.74</td>
+<td style="text-align: center;">2.79</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(perdida_AA, perdida_TT, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>conf.int <span class="co"># Varianzas iguales</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -3.962230 -0.887548
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
 </div>
-</div>
-</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: center;">Intervalo del 95% para <span class="math inline">\(\mu_{AA}-\mu_{TT}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Varianzas iguales</td>
+<td style="text-align: center;">[-3.96, -0.89]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Varianzas distintas (Welch)</td>
+<td style="text-align: center;">[-3.87, -0.98]</td>
+</tr>
+</tbody>
+</table>
 <p>El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.</p>
 </section>
 <section id="diferencia-de-medias-en-muestras-pareadas" class="slide level3">
 <h3>Diferencia de medias en muestras pareadas</h3>
 <div id="exm-ic-pareadas" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 9</strong></span> Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a>tg_antes   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">245</span>, <span class="dv">198</span>, <span class="dv">312</span>, <span class="dv">276</span>, <span class="dv">221</span>, <span class="dv">189</span>, <span class="dv">260</span>, <span class="dv">298</span>, <span class="dv">233</span>, <span class="dv">215</span>, <span class="dv">284</span>, <span class="dv">207</span>, <span class="dv">251</span>, <span class="dv">269</span>)</span>
-<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a>tg_despues <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">201</span>, <span class="dv">185</span>, <span class="dv">240</span>, <span class="dv">230</span>, <span class="dv">210</span>, <span class="dv">160</span>, <span class="dv">228</span>, <span class="dv">251</span>, <span class="dv">219</span>, <span class="dv">170</span>, <span class="dv">236</span>, <span class="dv">199</span>, <span class="dv">205</span>, <span class="dv">238</span>)</span>
-<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">t.test</span>(tg_despues, tg_antes, <span class="at">paired =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>conf.int</span>
-<span id="cb23-4"><a href="" aria-hidden="true" tabindex="-1"></a>ic</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -45.33037 -24.09820
-#&gt; attr(,"conf.level")
-#&gt; [1] 0.95</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Antes</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">247.00</td>
+<td style="text-align: center;">38.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Después</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">212.29</td>
+<td style="text-align: center;">27.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diferencia (después − antes)</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">-34.71</td>
+<td style="text-align: center;">18.39</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-<p>Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias <span class="math inline">\(d_i = x_{i,\text{después}}-x_{i,\text{antes}}\)</span>. Con una confianza del 95%, el omega-3 reduce los triglicéridos entre 24 y 45 mg/dl de media.</p>
+<p>Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias <span class="math inline">\(d_i\)</span>: <span class="math display">\[
+\bar d \pm t^{13}_{0.025}\frac{s_d}{\sqrt{14}} = -34.71 \pm 2.160\cdot\frac{18.39}{\sqrt{14}} = [-45.33, -24.10].
+\]</span></p>
+<p>Con una confianza del 95%, el omega-3 reduce los triglicéridos entre 24 y 45 mg/dl de media.</p>
 </section>
 <section id="diferencia-de-proporciones" class="slide level3">
 <h3>Diferencia de proporciones</h3>
 <div id="exm-ic-diferencia-proporciones" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 10</strong></span> En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (&lt; 12 µmol/l) en 52 de 70 portadores CC/CT de <em>MTHFR</em> y en 24 de 45 homocigotos TT.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">52</span>, <span class="dv">24</span>), <span class="at">n =</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">45</span>), <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  2-sample test for equality of proportions without continuity correction
-#&gt; 
-#&gt; data:  c(52, 24) out of c(70, 45)
-#&gt; X-squared = 5.3653, df = 1, p-value = 0.02054
-#&gt; alternative hypothesis: two.sided
-#&gt; 95 percent confidence interval:
-#&gt;  0.03139632 0.38765130
-#&gt; sample estimates:
-#&gt;    prop 1    prop 2 
-#&gt; 0.7428571 0.5333333</code></pre>
 </div>
-</div>
-</div>
+<p><span class="math display">\[
+\hat p_{CC/CT} = \frac{52}{70} = 0.743 \qquad \hat p_{TT} = \frac{24}{45} = 0.533
+\]</span></p>
+<p><span class="math display">\[
+0.743 - 0.533 \pm 1.96\sqrt{\frac{0.743\cdot 0.257}{70}+\frac{0.533\cdot 0.467}{45}} = [0.031, 0.388].
+\]</span></p>
+<p>El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre 3 y 39 puntos porcentuales.</p>
 </section>
 <section id="cociente-de-varianzas" class="slide level3">
 <h3>Cociente de varianzas</h3>
 <div id="exm-ic-cociente-varianzas" class="theorem example">
 <p><span class="theorem-title"><strong>Ejemplo 11</strong></span> Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de <em>TCF7L2</em> rs7903146.</p>
+</div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a>auc_TT <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">219</span>, <span class="dv">170</span>, <span class="dv">287</span>, <span class="dv">226</span>, <span class="dv">171</span>, <span class="dv">233</span>, <span class="dv">245</span>, <span class="dv">238</span>, <span class="dv">195</span>, <span class="dv">283</span>, <span class="dv">229</span>, <span class="dv">180</span>, <span class="dv">104</span>, <span class="dv">264</span>, <span class="dv">208</span>)</span>
-<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a>auc_CC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">190</span>, <span class="dv">216</span>, <span class="dv">213</span>, <span class="dv">207</span>, <span class="dv">216</span>, <span class="dv">212</span>, <span class="dv">192</span>, <span class="dv">134</span>, <span class="dv">207</span>, <span class="dv">188</span>, <span class="dv">186</span>, <span class="dv">149</span>, <span class="dv">177</span>, <span class="dv">202</span>, <span class="dv">228</span>, <span class="dv">187</span>, <span class="dv">201</span>,</span>
-<span id="cb27-3"><a href="" aria-hidden="true" tabindex="-1"></a>            <span class="dv">188</span>, <span class="dv">151</span>, <span class="dv">178</span>)</span>
-<span id="cb27-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(auc_TT, auc_CC)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; 
-#&gt;  F test to compare two variances
-#&gt; 
-#&gt; data:  auc_TT and auc_CC
-#&gt; F = 3.7468, num df = 15, denom df = 19, p-value = 0.007819
-#&gt; alternative hypothesis: true ratio of variances is not equal to 1
-#&gt; 95 percent confidence interval:
-#&gt;   1.431645 10.389974
-#&gt; sample estimates:
-#&gt; ratio of variances 
-#&gt;           3.746785</code></pre>
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TT</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">214.5</td>
+<td style="text-align: center;">47.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CC</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">191.1</td>
+<td style="text-align: center;">24.40</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
+<p><span class="math display">\[
+\frac{s_{TT}^2}{s_{CC}^2} = 3.747 \qquad \mbox{Intervalo del 95%: } [1.432, 10.390].
+\]</span></p>
 <p>El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.</p>
 </section>
 <section class="slide level3">
@@ -839,18 +806,11 @@ T = \frac{\bar X-\mu}{S/\sqrt{n}} \sim T(n-1),
 <summary>
 Solución
 </summary>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span>; dbar <span class="ot">&lt;-</span> <span class="fl">4.2</span>; sd <span class="ot">&lt;-</span> <span class="fl">6.1</span></span>
-<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a>dbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">*</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> sd <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1.922223 6.477777</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>((<span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> sd <span class="sc">/</span> <span class="fl">1.5</span>)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 64</code></pre>
-</div>
-</div>
-<p>El intervalo no contiene el 0, así que hay evidencia de que la dieta aumenta el butirato fecal.</p>
+<ol type="a">
+<li><span class="math inline">\(4.2 \pm t^{29}_{0.025}\dfrac{6.1}{\sqrt{30}} = 4.2 \pm 2.045\cdot 1.114 = [1.92, 6.48]\)</span> µmol/g.</li>
+<li>Sí. El intervalo no contiene el 0 y todos sus valores son positivos, así que la dieta aumenta el butirato fecal.</li>
+<li><span class="math inline">\(n = \left(\dfrac{1.96\cdot 6.1}{1.5}\right)^2 \approx 64\)</span> voluntarios.</li>
+</ol>
 </details>
 
 </section></section>
