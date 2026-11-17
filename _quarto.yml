@@ -1,0 +1,39 @@
+project:
+  output-dir: "docs"
+
+lang: es
+
+language:
+  callout-tip-title: "Ayuda"
+  callout-note-title: "Nota"
+  callout-important-title: "Importante"
+  callout-warning-title: "Advertencia"
+  callout-caution-title: "Precaución"
+
+author: "Alfredo Sánchez Alberca"
+
+execute: 
+  echo: true
+  cache: true
+  freeze: auto
+
+format:
+  clean-revealjs:
+    theme: [default, custom.scss]
+    logo: img/logos/aprendeconalf.png
+    navigation-mode: vertical
+    slide-level: 3
+    footer: <https://aprendeconalf.es/inferencia-nutrigenomica-presentacion/>
+    code-line-numbers: false
+    highlight-style: atom-one
+    callout-appearance: default
+    default-image-extension: svg
+    toc: true
+    toc-depth: 1
+    chalkboard: true
+    menu: true
+    slide-number: c/t
+    transition: convex
+    transition-speed: fast
+    template-partials:
+      - title-slide.html

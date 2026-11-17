@@ -1,0 +1,748 @@
+---
+title: "Distribuciones de probabilidad en Nutrigenómica"
+subtitle: "Modelos para fenotipos, genotipos, conteos, proporciones y estadísticos"
+author: "Alfredo Sánchez Alberca &nbsp; [{{< fa envelope >}}](mailto:asalber@ceu.es) [{{< fa brands linkedin >}}](https://www.linkedin.com/in/asalber/) [{{< fa home >}}](https://aprendeconalf.es)"
+logo: img/logos/aprendeconalf.png
+fig-align: center
+lang: es
+---
+
+{{< include _configuracion-r.qmd >}}
+
+## {background-color= .myblue}
+
+:::{.main-title}
+¿Por qué necesitamos modelos de distribución?
+:::
+
+## Variables en Nutrigenómica {.smaller}
+
+En Nutrigenómica estudiamos cómo interaccionan los nutrientes con el genoma, el epigenoma, el transcriptoma y la microbiota. Las variables que medimos son muy distintas y cada una pide un modelo de probabilidad diferente.
+
+| Tipo de dato | Ejemplos | Modelo habitual |
+|:---|:---|:---|
+| Continuo simétrico | IMC, presión arterial, colesterol LDL | Normal |
+| Continuo positivo asimétrico | Insulina, PCR, triglicéridos, vitamina D | Lognormal, Gamma |
+| Binario / categórico | Portador del alelo de riesgo, genotipo, respondedor | Binomial, Multinomial |
+| Conteos | Lecturas de RNA-seq, conteos de taxones bacterianos | Poisson, Binomial negativa, inflados de ceros |
+| Proporciones en $(0,1)$ | Metilación de un CpG, abundancia relativa | Beta |
+| Composiciones | Perfil de filos de la microbiota | Dirichlet |
+| p-valores bajo $H_0$ | GWAS, estudios de expresión diferencial | Uniforme |
+| Estadísticos | Medias, varianzas y cocientes de varianzas | $t$, $\chi^2$, $F$ |
+
+:::{.callout-important}
+Elegir bien la distribución es el primer paso para estimar parámetros y contrastar hipótesis correctamente.
+:::
+
+## {background-color= .myblue}
+
+:::{.main-title}
+Distribuciones continuas
+:::
+
+## Distribución Normal {.smaller}
+
+:::{#def-distribucion-normal}
+## Distribución Normal
+Una variable aleatoria continua $X$ sigue un _modelo de distribución normal_ $X\sim N(\mu, \sigma)$ si su función de densidad es
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad x\in\mathbb{R},
+$$
+
+donde $\mu$ es la _media_ y $\sigma>0$ la _desviación típica_.
+:::
+
+**Estadísticos**: $E(X) = \mu$ y $Var(X) = \sigma^2$.
+
+Es simétrica, el 68%, 95% y 99,7% de los valores están a menos de 1, 2 y 3 desviaciones típicas de la media.
+
+**Ejemplos en Nutrigenómica**
+
+- Índice de masa corporal (IMC) en adultos.
+- Presión arterial sistólica.
+- Colesterol total y colesterol LDL.
+- Puntuaciones de riesgo poligénico (PRS).
+
+---
+
+:::{#exm-normal-imc}
+En adultos europeos el IMC de los homocigotos TT del gen _FTO_ (rs9939609) sigue aproximadamente una distribución $N(26, 4)$, mientras que el de los homocigotos AA (alelo de riesgo) sigue una $N(27.5, 4)$. ¿Qué proporción de cada grupo tiene obesidad (IMC $\geq 30$)?
+
+```{r}
+# P(IMC >= 30) en cada genotipo
+1 - pnorm(30, mean = 26, sd = 4)
+1 - pnorm(30, mean = 27.5, sd = 4)
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = seq(10, 42, length.out = 400)) |>
+  mutate(TT = dnorm(x, 26, 4), AA = dnorm(x, 27.5, 4)) |>
+  pivot_longer(-x, names_to = "Genotipo", values_to = "densidad") |>
+  ggplot(aes(x, densidad, colour = Genotipo, fill = Genotipo)) +
+  geom_area(alpha = 0.25, position = "identity") +
+  geom_vline(xintercept = 30, linetype = 2) +
+  scale_colour_manual(values = c(myred, myblue)) +
+  scale_fill_manual(values = c(myred, myblue)) +
+  labs(x = "IMC (kg/m²)", y = "Densidad")
+```
+
+---
+
+:::{#exm-normal-ldl}
+El colesterol LDL en una población adulta sigue una distribución $N(130, 30)$ mg/dl. Si una intervención nutricional reduce la media en 10 mg/dl sin cambiar la dispersión, ¿cuánto cambia la proporción de personas con LDL $\geq 160$ mg/dl?
+
+```{r}
+p_antes <- 1 - pnorm(160, 130, 30)
+p_despues <- 1 - pnorm(160, 120, 30)
+c(antes = p_antes, despues = p_despues, reduccion_relativa = 1 - p_despues / p_antes)
+```
+:::
+
+Un pequeño desplazamiento de la media produce una reducción importante de la proporción en la cola de la distribución. Este es el fundamento de las estrategias poblacionales de prevención.
+
+## Distribución Lognormal
+
+:::{#def-distribucion-lognormal}
+## Distribución Lognormal
+Una variable aleatoria positiva $X$ sigue un _modelo lognormal_ $X\sim LN(\mu, \sigma)$ si su logaritmo sigue una distribución normal, $\log(X)\sim N(\mu, \sigma)$.
+:::
+
+**Estadísticos**: $E(X) = e^{\mu+\sigma^2/2}$ y $Var(X) = (e^{\sigma^2}-1)e^{2\mu+\sigma^2}$. La mediana es $e^{\mu}$ (media geométrica).
+
+Aparece cuando la variable es el resultado de muchos efectos multiplicativos. Es asimétrica a la derecha y por eso se suele analizar en escala logarítmica.
+
+**Ejemplos en Nutrigenómica**
+
+- Insulina en ayunas y el índice HOMA-IR.
+- Proteína C reactiva (PCR) ultrasensible.
+- Triglicéridos plasmáticos.
+- Concentraciones de metabolitos y niveles de expresión génica (en escala lineal).
+
+---
+
+:::{#exm-lognormal-trigliceridos}
+Los triglicéridos en ayunas siguen una distribución lognormal con mediana 110 mg/dl y $\sigma = 0.45$ en escala logarítmica. ¿Qué proporción supera 150 mg/dl (hipertrigliceridemia)?
+
+```{r}
+mu <- log(110); sigma <- 0.45
+1 - plnorm(150, meanlog = mu, sdlog = sigma)
+set.seed(123)
+tg <- rlnorm(2000, mu, sigma)
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+p1 <- ggplot(tibble(tg), aes(tg)) +
+  geom_histogram(bins = 40, fill = myblue, colour = "white") +
+  labs(x = "Triglicéridos (mg/dl)", y = "Frecuencia")
+p2 <- ggplot(tibble(tg), aes(log(tg))) +
+  geom_histogram(bins = 40, fill = mypurple, colour = "white") +
+  labs(x = "log(Triglicéridos)", y = "Frecuencia")
+p1 / p2
+```
+
+:::{.callout-tip}
+Al tomar logaritmos la variable se vuelve normal y podemos aplicar los métodos basados en la normal. Los resultados se interpretan entonces como cocientes de medias geométricas.
+:::
+
+## Distribución Gamma
+
+:::{#def-distribucion-gamma}
+## Distribución Gamma
+Una variable aleatoria positiva $X$ sigue un _modelo Gamma_ $X\sim Gamma(\alpha, \beta)$ si su función de densidad es
+
+$$
+f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\quad x>0,
+$$
+
+donde $\alpha>0$ es el parámetro de _forma_ y $\beta>0$ el de _tasa_.
+:::
+
+**Estadísticos**: $E(X) = \dfrac{\alpha}{\beta}$ y $Var(X) = \dfrac{\alpha}{\beta^2}$. El coeficiente de variación $1/\sqrt{\alpha}$ es constante.
+
+**Ejemplos en Nutrigenómica**
+
+- Concentración sérica de 25-hidroxivitamina D.
+- Ingesta diaria de nutrientes episódicos (alcohol, fibra, ácidos grasos omega-3).
+- Insulina y PCR, como alternativa a la lognormal en modelos lineales generalizados.
+
+---
+
+:::{#exm-gamma-vitamina-d}
+La 25(OH)D en una población mediterránea en invierno sigue una distribución $Gamma(6, 0.25)$ (ng/ml), con media 24 ng/ml. ¿Qué proporción tiene deficiencia (< 20 ng/ml)? ¿Y si los portadores de una variante de _GC_ (proteína transportadora de vitamina D) tienen media 20 ng/ml con la misma forma?
+
+```{r}
+pgamma(20, shape = 6, rate = 0.25)
+pgamma(20, shape = 6, rate = 0.30)
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = seq(0, 70, length.out = 400)) |>
+  mutate(`No portador` = dgamma(x, 6, 0.25),
+         `Portador GC` = dgamma(x, 6, 0.30)) |>
+  pivot_longer(-x, names_to = "Grupo", values_to = "d") |>
+  ggplot(aes(x, d, colour = Grupo, fill = Grupo)) +
+  geom_area(alpha = 0.25, position = "identity") +
+  geom_vline(xintercept = 20, linetype = 2) +
+  scale_colour_manual(values = c(myblue, myred)) +
+  scale_fill_manual(values = c(myblue, myred)) +
+  labs(x = "25(OH)D (ng/ml)", y = "Densidad")
+```
+
+## Distribución Beta
+
+:::{#def-distribucion-beta}
+## Distribución Beta
+Una variable aleatoria $X$ en el intervalo $(0,1)$ sigue un _modelo Beta_ $X\sim Beta(\alpha, \beta)$ si su función de densidad es
+
+$$
+f(x) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}\quad 0<x<1.
+$$
+:::
+
+**Estadísticos**: $E(X) = \dfrac{\alpha}{\alpha+\beta}$ y $Var(X) = \dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$.
+
+Es muy flexible: puede ser simétrica, asimétrica, en forma de U o concentrada cerca de 0 o de 1.
+
+**Ejemplos en Nutrigenómica**
+
+- Valor $\beta$ de metilación de un sitio CpG (proporción de copias metiladas).
+- Abundancia relativa de un taxón bacteriano (por ejemplo, Firmicutes).
+- Proporción de grasa corporal o fracción de energía procedente de grasas.
+
+---
+
+:::{#exm-beta-metilacion}
+En un estudio de epigenética nutricional se mide la metilación de un CpG del promotor del gen _MTHFR_ en sujetos con ingesta baja y adecuada de folato. Las distribuciones del valor $\beta$ son $Beta(6, 4)$ y $Beta(3, 7)$, respectivamente.
+
+```{r}
+c(media_baja = 6 / (6 + 4), media_adecuada = 3 / (3 + 7))
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = seq(0, 1, length.out = 400)) |>
+  mutate(`Folato bajo` = dbeta(x, 6, 4),
+         `Folato adecuado` = dbeta(x, 3, 7)) |>
+  pivot_longer(-x, names_to = "Ingesta", values_to = "d") |>
+  ggplot(aes(x, d, colour = Ingesta, fill = Ingesta)) +
+  geom_area(alpha = 0.25, position = "identity") +
+  scale_colour_manual(values = c(myblue, myred)) +
+  scale_fill_manual(values = c(myblue, myred)) +
+  labs(x = "Valor beta de metilación", y = "Densidad")
+```
+
+:::{.callout-note}
+En los análisis de metilación se suele trabajar con el _valor M_, $M = \log_2\left(\frac{\beta}{1-\beta}\right)$, que es aproximadamente normal.
+:::
+
+## Distribución de Dirichlet {.smaller}
+
+:::{#def-distribucion-dirichlet}
+## Distribución de Dirichlet
+Un vector aleatorio $(X_1,\ldots,X_k)$ con $X_i>0$ y $\sum_{i=1}^k X_i = 1$ sigue un _modelo de Dirichlet_ $Dir(\alpha_1,\ldots,\alpha_k)$ si su función de densidad es
+
+$$
+f(x_1,\ldots,x_k) = \frac{\Gamma(\alpha_0)}{\prod_{i=1}^k\Gamma(\alpha_i)}\prod_{i=1}^k x_i^{\alpha_i-1}, \quad \alpha_0=\sum_{i=1}^k \alpha_i.
+$$
+:::
+
+**Estadísticos**: $E(X_i) = \dfrac{\alpha_i}{\alpha_0}$ y $Var(X_i) = \dfrac{\alpha_i(\alpha_0-\alpha_i)}{\alpha_0^2(\alpha_0+1)}$. Cada componente marginal es $Beta(\alpha_i, \alpha_0-\alpha_i)$.
+
+Es la generalización multivariante de la Beta y el modelo natural para _datos composicionales_, cuyas partes suman 1.
+
+**Ejemplos en Nutrigenómica**
+
+- Composición de la microbiota intestinal por filos (Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria, otros).
+- Distribución de la energía de la dieta entre hidratos de carbono, grasas y proteínas.
+- Proporciones de tipos celulares en sangre estimadas a partir de la metilación.
+
+---
+
+:::{#exm-dirichlet-microbiota}
+La composición de la microbiota fecal de 12 voluntarios se modela con una $Dir(40, 30, 8, 5, 7)$ para los filos Firmicutes, Bacteroidetes, Actinobacteria, Proteobacteria y Otros.
+
+```{r}
+rdirichlet <- function(n, alpha) {
+  x <- matrix(rgamma(n * length(alpha), shape = alpha),
+              ncol = length(alpha), byrow = TRUE)
+  x / rowSums(x)
+}
+filos <- c("Firmicutes", "Bacteroidetes",
+           "Actinobacteria", "Proteobacteria", "Otros")
+set.seed(1)
+comp <- rdirichlet(12, c(40, 30, 8, 5, 7))
+colnames(comp) <- filos
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+as_tibble(comp) |>
+  mutate(sujeto = factor(1:12)) |>
+  pivot_longer(-sujeto, names_to = "Filo",
+               values_to = "abundancia") |>
+  mutate(Filo = factor(Filo, levels = filos)) |>
+  ggplot(aes(sujeto, abundancia, fill = Filo)) +
+  geom_col() +
+  scale_fill_manual(values = c(myblue, mypurple, mygreen, myred, mygray)) +
+  labs(x = "Sujeto", y = "Abundancia relativa")
+```
+
+## {background-color= .myblue}
+
+:::{.main-title}
+Distribuciones discretas
+:::
+
+## Distribución Binomial
+
+:::{#def-distribucion-binomial}
+## Distribución Binomial
+Una variable aleatoria discreta $X$ sigue un _modelo binomial_ $X\sim B(n, p)$ si cuenta el número de éxitos en $n$ ensayos independientes con probabilidad de éxito $p$. Su función de probabilidad es
+
+$$
+P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}\quad k=0,1,\ldots,n.
+$$
+:::
+
+**Estadísticos**: $E(X) = np$ y $Var(X) = np(1-p)$.
+
+**Ejemplos en Nutrigenómica**
+
+- Número de alelos de riesgo de un individuo en un SNP: $B(2, q)$, siendo $q$ la frecuencia alélica.
+- Número de portadores del genotipo TT de _MTHFR_ C677T en una muestra.
+- Número de participantes que responden a una dieta (pérdida de peso $\geq 5\%$).
+- Número de lecturas metiladas de un CpG en secuenciación con bisulfito.
+
+---
+
+:::{#exm-binomial-mthfr}
+La frecuencia del genotipo TT de _MTHFR_ C677T en población española es aproximadamente del 16%. Si genotipamos a 50 personas, ¿cuál es la probabilidad de encontrar al menos 12 homocigotos TT?
+
+```{r}
+# P(X >= 12) con X ~ B(50, 0.16)
+1 - pbinom(11, size = 50, prob = 0.16)
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = 0:25, p = dbinom(0:25, 50, 0.16)) |>
+  ggplot(aes(x, p, fill = x >= 12)) +
+  geom_col(width = 0.6) +
+  scale_fill_manual(values = c(myblue, myred),
+                    labels = c("< 12", "≥ 12"), name = NULL) +
+  labs(x = "Número de homocigotos TT", y = "Probabilidad")
+```
+
+## Distribución Multinomial
+
+:::{#def-distribucion-multinomial}
+## Distribución Multinomial
+Si cada uno de $n$ ensayos independientes puede dar $k$ resultados con probabilidades $p_1,\ldots,p_k$, el vector $(X_1,\ldots,X_k)$ con el número de veces que se obtiene cada resultado sigue un _modelo multinomial_ $M(n; p_1,\ldots,p_k)$:
+
+$$
+P(X_1=x_1,\ldots,X_k=x_k) = \frac{n!}{x_1!\cdots x_k!}p_1^{x_1}\cdots p_k^{x_k}, \quad \sum x_i = n.
+$$
+:::
+
+**Estadísticos**: $E(X_i) = np_i$, $Var(X_i) = np_i(1-p_i)$ y $Cov(X_i, X_j) = -np_ip_j$.
+
+**Ejemplos en Nutrigenómica**
+
+- Frecuencias de los tres genotipos de un SNP (AA, AT, TT) en una muestra.
+- Número de participantes en cada categoría de adherencia a la dieta mediterránea (baja, media, alta).
+- Conteos de lecturas de RNA-seq entre genes cuando el total de lecturas está fijado.
+
+## Equilibrio de Hardy-Weinberg {.smaller}
+
+Si en un locus bialélico con alelos A y T las frecuencias alélicas son $p$ y $q=1-p$, en una población en equilibrio de Hardy-Weinberg los genotipos siguen una distribución multinomial con probabilidades
+
+$$
+P(AA) = p^2,\quad P(AT) = 2pq,\quad P(TT) = q^2.
+$$
+
+:::{#exm-hardy-weinberg}
+La frecuencia del alelo de riesgo A del SNP rs9939609 de _FTO_ en europeos es $p\approx 0.42$. En una muestra de 500 personas, el número esperado de cada genotipo es
+
+```{r}
+p <- 0.42; n <- 500
+probs <- c(AA = p^2, AT = 2 * p * (1 - p), TT = (1 - p)^2)
+rbind(probabilidad = probs, esperados = n * probs)
+# Una muestra simulada bajo equilibrio de Hardy-Weinberg
+set.seed(2)
+rmultinom(1, size = n, prob = probs) |> t()
+```
+:::
+
+La desviación del equilibrio puede deberse a errores de genotipado, estratificación o selección. Se comprueba con un contraste $\chi^2$ que veremos más adelante.
+
+## Distribución de Poisson
+
+:::{#def-distribucion-poisson}
+## Distribución de Poisson
+Una variable aleatoria discreta $X$ sigue un _modelo de Poisson_ $X\sim P(\lambda)$ si cuenta el número de sucesos que ocurren en un intervalo de tiempo o espacio, de manera independiente y a ritmo constante $\lambda$:
+
+$$
+P(X=k) = \frac{e^{-\lambda}\lambda^k}{k!}\quad k=0,1,2,\ldots
+$$
+:::
+
+**Estadísticos**: $E(X) = Var(X) = \lambda$ (equidispersión).
+
+**Ejemplos en Nutrigenómica**
+
+- Número de lecturas de un gen en una réplica _técnica_ de RNA-seq.
+- Número de mutaciones _de novo_ en una región del genoma.
+- Número de episodios de hipoglucemia por semana en pacientes diabéticos.
+- Número de nuevos casos de diabetes tipo 2 por 1000 personas-año en una cohorte.
+
+---
+
+:::{#exm-poisson-rnaseq}
+En réplicas técnicas de RNA-seq el número de lecturas de un gen con expresión media de 8 lecturas sigue una distribución $P(8)$. ¿Cuál es la probabilidad de no observar ninguna lectura? ¿Y de observar más de 15?
+
+```{r}
+c(cero = dpois(0, 8), mas_de_15 = 1 - ppois(15, 8))
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = 0:22, p = dpois(0:22, 8)) |>
+  ggplot(aes(x, p)) +
+  geom_col(width = 0.5, fill = myblue) +
+  labs(x = "Número de lecturas", y = "Probabilidad")
+```
+
+## Distribución Binomial Negativa {.smaller}
+
+:::{#def-distribucion-binomial-negativa}
+## Distribución Binomial Negativa
+Una variable aleatoria discreta $X$ sigue un _modelo binomial negativo_ $X\sim BN(\mu, \phi)$ con media $\mu$ y parámetro de dispersión $\phi$ si su función de probabilidad es
+
+$$
+P(X=k) = \frac{\Gamma(k+1/\phi)}{k!\,\Gamma(1/\phi)}\left(\frac{1}{1+\phi\mu}\right)^{1/\phi}\left(\frac{\phi\mu}{1+\phi\mu}\right)^k\quad k=0,1,2,\ldots
+$$
+:::
+
+**Estadísticos**: $E(X) = \mu$ y $Var(X) = \mu + \phi\mu^2$ (sobredispersión).
+
+Se obtiene como una mezcla de Poisson cuya tasa $\lambda$ varía entre individuos según una Gamma. Por eso es el modelo de referencia para conteos con variabilidad biológica entre réplicas.
+
+**Ejemplos en Nutrigenómica**
+
+- Conteos de lecturas de RNA-seq entre réplicas biológicas (DESeq2, edgeR).
+- Conteos de un taxón bacteriano en muestras de microbiota (16S rRNA o metagenómica).
+- Número de raciones de un alimento consumidas por semana.
+
+---
+
+:::{#exm-binomial-negativa-rnaseq}
+Entre réplicas biológicas, un gen con expresión media de 100 lecturas tiene dispersión $\phi = 0.2$. Comparemos su distribución con la de Poisson de la misma media.
+
+```{r}
+mu <- 100; phi <- 0.2
+c(var_poisson = mu, var_bn = mu + phi * mu^2)
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = 0:300) |>
+  mutate(Poisson = dpois(x, mu),
+         `Binomial negativa` = dnbinom(x, mu = mu,
+                                        size = 1 / phi)) |>
+  pivot_longer(-x, names_to = "Modelo", values_to = "p") |>
+  ggplot(aes(x, p, colour = Modelo)) +
+  geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(myred, myblue)) +
+  labs(x = "Número de lecturas", y = "Probabilidad")
+```
+
+:::{.callout-warning}
+Si usamos un modelo de Poisson con datos sobredispersos se subestima la varianza y aparecen muchos falsos positivos en la expresión diferencial.
+:::
+
+## Modelos inflados de ceros
+
+:::{#def-distribucion-inflada-ceros}
+## Modelo inflado de ceros
+Una variable de conteo $X$ sigue un _modelo inflado de ceros_ si es una mezcla de un cero estructural, con probabilidad $\pi$, y una distribución de conteo $g$ (Poisson o binomial negativa), con probabilidad $1-\pi$:
+
+$$
+P(X=0) = \pi + (1-\pi)g(0), \qquad P(X=k) = (1-\pi)g(k)\quad k\geq 1.
+$$
+:::
+
+**Estadísticos** (ZIP): $E(X) = (1-\pi)\lambda$ y $Var(X) = (1-\pi)\lambda(1+\pi\lambda)$.
+
+**Ejemplos en Nutrigenómica**
+
+- Conteos de un taxón de la microbiota que está ausente en muchos individuos (por ejemplo, _Akkermansia muciniphila_).
+- Expresión de genes en secuenciación de célula única (scRNA-seq).
+- Consumo semanal de alcohol o de suplementos (muchos no consumidores).
+
+---
+
+:::{#exm-zinb-microbiota}
+El 40% de los participantes no tiene _Akkermansia_ en su microbiota (ceros estructurales) y, en los que la tienen, el conteo sigue una $BN(\mu = 20, \phi = 0.5)$.
+
+```{r}
+rzinb <- function(n, pi, mu, phi) {
+  ifelse(runif(n) < pi, 0, rnbinom(n, mu = mu, size = 1 / phi))
+}
+set.seed(3)
+x <- rzinb(1000, pi = 0.4, mu = 20, phi = 0.5)
+c(media = mean(x), varianza = var(x), prop_ceros = mean(x == 0))
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+ggplot(tibble(x), aes(x)) +
+  geom_histogram(binwidth = 2, fill = myblue, colour = "white") +
+  labs(x = "Conteo de Akkermansia", y = "Frecuencia")
+```
+
+## Resumen de distribuciones en Nutrigenómica {.smaller .scrollable}
+
+| Distribución | Parámetros | Media | Varianza | Ejemplos en Nutrigenómica |
+|:---|:---:|:---:|:---:|:--------|
+| Normal($\mu, \sigma$) | $\mu\in\mathbb{R},\ \sigma>0$ | $\mu$ | $\sigma^2$ | IMC, presión arterial, colesterol, PRS. |
+| Lognormal($\mu, \sigma$) | $\mu\in\mathbb{R},\ \sigma>0$ | $e^{\mu+\sigma^2/2}$ | $(e^{\sigma^2}-1)e^{2\mu+\sigma^2}$ | Insulina, HOMA-IR, PCR, triglicéridos. |
+| Gamma($\alpha, \beta$) | $\alpha, \beta>0$ | $\dfrac{\alpha}{\beta}$ | $\dfrac{\alpha}{\beta^2}$ | Vitamina D, ingestas episódicas. |
+| Beta($\alpha, \beta$) | $\alpha, \beta>0$ | $\dfrac{\alpha}{\alpha+\beta}$ | $\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ | Metilación de CpG, abundancias relativas. |
+| Dirichlet($\alpha_1,\ldots,\alpha_k$) | $\alpha_i>0$ | $\dfrac{\alpha_i}{\alpha_0}$ | $\dfrac{\alpha_i(\alpha_0-\alpha_i)}{\alpha_0^2(\alpha_0+1)}$ | Composición de la microbiota, reparto de macronutrientes. |
+| Binomial($n, p$) | $n\in\mathbb{N},\ p\in(0,1)$ | $np$ | $np(1-p)$ | Alelos de riesgo, portadores, respondedores. |
+| Multinomial($n; p_1,\ldots,p_k$) | $\sum p_i = 1$ | $np_i$ | $np_i(1-p_i)$ | Genotipos, Hardy-Weinberg, categorías de adherencia. |
+| Poisson($\lambda$) | $\lambda>0$ | $\lambda$ | $\lambda$ | Réplicas técnicas de RNA-seq, incidencia. |
+| Binomial negativa($\mu, \phi$) | $\mu, \phi>0$ | $\mu$ | $\mu+\phi\mu^2$ | Réplicas biológicas de RNA-seq, taxones de la microbiota. |
+| Inflada de ceros ($\pi$, $g$) | $\pi\in(0,1)$ | $(1-\pi)E_g(X)$ | — | Taxones raros, scRNA-seq, consumo de alcohol. |
+
+## {background-color= .myblue}
+
+:::{.main-title}
+Distribuciones de p-valores y de estadísticos
+:::
+
+## Distribución Uniforme de los p-valores {.smaller}
+
+:::{#thm-uniforme-pvalores}
+## Distribución de los p-valores bajo $H_0$
+Si la hipótesis nula es cierta y el estadístico del contraste es continuo, el p-valor sigue una distribución uniforme $U(0,1)$:
+$$
+P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
+$$
+:::
+
+**Consecuencia**: si hacemos $m$ contrastes independientes con $H_0$ cierta, esperamos $m\alpha$ falsos positivos. En un GWAS con $10^6$ SNPs y $\alpha = 0.05$ ¡son 50 000 falsos positivos!
+
+**Ejemplos en Nutrigenómica**
+
+- Estudios de asociación de genoma completo (GWAS) e interacción gen-dieta.
+- Expresión diferencial de miles de genes tras una intervención dietética.
+- Estudios de metilación de genoma completo (EWAS) y de metabolómica.
+
+Por eso se usan correcciones por comparaciones múltiples: Bonferroni ($\alpha/m$, umbral GWAS $5\cdot 10^{-8}$) o la tasa de falsos descubrimientos (FDR) de Benjamini-Hochberg.
+
+---
+
+:::{#exm-uniforme-pvalores}
+Simulamos un estudio de expresión diferencial con 10 000 genes, de los que 500 cambian realmente con la dieta. El histograma de los p-valores es una mezcla de una uniforme (genes nulos) y un pico cerca de 0 (genes con efecto).
+
+```{r}
+set.seed(4)
+m <- 10000; m1 <- 500
+efecto <- c(rep(1, m1), rep(0, m - m1))
+pval <- map_dbl(efecto, \(d) t.test(rnorm(10, d), rnorm(10, 0))$p.value)
+c(sin_corregir = sum(pval < 0.05),
+  falsos_pos = sum(pval[efecto == 0] < 0.05),
+  BH = sum(p.adjust(pval, "BH") < 0.05),
+  Bonferroni = sum(p.adjust(pval, "bonferroni") < 0.05))
+```
+:::
+
+---
+
+```{r}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 5
+ggplot(tibble(pval), aes(pval)) +
+  geom_histogram(breaks = seq(0, 1, 0.025), fill = myblue,
+                 colour = "white") +
+  geom_hline(yintercept = (m - m1) * 0.025, linetype = 2,
+             colour = myred) +
+  labs(x = "p-valor", y = "Frecuencia")
+```
+
+## Distribución Chi-cuadrado {.smaller}
+
+:::{#def-distribucion-chi-cuadrado}
+## Distribución Chi-cuadrado
+Si $Z_1,\ldots,Z_\nu$ son variables independientes $N(0,1)$, la variable
+$$
+\chi^2 = Z_1^2 + \cdots + Z_\nu^2
+$$
+sigue una _distribución chi-cuadrado_ con $\nu$ grados de libertad, $\chi^2(\nu)$.
+:::
+
+**Estadísticos**: $E(\chi^2) = \nu$ y $Var(\chi^2) = 2\nu$.
+
+**Usos en Nutrigenómica**
+
+- Distribución de la varianza muestral: estimar la variabilidad de la HbA1c o de un biomarcador.
+- Contraste del equilibrio de Hardy-Weinberg.
+- Contrastes de independencia entre genotipo y respuesta a una dieta en tablas de contingencia.
+- Contrastes de razón de verosimilitudes en modelos de interacción gen-nutriente.
+
+## Distribución T de Student {.smaller}
+
+:::{#def-distribucion-t}
+## Distribución T de Student
+Si $Z\sim N(0,1)$ y $U\sim\chi^2(\nu)$ son independientes, la variable
+$$
+T = \frac{Z}{\sqrt{U/\nu}}
+$$
+sigue una _distribución T de Student_ con $\nu$ grados de libertad, $T(\nu)$.
+:::
+
+**Estadísticos**: $E(T) = 0$ ($\nu>1$) y $Var(T) = \dfrac{\nu}{\nu-2}$ ($\nu>2$).
+
+Es simétrica como la normal pero con colas más pesadas. Cuando $\nu\to\infty$ se aproxima a la $N(0,1)$.
+
+**Usos en Nutrigenómica**
+
+- Intervalos y contrastes para la media de un biomarcador cuando la varianza es desconocida.
+- Comparación de la pérdida de peso entre dos dietas o entre portadores y no portadores.
+- Contrastes antes-después en estudios de intervención (datos pareados).
+- Contrastes de los coeficientes de un modelo de regresión.
+
+## Distribución F de Fisher-Snedecor {.smaller}
+
+:::{#def-distribucion-f}
+## Distribución F de Fisher-Snedecor
+Si $U\sim\chi^2(\nu_1)$ y $V\sim\chi^2(\nu_2)$ son independientes, la variable
+$$
+F = \frac{U/\nu_1}{V/\nu_2}
+$$
+sigue una _distribución F de Fisher-Snedecor_ con $\nu_1$ y $\nu_2$ grados de libertad, $F(\nu_1, \nu_2)$.
+:::
+
+**Estadísticos**: $E(F) = \dfrac{\nu_2}{\nu_2-2}$ ($\nu_2>2$).
+
+**Usos en Nutrigenómica**
+
+- Comparación de la variabilidad de la respuesta glucémica entre genotipos.
+- Análisis de la varianza (ANOVA) para comparar el IMC entre los tres genotipos de _FTO_.
+- Contraste global de un modelo de regresión con varios nutrientes y SNPs.
+
+---
+
+### Forma de las distribuciones de los estadísticos
+
+```{r}
+#| echo: false
+#| fig-width: 12
+#| fig-height: 4.5
+p_chi <- tibble(x = seq(0.01, 30, length.out = 400)) |>
+  mutate(`ν = 2` = dchisq(x, 2), `ν = 5` = dchisq(x, 5), `ν = 10` = dchisq(x, 10)) |>
+  pivot_longer(-x, names_to = "gl", values_to = "d") |>
+  mutate(gl = factor(gl, levels = c("ν = 2", "ν = 5", "ν = 10"))) |>
+  ggplot(aes(x, d, colour = gl)) + geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(myblue, mypurple, myred), name = NULL) +
+  coord_cartesian(ylim = c(0, 0.3)) +
+  labs(title = "Chi-cuadrado", x = NULL, y = "Densidad")
+p_t <- tibble(x = seq(-5, 5, length.out = 400)) |>
+  mutate(`T(2)` = dt(x, 2), `T(10)` = dt(x, 10), `N(0,1)` = dnorm(x)) |>
+  pivot_longer(-x, names_to = "dist", values_to = "d") |>
+  mutate(dist = factor(dist, levels = c("T(2)", "T(10)", "N(0,1)"))) |>
+  ggplot(aes(x, d, colour = dist, linetype = dist)) + geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(myblue, mypurple, mygray), name = NULL) +
+  scale_linetype_manual(values = c(1, 1, 2), name = NULL) +
+  labs(title = "T de Student", x = NULL, y = NULL)
+p_f <- tibble(x = seq(0.01, 5, length.out = 400)) |>
+  mutate(`F(2, 10)` = df(x, 2, 10), `F(5, 20)` = df(x, 5, 20), `F(20, 50)` = df(x, 20, 50)) |>
+  pivot_longer(-x, names_to = "gl", values_to = "d") |>
+  mutate(gl = factor(gl, levels = c("F(2, 10)", "F(5, 20)", "F(20, 50)"))) |>
+  ggplot(aes(x, d, colour = gl)) + geom_line(linewidth = 1) +
+  scale_colour_manual(values = c(myblue, mypurple, myred), name = NULL) +
+  labs(title = "F de Fisher-Snedecor", x = NULL, y = NULL)
+(p_chi | p_t | p_f) & theme(legend.position = "bottom")
+```
+
+---
+
+:::{#exr-distribuciones}
+¿Qué distribución de probabilidad utilizarías para modelar las siguientes variables?
+
+a. Número de alelos T de _MTHFR_ C677T de una persona.
+a. Valor $\beta$ de metilación de un CpG del gen _PPARG_.
+a. Número de lecturas de RNA-seq del gen _LEP_ en biopsias de tejido adiposo de distintos pacientes.
+a. Presión arterial sistólica de adultos sanos.
+a. Concentración de PCR ultrasensible.
+a. Proporciones de Firmicutes, Bacteroidetes y otros filos en una muestra de heces.
+a. Conteo de _Bifidobacterium_ en muestras donde muchos individuos no lo presentan.
+a. p-valores de 500 000 SNPs no asociados con el IMC.
+:::
+
+---
+
+<details>
+<summary>Solución</summary>
+
+a. Binomial $B(2, q)$.
+a. Beta.
+a. Binomial negativa.
+a. Normal.
+a. Lognormal (o Gamma).
+a. Dirichlet.
+a. Binomial negativa inflada de ceros.
+a. Uniforme $U(0,1)$.
+
+</details>
