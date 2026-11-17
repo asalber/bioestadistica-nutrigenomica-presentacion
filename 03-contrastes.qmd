@@ -117,12 +117,12 @@ Al decidir con una muestra podemos equivocarnos de dos formas:
 
 | Decisión \\ Realidad | $H_0$ cierta | $H_0$ falsa |
 |:---|:---:|:---:|
-| **No rechazar $H_0$** | Decisión correcta ($1-\alpha$) | **Error de tipo II** ($\beta$) |
-| **Rechazar $H_0$** | **Error de tipo I** ($\alpha$) | Decisión correcta (potencia $1-\beta$) |
+| **No rechazar $H_0$** | Decisión correcta | **Error de tipo II** (riesgo $\beta$) |
+| **Rechazar $H_0$** | **Error de tipo I** (como máximo $\alpha$) | Decisión correcta (potencia $1-\beta$) |
 
 :::{#def-errores}
 ## Errores de tipo I y II
-- _Error de tipo I_ (falso positivo): rechazar $H_0$ cuando es cierta. Su probabilidad es $\alpha = P(\mbox{Rechazar } H_0 \mid H_0)$.
+- _Error de tipo I_ (falso positivo): rechazar $H_0$ cuando es cierta. El _riesgo_ $\alpha$ o _nivel de significación_ es la probabilidad **máxima** de error de tipo I que estamos dispuestos a asumir. Cuando se rechaza $H_0$, el p-valor es la probabilidad de error de tipo I que se comete con la muestra observada, y nunca supera $\alpha$.
 - _Error de tipo II_ (falso negativo): no rechazar $H_0$ cuando es falsa. Su probabilidad es $\beta = P(\mbox{No rechazar } H_0 \mid H_1)$.
 :::
 
@@ -131,6 +131,39 @@ Al estudiar si una variante de _APOA2_ modifica el efecto de la grasa saturada s
 
 - Error de tipo I: concluir que hay interacción cuando no la hay (y dar consejos dietéticos personalizados sin fundamento).
 - Error de tipo II: no detectar una interacción real (y perder una oportunidad de nutrición de precisión).
+:::
+
+
+## ¿Qué error es más grave? {.smaller}
+
+:::{.centered}
+_¿Es peor un falso positivo o un falso negativo?_
+:::
+
+Depende de las consecuencias de cada error en cada estudio. Pensemos en estos casos:
+
+:::: {.columns}
+
+::: {.column}
+**Puede ser más grave el error de tipo I**
+
+- Recomendar a toda la población una dieta personalizada según el genotipo de _FTO_ sin que la interacción gen-dieta exista.
+- Autorizar una alegación de salud de un alimento funcional que en realidad no reduce el colesterol.
+- Publicar una asociación SNP-nutriente falsa en un GWAS, que otros grupos intentarán replicar sin éxito.
+:::
+
+::: {.column}
+**Puede ser más grave el error de tipo II**
+
+- No detectar que los homocigotos TT de _MTHFR_ necesitan más folato, y dejar sin suplementar a un grupo de riesgo.
+- Descartar en un cribado un efecto adverso de un suplemento.
+- Abandonar una línea de investigación prometedora porque un estudio piloto pequeño no encontró diferencias.
+:::
+
+::::
+
+:::{.callout-important}
+No se pueden reducir los dos errores a la vez con un tamaño muestral fijo: al bajar $\alpha$ aumenta $\beta$. Por eso conviene elegir $\alpha$ según el coste de cada error y aumentar el tamaño muestral para controlar $\beta$.
 :::
 
 ## {background-color= .myblue}

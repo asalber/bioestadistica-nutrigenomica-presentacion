@@ -231,12 +231,12 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>No rechazar <span class="math inline">\(H_0\)</span></strong></td>
-<td style="text-align: center;">Decisión correcta (<span class="math inline">\(1-\alpha\)</span>)</td>
-<td style="text-align: center;"><strong>Error de tipo II</strong> (<span class="math inline">\(\beta\)</span>)</td>
+<td style="text-align: center;">Decisión correcta</td>
+<td style="text-align: center;"><strong>Error de tipo II</strong> (riesgo <span class="math inline">\(\beta\)</span>)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Rechazar <span class="math inline">\(H_0\)</span></strong></td>
-<td style="text-align: center;"><strong>Error de tipo I</strong> (<span class="math inline">\(\alpha\)</span>)</td>
+<td style="text-align: center;"><strong>Error de tipo I</strong> (como máximo <span class="math inline">\(\alpha\)</span>)</td>
 <td style="text-align: center;">Decisión correcta (potencia <span class="math inline">\(1-\beta\)</span>)</td>
 </tr>
 </tbody>
@@ -244,7 +244,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <div id="def-errores" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 2 (Errores de tipo I y II)</strong></span> &nbsp;</p>
 <ul>
-<li><em>Error de tipo I</em> (falso positivo): rechazar <span class="math inline">\(H_0\)</span> cuando es cierta. Su probabilidad es <span class="math inline">\(\alpha = P(\mbox{Rechazar } H_0 \mid H_0)\)</span>.</li>
+<li><em>Error de tipo I</em> (falso positivo): rechazar <span class="math inline">\(H_0\)</span> cuando es cierta. El <em>riesgo</em> <span class="math inline">\(\alpha\)</span> o <em>nivel de significación</em> es la probabilidad <strong>máxima</strong> de error de tipo I que estamos dispuestos a asumir. Cuando se rechaza <span class="math inline">\(H_0\)</span>, el p-valor es la probabilidad de error de tipo I que se comete con la muestra observada, y nunca supera <span class="math inline">\(\alpha\)</span>.</li>
 <li><em>Error de tipo II</em> (falso negativo): no rechazar <span class="math inline">\(H_0\)</span> cuando es falsa. Su probabilidad es <span class="math inline">\(\beta = P(\mbox{No rechazar } H_0 \mid H_1)\)</span>.</li>
 </ul>
 </div>
@@ -254,6 +254,43 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 <li>Error de tipo I: concluir que hay interacción cuando no la hay (y dar consejos dietéticos personalizados sin fundamento).</li>
 <li>Error de tipo II: no detectar una interacción real (y perder una oportunidad de nutrición de precisión).</li>
 </ul>
+</div>
+</section>
+
+<section id="qué-error-es-más-grave" class="title-slide slide level2 smaller center">
+<h2>¿Qué error es más grave?</h2>
+<div class="centered">
+<p><em>¿Es peor un falso positivo o un falso negativo?</em></p>
+</div>
+<p>Depende de las consecuencias de cada error en cada estudio. Pensemos en estos casos:</p>
+<div class="columns">
+<div class="column">
+<p><strong>Puede ser más grave el error de tipo I</strong></p>
+<ul>
+<li>Recomendar a toda la población una dieta personalizada según el genotipo de <em>FTO</em> sin que la interacción gen-dieta exista.</li>
+<li>Autorizar una alegación de salud de un alimento funcional que en realidad no reduce el colesterol.</li>
+<li>Publicar una asociación SNP-nutriente falsa en un GWAS, que otros grupos intentarán replicar sin éxito.</li>
+</ul>
+</div><div class="column">
+<p><strong>Puede ser más grave el error de tipo II</strong></p>
+<ul>
+<li>No detectar que los homocigotos TT de <em>MTHFR</em> necesitan más folato, y dejar sin suplementar a un grupo de riesgo.</li>
+<li>Descartar en un cribado un efecto adverso de un suplemento.</li>
+<li>Abandonar una línea de investigación prometedora porque un estudio piloto pequeño no encontró diferencias.</li>
+</ul>
+</div></div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Importante</strong></p>
+</div>
+<div class="callout-content">
+<p>No se pueden reducir los dos errores a la vez con un tamaño muestral fijo: al bajar <span class="math inline">\(\alpha\)</span> aumenta <span class="math inline">\(\beta\)</span>. Por eso conviene elegir <span class="math inline">\(\alpha\)</span> según el coste de cada error y aumentar el tamaño muestral para controlar <span class="math inline">\(\beta\)</span>.</p>
+</div>
+</div>
 </div>
 </section>
 
