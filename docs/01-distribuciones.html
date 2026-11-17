@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="01-distribuciones_files/libs/revealjs/dist/theme/quarto-3a21bdd1de9d629e2794dce49cc505ed.css">
+  <link rel="stylesheet" href="01-distribuciones_files/libs/revealjs/dist/theme/quarto-c43bcb01b5d7bf31d2c449f1f060a6b9.css">
   <link href="01-distribuciones_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="01-distribuciones_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="01-distribuciones_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -346,14 +346,14 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad x\in\ma
 </div></div>
 </section></section>
 <section>
-<section id="distribución-gamma" class="title-slide slide level2 center">
+<section id="distribución-gamma" class="title-slide slide level2 smaller center">
 <h2>Distribución Gamma</h2>
 <div id="def-distribucion-gamma" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 3 (Distribución Gamma)</strong></span> Una variable aleatoria positiva <span class="math inline">\(X\)</span> sigue un <em>modelo Gamma</em> <span class="math inline">\(X\sim Gamma(\alpha, \beta)\)</span> si su función de densidad es</p>
 <p><span class="math display">\[
 f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\quad x&gt;0,
 \]</span></p>
-<p>donde <span class="math inline">\(\alpha&gt;0\)</span> es el parámetro de <em>forma</em> y <span class="math inline">\(\beta&gt;0\)</span> el de <em>tasa</em>.</p>
+<p>donde <span class="math inline">\(\alpha&gt;0\)</span> es el parámetro de <em>forma</em>, <span class="math inline">\(\beta&gt;0\)</span> el de <em>tasa</em> y <span class="math inline">\(\Gamma\)</span> es la función gamma<sup>1</sup>.</p>
 </div>
 <p><strong>Estadísticos</strong>: <span class="math inline">\(E(X) = \dfrac{\alpha}{\beta}\)</span> y <span class="math inline">\(Var(X) = \dfrac{\alpha}{\beta^2}\)</span>. El coeficiente de variación <span class="math inline">\(1/\sqrt{\alpha}\)</span> es constante.</p>
 <p><strong>Ejemplos en Nutrigenómica</strong></p>
@@ -362,7 +362,7 @@ f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\quad x&gt;0,
 <li>Ingesta diaria de nutrientes episódicos (alcohol, fibra, ácidos grasos omega-3).</li>
 <li>Insulina y PCR, como alternativa a la lognormal en modelos lineales generalizados.</li>
 </ul>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Función gamma: <span class="math inline">\(\Gamma(\alpha)=\int_0^\infty t^{\alpha-1}e^{-t}\,dt\)</span>. Generaliza el factorial, ya que <span class="math inline">\(\Gamma(n)=(n-1)!\)</span> para <span class="math inline">\(n\)</span> natural.</p></li></ol></aside></section>
 <section class="slide level3">
 
 <div class="columns">
@@ -975,6 +975,7 @@ Solución
 </details>
 
 </section></section>
+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="img/logos/ceu-san-pablo.png" class="slide-logo"></p>

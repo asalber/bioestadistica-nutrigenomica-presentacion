@@ -209,7 +209,7 @@ p1 / p2
 
 ::::
 
-## Distribución Gamma
+## Distribución Gamma {.smaller}
 
 :::{#def-distribucion-gamma}
 ## Distribución Gamma
@@ -219,7 +219,7 @@ $$
 f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\quad x>0,
 $$
 
-donde $\alpha>0$ es el parámetro de _forma_ y $\beta>0$ el de _tasa_.
+donde $\alpha>0$ es el parámetro de _forma_, $\beta>0$ el de _tasa_ y $\Gamma$ es la función gamma^[Función gamma: $\Gamma(\alpha)=\int_0^\infty t^{\alpha-1}e^{-t}\,dt$. Generaliza el factorial, ya que $\Gamma(n)=(n-1)!$ para $n$ natural.].
 :::
 
 **Estadísticos**: $E(X) = \dfrac{\alpha}{\beta}$ y $Var(X) = \dfrac{\alpha}{\beta^2}$. El coeficiente de variación $1/\sqrt{\alpha}$ es constante.

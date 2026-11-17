@@ -337,3 +337,12 @@ html .timeline {
 .reveal .destacado .callout li {
   margin-bottom: 0.4em;
 }
+
+// Notas a pie de página dentro del flujo de la diapositiva
+.reveal .slide > aside:has(.aside-footnotes) {
+  position: static;
+  margin-top: 1em;
+  padding-top: 0.3em;
+  border-top: 1px solid #ccc;
+  font-size: 0.75em;
+}
