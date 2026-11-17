@@ -1,0 +1,56 @@
+project:
+  type: book
+  output-dir: _book
+
+lang: es
+
+language:
+  callout-tip-title: "Ayuda"
+  callout-note-title: "Nota"
+  callout-important-title: "Importante"
+  callout-warning-title: "Advertencia"
+  callout-caution-title: "Precaución"
+
+execute:
+  echo: false
+  cache: true
+  freeze: auto
+
+book:
+  title: "Inferencia estadística en Nutrigenómica"
+  subtitle: "Distribuciones, estimación y contrastes de hipótesis"
+  author: "Alfredo Sánchez Alberca"
+  date: today
+  date-format: "MMMM YYYY"
+  output-file: "inferencia-estadistica-nutrigenomica"
+  chapters:
+    - index.qmd
+    - 01-distribuciones.qmd
+    - 02-estimacion.qmd
+    - 03-contrastes.qmd
+
+format:
+  pdf:
+    documentclass: scrbook
+    classoption: [oneside]
+    papersize: a4
+    fontsize: 11pt
+    geometry: [margin=2.5cm]
+    mainfont: Libertinus Serif
+    sansfont: Libertinus Sans
+    mathfont: Libertinus Math
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    number-depth: 2
+    colorlinks: true
+    fig-pos: "H"
+    fig-align: center
+    default-image-extension: svg
+    callout-appearance: default
+    include-in-header:
+      text: |
+        \usepackage{float}
+        \usepackage{graphicx}
+        \titlehead{\centering\includegraphics[width=6cm]{img/logos/ceu-san-pablo-titulo.png}}
+        \publishers{Máster en Metodología de la Investigación en Nutrigenómica y Nutrigenética}

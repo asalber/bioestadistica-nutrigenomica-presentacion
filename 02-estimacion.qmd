@@ -317,7 +317,7 @@ y razonando igual que antes:
 :::{#thm-ic-media-varianza-desconocida}
 ## Intervalo de confianza para la media con varianza desconocida
 $$
-\bar x \pm t^{n-1}_{\alpha/2}\frac{s}{\sqrt{n}},
+\bar x \pm t^{n-1}_{\alpha/2}\frac{\hat s}{\sqrt{n}},
 $$
 donde $t^{n-1}_{\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $T(n-1)$.
 :::
@@ -342,7 +342,7 @@ resumen(`Homocisteína (µmol/l)` = hcy)
 ```
 
 $$
-\bar x \pm t^{19}_{0.025}\frac{s}{\sqrt{n}} = `r fmt(mean(hcy), 2)` \pm `r fmt(qt(0.975, 19), 3)`\cdot\frac{`r fmt(sd(hcy), 2)`}{\sqrt{20}} = `r ic_texto(t.test(hcy)$conf.int)` \mbox{ µmol/l}.
+\bar x \pm t^{19}_{0.025}\frac{\hat s}{\sqrt{n}} = `r fmt(mean(hcy), 2)` \pm `r fmt(qt(0.975, 19), 3)`\cdot\frac{`r fmt(sd(hcy), 2)`}{\sqrt{20}} = `r ic_texto(t.test(hcy)$conf.int)` \mbox{ µmol/l}.
 $$
 
 Con una confianza del 95% la homocisteína media está por encima de 12 µmol/l, el umbral habitual de hiperhomocisteinemia leve.
@@ -396,7 +396,7 @@ Principales intervalos de confianza
 | Parámetro | Condiciones | Intervalo |
 |:---|:---|:---:|
 | Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ |
-| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{s}{\sqrt{n}}$ |
+| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{\hat s}{\sqrt{n}}$ |
 | Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ |
 | Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)\hat s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)\hat s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
 
@@ -415,7 +415,7 @@ ic_var <- (n - 1) * var(hba1c) / qchisq(c(0.975, 0.025), df = n - 1)
 ```
 
 :::{#exm-ic-varianza}
-Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una desviación típica $s = `r fmt(sd(hba1c), 3)`$ %. Calcular el intervalo de confianza del 95% para la desviación típica.
+Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una cuasidesviación típica $\hat s = `r fmt(sd(hba1c), 3)`$ %. Calcular el intervalo de confianza del 95% para la desviación típica.
 :::
 
 $$
@@ -525,7 +525,7 @@ resumen(TT = auc_TT, CC = auc_CC)
 ```
 
 $$
-\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95%: } `r ic_texto(ic_f, 3)`.
+\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95\%: } `r ic_texto(ic_f, 3)`.
 $$
 
 El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.

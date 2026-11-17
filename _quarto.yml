@@ -1,5 +1,10 @@
 project:
   output-dir: "docs"
+  render:
+    - index.qmd
+    - 01-distribuciones.qmd
+    - 02-estimacion.qmd
+    - 03-contrastes.qmd
 
 lang: es
 

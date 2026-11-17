@@ -1,0 +1,13 @@
+# Prólogo {.unnumbered}
+
+Este libro reúne en formato de texto las presentaciones de inferencia estadística de la asignatura de Bioestadística del Máster en Metodología de la Investigación en Nutrigenómica y Nutrigenética de la Universidad CEU San Pablo. Las diapositivas se pueden consultar en <https://aprendeconalf.es/bioestadistica-nutrigenomica-presentacion/>.
+
+El libro sigue el mismo orden que las presentaciones y está dividido en tres capítulos:
+
+1. **Distribuciones de probabilidad en Nutrigenómica.** Los modelos que describen las variables que medimos: fenotipos continuos, genotipos, conteos de secuenciación, proporciones y composiciones, además de las distribuciones de los p-valores y de los estadísticos.
+2. **Estimación de parámetros.** Las distribuciones muestrales de la media, la cuasivarianza y la proporción, y la construcción e interpretación de intervalos de confianza para una y dos poblaciones.
+3. **Contrastes de hipótesis.** Los tipos de error, el estadístico del contraste, las regiones de aceptación y rechazo, el riesgo $\alpha$ y el p-valor, el riesgo $\beta$ y la potencia, y los contrastes más utilizados en Nutrigenómica.
+
+Todos los ejemplos están tomados de problemas reales de la Nutrigenómica y la Nutrigenética: el gen _FTO_ y la obesidad, _MTHFR_ y el metabolismo del folato, la expresión génica medida con RNA-seq, la metilación del ADN o la composición de la microbiota intestinal. Los cálculos y las gráficas se han generado con R, aunque el código no se muestra para centrar la atención en los conceptos.
+
+Este material se distribuye con licencia [Creative Commons Reconocimiento-NoComercial-CompartirIgual 3.0 España](https://creativecommons.org/licenses/by-nc-sa/3.0/es/).

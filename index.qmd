@@ -27,6 +27,11 @@ Distribuciones muestrales, teorema central del límite e intervalos de confianza
 Hipótesis, errores, estadístico del contraste, p-valor, potencia, tamaño del efecto y principales contrastes en Nutrigenómica.
 :::
 
+::: {.event data-label="Libro"}
+[**Libro en PDF**](inferencia-estadistica-nutrigenomica.pdf){.mypurple}
+Las tres presentaciones en formato libro.
+:::
+
 :::
 
 ## Licencia

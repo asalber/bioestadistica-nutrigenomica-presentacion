@@ -838,7 +838,7 @@ chi_obs <- (length(hba1c) - 1) * var(hba1c) / 0.3^2
 ```
 
 :::{#exm-contraste-varianza}
-Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene $s = `r fmt(sd(hba1c), 3)`$. ¿Cumple el nuevo protocolo este requisito?
+Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene $\hat s = `r fmt(sd(hba1c), 3)`$. ¿Cumple el nuevo protocolo este requisito?
 
 $H_0: \sigma = 0.3$ frente a $H_1: \sigma < 0.3$.
 :::

@@ -1,0 +1,39 @@
+```{r}
+#| echo: false
+#| output: false
+#| cache: false
+library(tidyverse)
+library(knitr)
+library(patchwork)
+knitr::opts_chunk$set(digits = 3, comment = "#>", dev = "svglite", fig.align = "center")
+theme_set(theme_minimal(base_size = 14))
+# Colores
+myblue <- "#0099CC"
+mylightblue <- "#bcdeff"
+myred <- "#ff2152"
+mypurple <-  "#996699"
+myrose <- "#db1286"
+mygreen <- "#03BF3D"
+myblack <- "#111111"
+mygray <- "#808080"
+myorange <- "#e67e22";
+```
+
+```{r}
+#| include: false
+#| cache: false
+# Funciones auxiliares para mostrar resultados sin código
+fmt <- function(x, d = 2) formatC(x, format = "f", digits = d)
+fmt_pct <- function(x, d = 1) paste0(formatC(100 * x, format = "f", digits = d), "%")
+fmt_p <- function(p) ifelse(p < 0.0001, "< 0.0001", formatC(p, format = "f", digits = 4))
+fmt_peq <- function(p) ifelse(p < 0.0001, "< 0.0001", paste("=", formatC(p, format = "f", digits = 4)))
+fmt_ic <- function(x, d = 3) ifelse(is.infinite(x), ifelse(x > 0, "+∞", "−∞"), fmt(x, d))
+tabla_contraste <- function(res, estadistico = names(res$statistic), gl = TRUE, d = 3) {
+  est <- if (is.null(res$statistic)) "—" else paste0(estadistico, " = ", fmt(res$statistic, 3))
+  g <- if (!gl || is.null(res$parameter)) "—" else
+    paste(ifelse(res$parameter == round(res$parameter), fmt(res$parameter, 0), fmt(res$parameter, 2)), collapse = " y ")
+  ic <- if (is.null(res$conf.int)) "—" else paste0("[", fmt_ic(res$conf.int[1], d), ", ", fmt_ic(res$conf.int[2], d), "]")
+  kable(tibble(Estadístico = est, `Grados de libertad` = g, `p-valor` = fmt_p(res$p.value),
+               `Intervalo de confianza` = ic), align = "c")
+}
+```

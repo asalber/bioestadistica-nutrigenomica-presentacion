@@ -5,3 +5,5 @@
 /.luarc.json
 _cache/
 *_cache/
+
+/libro/_book/
