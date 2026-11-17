@@ -49,8 +49,7 @@ format:
     default-image-extension: svg
     callout-appearance: default
     include-in-header:
-      text: |
-        \usepackage{float}
-        \usepackage{graphicx}
-        \titlehead{\centering\includegraphics[width=6cm]{img/logos/ceu-san-pablo-titulo.png}}
-        \publishers{Máster en Metodología de la Investigación en Nutrigenómica y Nutrigenética}
+      - text: |
+          \usepackage{float}
+          \usepackage{graphicx}
+      - portada.tex

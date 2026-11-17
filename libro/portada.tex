@@ -1,0 +1,77 @@
+% Portada del libro
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\definecolor{ceublue}{HTML}{0039A6}
+\definecolor{ceudark}{HTML}{00246B}
+\definecolor{hojaverde}{HTML}{03BF3D}
+\definecolor{naranja}{HTML}{E67E22}
+\definecolor{rojo}{HTML}{FF2152}
+\definecolor{amarillo}{HTML}{F4C430}
+\definecolor{celeste}{HTML}{6EC6FF}
+% Hoja
+\newcommand{\hoja}[4]{% x, y, ángulo, escala
+  \begin{scope}[shift={(#1,#2)}, rotate=#3, scale=#4]
+    \fill[hojaverde!85] (0,0) .. controls (0.5,0.45) and (1.3,0.45) .. (1.8,0)
+                        .. controls (1.3,-0.45) and (0.5,-0.45) .. (0,0);
+    \draw[white, line width=0.6pt] (0.05,0) -- (1.6,0);
+  \end{scope}}
+% Fruta (círculo con brillo y rabito)
+\newcommand{\fruta}[4]{% x, y, radio, color
+  \fill[#4] (#1,#2) circle (#3);
+  \fill[white, opacity=0.35] ($(#1,#2)+(-0.35*#3,0.35*#3)$) circle (0.28*#3);
+  \draw[ceudark, line width=1pt] ($(#1,#2)+(0,#3)$) -- ++(0.1,0.3*#3);}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+  \begin{tikzpicture}[remember picture, overlay]
+    % Fondo
+    \fill[ceublue] (current page.south west) rectangle (current page.north east);
+    \fill[ceudark] (current page.south west) rectangle ($(current page.south east)+(0,7)$);
+    % Doble hélice de ADN en diagonal
+    \begin{scope}[shift={($(current page.north east)+(-4.2,-1.5)$)}, rotate=-14]
+      \foreach \i in {0,...,44} {
+        \pgfmathsetmacro{\y}{-0.42*\i}
+        \pgfmathsetmacro{\xa}{2.1*sin(\i*24)}
+        \pgfmathsetmacro{\xb}{-2.1*sin(\i*24)}
+        \pgfmathtruncatemacro{\c}{mod(\i,4)}
+        \ifcase\c \def\col{hojaverde}\or \def\col{naranja}\or \def\col{amarillo}\or \def\col{rojo}\fi
+        \draw[\col, line width=2.4pt, opacity=0.9] (\xa,\y) -- (\xb,\y);
+      }
+      \draw[white, line width=3.5pt, domain=0:44, samples=300, smooth]
+        plot ({2.1*sin(\x*24)}, {-0.42*\x});
+      \draw[celeste, line width=3.5pt, domain=0:44, samples=300, smooth]
+        plot ({-2.1*sin(\x*24)}, {-0.42*\x});
+    \end{scope}
+    % Alimentos alrededor de la hélice
+    \hoja{$(current page.north east)+(-2.0,-3.0)$}{0}{35}{1.1}
+    \hoja{$(current page.north east)+(-9.3,-6.0)$}{0}{150}{0.9}
+    \hoja{$(current page.north east)+(-1.6,-12.5)$}{0}{-40}{1.2}
+    \hoja{$(current page.north east)+(-8.6,-15.5)$}{0}{200}{0.8}
+    \fruta{$(current page.north east)+(-8.2,-2.5)$}{0}{0.55}{rojo}
+    \fruta{$(current page.north east)+(-1.3,-8.2)$}{0}{0.45}{naranja}
+    \fruta{$(current page.north east)+(-9.6,-11.0)$}{0}{0.4}{amarillo}
+    \fruta{$(current page.north east)+(-3.0,-17.6)$}{0}{0.5}{hojaverde!80!black}
+    % Textos
+    \node[anchor=north west, text width=10.5cm, align=left, white]
+      at ($(current page.north west)+(2,-4)$) {%
+      {\sffamily\bfseries\fontsize{38}{44}\selectfont Inferencia\\ estadística\hspace{0.2em} en\\ Nutrigenómica\par}
+      \vspace{0.8cm}
+      {\sffamily\Large Distribuciones, estimación\\ y contrastes de hipótesis\par}
+      \vspace{1.2cm}
+      {\color{amarillo}\rule{3cm}{3pt}\par}
+      \vspace{0.6cm}
+      {\sffamily\LARGE Alfredo Sánchez Alberca\par}
+    };
+    \node[anchor=south west, text width=11cm, align=left, white]
+      at ($(current page.south west)+(2,4.3)$) {%
+      {\sffamily\large Máster en Metodología de la Investigación\\ en Nutrigenómica y Nutrigenética\par}
+      \vspace{0.2cm}
+      {\sffamily\normalsize \@date\par}};
+    % Logo sobre recuadro blanco
+    \node[fill=white, rounded corners=6pt, inner sep=10pt, anchor=south west]
+      at ($(current page.south west)+(2,1.2)$)
+      {\includegraphics[height=2.2cm]{img/logos/ceu-san-pablo-titulo.png}};
+  \end{tikzpicture}
+  \end{titlepage}
+  \cleardoublepage}
+\makeatother
