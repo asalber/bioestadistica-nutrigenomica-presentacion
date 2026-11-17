@@ -309,6 +309,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} &lt; \mu_{TT}.
 </div>
 </section>
 
+<section>
 <section id="estadístico-del-contraste" class="title-slide slide level2 smaller center">
 <h2>Estadístico del contraste</h2>
 <div id="def-estadistico-contraste" class="theorem definition">
@@ -323,7 +324,15 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 \]</span> Valores de <span class="math inline">\(T\)</span> próximos a 0 son compatibles con <span class="math inline">\(H_0\)</span>; valores grandes son evidencia a favor de <span class="math inline">\(H_1\)</span>.</p>
 </div>
 </section>
+<section class="slide level3">
 
+<div id="exm-hombres-estadistico" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Sospechamos que en una población hay menos hombres que mujeres. Si <span class="math inline">\(p\)</span> es la proporción de hombres, por las leyes de la genética lo esperable es <span class="math inline">\(p = 0.5\)</span>, así que planteamos <span class="math display">\[
+H_0: p = 0.5 \qquad H_1: p &lt; 0.5.
+\]</span> Tomamos una muestra aleatoria de 10 personas y usamos como estadístico del contraste el número de hombres en la muestra, <span class="math inline">\(X\)</span>. Si <span class="math inline">\(H_0\)</span> es cierta, <span class="math inline">\(X\sim B(10, 0.5)\)</span> y el número esperado de hombres es 5.</p>
+<p>Es lógico aceptar <span class="math inline">\(H_0\)</span> si en la muestra hay un número de hombres próximo a 5 y rechazarla si hay muchos menos. Pero <em>¿dónde ponemos el límite entre ambas regiones?</em></p>
+</div>
+</section></section>
 <section>
 <section id="regiones-de-aceptación-y-rechazo" class="title-slide slide level2 center">
 <h2>Regiones de aceptación y rechazo</h2>
@@ -345,7 +354,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="columns">
 <div class="column" style="width:45%;">
 <div id="exm-regiones-homocisteina" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 4</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em> (<span class="math inline">\(\bar x = 14.44\)</span>, <span class="math inline">\(s = 2.24\)</span>), contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> Con las 20 mediciones de homocisteína de los homocigotos TT de <em>MTHFR</em> (<span class="math inline">\(\bar x = 14.44\)</span>, <span class="math inline">\(s = 2.24\)</span>), contrastar <span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 </div>
 <ul>
 <li>Estadístico: <span class="math inline">\(t = \dfrac{14.44 - 12}{2.24/\sqrt{20}} = 4.880\)</span>.</li>
@@ -358,6 +367,31 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-5-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-regiones" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> Como <span class="math inline">\(X\sim B(10, 0.5)\)</span> bajo <span class="math inline">\(H_0\)</span> y el contraste es unilateral de menor, la región de rechazo estará en los valores pequeños de <span class="math inline">\(X\)</span>.</p>
+<p>Si rechazáramos con 2 o menos hombres, la probabilidad de error de tipo I sería <span class="math display">\[P(X\leq 2) = 0.0547 &gt; 0.05.\]</span></p>
+<p>Con <span class="math inline">\(\alpha = 0.05\)</span> solo podemos rechazar con 0 o 1 hombres, ya que <span class="math display">\[P(X\leq 1) = 0.0107 \leq 0.05.\]</span></p>
+</div>
+<ul>
+<li>Región de rechazo: <span class="math inline">\(X\leq 1\)</span>.</li>
+<li>Región de aceptación: <span class="math inline">\(X\geq 2\)</span>.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
@@ -402,7 +436,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <p><span class="theorem-title"><strong>Definición 6 (p-valor)</strong></span> El <em>p-valor</em> es la probabilidad de obtener, si <span class="math inline">\(H_0\)</span> es cierta, un valor del estadístico igual o más extremo (en la dirección de <span class="math inline">\(H_1\)</span>) que el observado en la muestra.</p>
 </div>
 
-<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>El p-valor (<span class="myred">área roja</span>) mide la compatibilidad de los datos con <span class="math inline">\(H_0\)</span>: cuanto menor es, más evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-7-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>El p-valor (<span class="myred">área roja</span>) mide la compatibilidad de los datos con <span class="math inline">\(H_0\)</span>: cuanto menor es, más evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
 </section>
 
 <section>
@@ -432,7 +466,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section class="slide level3">
 
 <div id="exm-p-valor" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 5</strong></span> En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una <span class="math inline">\(T(19)\)</span> supere el valor observado: <span class="math display">\[
+<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> En el ejemplo de la homocisteína, el p-valor es la probabilidad de que una <span class="math inline">\(T(19)\)</span> supere el valor observado: <span class="math display">\[
 \mbox{p-valor} = P(T \geq 4.880) = &lt; 0.0001.
 \]</span></p>
 </div>
@@ -459,6 +493,29 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </div>
 </div>
 <p>Como el p-valor es menor que <span class="math inline">\(\alpha = 0.05\)</span>, rechazamos <span class="math inline">\(H_0\)</span>. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
+</section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-p-valor" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> En el contraste sobre la proporción de hombres (<span class="math inline">\(H_0: p = 0.5\)</span>, <span class="math inline">\(H_1: p &lt; 0.5\)</span>), si en una muestra de 10 personas observamos 1 hombre, el p-valor es <span class="math display">\[p = P(X\leq 1) = 0.0107.\]</span> Si observamos 0 hombres, el p-valor es <span class="math display">\[p = P(X\leq 0) = 0.0010.\]</span></p>
+</div>
+<ul>
+<li>Con 1 hombre se rechaza <span class="math inline">\(H_0\)</span> con <span class="math inline">\(\alpha = 0.05\)</span>, pero no con <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+<li>Con 0 hombres se rechaza también con <span class="math inline">\(\alpha = 0.01\)</span>: la evidencia en contra de <span class="math inline">\(H_0\)</span> es mayor.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-9-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 </section></section>
 <section id="interpretación-del-p-valor" class="title-slide slide level2 center">
 <h2>Interpretación del p-valor</h2>
@@ -498,7 +555,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <h2>Relación entre contrastes e intervalos de confianza</h2>
 <p>Un contraste bilateral con nivel de significación <span class="math inline">\(\alpha\)</span> rechaza <span class="math inline">\(H_0: \theta = \theta_0\)</span> si y solo si <span class="math inline">\(\theta_0\)</span> queda fuera del intervalo de confianza de nivel <span class="math inline">\(1-\alpha\)</span>.</p>
 <div id="exm-contraste-intervalo" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 6</strong></span> En el ejemplo de la suplementación con omega-3, contrastamos si el cambio medio de los triglicéridos es 0, <span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d \neq 0\)</span>.</p>
+<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En el ejemplo de la suplementación con omega-3, contrastamos si el cambio medio de los triglicéridos es 0, <span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d \neq 0\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -532,6 +589,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </div>
 </section>
 
+<section>
 <section id="riesgo-beta-y-potencia" class="title-slide slide level2 center">
 <h2>Riesgo beta y potencia</h2>
 <div id="def-potencia" class="theorem definition">
@@ -541,8 +599,110 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </div>
 <p>A diferencia de <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> depende del verdadero valor del parámetro bajo <span class="math inline">\(H_1\)</span>. Se suele exigir una potencia de al menos el 80% (<span class="math inline">\(\beta\leq 0.2\)</span>).</p>
 
-<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-9-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-11-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-potencia" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> En el contraste sobre la proporción de hombres no se considera importante una diferencia menor de un 10% respecto a <span class="math inline">\(p = 0.5\)</span>, es decir, el tamaño del efecto es <span class="math inline">\(\delta = 0.1\)</span>. Esto fija la hipótesis alternativa <span class="math display">\[H_1: p = 0.5 - 0.1 = 0.4,\]</span> bajo la que <span class="math inline">\(X\sim B(10, 0.4)\)</span>. Con la región de rechazo <span class="math inline">\(X\leq 1\)</span> (<span class="math inline">\(\alpha = 0.05\)</span>): <span class="math display">\[\beta = P(X\geq 2 \mid p = 0.4) = 0.9536.\]</span></p>
+</div>
+<p>La potencia es solo <span class="math inline">\(1-\beta = 0.0464\)</span>: con 10 personas el contraste casi nunca detectaría una diferencia del 10%.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-12-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="relación-entre-el-riesgo-β-y-el-tamaño-del-efecto" class="title-slide slide level2 center">
+<h2>Relación entre el riesgo β y el tamaño del efecto</h2>
+<p>El riesgo <span class="math inline">\(\beta\)</span> depende de la diferencia mínima <span class="math inline">\(\delta\)</span> que queremos detectar respecto al valor de <span class="math inline">\(H_0\)</span>: cuanto mayor es el tamaño del efecto, menor es <span class="math inline">\(\beta\)</span> y mayor la potencia.</p>
+
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-13-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-tamano-efecto" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> Si en el contraste sobre la proporción de hombres queremos detectar una diferencia de al menos un 20%, <span class="math inline">\(\delta = 0.2\)</span>, la hipótesis alternativa es <span class="math display">\[H_1: p = 0.5 - 0.2 = 0.3,\]</span> y bajo ella <span class="math inline">\(X\sim B(10, 0.3)\)</span>. Con la misma región de rechazo <span class="math inline">\(X\leq 1\)</span>: <span class="math display">\[\beta = P(X\geq 2 \mid p = 0.3) = 0.8507.\]</span></p>
+</div>
+<p>El riesgo <span class="math inline">\(\beta\)</span> disminuye y la potencia sube a <span class="math inline">\(1-\beta = 0.1493\)</span>, aunque el contraste sigue siendo poco potente.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-14-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="relación-entre-los-riesgos-α-y-β" class="title-slide slide level2 center">
+<h2>Relación entre los riesgos α y β</h2>
+<p>Los riesgos <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> están enfrentados: con el mismo tamaño muestral, cuando uno disminuye el otro aumenta.</p>
+
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-15-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-alfa-beta" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 12</strong></span> Si en el contraste sobre la proporción de hombres tomamos <span class="math inline">\(\alpha = 0.1\)</span>, la región de rechazo pasa a ser <span class="math inline">\(X\leq 2\)</span>, ya que <span class="math display">\[P(X\leq 2) = 0.0547 \leq 0.1.\]</span> Para <span class="math inline">\(\delta = 0.1\)</span>, bajo <span class="math inline">\(H_1\)</span> <span class="math inline">\(X\sim B(10, 0.4)\)</span> y <span class="math display">\[\beta = P(X\geq 3 \mid p = 0.4) = 0.8327.\]</span></p>
+</div>
+<p>Al aumentar <span class="math inline">\(\alpha\)</span> de 0.05 a 0.1, <span class="math inline">\(\beta\)</span> baja y la potencia sube de 0.0464 a 0.1673.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-16-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="relación-entre-los-riesgos-y-el-tamaño-muestral" class="title-slide slide level2 center">
+<h2>Relación entre los riesgos y el tamaño muestral</h2>
+<p>Al aumentar el tamaño muestral disminuye la dispersión del estimador, de modo que se pueden reducir a la vez los dos riesgos de error.</p>
+
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-17-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-hombres-tamano-muestral" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 13</strong></span> Si en el contraste sobre la proporción de hombres tomamos una muestra de 100 personas, bajo <span class="math inline">\(H_0\)</span> <span class="math inline">\(X\sim B(100, 0.5)\)</span> y, con <span class="math inline">\(\alpha = 0.05\)</span>, la región de rechazo es <span class="math inline">\(X\leq 41\)</span>, ya que <span class="math display">\[P(X\leq 41) = 0.0443 \leq 0.05.\]</span> Para <span class="math inline">\(\delta = 0.1\)</span>, bajo <span class="math inline">\(H_1\)</span> <span class="math inline">\(X\sim B(100, 0.4)\)</span> y <span class="math display">\[\beta = P(X\geq 42 \mid p = 0.4) = 0.3775.\]</span></p>
+</div>
+<p>La potencia sube hasta <span class="math inline">\(1-\beta = 0.6225\)</span>: ahora el contraste sí es útil para detectar una diferencia del 10%.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-19-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="curva-de-potencia" class="slide level3">
+<h3>Curva de potencia</h3>
+<p>La potencia depende del verdadero valor del parámetro, <span class="math inline">\(\mbox{Potencia}(p) = P(\mbox{Rechazar } H_0 \mid p)\)</span>. En el contraste sobre la proporción de hombres (<span class="math inline">\(\alpha = 0.05\)</span>):</p>
+
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-20-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section></section>
 <section id="de-qué-depende-la-potencia" class="title-slide slide level2 center">
 <h2>¿De qué depende la potencia?</h2>
 <p>La potencia de un contraste aumenta cuando:</p>
@@ -634,11 +794,11 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="curvas-de-potencia" class="slide level3">
 <h3>Curvas de potencia</h3>
 
-<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-10-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-21-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
 <section class="slide level3">
 
 <div id="exm-tamano-muestral" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Queremos diseñar un estudio para detectar una diferencia de 2 kg en la pérdida de peso entre portadores AA y TT de <em>FTO</em> tras una dieta hipocalórica. Por estudios previos, la desviación típica de la pérdida de peso es de 4 kg. ¿Cuántos participantes necesitamos por grupo para tener una potencia del 80% con <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p><span class="theorem-title"><strong>Ejemplo 14</strong></span> Queremos diseñar un estudio para detectar una diferencia de 2 kg en la pérdida de peso entre portadores AA y TT de <em>FTO</em> tras una dieta hipocalórica. Por estudios previos, la desviación típica de la pérdida de peso es de 4 kg. ¿Cuántos participantes necesitamos por grupo para tener una potencia del 80% con <span class="math inline">\(\alpha = 0.05\)</span>?</p>
 </div>
 <ul>
 <li>Tamaño del efecto: <span class="math inline">\(d = 2/4 = 0.5\)</span> (mediano).</li>
@@ -837,7 +997,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-t-para-una-muestra" class="slide level3">
 <h3>Contraste T para una muestra</h3>
 <div id="exm-t-una-muestra" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> ¿Supera la homocisteína media de los homocigotos TT de <em>MTHFR</em> con baja ingesta de folato el umbral de 12 µmol/l?</p>
+<p><span class="theorem-title"><strong>Ejemplo 15</strong></span> ¿Supera la homocisteína media de los homocigotos TT de <em>MTHFR</em> con baja ingesta de folato el umbral de 12 µmol/l?</p>
 <p><span class="math inline">\(H_0: \mu = 12\)</span> frente a <span class="math inline">\(H_1: \mu &gt; 12\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -887,7 +1047,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-para-una-proporción" class="slide level3">
 <h3>Contraste para una proporción</h3>
 <div id="exm-contraste-proporcion" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En una cohorte de 250 personas se encuentran 38 homocigotos TT de <em>MTHFR</em> C677T (<span class="math inline">\(\hat p = 0.152\)</span>). ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?</p>
+<p><span class="theorem-title"><strong>Ejemplo 16</strong></span> En una cohorte de 250 personas se encuentran 38 homocigotos TT de <em>MTHFR</em> C677T (<span class="math inline">\(\hat p = 0.152\)</span>). ¿Es la prevalencia del genotipo TT distinta del 10% descrito en población del norte de Europa?</p>
 <p><span class="math inline">\(H_0: p = 0.10\)</span> frente a <span class="math inline">\(H_1: p \neq 0.10\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -923,7 +1083,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-para-una-varianza" class="slide level3">
 <h3>Contraste para una varianza</h3>
 <div id="exm-contraste-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene <span class="math inline">\(s = 0.252\)</span>. ¿Cumple el nuevo protocolo este requisito?</p>
+<p><span class="theorem-title"><strong>Ejemplo 17</strong></span> Un método de medida de la HbA1c capilar se considera preciso si su desviación típica es menor de 0.3 %. Con 15 mediciones se obtiene <span class="math inline">\(s = 0.252\)</span>. ¿Cumple el nuevo protocolo este requisito?</p>
 <p><span class="math inline">\(H_0: \sigma = 0.3\)</span> frente a <span class="math inline">\(H_1: \sigma &lt; 0.3\)</span>.</p>
 </div>
 <p><span class="math display">\[
@@ -934,7 +1094,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-t-para-dos-muestras-independientes" class="slide level3">
 <h3>Contraste T para dos muestras independientes</h3>
 <div id="exm-t-dos-muestras" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> ¿Pierden menos peso los homocigotos AA de <em>FTO</em> que los TT tras 6 meses de dieta hipocalórica?</p>
+<p><span class="theorem-title"><strong>Ejemplo 18</strong></span> ¿Pierden menos peso los homocigotos AA de <em>FTO</em> que los TT tras 6 meses de dieta hipocalórica?</p>
 <p><span class="math inline">\(H_0: \mu_{AA} = \mu_{TT}\)</span> frente a <span class="math inline">\(H_1: \mu_{AA} &lt; \mu_{TT}\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -990,7 +1150,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-t-para-dos-muestras-pareadas" class="slide level3">
 <h3>Contraste T para dos muestras pareadas</h3>
 <div id="exm-t-pareada" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 12</strong></span> ¿Reduce la suplementación con omega-3 los triglicéridos?</p>
+<p><span class="theorem-title"><strong>Ejemplo 19</strong></span> ¿Reduce la suplementación con omega-3 los triglicéridos?</p>
 <p><span class="math inline">\(H_0: \mu_d = 0\)</span> frente a <span class="math inline">\(H_1: \mu_d &lt; 0\)</span>, con <span class="math inline">\(d = \mbox{después} - \mbox{antes}\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1052,7 +1212,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-f-de-comparación-de-varianzas" class="slide level3">
 <h3>Contraste F de comparación de varianzas</h3>
 <div id="exm-f-varianzas" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 13</strong></span> ¿Es más variable la respuesta glucémica postprandial en los portadores TT de <em>TCF7L2</em> que en los CC?</p>
+<p><span class="theorem-title"><strong>Ejemplo 20</strong></span> ¿Es más variable la respuesta glucémica postprandial en los portadores TT de <em>TCF7L2</em> que en los CC?</p>
 <p><span class="math inline">\(H_0: \sigma^2_{TT} = \sigma^2_{CC}\)</span> frente a <span class="math inline">\(H_1: \sigma^2_{TT} &gt; \sigma^2_{CC}\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1110,7 +1270,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="columns">
 <div class="column" style="width:50%;">
 <div id="exm-anova" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 14</strong></span> ¿Difiere el IMC medio entre los tres genotipos de <em>FTO</em> rs9939609?</p>
+<p><span class="theorem-title"><strong>Ejemplo 21</strong></span> ¿Difiere el IMC medio entre los tres genotipos de <em>FTO</em> rs9939609?</p>
 <p><span class="math inline">\(H_0: \mu_{AA} = \mu_{AT} = \mu_{TT}\)</span> frente a <span class="math inline">\(H_1\)</span>: al menos una media es distinta.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1153,7 +1313,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-20-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-31-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1165,7 +1325,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="columns">
 <div class="column" style="width:50%;">
 <div id="exm-correlacion" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 15</strong></span> ¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática en 40 adultos?</p>
+<p><span class="theorem-title"><strong>Ejemplo 22</strong></span> ¿Existe relación lineal entre la ingesta de folato (µg/día) y la homocisteína plasmática en 40 adultos?</p>
 <p><span class="math inline">\(H_0: \rho = 0\)</span> frente a <span class="math inline">\(H_1: \rho \neq 0\)</span>.</p>
 </div>
 <ul>
@@ -1199,7 +1359,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-23-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-34-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1209,7 +1369,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-de-comparación-de-dos-proporciones" class="slide level3">
 <h3>Contraste de comparación de dos proporciones</h3>
 <div id="exm-dos-proporciones" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 16</strong></span> Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de <em>MTHFR</em> (74.3%) y en 24 de 45 homocigotos TT (53.3%). ¿Es distinta la proporción de normalización según el genotipo?</p>
+<p><span class="theorem-title"><strong>Ejemplo 23</strong></span> Con folato, la homocisteína se normaliza en 52 de 70 portadores CC/CT de <em>MTHFR</em> (74.3%) y en 24 de 45 homocigotos TT (53.3%). ¿Es distinta la proporción de normalización según el genotipo?</p>
 <p><span class="math inline">\(H_0: p_{CC/CT} = p_{TT}\)</span> frente a <span class="math inline">\(H_1: p_{CC/CT} \neq p_{TT}\)</span>.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1239,7 +1399,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-chi-cuadrado-de-independencia" class="slide level3 smaller">
 <h3>Contraste chi-cuadrado de independencia</h3>
 <div id="exm-chi-independencia" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 17</strong></span> En una muestra de 600 adultos se clasifica a cada persona según su genotipo de <em>FTO</em> y su estado ponderal. ¿Son independientes ambas variables?</p>
+<p><span class="theorem-title"><strong>Ejemplo 24</strong></span> En una muestra de 600 adultos se clasifica a cada persona según su genotipo de <em>FTO</em> y su estado ponderal. ¿Son independientes ambas variables?</p>
 <p><span class="math inline">\(H_0\)</span>: el genotipo y el estado ponderal son independientes frente a <span class="math inline">\(H_1\)</span>: están asociados.</p>
 </div>
 <div class="columns">
@@ -1343,7 +1503,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-del-equilibrio-de-hardy-weinberg" class="slide level3">
 <h3>Contraste del equilibrio de Hardy-Weinberg</h3>
 <div id="exm-hardy-weinberg-contraste" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 18</strong></span> En una muestra de 500 personas se observan 92 AA, 236 AT y 172 TT para rs9939609. ¿Está la muestra en equilibrio de Hardy-Weinberg?</p>
+<p><span class="theorem-title"><strong>Ejemplo 25</strong></span> En una muestra de 500 personas se observan 92 AA, 236 AT y 172 TT para rs9939609. ¿Está la muestra en equilibrio de Hardy-Weinberg?</p>
 <p><span class="math inline">\(H_0\)</span>: las frecuencias genotípicas son <span class="math inline">\(p^2\)</span>, <span class="math inline">\(2pq\)</span>, <span class="math inline">\(q^2\)</span> frente a <span class="math inline">\(H_1\)</span>: no lo son.</p>
 </div>
 <p>La frecuencia estimada del alelo A es <span class="math inline">\(\hat p = \frac{2\cdot 92 + 236}{1000} = 0.42\)</span>.</p>
@@ -1383,7 +1543,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-exacto-de-fisher" class="slide level3 smaller">
 <h3>Contraste exacto de Fisher</h3>
 <div id="exm-fisher" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 19</strong></span> Se estudia la respuesta a una dieta cetogénica en portadores de la variante Pro12Ala de <em>PPARG</em>. Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.</p>
+<p><span class="theorem-title"><strong>Ejemplo 26</strong></span> Se estudia la respuesta a una dieta cetogénica en portadores de la variante Pro12Ala de <em>PPARG</em>. Como hay frecuencias esperadas menores que 5, se usa el contraste exacto de Fisher.</p>
 <p><span class="math inline">\(H_0\)</span>: la respuesta es independiente de la variante frente a <span class="math inline">\(H_1\)</span>: están asociadas.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1432,7 +1592,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="contraste-u-de-mann-whitney" class="slide level3">
 <h3>Contraste U de Mann-Whitney</h3>
 <div id="exm-mann-whitney" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 20</strong></span> La PCR ultrasensible es muy asimétrica. ¿Es distinta entre participantes con dieta mediterránea y con dieta control?</p>
+<p><span class="theorem-title"><strong>Ejemplo 27</strong></span> La PCR ultrasensible es muy asimétrica. ¿Es distinta entre participantes con dieta mediterránea y con dieta control?</p>
 <p><span class="math inline">\(H_0\)</span>: ambas distribuciones son iguales frente a <span class="math inline">\(H_1\)</span>: una tiende a dar valores mayores que la otra.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1490,7 +1650,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="columns">
 <div class="column" style="width:50%;">
 <div id="exm-kruskal" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 21</strong></span> ¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana (20 por grupo)?</p>
+<p><span class="theorem-title"><strong>Ejemplo 28</strong></span> ¿Difiere el índice de diversidad de Shannon de la microbiota intestinal entre participantes con dieta omnívora, vegetariana y vegana (20 por grupo)?</p>
 <p><span class="math inline">\(H_0\)</span>: las tres distribuciones son iguales frente a <span class="math inline">\(H_1\)</span>: al menos una es distinta.</p>
 </div>
 <div class="cell" data-layout-align="center">
@@ -1521,7 +1681,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-37-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-48-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
 </figure>
 </div>
 </div>
@@ -1531,7 +1691,7 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 <section id="corrección-por-comparaciones-múltiples" class="slide level3 smaller">
 <h3>Corrección por comparaciones múltiples</h3>
 <div id="exm-comparaciones-multiples" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 22</strong></span> Se estudia la expresión de 10 genes del metabolismo lipídico tras una intervención con dieta mediterránea. Ajustamos los p-valores con Bonferroni y con la FDR de Benjamini-Hochberg.</p>
+<p><span class="theorem-title"><strong>Ejemplo 29</strong></span> Se estudia la expresión de 10 genes del metabolismo lipídico tras una intervención con dieta mediterránea. Ajustamos los p-valores con Bonferroni y con la FDR de Benjamini-Hochberg.</p>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">

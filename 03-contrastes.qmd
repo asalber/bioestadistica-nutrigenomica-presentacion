@@ -41,6 +41,50 @@ tg_despues <- c(201, 185, 240, 230, 210, 160, 228, 251, 219, 170, 236, 199, 205,
 auc_TT <- c(180, 219, 170, 287, 226, 171, 233, 245, 238, 195, 283, 229, 180, 104, 264, 208)
 auc_CC <- c(190, 216, 213, 207, 216, 212, 192, 134, 207, 188, 186, 149, 177, 202, 228, 187, 201,
             188, 151, 178)
+# Contraste sobre la proporción de hombres: diagramas de barras de la binomial
+dibujar_binomial <- function(n, p0, k_rechazo, p1 = NULL, obs = NULL, xmax = n) {
+  h0 <- tibble(x = 0:xmax, p = dbinom(0:xmax, n, p0),
+               region = ifelse(x <= k_rechazo, "Rechazo", "Aceptación"))
+  g0 <- ggplot(h0, aes(x, p, fill = region)) +
+    geom_col(width = 0.7) +
+    scale_fill_manual(values = c(Aceptación = myblue, Rechazo = myred), name = NULL) +
+    labs(title = paste0("Bajo H₀: X ~ B(", n, ", ", p0, ")"), x = "Número de hombres", y = "Probabilidad") +
+    theme(legend.position = "top")
+  if (!is.null(obs)) g0 <- g0 + annotate("point", x = obs, y = 0, colour = mygreen, size = 5)
+  if (n <= 20) g0 <- g0 + scale_x_continuous(breaks = 0:xmax)
+  if (is.null(p1)) return(g0)
+  h1 <- tibble(x = 0:xmax, p = dbinom(0:xmax, n, p1),
+               region = ifelse(x <= k_rechazo, "Potencia (1 − β)", "Riesgo β"))
+  g1 <- ggplot(h1, aes(x, p, fill = region)) +
+    geom_col(width = 0.7) +
+    scale_fill_manual(values = c(`Riesgo β` = mypurple, `Potencia (1 − β)` = mygreen), name = NULL) +
+    labs(title = paste0("Bajo H₁: X ~ B(", n, ", ", p1, ")"), x = "Número de hombres", y = "Probabilidad") +
+    theme(legend.position = "top")
+  if (n <= 20) g1 <- g1 + scale_x_continuous(breaks = 0:xmax)
+  g0 / g1
+}
+# Relación entre riesgos: distribuciones del estimador bajo H0 y H1 (contraste unilateral de mayor)
+dibujar_riesgos <- function(delta, alfa = 0.05, sd = 1, titulo = NULL) {
+  zc <- qnorm(1 - alfa, 0, sd)
+  df <- tibble(x = seq(-3.5, delta + 3.5, length.out = 800), h0 = dnorm(x, 0, sd), h1 = dnorm(x, delta, sd))
+  ymax <- max(df$h0)
+  ggplot(df, aes(x)) +
+    geom_area(data = filter(df, x >= zc), aes(y = h0), fill = myred, alpha = 0.5) +
+    geom_area(data = filter(df, x <= zc), aes(y = h1), fill = mypurple, alpha = 0.5) +
+    geom_line(aes(y = h0), colour = myblue, linewidth = 1) +
+    geom_line(aes(y = h1), colour = myblack, linewidth = 1) +
+    geom_vline(xintercept = zc, linetype = 2) +
+    annotate("text", x = 0, y = ymax * 1.1, label = "H[0]:~theta==theta[0]", parse = TRUE, colour = myblue, size = 5, hjust = 0.8) +
+    annotate("text", x = delta, y = ymax * 1.1, label = "H[1]:~theta==theta[0]+delta", parse = TRUE, size = 5, hjust = 0.2) +
+    annotate("text", x = zc + 0.45 * sd, y = ymax * 0.05, label = "alpha", parse = TRUE, colour = myred, size = 7) +
+    annotate("text", x = zc - 0.45 * sd, y = ymax * 0.05, label = "beta", parse = TRUE, colour = mypurple, size = 7) +
+    annotate("text", x = zc - 0.1, y = -ymax * 0.07, label = "Aceptación", colour = myblue, size = 5, hjust = 1) +
+    annotate("text", x = zc + 0.1, y = -ymax * 0.07, label = "Rechazo", colour = myred, size = 5, hjust = 0) +
+    scale_x_continuous(breaks = c(0, delta), labels = c(expression(theta[0]), expression(theta[0] + delta))) +
+    labs(title = titulo, x = expression(hat(theta)), y = NULL) +
+    coord_cartesian(ylim = c(-ymax * 0.1, ymax * 1.15)) +
+    theme(axis.text.y = element_blank(), axis.text.x = element_text(size = 14), panel.grid = element_blank())
+}
 n_hcy <- length(hcy)
 t_obs <- (mean(hcy) - 12) / (sd(hcy) / sqrt(n_hcy))
 t_crit <- qt(0.95, df = n_hcy - 1)
@@ -199,6 +243,19 @@ $$
 Valores de $T$ próximos a 0 son compatibles con $H_0$; valores grandes son evidencia a favor de $H_1$.
 :::
 
+---
+
+:::{#exm-hombres-estadistico}
+Sospechamos que en una población hay menos hombres que mujeres. Si $p$ es la proporción de hombres, por las leyes de la genética lo esperable es $p = 0.5$, así que planteamos
+$$
+H_0: p = 0.5 \qquad H_1: p < 0.5.
+$$
+Tomamos una muestra aleatoria de 10 personas y usamos como estadístico del contraste el número de hombres en la muestra, $X$. Si $H_0$ es cierta, $X\sim B(10, 0.5)$ y el número esperado de hombres es 5.
+
+Es lógico aceptar $H_0$ si en la muestra hay un número de hombres próximo a 5 y rechazarla si hay muchos menos. Pero _¿dónde ponemos el límite entre ambas regiones?_
+:::
+
+
 ## Regiones de aceptación y rechazo
 
 :::{#def-regiones}
@@ -244,6 +301,35 @@ El estadístico ([verde]{.mygreen}) cae en la región de rechazo: rechazamos $H_
 #| fig-height: 5
 dibujar_regiones(\(x) dt(x, n_hcy - 1), seq(-4, 7, length.out = 800), \(x) x > t_crit,
                  "Distribución T(19) bajo H₀", "T", obs = t_obs)
+```
+:::
+
+::::
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-regiones}
+Como $X\sim B(10, 0.5)$ bajo $H_0$ y el contraste es unilateral de menor, la región de rechazo estará en los valores pequeños de $X$.
+
+Si rechazáramos con 2 o menos hombres, la probabilidad de error de tipo I sería
+$$P(X\leq 2) = `r fmt(pbinom(2, 10, 0.5), 4)` > 0.05.$$
+
+Con $\alpha = 0.05$ solo podemos rechazar con 0 o 1 hombres, ya que
+$$P(X\leq 1) = `r fmt(pbinom(1, 10, 0.5), 4)` \leq 0.05.$$
+:::
+
+- Región de rechazo: $X\leq 1$.
+- Región de aceptación: $X\geq 2$.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+dibujar_binomial(10, 0.5, k_rechazo = 1)
 ```
 :::
 
@@ -316,6 +402,40 @@ tabla_contraste(t.test(hcy, mu = 12, alternative = "greater"))
 ```
 
 Como el p-valor es menor que $\alpha = 0.05$, rechazamos $H_0$. Llegamos a la misma conclusión que con la región de rechazo, pero el p-valor indica además cuánta evidencia hay en contra de $H_0$.
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-p-valor}
+En el contraste sobre la proporción de hombres ($H_0: p = 0.5$, $H_1: p < 0.5$), si en una muestra de 10 personas observamos 1 hombre, el p-valor es
+$$p = P(X\leq 1) = `r fmt(pbinom(1, 10, 0.5), 4)`.$$
+Si observamos 0 hombres, el p-valor es
+$$p = P(X\leq 0) = `r fmt(pbinom(0, 10, 0.5), 4)`.$$
+:::
+
+- Con 1 hombre se rechaza $H_0$ con $\alpha = 0.05$, pero no con $\alpha = 0.01$.
+- Con 0 hombres se rechaza también con $\alpha = 0.01$: la evidencia en contra de $H_0$ es mayor.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+tibble(x = 0:10, p = dbinom(0:10, 10, 0.5), pval = x <= 1) |>
+  ggplot(aes(x, p, fill = pval)) +
+  geom_col(width = 0.7) +
+  annotate("point", x = 1, y = 0, colour = mygreen, size = 5) +
+  scale_fill_manual(values = c(`FALSE` = myblue, `TRUE` = myred),
+                    breaks = "TRUE", labels = "p-valor = P(X ≤ 1)", name = NULL) +
+  scale_x_continuous(breaks = 0:10) +
+  labs(title = "Bajo H₀: X ~ B(10, 0.5); observado: 1 hombre", x = "Número de hombres", y = "Probabilidad") +
+  theme(legend.position = "top")
+```
+:::
+
+::::
 
 ## Interpretación del p-valor
 
@@ -396,6 +516,167 @@ ggplot(df, aes(x)) +
   annotate("text", x = 3.3, y = 0.2, label = "1 - beta", parse = TRUE, colour = mygreen, size = 7) +
   labs(x = "Estadístico", y = NULL) +
   theme(axis.text.y = element_blank())
+```
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-potencia}
+En el contraste sobre la proporción de hombres no se considera importante una diferencia menor de un 10% respecto a $p = 0.5$, es decir, el tamaño del efecto es $\delta = 0.1$. Esto fija la hipótesis alternativa
+$$H_1: p = 0.5 - 0.1 = 0.4,$$
+bajo la que $X\sim B(10, 0.4)$. Con la región de rechazo $X\leq 1$ ($\alpha = 0.05$):
+$$\beta = P(X\geq 2 \mid p = 0.4) = `r fmt(1 - pbinom(1, 10, 0.4), 4)`.$$
+:::
+
+La potencia es solo $1-\beta = `r fmt(pbinom(1, 10, 0.4), 4)`$: con 10 personas el contraste casi nunca detectaría una diferencia del 10%.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+dibujar_binomial(10, 0.5, k_rechazo = 1, p1 = 0.4)
+```
+:::
+
+::::
+
+## Relación entre el riesgo β y el tamaño del efecto
+
+El riesgo $\beta$ depende de la diferencia mínima $\delta$ que queremos detectar respecto al valor de $H_0$: cuanto mayor es el tamaño del efecto, menor es $\beta$ y mayor la potencia.
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.5
+dibujar_riesgos(delta = 2.5, titulo = "Tamaño del efecto pequeño") |
+  dibujar_riesgos(delta = 4.5, titulo = "Tamaño del efecto grande")
+```
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-tamano-efecto}
+Si en el contraste sobre la proporción de hombres queremos detectar una diferencia de al menos un 20%, $\delta = 0.2$, la hipótesis alternativa es
+$$H_1: p = 0.5 - 0.2 = 0.3,$$
+y bajo ella $X\sim B(10, 0.3)$. Con la misma región de rechazo $X\leq 1$:
+$$\beta = P(X\geq 2 \mid p = 0.3) = `r fmt(1 - pbinom(1, 10, 0.3), 4)`.$$
+:::
+
+El riesgo $\beta$ disminuye y la potencia sube a $1-\beta = `r fmt(pbinom(1, 10, 0.3), 4)`$, aunque el contraste sigue siendo poco potente.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+dibujar_binomial(10, 0.5, k_rechazo = 1, p1 = 0.3)
+```
+:::
+
+::::
+
+## Relación entre los riesgos α y β
+
+Los riesgos $\alpha$ y $\beta$ están enfrentados: con el mismo tamaño muestral, cuando uno disminuye el otro aumenta.
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.5
+dibujar_riesgos(delta = 3, alfa = 0.01, titulo = "Riesgo α pequeño") |
+  dibujar_riesgos(delta = 3, alfa = 0.10, titulo = "Riesgo α grande")
+```
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-alfa-beta}
+Si en el contraste sobre la proporción de hombres tomamos $\alpha = 0.1$, la región de rechazo pasa a ser $X\leq 2$, ya que
+$$P(X\leq 2) = `r fmt(pbinom(2, 10, 0.5), 4)` \leq 0.1.$$
+Para $\delta = 0.1$, bajo $H_1$ $X\sim B(10, 0.4)$ y
+$$\beta = P(X\geq 3 \mid p = 0.4) = `r fmt(1 - pbinom(2, 10, 0.4), 4)`.$$
+:::
+
+Al aumentar $\alpha$ de 0.05 a 0.1, $\beta$ baja y la potencia sube de `r fmt(pbinom(1, 10, 0.4), 4)` a `r fmt(pbinom(2, 10, 0.4), 4)`.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+dibujar_binomial(10, 0.5, k_rechazo = 2, p1 = 0.4)
+```
+:::
+
+::::
+
+## Relación entre los riesgos y el tamaño muestral
+
+Al aumentar el tamaño muestral disminuye la dispersión del estimador, de modo que se pueden reducir a la vez los dos riesgos de error.
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.5
+dibujar_riesgos(delta = 3, sd = 1, titulo = "Muestra pequeña") |
+  dibujar_riesgos(delta = 3, sd = 0.6, titulo = "Muestra grande")
+```
+
+---
+
+```{r}
+#| include: false
+k100 <- max((0:100)[pbinom(0:100, 100, 0.5) <= 0.05])
+```
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-hombres-tamano-muestral}
+Si en el contraste sobre la proporción de hombres tomamos una muestra de 100 personas, bajo $H_0$ $X\sim B(100, 0.5)$ y, con $\alpha = 0.05$, la región de rechazo es $X\leq `r k100`$, ya que
+$$P(X\leq `r k100`) = `r fmt(pbinom(k100, 100, 0.5), 4)` \leq 0.05.$$
+Para $\delta = 0.1$, bajo $H_1$ $X\sim B(100, 0.4)$ y
+$$\beta = P(X\geq `r k100 + 1` \mid p = 0.4) = `r fmt(1 - pbinom(k100, 100, 0.4), 4)`.$$
+:::
+
+La potencia sube hasta $1-\beta = `r fmt(pbinom(k100, 100, 0.4), 4)`$: ahora el contraste sí es útil para detectar una diferencia del 10%.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+dibujar_binomial(100, 0.5, k_rechazo = k100, p1 = 0.4, xmax = 70)
+```
+:::
+
+::::
+
+---
+
+### Curva de potencia
+
+La potencia depende del verdadero valor del parámetro, $\mbox{Potencia}(p) = P(\mbox{Rechazar } H_0 \mid p)$. En el contraste sobre la proporción de hombres ($\alpha = 0.05$):
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.5
+k_n <- function(n) max((0:n)[pbinom(0:n, n, 0.5) <= 0.05])
+expand_grid(p = seq(0.05, 0.5, by = 0.005), n = c(10, 50, 100)) |>
+  mutate(potencia = map2_dbl(p, n, \(p, n) pbinom(k_n(n), n, p)),
+         n = factor(paste0("n = ", n), levels = paste0("n = ", c(100, 50, 10)))) |>
+  ggplot(aes(p, potencia, colour = n)) +
+  geom_line(linewidth = 1.2) +
+  geom_hline(yintercept = 0.8, linetype = 2) +
+  geom_vline(xintercept = 0.4, linetype = 3) +
+  scale_colour_manual(values = c(myblue, mypurple, myred), name = "Tamaño muestral") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_reverse() +
+  labs(x = "Verdadera proporción de hombres p", y = "Potencia")
 ```
 
 ## ¿De qué depende la potencia?
