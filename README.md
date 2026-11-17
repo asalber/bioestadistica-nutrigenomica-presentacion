@@ -1,4 +1,4 @@
-# bioestadistica-nutrigenomica-presentacion
+# bioestad-stica-nutrigenomica-presentacion
 
 Presentaciones de inferencia estadística (distribuciones, estimación por intervalos y contrastes de hipótesis) con ejemplos de Nutrigenómica, para el máster de Bioestadística aplicada a Nutrición y Genómica.
 
