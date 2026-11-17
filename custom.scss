@@ -329,3 +329,11 @@ html .timeline {
   display: block;
   margin-top: 1.2em;
 }
+
+/* Cuadro destacado con letra grande (p. ej., regla de decisión) */
+.reveal .destacado .callout {
+  font-size: 1.1em !important;
+}
+.reveal .destacado .callout li {
+  margin-bottom: 0.4em;
+}

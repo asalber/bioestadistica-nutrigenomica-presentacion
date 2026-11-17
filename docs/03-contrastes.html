@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="03-contrastes_files/libs/revealjs/dist/theme/quarto-8389539a47bc9640f85d58d302309429.css">
+  <link rel="stylesheet" href="03-contrastes_files/libs/revealjs/dist/theme/quarto-3a21bdd1de9d629e2794dce49cc505ed.css">
   <link href="03-contrastes_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="03-contrastes_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="03-contrastes_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -396,15 +396,38 @@ T = \frac{\bar X - 12}{S/\sqrt{n}} \sim T(n-1) \quad \mbox{si } H_0 \mbox{ es ci
 </div>
 </section>
 
-<section>
 <section id="p-valor" class="title-slide slide level2 center">
 <h2>p-valor</h2>
 <div id="def-p-valor" class="theorem definition">
 <p><span class="theorem-title"><strong>Definición 6 (p-valor)</strong></span> El <em>p-valor</em> es la probabilidad de obtener, si <span class="math inline">\(H_0\)</span> es cierta, un valor del estadístico igual o más extremo (en la dirección de <span class="math inline">\(H_1\)</span>) que el observado en la muestra.</p>
 </div>
-<p><strong>Regla de decisión</strong>: si p-valor <span class="math inline">\(\leq \alpha\)</span> se rechaza <span class="math inline">\(H_0\)</span>; si p-valor <span class="math inline">\(&gt; \alpha\)</span> no se rechaza.</p>
 
 <img data-src="03-contrastes_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>El p-valor (<span class="myred">área roja</span>) mide la compatibilidad de los datos con <span class="math inline">\(H_0\)</span>: cuanto menor es, más evidencia hay en contra de <span class="math inline">\(H_0\)</span>.</p>
+</section>
+
+<section>
+<section id="regla-de-decisión" class="title-slide slide level2 center">
+<h2>Regla de decisión</h2>
+<p>Fijado el riesgo <span class="math inline">\(\alpha\)</span> antes de ver los datos, se calcula el p-valor con la muestra y se decide:</p>
+<div class="destacado">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Regla de decisión basada en el p-valor</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Si <strong>p-valor <span class="math inline">\(\leq \alpha\)</span></strong>, se <strong>rechaza</strong> <span class="math inline">\(H_0\)</span>: el resultado es estadísticamente significativo y hay evidencia a favor de <span class="math inline">\(H_1\)</span>.</li>
+<li>Si <strong>p-valor <span class="math inline">\(&gt; \alpha\)</span></strong>, <strong>no se rechaza</strong> <span class="math inline">\(H_0\)</span>: no hay evidencia suficiente para afirmar <span class="math inline">\(H_1\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<p>Esta regla lleva a la misma decisión que comprobar si el estadístico cae en la región de rechazo.</p>
 </section>
 <section class="slide level3">
 
