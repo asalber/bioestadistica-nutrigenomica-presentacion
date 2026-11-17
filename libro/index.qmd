@@ -1,8 +1,8 @@
 # Prólogo {.unnumbered}
 
-Este libro reúne en formato de texto las presentaciones de inferencia estadística de la asignatura de Bioestadística del Máster en Metodología de la Investigación en Nutrigenómica y Nutrigenética de la Universidad CEU San Pablo. Las diapositivas se pueden consultar en <https://aprendeconalf.es/bioestadistica-nutrigenomica-presentacion/>.
+Este libro presenta los fundamentos de la inferencia estadística aplicados a la Nutrigenómica y forma parte de la asignatura de Bioestadística del Máster en Metodología de la Investigación en Nutrigenómica y Nutrigenética de la Universidad CEU San Pablo.
 
-El libro sigue el mismo orden que las presentaciones y está dividido en tres capítulos:
+El libro está dividido en tres capítulos:
 
 1. **Distribuciones de probabilidad en Nutrigenómica.** Los modelos que describen las variables que medimos: fenotipos continuos, genotipos, conteos de secuenciación, proporciones y composiciones, además de las distribuciones de los p-valores y de los estadísticos.
 2. **Estimación de parámetros.** Las distribuciones muestrales de la media, la cuasivarianza y la proporción, y la construcción e interpretación de intervalos de confianza para una y dos poblaciones.
