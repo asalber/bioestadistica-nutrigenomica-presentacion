@@ -20,7 +20,7 @@ execute:
 format:
   clean-revealjs:
     theme: [default, custom.scss]
-    logo: img/logos/aprendeconalf.png
+    logo: img/logos/ceu-san-pablo.png
     navigation-mode: vertical
     slide-level: 3
     footer: <https://aprendeconalf.es/bioestadistica-nutrigenomica-presentacion/>
