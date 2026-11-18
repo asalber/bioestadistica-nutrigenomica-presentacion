@@ -55,14 +55,14 @@
 <line x1='308.91' y1='180.82' x2='398.23' y2='180.82' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='37.64' y='268.75' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='37.64' y='200.22' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.63px' lengthAdjust='spacingAndGlyphs'>25</text>
-<text x='37.64' y='131.69' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.97px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='37.64' y='63.15' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.72px' lengthAdjust='spacingAndGlyphs'>35</text>
-<text x='115.38' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='15.44px' lengthAdjust='spacingAndGlyphs'>AA</text>
-<text x='234.47' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.94px' lengthAdjust='spacingAndGlyphs'>AT</text>
-<text x='353.57' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.44px' lengthAdjust='spacingAndGlyphs'>TT</text>
-<text x='234.47' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='92.17px' lengthAdjust='spacingAndGlyphs'>Genotipo FTO</text>
-<text transform='translate(17.16,163.23) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='80.53px' lengthAdjust='spacingAndGlyphs'>IMC (kg/m²)</text>
+<text x='37.64' y='268.75' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='37.64' y='200.22' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.63px' lengthAdjust='spacingAndGlyphs'>25</text>
+<text x='37.64' y='131.69' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.97px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='37.64' y='63.15' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.72px' lengthAdjust='spacingAndGlyphs'>35</text>
+<text x='115.38' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='15.44px' lengthAdjust='spacingAndGlyphs'>AA</text>
+<text x='234.47' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.94px' lengthAdjust='spacingAndGlyphs'>AT</text>
+<text x='353.57' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.44px' lengthAdjust='spacingAndGlyphs'>TT</text>
+<text x='234.47' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='92.17px' lengthAdjust='spacingAndGlyphs'>Genotipo FTO</text>
+<text transform='translate(17.16,163.23) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='80.53px' lengthAdjust='spacingAndGlyphs'>IMC (kg/m²)</text>
 </g>
 </svg>

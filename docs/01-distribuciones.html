@@ -885,6 +885,7 @@ P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 </div>
 </div></div>
 </section></section>
+<section>
 <section id="distribución-chi-cuadrado" class="title-slide slide level2 smaller center">
 <h2>Distribución Chi-cuadrado</h2>
 <div id="def-distribucion-chi-cuadrado" class="theorem definition">
@@ -901,7 +902,28 @@ P(\text{p-valor} \leq \alpha \mid H_0) = \alpha.
 <li>Contrastes de razón de verosimilitudes en modelos de interacción gen-nutriente.</li>
 </ul>
 </section>
+<section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-chi-cuadrado-hba1c" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 13</strong></span> La HbA1c de los pacientes con diabetes tipo 2 bien controlados es <span class="math inline">\(X\sim N(6.5, 0.4)\)</span>. Si tomamos muestras de 15 pacientes, el estadístico <span class="math display">\[\chi^2 = \frac{14\hat S^2}{0.4^2}\sim\chi^2(14).\]</span> ¿Cuál es la probabilidad de que la cuasidesviación típica muestral supere 0.5?</p>
+</div>
+<p><span class="math display">\[P(\hat S &gt; 0.5) = P\left(\chi^2 &gt; \frac{14\cdot 0.5^2}{0.4^2}\right) = P(\chi^2 &gt; 21.875) = 0.0812.\]</span></p>
+<p>Solo en un 8.1% de las muestras la cuasidesviación superará 0.5 (área sombreada).</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="01-distribuciones_files/figure-revealjs/chi-cuadrado-hba1c-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
 <section id="distribución-t-de-student" class="title-slide slide level2 smaller center">
 <h2>Distribución T de Student</h2>
 <div id="def-distribucion-t" class="theorem definition">
@@ -919,7 +941,30 @@ T = \frac{Z}{\sqrt{U/\nu}}
 <li>Contrastes de los coeficientes de un modelo de regresión.</li>
 </ul>
 </section>
+<section class="slide level3">
 
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-t-homocisteina" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 14</strong></span> La homocisteína de los homocigotos TT de <em>MTHFR</em> es normal con media <span class="math inline">\(\mu = 14\)</span> µmol/l. En muestras pequeñas de 5 personas, el estadístico <span class="math display">\[T = \frac{\bar X - 14}{\hat S/\sqrt{5}}\sim T(4).\]</span> ¿Cuál es la probabilidad de que <span class="math inline">\(T\)</span> supere 2?</p>
+</div>
+<ul>
+<li>Con la <span class="math inline">\(T(4)\)</span>: <span class="math inline">\(P(T &gt; 2) = 0.0581\)</span>.</li>
+<li>Con la <span class="math inline">\(N(0,1)\)</span>: <span class="math inline">\(P(Z &gt; 2) = 0.0228\)</span>.</li>
+</ul>
+<p>Las colas de la <span class="math inline">\(T\)</span> son más pesadas: si usáramos la normal subestimaríamos la probabilidad de valores extremos.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="01-distribuciones_files/figure-revealjs/t-homocisteina-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
 <section>
 <section id="distribución-f-de-fisher-snedecor" class="title-slide slide level2 smaller center">
 <h2>Distribución F de Fisher-Snedecor</h2>
@@ -936,10 +981,31 @@ F = \frac{U/\nu_1}{V/\nu_2}
 <li>Contraste global de un modelo de regresión con varios nutrientes y SNPs.</li>
 </ul>
 </section>
+<section class="slide level3">
+
+<div class="columns">
+<div class="column" style="width:45%;">
+<div id="exm-f-glucemia" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 15</strong></span> Se mide la respuesta glucémica en 16 portadores TT y 20 CC de <em>TCF7L2</em>. Si ambas poblaciones son normales con igual varianza, <span class="math display">\[F = \frac{\hat S^2_{TT}}{\hat S^2_{CC}}\sim F(15, 19).\]</span> ¿Cuál es la probabilidad de que la cuasivarianza de los TT duplique la de los CC?</p>
+</div>
+<p><span class="math display">\[P(F &gt; 2) = 0.0774.\]</span></p>
+<p>Aun con varianzas iguales, el cociente supera 2 en un 7.7% de las muestras.</p>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="01-distribuciones_files/figure-revealjs/f-glucemia-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
 <section id="forma-de-las-distribuciones-de-los-estadísticos" class="slide level3">
 <h3>Forma de las distribuciones de los estadísticos</h3>
 
-<img data-src="01-distribuciones_files/figure-revealjs/unnamed-chunk-18-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
+<img data-src="01-distribuciones_files/figure-revealjs/unnamed-chunk-21-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"></section>
 <section class="slide level3">
 
 <div id="exr-distribuciones" class="theorem exercise">

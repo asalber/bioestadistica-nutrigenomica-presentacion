@@ -136,22 +136,22 @@
 <rect x='398.64' y='171.22' width='3.21' height='0.025' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHw0MzIuMDA=)'>
-<text x='55.21' y='175.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='55.21' y='153.94' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.16px' lengthAdjust='spacingAndGlyphs'>0.02</text>
-<text x='55.21' y='132.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.57px' lengthAdjust='spacingAndGlyphs'>0.04</text>
-<text x='55.21' y='111.20' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.28px' lengthAdjust='spacingAndGlyphs'>0.06</text>
-<text x='55.21' y='89.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.26px' lengthAdjust='spacingAndGlyphs'>0.08</text>
-<text x='79.30' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='171.00' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='262.70' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='354.39' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.00px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='239.77' y='206.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='135.87px' lengthAdjust='spacingAndGlyphs'>Número de hombres</text>
-<text transform='translate(24.14,128.72) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
+<text x='55.21' y='175.31' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
+<text x='55.21' y='153.94' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.16px' lengthAdjust='spacingAndGlyphs'>0.02</text>
+<text x='55.21' y='132.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.57px' lengthAdjust='spacingAndGlyphs'>0.04</text>
+<text x='55.21' y='111.20' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.28px' lengthAdjust='spacingAndGlyphs'>0.06</text>
+<text x='55.21' y='89.83' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.26px' lengthAdjust='spacingAndGlyphs'>0.08</text>
+<text x='79.30' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='171.00' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='262.70' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='354.39' y='189.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.00px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='239.77' y='206.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='135.87px' lengthAdjust='spacingAndGlyphs'>Número de hombres</text>
+<text transform='translate(24.14,128.72) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
 <rect x='163.35' y='44.46' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC;' />
 <rect x='254.42' y='44.46' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FF2152;' />
-<text x='186.89' y='56.46' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='59.85px' lengthAdjust='spacingAndGlyphs'>Aceptación</text>
-<text x='277.97' y='56.46' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>Rechazo</text>
-<text x='61.49' y='26.17' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='187.55px' lengthAdjust='spacingAndGlyphs'>Bajo H₀: X ~ B(100, 0.5)</text>
+<text x='186.89' y='56.46' style='font-size: 11.20px; font-family: "Arimo";' textLength='59.85px' lengthAdjust='spacingAndGlyphs'>Aceptación</text>
+<text x='277.97' y='56.46' style='font-size: 11.20px; font-family: "Arimo";' textLength='45.91px' lengthAdjust='spacingAndGlyphs'>Rechazo</text>
+<text x='61.49' y='26.17' style='font-size: 16.80px; font-family: "Arimo";' textLength='187.55px' lengthAdjust='spacingAndGlyphs'>Bajo H₀: X ~ B(100, 0.5)</text>
 </g>
 <defs>
   <clipPath id='cpNi45N3w0MjUuMDN8MjE2LjAwfDQyNS4wMw=='>
@@ -258,21 +258,21 @@
 <rect x='398.64' y='380.27' width='3.21' height='0.00000095' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #996699;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHw0MzIuMDA=)'>
-<text x='55.21' y='384.34' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='55.21' y='363.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.16px' lengthAdjust='spacingAndGlyphs'>0.02</text>
-<text x='55.21' y='342.46' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.57px' lengthAdjust='spacingAndGlyphs'>0.04</text>
-<text x='55.21' y='321.51' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.28px' lengthAdjust='spacingAndGlyphs'>0.06</text>
-<text x='55.21' y='300.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.26px' lengthAdjust='spacingAndGlyphs'>0.08</text>
-<text x='79.30' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='171.00' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='262.70' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='354.39' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.00px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='239.77' y='415.03' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='135.87px' lengthAdjust='spacingAndGlyphs'>Número de hombres</text>
-<text transform='translate(24.14,337.75) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
+<text x='55.21' y='384.34' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
+<text x='55.21' y='363.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.16px' lengthAdjust='spacingAndGlyphs'>0.02</text>
+<text x='55.21' y='342.46' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.57px' lengthAdjust='spacingAndGlyphs'>0.04</text>
+<text x='55.21' y='321.51' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.28px' lengthAdjust='spacingAndGlyphs'>0.06</text>
+<text x='55.21' y='300.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.26px' lengthAdjust='spacingAndGlyphs'>0.08</text>
+<text x='79.30' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='171.00' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='262.70' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='354.39' y='398.93' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.00px' lengthAdjust='spacingAndGlyphs'>60</text>
+<text x='239.77' y='415.03' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='135.87px' lengthAdjust='spacingAndGlyphs'>Número de hombres</text>
+<text transform='translate(24.14,337.75) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
 <rect x='152.24' y='253.48' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #03BF3D;' />
 <rect x='265.72' y='253.48' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #996699;' />
-<text x='175.78' y='265.48' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='82.25px' lengthAdjust='spacingAndGlyphs'>Potencia (1 − β)</text>
-<text x='289.26' y='265.48' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='45.72px' lengthAdjust='spacingAndGlyphs'>Riesgo β</text>
-<text x='61.49' y='235.20' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='185.58px' lengthAdjust='spacingAndGlyphs'>Bajo H₁: X ~ B(100, 0.4)</text>
+<text x='175.78' y='265.48' style='font-size: 11.20px; font-family: "Arimo";' textLength='82.25px' lengthAdjust='spacingAndGlyphs'>Potencia (1 − β)</text>
+<text x='289.26' y='265.48' style='font-size: 11.20px; font-family: "Arimo";' textLength='45.72px' lengthAdjust='spacingAndGlyphs'>Riesgo β</text>
+<text x='61.49' y='235.20' style='font-size: 16.80px; font-family: "Arimo";' textLength='185.58px' lengthAdjust='spacingAndGlyphs'>Bajo H₁: X ~ B(100, 0.4)</text>
 </g>
 </svg>

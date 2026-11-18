@@ -45,21 +45,21 @@
 <rect x='88.76' y='179.91' width='58.99' height='91.02' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC;' />
 <rect x='206.75' y='19.54' width='58.99' height='251.38' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC;' />
 <rect x='324.74' y='97.35' width='58.99' height='173.57' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC;' />
-<text x='118.25' y='175.77' text-anchor='middle' style='font-size: 14.23px; font-family: "Liberation Sans";' textLength='35.72px' lengthAdjust='spacingAndGlyphs'>0.176</text>
-<text x='236.24' y='15.40' text-anchor='middle' style='font-size: 14.23px; font-family: "Liberation Sans";' textLength='39.10px' lengthAdjust='spacingAndGlyphs'>0.487</text>
-<text x='354.23' y='93.21' text-anchor='middle' style='font-size: 14.23px; font-family: "Liberation Sans";' textLength='39.46px' lengthAdjust='spacingAndGlyphs'>0.336</text>
+<text x='118.25' y='175.77' text-anchor='middle' style='font-size: 14.23px; font-family: "Arimo";' textLength='35.72px' lengthAdjust='spacingAndGlyphs'>0.176</text>
+<text x='236.24' y='15.40' text-anchor='middle' style='font-size: 14.23px; font-family: "Arimo";' textLength='39.10px' lengthAdjust='spacingAndGlyphs'>0.487</text>
+<text x='354.23' y='93.21' text-anchor='middle' style='font-size: 14.23px; font-family: "Arimo";' textLength='39.46px' lengthAdjust='spacingAndGlyphs'>0.336</text>
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzMjQuMDA=)'>
-<text x='41.18' y='274.99' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='41.18' y='223.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.83px' lengthAdjust='spacingAndGlyphs'>0.1</text>
-<text x='41.18' y='171.80' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text x='41.18' y='120.20' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.19px' lengthAdjust='spacingAndGlyphs'>0.3</text>
-<text x='41.18' y='68.60' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text x='41.18' y='17.01' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.09px' lengthAdjust='spacingAndGlyphs'>0.5</text>
-<text x='118.25' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='15.44px' lengthAdjust='spacingAndGlyphs'>AA</text>
-<text x='236.24' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.94px' lengthAdjust='spacingAndGlyphs'>AT</text>
-<text x='354.23' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.44px' lengthAdjust='spacingAndGlyphs'>TT</text>
-<text x='236.24' y='314.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='92.17px' lengthAdjust='spacingAndGlyphs'>Genotipo FTO</text>
-<text transform='translate(17.16,145.23) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
+<text x='41.18' y='274.99' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='41.18' y='223.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.83px' lengthAdjust='spacingAndGlyphs'>0.1</text>
+<text x='41.18' y='171.80' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.11px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text x='41.18' y='120.20' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.19px' lengthAdjust='spacingAndGlyphs'>0.3</text>
+<text x='41.18' y='68.60' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.51px' lengthAdjust='spacingAndGlyphs'>0.4</text>
+<text x='41.18' y='17.01' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.09px' lengthAdjust='spacingAndGlyphs'>0.5</text>
+<text x='118.25' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='15.44px' lengthAdjust='spacingAndGlyphs'>AA</text>
+<text x='236.24' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.94px' lengthAdjust='spacingAndGlyphs'>AT</text>
+<text x='354.23' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.44px' lengthAdjust='spacingAndGlyphs'>TT</text>
+<text x='236.24' y='314.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='92.17px' lengthAdjust='spacingAndGlyphs'>Genotipo FTO</text>
+<text transform='translate(17.16,145.23) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='82.81px' lengthAdjust='spacingAndGlyphs'>Probabilidad</text>
 </g>
 </svg>

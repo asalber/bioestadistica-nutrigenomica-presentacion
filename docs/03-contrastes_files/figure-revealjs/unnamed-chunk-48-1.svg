@@ -52,12 +52,12 @@
 <line x1='306.85' y1='85.97' x2='397.76' y2='85.97' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='30.90' y='249.04' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='6.91px' lengthAdjust='spacingAndGlyphs'>3</text>
-<text x='30.90' y='130.72' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='30.90' y='12.39' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='6.80px' lengthAdjust='spacingAndGlyphs'>5</text>
-<text x='109.90' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='51.16px' lengthAdjust='spacingAndGlyphs'>Omnívora</text>
-<text x='231.10' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='63.67px' lengthAdjust='spacingAndGlyphs'>Vegetariana</text>
-<text x='352.30' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='40.28px' lengthAdjust='spacingAndGlyphs'>Vegana</text>
-<text transform='translate(17.16,171.58) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='123.12px' lengthAdjust='spacingAndGlyphs'>Índice de Shannon</text>
+<text x='30.90' y='249.04' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='6.91px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='30.90' y='130.72' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='30.90' y='12.39' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='6.80px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text x='109.90' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='51.16px' lengthAdjust='spacingAndGlyphs'>Omnívora</text>
+<text x='231.10' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='63.67px' lengthAdjust='spacingAndGlyphs'>Vegetariana</text>
+<text x='352.30' y='350.61' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='40.28px' lengthAdjust='spacingAndGlyphs'>Vegana</text>
+<text transform='translate(17.16,171.58) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='123.12px' lengthAdjust='spacingAndGlyphs'>Índice de Shannon</text>
 </g>
 </svg>

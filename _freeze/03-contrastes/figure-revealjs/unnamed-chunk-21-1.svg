@@ -52,25 +52,25 @@
 <line x1='59.60' y1='89.71' x2='704.95' y2='89.71' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw4NjQuMDB8MC4wMHwzMjQuMDA=)'>
-<text x='53.32' y='287.29' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='18.04px' lengthAdjust='spacingAndGlyphs'>0%</text>
-<text x='53.32' y='226.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.62px' lengthAdjust='spacingAndGlyphs'>25%</text>
-<text x='53.32' y='166.35' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.85px' lengthAdjust='spacingAndGlyphs'>50%</text>
-<text x='53.32' y='105.87' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.12px' lengthAdjust='spacingAndGlyphs'>75%</text>
-<text x='53.32' y='45.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='29.65px' lengthAdjust='spacingAndGlyphs'>100%</text>
-<text x='73.89' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='224.32' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.86px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='374.75' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='18.66px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text x='525.18' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>150</text>
-<text x='675.61' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='20.94px' lengthAdjust='spacingAndGlyphs'>200</text>
-<text x='382.27' y='314.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='184.05px' lengthAdjust='spacingAndGlyphs'>Tamaño muestral por grupo</text>
-<text transform='translate(17.16,156.65) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='57.61px' lengthAdjust='spacingAndGlyphs'>Potencia</text>
-<text x='725.87' y='132.34' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='124.19px' lengthAdjust='spacingAndGlyphs'>Tamaño del efecto</text>
+<text x='53.32' y='287.29' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='18.04px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='53.32' y='226.82' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.62px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='53.32' y='166.35' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.85px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='53.32' y='105.87' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.12px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<text x='53.32' y='45.40' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='29.65px' lengthAdjust='spacingAndGlyphs'>100%</text>
+<text x='73.89' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='224.32' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.86px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='374.75' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='18.66px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='525.18' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>150</text>
+<text x='675.61' y='297.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='20.94px' lengthAdjust='spacingAndGlyphs'>200</text>
+<text x='382.27' y='314.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='184.05px' lengthAdjust='spacingAndGlyphs'>Tamaño muestral por grupo</text>
+<text transform='translate(17.16,156.65) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='57.61px' lengthAdjust='spacingAndGlyphs'>Potencia</text>
+<text x='725.87' y='132.34' style='font-size: 14.00px; font-family: "Arimo";' textLength='124.19px' lengthAdjust='spacingAndGlyphs'>Tamaño del efecto</text>
 <line x1='727.59' y1='149.46' x2='741.42' y2='149.46' style='stroke-width: 2.56; stroke: #0099CC; stroke-linecap: butt;' />
 <line x1='727.59' y1='166.74' x2='741.42' y2='166.74' style='stroke-width: 2.56; stroke: #996699; stroke-linecap: butt;' />
 <line x1='727.59' y1='184.02' x2='741.42' y2='184.02' style='stroke-width: 2.56; stroke: #FF2152; stroke-linecap: butt;' />
-<text x='750.12' y='153.53' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='37.74px' lengthAdjust='spacingAndGlyphs'>d = 0.8</text>
-<text x='750.12' y='170.81' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='37.63px' lengthAdjust='spacingAndGlyphs'>d = 0.5</text>
-<text x='750.12' y='188.09' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='37.65px' lengthAdjust='spacingAndGlyphs'>d = 0.2</text>
-<text x='59.60' y='19.20' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='629.96px' lengthAdjust='spacingAndGlyphs'>Potencia del contraste T para dos muestras independientes (α = 0.05, bilateral)</text>
+<text x='750.12' y='153.53' style='font-size: 11.20px; font-family: "Arimo";' textLength='37.74px' lengthAdjust='spacingAndGlyphs'>d = 0.8</text>
+<text x='750.12' y='170.81' style='font-size: 11.20px; font-family: "Arimo";' textLength='37.63px' lengthAdjust='spacingAndGlyphs'>d = 0.5</text>
+<text x='750.12' y='188.09' style='font-size: 11.20px; font-family: "Arimo";' textLength='37.65px' lengthAdjust='spacingAndGlyphs'>d = 0.2</text>
+<text x='59.60' y='19.20' style='font-size: 16.80px; font-family: "Arimo";' textLength='629.96px' lengthAdjust='spacingAndGlyphs'>Potencia del contraste T para dos muestras independientes (α = 0.05, bilateral)</text>
 </g>
 </svg>

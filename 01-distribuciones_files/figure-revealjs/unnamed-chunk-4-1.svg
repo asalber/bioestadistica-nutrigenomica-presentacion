@@ -57,24 +57,24 @@
 <line x1='284.48' y1='319.50' x2='284.48' y2='52.15' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='55.12' y='311.41' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.45px' lengthAdjust='spacingAndGlyphs'>0.000</text>
-<text x='55.12' y='250.49' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='30.97px' lengthAdjust='spacingAndGlyphs'>0.025</text>
-<text x='55.12' y='189.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='31.20px' lengthAdjust='spacingAndGlyphs'>0.050</text>
-<text x='55.12' y='128.65' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='30.47px' lengthAdjust='spacingAndGlyphs'>0.075</text>
-<text x='55.12' y='67.72' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>0.100</text>
-<text x='78.15' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='11.61px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='181.31' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='284.48' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='13.97px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='387.64' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
-<text x='243.21' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='80.53px' lengthAdjust='spacingAndGlyphs'>IMC (kg/m²)</text>
-<text transform='translate(17.16,185.82) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='62.33px' lengthAdjust='spacingAndGlyphs'>Densidad</text>
+<text x='55.12' y='311.41' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='31.45px' lengthAdjust='spacingAndGlyphs'>0.000</text>
+<text x='55.12' y='250.49' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='30.97px' lengthAdjust='spacingAndGlyphs'>0.025</text>
+<text x='55.12' y='189.57' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='31.20px' lengthAdjust='spacingAndGlyphs'>0.050</text>
+<text x='55.12' y='128.65' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='30.47px' lengthAdjust='spacingAndGlyphs'>0.075</text>
+<text x='55.12' y='67.72' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='28.94px' lengthAdjust='spacingAndGlyphs'>0.100</text>
+<text x='78.15' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.61px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='181.31' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.88px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='284.48' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='13.97px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='387.64' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='14.28px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='243.21' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='80.53px' lengthAdjust='spacingAndGlyphs'>IMC (kg/m²)</text>
+<text transform='translate(17.16,185.82) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='62.33px' lengthAdjust='spacingAndGlyphs'>Densidad</text>
 <rect x='149.68' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC; fill-opacity: 0.50;' />
 <rect x='149.68' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: #0099CC; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC; fill-opacity: 0.15;' />
 <line x1='150.70' y1='22.59' x2='164.53' y2='22.59' style='stroke-width: 2.13; stroke: #0099CC; stroke-linecap: butt;' />
 <rect x='245.69' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FF2152; fill-opacity: 0.50;' />
 <rect x='245.69' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: #FF2152; stroke-linecap: butt; stroke-linejoin: miter; fill: #FF2152; fill-opacity: 0.15;' />
 <line x1='246.71' y1='22.59' x2='260.53' y2='22.59' style='stroke-width: 2.13; stroke: #FF2152; stroke-linecap: butt;' />
-<text x='173.23' y='26.66' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='64.78px' lengthAdjust='spacingAndGlyphs'>TT: N(26, 4)</text>
-<text x='269.23' y='26.66' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='75.19px' lengthAdjust='spacingAndGlyphs'>AA: N(27.5, 4)</text>
+<text x='173.23' y='26.66' style='font-size: 11.20px; font-family: "Arimo";' textLength='64.78px' lengthAdjust='spacingAndGlyphs'>TT: N(26, 4)</text>
+<text x='269.23' y='26.66' style='font-size: 11.20px; font-family: "Arimo";' textLength='75.19px' lengthAdjust='spacingAndGlyphs'>AA: N(27.5, 4)</text>
 </g>
 </svg>

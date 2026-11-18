@@ -258,9 +258,6 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 <li><span class="math inline">\(E(\hat S^2) = \sigma^2\)</span> y <span class="math inline">\(Var(\hat S^2) = \dfrac{2\sigma^4}{n-1}\)</span>.</li>
 <li>A diferencia del teorema central del límite para la media, este resultado <em>depende mucho de la normalidad</em> de la población.</li>
 </ul>
-<p>Por otro lado, combinando la distribución de <span class="math inline">\(\bar X\)</span> y la de <span class="math inline">\(\hat S^2\)</span> se obtiene que <span class="math display">\[
-\frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
-\]</span> que es la base de los intervalos y contrastes para la media cuando no conocemos <span class="math inline">\(\sigma\)</span>.</p>
 </section>
 <section class="slide level3">
 
@@ -282,10 +279,39 @@ E(\bar X) = \mu \qquad \mbox{y} \qquad Var(\bar X) = \frac{\sigma^2}{n}.
 </div>
 </div></div>
 </section></section>
+<section id="distribución-de-la-media-muestral-con-varianza-desconocida" class="title-slide slide level2 smaller center">
+<h2>Distribución de la media muestral con varianza desconocida</h2>
+<p>En la práctica casi nunca conocemos <span class="math inline">\(\sigma\)</span>. Al sustituirla por <span class="math inline">\(\hat S\)</span> añadimos variabilidad y el estadístico deja de ser normal.</p>
+<div id="thm-distribucion-media-varianza-desconocida" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 4 (Distribución de la media muestral con varianza desconocida)</strong></span> Si <span class="math inline">\(X_1,\ldots,X_n\)</span> es una muestra aleatoria de una población normal <span class="math inline">\(N(\mu, \sigma)\)</span>, entonces <span class="math display">\[
+T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1).
+\]</span></p>
+</div>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Se obtiene combinando la distribución de <span class="math inline">\(\bar X\)</span> (normal) y la de <span class="math inline">\(\hat S^2\)</span> (chi-cuadrado), que son independientes.</li>
+<li>La <span class="math inline">\(T(n-1)\)</span> tiene colas más pesadas que la <span class="math inline">\(N(0,1)\)</span>, sobre todo con muestras pequeñas.</li>
+<li>Para <span class="math inline">\(n\geq 30\)</span> ambas distribuciones casi coinciden.</li>
+<li>Es la base de los intervalos y contrastes para la media cuando no conocemos <span class="math inline">\(\sigma\)</span>.</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="02-estimacion_files/figure-revealjs/media-varianza-desconocida-1.svg" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+
 <section id="distribución-de-la-proporción-muestral" class="title-slide slide level2 smaller center">
 <h2>Distribución de la proporción muestral</h2>
 <div id="thm-distribucion-proporcion-muestral" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 4 (Distribución de la proporción muestral)</strong></span> Si <span class="math inline">\(X\sim B(n, p)\)</span> es el número de individuos con una característica en una muestra de tamaño <span class="math inline">\(n\)</span>, la proporción muestral <span class="math inline">\(\hat p = X/n\)</span> cumple <span class="math display">\[
+<p><span class="theorem-title"><strong>Teorema 5 (Distribución de la proporción muestral)</strong></span> Si <span class="math inline">\(X\sim B(n, p)\)</span> es el número de individuos con una característica en una muestra de tamaño <span class="math inline">\(n\)</span>, la proporción muestral <span class="math inline">\(\hat p = X/n\)</span> cumple <span class="math display">\[
 E(\hat p) = p \qquad \mbox{y} \qquad Var(\hat p) = \frac{p(1-p)}{n},
 \]</span> y, por el teorema central del límite, si <span class="math inline">\(np\geq 5\)</span> y <span class="math inline">\(n(1-p)\geq 5\)</span>, <span class="math display">\[
 \hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{\frac{p(1-p)}{n}}\right).
@@ -326,7 +352,7 @@ P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 <p><strong>Lo que SÍ es</strong></p>
 <ul>
 <li>Un rango de valores del parámetro compatibles con los datos al nivel de confianza elegido.</li>
-<li>El resultado de un procedimiento que, repetido con muchas muestras, acierta el <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> de las veces.</li>
+<li>El resultado de un proceso aleatorio que, repetido muchas veces, proporciona intervalos que contienen al parámetro que se quiere estimar un <span class="math inline">\((1-\alpha)\cdot 100\%\)</span> de las veces.</li>
 <li>Una medida de la precisión de la estimación: cuanto más estrecho, más precisa.</li>
 <li>Una forma de valorar la relevancia clínica, comparando sus límites con el efecto mínimo de interés.</li>
 </ul>
@@ -358,7 +384,7 @@ P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 <h2>Interpretación frecuentista de un intervalo de confianza</h2>
 <p>El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiéramos el estudio muchas veces y construyéramos un intervalo del 95% con cada muestra, aproximadamente el 95% de esos intervalos contendrían el verdadero valor del parámetro.</p>
 
-<img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-6-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="callout callout-caution callout-titled callout-style-default">
+<img data-src="02-estimacion_files/figure-revealjs/unnamed-chunk-7-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="1152"><div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -380,7 +406,7 @@ P(l_1(X) \leq \theta \leq l_2(X)) = 1-\alpha.
 Z = \frac{\bar X-\mu}{\sigma/\sqrt{n}} \sim N(0,1) \Rightarrow P\left(-z_{\alpha/2} \leq \frac{\bar X-\mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) = 1-\alpha,
 \]</span> donde <span class="math inline">\(z_{\alpha/2}\)</span> es el valor que deja una probabilidad <span class="math inline">\(\alpha/2\)</span> a su derecha en la <span class="math inline">\(N(0,1)\)</span> (<span class="math inline">\(z_{0.025} = 1.96\)</span>). Despejando <span class="math inline">\(\mu\)</span>:</p>
 <div id="thm-ic-media-varianza-conocida" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 5 (Intervalo de confianza para la media con varianza conocida)</strong></span> <span class="math display">\[
+<p><span class="theorem-title"><strong>Teorema 6 (Intervalo de confianza para la media con varianza conocida)</strong></span> <span class="math display">\[
 \bar x \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}.
 \]</span></p>
 </div>
@@ -416,7 +442,7 @@ Z = \frac{\bar X-\mu}{\sigma/\sqrt{n}} \sim N(0,1) \Rightarrow P\left(-z_{\alpha
 T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 \]</span> y razonando igual que antes:</p>
 <div id="thm-ic-media-varianza-desconocida" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 6 (Intervalo de confianza para la media con varianza desconocida)</strong></span> <span class="math display">\[
+<p><span class="theorem-title"><strong>Teorema 7 (Intervalo de confianza para la media con varianza desconocida)</strong></span> <span class="math display">\[
 \bar x \pm t^{n-1}_{\alpha/2}\frac{\hat s}{\sqrt{n}},
 \]</span> donde <span class="math inline">\(t^{n-1}_{\alpha/2}\)</span> es el valor que deja una probabilidad <span class="math inline">\(\alpha/2\)</span> a su derecha en la <span class="math inline">\(T(n-1)\)</span>.</p>
 </div>
@@ -497,7 +523,7 @@ T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 <h2>Intervalo para una proporción</h2>
 <p>Por el teorema central del límite, <span class="math inline">\(\hat p \overset{\text{aprox}}{\sim} N\left(p, \sqrt{p(1-p)/n}\right)\)</span>. Sustituyendo <span class="math inline">\(p\)</span> por <span class="math inline">\(\hat p\)</span> en el error estándar:</p>
 <div id="thm-ic-proporcion" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 7 (Intervalo de confianza para una proporción (Wald))</strong></span> Si <span class="math inline">\(n\hat p\geq 5\)</span> y <span class="math inline">\(n(1-\hat p)\geq 5\)</span>, <span class="math display">\[
+<p><span class="theorem-title"><strong>Teorema 8 (Intervalo de confianza para una proporción (Wald))</strong></span> Si <span class="math inline">\(n\hat p\geq 5\)</span> y <span class="math inline">\(n(1-\hat p)\geq 5\)</span>, <span class="math display">\[
 \hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}.
 \]</span></p>
 </div>
@@ -550,6 +576,234 @@ T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 </div>
 </div>
 <p>Los tres intervalos son muy parecidos porque <span class="math inline">\(n\hat p = 38 \geq 5\)</span>. Con una confianza del 95%, la prevalencia del genotipo TT está entre el 11% y el 20%.</p>
+</section></section>
+<section>
+<section id="intervalo-para-la-diferencia-de-medias" class="title-slide slide level2 smaller center">
+<h2>Intervalo para la diferencia de medias</h2>
+<p>Para comparar las medias de dos poblaciones normales a partir de muestras independientes de tamaños <span class="math inline">\(n_1\)</span> y <span class="math inline">\(n_2\)</span>, se usa la diferencia de medias muestrales <span class="math inline">\(\bar X_1-\bar X_2\)</span>, que es normal con media <span class="math inline">\(\mu_1-\mu_2\)</span>.</p>
+<div id="thm-ic-diferencia-medias" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 9 (Intervalo de confianza para la diferencia de medias)</strong></span> &nbsp;</p>
+<ul>
+<li>Varianzas desconocidas pero iguales: <span class="math display">\[
+\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}, \qquad \hat s_p^2 = \frac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}.
+\]</span></li>
+<li>Varianzas desconocidas y distintas (Welch): <span class="math display">\[
+\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\frac{\hat s_1^2}{n_1}+\frac{\hat s_2^2}{n_2}}, \quad g \mbox{ grados de libertad de Welch-Satterthwaite.}
+\]</span></li>
+</ul>
+</div>
+<p>Si las muestras son <strong>pareadas</strong> (mismos individuos antes y después), se calcula el intervalo para la media de las diferencias <span class="math inline">\(d_i\)</span>: <span class="math display">\[
+\bar d \pm t^{n-1}_{\alpha/2}\frac{\hat s_d}{\sqrt{n}}.
+\]</span></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ayuda</strong></p>
+</div>
+<div class="callout-content">
+<p>Si el intervalo no contiene el 0, hay evidencia de que las medias son distintas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="diferencia-de-medias-en-muestras-independientes" class="slide level3">
+<h3>Diferencia de medias en muestras independientes</h3>
+<div id="exm-ic-diferencia-medias" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de <em>FTO</em> rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AA (alelo de riesgo)</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">4.31</td>
+<td style="text-align: center;">1.91</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TT (alelo protector)</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">6.74</td>
+<td style="text-align: center;">2.79</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Método</th>
+<th style="text-align: center;">Intervalo del 95% para <span class="math inline">\(\mu_{AA}-\mu_{TT}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Varianzas iguales</td>
+<td style="text-align: center;">[-3.96, -0.89]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Varianzas distintas (Welch)</td>
+<td style="text-align: center;">[-3.87, -0.98]</td>
+</tr>
+</tbody>
+</table>
+<p>El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.</p>
+</section>
+<section id="diferencia-de-medias-en-muestras-pareadas" class="slide level3">
+<h3>Diferencia de medias en muestras pareadas</h3>
+<div id="exm-ic-pareadas" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Antes</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">247.00</td>
+<td style="text-align: center;">38.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Después</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">212.29</td>
+<td style="text-align: center;">27.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Diferencia (después − antes)</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">-34.71</td>
+<td style="text-align: center;">18.39</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias <span class="math inline">\(d_i\)</span>: <span class="math display">\[
+\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = -34.71 \pm 2.160\cdot\frac{18.39}{\sqrt{14}} = [-45.33, -24.10].
+\]</span></p>
+<p>Con una confianza del 95%, el omega-3 reduce los triglicéridos entre 24 y 45 mg/dl de media.</p>
+</section></section>
+<section>
+<section id="intervalo-para-la-diferencia-de-proporciones" class="title-slide slide level2 center">
+<h2>Intervalo para la diferencia de proporciones</h2>
+<p>Si <span class="math inline">\(\hat p_1\)</span> y <span class="math inline">\(\hat p_2\)</span> son las proporciones muestrales de dos muestras independientes, por el teorema central del límite su diferencia es aproximadamente normal con media <span class="math inline">\(p_1-p_2\)</span>.</p>
+<div id="thm-ic-diferencia-proporciones" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 10 (Intervalo de confianza para la diferencia de proporciones)</strong></span> Si <span class="math inline">\(n_i\hat p_i\geq 5\)</span> y <span class="math inline">\(n_i(1-\hat p_i)\geq 5\)</span> en las dos muestras, <span class="math display">\[
+\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}.
+\]</span></p>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ayuda</strong></p>
+</div>
+<div class="callout-content">
+<p>Si el intervalo no contiene el 0, hay evidencia de que las proporciones son distintas.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="diferencia-de-proporciones" class="slide level3">
+<h3>Diferencia de proporciones</h3>
+<div id="exm-ic-diferencia-proporciones" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (&lt; 12 µmol/l) en 52 de 70 portadores CC/CT de <em>MTHFR</em> y en 24 de 45 homocigotos TT.</p>
+</div>
+<p><span class="math display">\[
+\hat p_{CC/CT} = \frac{52}{70} = 0.743 \qquad \hat p_{TT} = \frac{24}{45} = 0.533
+\]</span></p>
+<p><span class="math display">\[
+0.743 - 0.533 \pm 1.96\sqrt{\frac{0.743\cdot 0.257}{70}+\frac{0.533\cdot 0.467}{45}} = [0.031, 0.388].
+\]</span></p>
+<p>El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre 3 y 39 puntos porcentuales.</p>
+</section></section>
+<section>
+<section id="intervalo-para-el-cociente-de-varianzas" class="title-slide slide level2 center">
+<h2>Intervalo para el cociente de varianzas</h2>
+<p>Si las dos poblaciones son normales y las muestras independientes, <span class="math display">\[
+F = \frac{\hat S_1^2/\sigma_1^2}{\hat S_2^2/\sigma_2^2} \sim F(n_1-1, n_2-1).
+\]</span></p>
+<div id="thm-ic-cociente-varianzas" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 11 (Intervalo de confianza para el cociente de varianzas)</strong></span> <span class="math display">\[
+\left[\frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}},\ \frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right],
+\]</span> donde <span class="math inline">\(f^{n_1-1,n_2-1}_{\alpha/2}\)</span> es el valor que deja una probabilidad <span class="math inline">\(\alpha/2\)</span> a su derecha en la <span class="math inline">\(F(n_1-1, n_2-1)\)</span>.</p>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Ayuda</strong></p>
+</div>
+<div class="callout-content">
+<p>Si el intervalo no contiene el 1, hay evidencia de que las varianzas son distintas. Es muy sensible a la falta de normalidad.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="cociente-de-varianzas" class="slide level3">
+<h3>Cociente de varianzas</h3>
+<div id="exm-ic-cociente-varianzas" class="theorem example">
+<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de <em>TCF7L2</em> rs7903146.</p>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grupo</th>
+<th style="text-align: center;">n</th>
+<th style="text-align: center;">Media</th>
+<th style="text-align: center;">Desv. típica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TT</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">214.5</td>
+<td style="text-align: center;">47.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CC</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">191.1</td>
+<td style="text-align: center;">24.40</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><span class="math display">\[
+\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = 3.747 \qquad \mbox{Intervalo del 95\%: } [1.432, 10.390].
+\]</span></p>
+<p>El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.</p>
 </section></section>
 <section id="section-2" class="title-slide slide level2 myblue center" data-background-color="">
 <h2></h2>
@@ -614,7 +868,7 @@ T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 <section id="intervalo-para-la-varianza" class="slide level3">
 <h3>Intervalo para la varianza</h3>
 <div id="exm-ic-varianza" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 7</strong></span> Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una cuasidesviación típica <span class="math inline">\(\hat s = 0.252\)</span> %. Calcular el intervalo de confianza del 95% para la desviación típica.</p>
+<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una cuasidesviación típica <span class="math inline">\(\hat s = 0.252\)</span> %. Calcular el intervalo de confianza del 95% para la desviación típica.</p>
 </div>
 <p><span class="math display">\[
 \left[\frac{14\cdot 0.0635}{26.12},\ \frac{14\cdot 0.0635}{5.63}\right] = [0.0340, 0.1580]
@@ -679,154 +933,6 @@ T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
 </div>
 </div>
 </div>
-</section>
-<section id="diferencia-de-medias-en-muestras-independientes" class="slide level3">
-<h3>Diferencia de medias en muestras independientes</h3>
-<div id="exm-ic-diferencia-medias" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 8</strong></span> Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de <em>FTO</em> rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.</p>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Grupo</th>
-<th style="text-align: center;">n</th>
-<th style="text-align: center;">Media</th>
-<th style="text-align: center;">Desv. típica</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">AA (alelo de riesgo)</td>
-<td style="text-align: center;">18</td>
-<td style="text-align: center;">4.31</td>
-<td style="text-align: center;">1.91</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TT (alelo protector)</td>
-<td style="text-align: center;">25</td>
-<td style="text-align: center;">6.74</td>
-<td style="text-align: center;">2.79</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Método</th>
-<th style="text-align: center;">Intervalo del 95% para <span class="math inline">\(\mu_{AA}-\mu_{TT}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Varianzas iguales</td>
-<td style="text-align: center;">[-3.96, -0.89]</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Varianzas distintas (Welch)</td>
-<td style="text-align: center;">[-3.87, -0.98]</td>
-</tr>
-</tbody>
-</table>
-<p>El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.</p>
-</section>
-<section id="diferencia-de-medias-en-muestras-pareadas" class="slide level3">
-<h3>Diferencia de medias en muestras pareadas</h3>
-<div id="exm-ic-pareadas" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 9</strong></span> Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).</p>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Grupo</th>
-<th style="text-align: center;">n</th>
-<th style="text-align: center;">Media</th>
-<th style="text-align: center;">Desv. típica</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Antes</td>
-<td style="text-align: center;">14</td>
-<td style="text-align: center;">247.00</td>
-<td style="text-align: center;">38.20</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Después</td>
-<td style="text-align: center;">14</td>
-<td style="text-align: center;">212.29</td>
-<td style="text-align: center;">27.35</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Diferencia (después − antes)</td>
-<td style="text-align: center;">14</td>
-<td style="text-align: center;">-34.71</td>
-<td style="text-align: center;">18.39</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias <span class="math inline">\(d_i\)</span>: <span class="math display">\[
-\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = -34.71 \pm 2.160\cdot\frac{18.39}{\sqrt{14}} = [-45.33, -24.10].
-\]</span></p>
-<p>Con una confianza del 95%, el omega-3 reduce los triglicéridos entre 24 y 45 mg/dl de media.</p>
-</section>
-<section id="diferencia-de-proporciones" class="slide level3">
-<h3>Diferencia de proporciones</h3>
-<div id="exm-ic-diferencia-proporciones" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 10</strong></span> En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (&lt; 12 µmol/l) en 52 de 70 portadores CC/CT de <em>MTHFR</em> y en 24 de 45 homocigotos TT.</p>
-</div>
-<p><span class="math display">\[
-\hat p_{CC/CT} = \frac{52}{70} = 0.743 \qquad \hat p_{TT} = \frac{24}{45} = 0.533
-\]</span></p>
-<p><span class="math display">\[
-0.743 - 0.533 \pm 1.96\sqrt{\frac{0.743\cdot 0.257}{70}+\frac{0.533\cdot 0.467}{45}} = [0.031, 0.388].
-\]</span></p>
-<p>El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre 3 y 39 puntos porcentuales.</p>
-</section>
-<section id="cociente-de-varianzas" class="slide level3">
-<h3>Cociente de varianzas</h3>
-<div id="exm-ic-cociente-varianzas" class="theorem example">
-<p><span class="theorem-title"><strong>Ejemplo 11</strong></span> Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de <em>TCF7L2</em> rs7903146.</p>
-</div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Grupo</th>
-<th style="text-align: center;">n</th>
-<th style="text-align: center;">Media</th>
-<th style="text-align: center;">Desv. típica</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">TT</td>
-<td style="text-align: center;">16</td>
-<td style="text-align: center;">214.5</td>
-<td style="text-align: center;">47.24</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CC</td>
-<td style="text-align: center;">20</td>
-<td style="text-align: center;">191.1</td>
-<td style="text-align: center;">24.40</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><span class="math display">\[
-\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = 3.747 \qquad \mbox{Intervalo del 95\%: } [1.432, 10.390].
-\]</span></p>
-<p>El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.</p>
 </section>
 <section class="slide level3">
 

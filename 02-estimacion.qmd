@@ -139,12 +139,6 @@ $$
 - $E(\hat S^2) = \sigma^2$ y $Var(\hat S^2) = \dfrac{2\sigma^4}{n-1}$.
 - A diferencia del teorema central del límite para la media, este resultado _depende mucho de la normalidad_ de la población.
 
-Por otro lado, combinando la distribución de $\bar X$ y la de $\hat S^2$ se obtiene que
-$$
-\frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
-$$
-que es la base de los intervalos y contrastes para la media cuando no conocemos $\sigma$.
-
 ---
 
 :::: {.columns}
@@ -168,6 +162,47 @@ ggplot(tibble(estad), aes(estad)) +
   geom_histogram(aes(y = after_stat(density)), bins = 40, fill = myblue, colour = "white") +
   stat_function(fun = dchisq, args = list(df = n - 1), colour = myred, linewidth = 1) +
   labs(x = expression((n-1)*hat(S)^2/sigma^2), y = "Densidad")
+```
+:::
+
+::::
+
+## Distribución de la media muestral con varianza desconocida {.smaller}
+
+En la práctica casi nunca conocemos $\sigma$. Al sustituirla por $\hat S$ añadimos variabilidad y el estadístico deja de ser normal.
+
+:::{#thm-distribucion-media-varianza-desconocida}
+## Distribución de la media muestral con varianza desconocida
+Si $X_1,\ldots,X_n$ es una muestra aleatoria de una población normal $N(\mu, \sigma)$, entonces
+$$
+T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1).
+$$
+:::
+
+:::: {.columns}
+
+::: {.column width="45%"}
+- Se obtiene combinando la distribución de $\bar X$ (normal) y la de $\hat S^2$ (chi-cuadrado), que son independientes.
+- La $T(n-1)$ tiene colas más pesadas que la $N(0,1)$, sobre todo con muestras pequeñas.
+- Para $n\geq 30$ ambas distribuciones casi coinciden.
+- Es la base de los intervalos y contrastes para la media cuando no conocemos $\sigma$.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: media-varianza-desconocida
+#| fig-width: 6
+#| fig-height: 3.8
+set.seed(13)
+n <- 5
+tsim <- replicate(5000, {x <- rnorm(n, 6.5, 0.4); (mean(x) - 6.5) / (sd(x) / sqrt(n))})
+ggplot(tibble(t = tsim[abs(tsim) < 6]), aes(t)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 0.25, fill = mylightblue, colour = "white") +
+  stat_function(aes(colour = "T(4)"), fun = dt, args = list(df = n - 1), linewidth = 1) +
+  stat_function(aes(colour = "N(0,1)"), fun = dnorm, linewidth = 1, linetype = 2) +
+  scale_colour_manual(values = c(`T(4)` = myred, `N(0,1)` = mygray), name = NULL) +
+  labs(x = "Estadístico T con muestras de HbA1c de tamaño 5", y = "Densidad") +
+  theme(legend.position = "top")
 ```
 :::
 
@@ -223,7 +258,7 @@ Lo habitual es usar niveles de confianza del 90%, 95% o 99%. La semiamplitud del
 **Lo que SÍ es**
 
 - Un rango de valores del parámetro compatibles con los datos al nivel de confianza elegido.
-- El resultado de un procedimiento que, repetido con muchas muestras, acierta el $(1-\alpha)\cdot 100\%$ de las veces.
+- El resultado de un proceso aleatorio que, repetido muchas veces, proporciona intervalos que contienen al parámetro que se quiere estimar un $(1-\alpha)\cdot 100\%$ de las veces.
 - Una medida de la precisión de la estimación: cuanto más estrecho, más precisa.
 - Una forma de valorar la relevancia clínica, comparando sus límites con el efecto mínimo de interés.
 :::
@@ -251,7 +286,7 @@ El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiér
 ```{r}
 #| fig-width: 12
 #| fig-height: 4.5
-set.seed(12)
+set.seed(5)
 mu <- 12; n <- 25
 ics <- map_dfr(1:100, \(i) {
   x <- rnorm(n, mu, 3)
@@ -385,6 +420,158 @@ tibble(Método = c("Wald", "Wilson", "Exacto de Clopper-Pearson"),
 
 Los tres intervalos son muy parecidos porque $n\hat p = 38 \geq 5$. Con una confianza del 95%, la prevalencia del genotipo TT está entre el 11% y el 20%.
 
+## Intervalo para la diferencia de medias {.smaller}
+
+Para comparar las medias de dos poblaciones normales a partir de muestras independientes de tamaños $n_1$ y $n_2$, se usa la diferencia de medias muestrales $\bar X_1-\bar X_2$, que es normal con media $\mu_1-\mu_2$.
+
+:::{#thm-ic-diferencia-medias}
+## Intervalo de confianza para la diferencia de medias
+- Varianzas desconocidas pero iguales:
+$$
+\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}, \qquad \hat s_p^2 = \frac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}.
+$$
+- Varianzas desconocidas y distintas (Welch):
+$$
+\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\frac{\hat s_1^2}{n_1}+\frac{\hat s_2^2}{n_2}}, \quad g \mbox{ grados de libertad de Welch-Satterthwaite.}
+$$
+:::
+
+Si las muestras son **pareadas** (mismos individuos antes y después), se calcula el intervalo para la media de las diferencias $d_i$:
+$$
+\bar d \pm t^{n-1}_{\alpha/2}\frac{\hat s_d}{\sqrt{n}}.
+$$
+
+:::{.callout-tip}
+Si el intervalo no contiene el 0, hay evidencia de que las medias son distintas.
+:::
+
+---
+
+### Diferencia de medias en muestras independientes
+
+:::{#exm-ic-diferencia-medias}
+Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de _FTO_ rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.
+:::
+
+```{r}
+resumen(`AA (alelo de riesgo)` = perdida_AA, `TT (alelo protector)` = perdida_TT)
+```
+
+| Método | Intervalo del 95% para $\mu_{AA}-\mu_{TT}$ |
+|:---|:---:|
+| Varianzas iguales | `r ic_texto(t.test(perdida_AA, perdida_TT, var.equal = TRUE)$conf.int)` |
+| Varianzas distintas (Welch) | `r ic_texto(t.test(perdida_AA, perdida_TT)$conf.int)` |
+
+El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.
+
+---
+
+### Diferencia de medias en muestras pareadas
+
+```{r}
+#| include: false
+d <- tg_despues - tg_antes
+ic_pareado <- t.test(tg_despues, tg_antes, paired = TRUE)$conf.int
+```
+
+:::{#exm-ic-pareadas}
+Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).
+:::
+
+```{r}
+resumen(Antes = tg_antes, Después = tg_despues, `Diferencia (después − antes)` = d)
+```
+
+Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias $d_i$:
+$$
+\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = `r fmt(mean(d), 2)` \pm `r fmt(qt(0.975, 13), 3)`\cdot\frac{`r fmt(sd(d), 2)`}{\sqrt{14}} = `r ic_texto(ic_pareado)`.
+$$
+
+Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic_pareado[2])` y `r round(-ic_pareado[1])` mg/dl de media.
+
+## Intervalo para la diferencia de proporciones
+
+Si $\hat p_1$ y $\hat p_2$ son las proporciones muestrales de dos muestras independientes, por el teorema central del límite su diferencia es aproximadamente normal con media $p_1-p_2$.
+
+:::{#thm-ic-diferencia-proporciones}
+## Intervalo de confianza para la diferencia de proporciones
+Si $n_i\hat p_i\geq 5$ y $n_i(1-\hat p_i)\geq 5$ en las dos muestras,
+$$
+\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}.
+$$
+:::
+
+:::{.callout-tip}
+Si el intervalo no contiene el 0, hay evidencia de que las proporciones son distintas.
+:::
+
+---
+
+### Diferencia de proporciones
+
+```{r}
+#| include: false
+ic_prop <- prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE)$conf.int
+```
+
+:::{#exm-ic-diferencia-proporciones}
+En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (< 12 µmol/l) en 52 de 70 portadores CC/CT de _MTHFR_ y en 24 de 45 homocigotos TT.
+:::
+
+$$
+\hat p_{CC/CT} = \frac{52}{70} = `r fmt(52/70, 3)` \qquad \hat p_{TT} = \frac{24}{45} = `r fmt(24/45, 3)`
+$$
+
+$$
+`r fmt(52/70, 3)` - `r fmt(24/45, 3)` \pm 1.96\sqrt{\frac{`r fmt(52/70, 3)`\cdot `r fmt(1 - 52/70, 3)`}{70}+\frac{`r fmt(24/45, 3)`\cdot `r fmt(1 - 24/45, 3)`}{45}} = `r ic_texto(ic_prop, 3)`.
+$$
+
+El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre `r round(100 * ic_prop[1])` y `r round(100 * ic_prop[2])` puntos porcentuales.
+
+## Intervalo para el cociente de varianzas
+
+Si las dos poblaciones son normales y las muestras independientes,
+$$
+F = \frac{\hat S_1^2/\sigma_1^2}{\hat S_2^2/\sigma_2^2} \sim F(n_1-1, n_2-1).
+$$
+
+:::{#thm-ic-cociente-varianzas}
+## Intervalo de confianza para el cociente de varianzas
+$$
+\left[\frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}},\ \frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right],
+$$
+donde $f^{n_1-1,n_2-1}_{\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $F(n_1-1, n_2-1)$.
+:::
+
+:::{.callout-tip}
+Si el intervalo no contiene el 1, hay evidencia de que las varianzas son distintas. Es muy sensible a la falta de normalidad.
+:::
+
+---
+
+### Cociente de varianzas
+
+```{r}
+#| include: false
+ic_f <- var.test(auc_TT, auc_CC)$conf.int
+```
+
+:::{#exm-ic-cociente-varianzas}
+Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de _TCF7L2_ rs7903146.
+:::
+
+```{r}
+resumen(TT = auc_TT, CC = auc_CC)
+```
+
+$$
+\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95\%: } `r ic_texto(ic_f, 3)`.
+$$
+
+El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.
+
+
+
 ## {background-color= .myblue}
 
 :::{.main-title}
@@ -439,96 +626,6 @@ Donde $\hat s_p^2 = \dfrac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}$ es l
 :::{.callout-tip}
 Si el intervalo para $\mu_1-\mu_2$ o $p_1-p_2$ no contiene el 0, o el intervalo para $\sigma_1^2/\sigma_2^2$ no contiene el 1, hay evidencia de diferencias entre las poblaciones.
 :::
-
----
-
-### Diferencia de medias en muestras independientes
-
-:::{#exm-ic-diferencia-medias}
-Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de _FTO_ rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.
-:::
-
-```{r}
-resumen(`AA (alelo de riesgo)` = perdida_AA, `TT (alelo protector)` = perdida_TT)
-```
-
-| Método | Intervalo del 95% para $\mu_{AA}-\mu_{TT}$ |
-|:---|:---:|
-| Varianzas iguales | `r ic_texto(t.test(perdida_AA, perdida_TT, var.equal = TRUE)$conf.int)` |
-| Varianzas distintas (Welch) | `r ic_texto(t.test(perdida_AA, perdida_TT)$conf.int)` |
-
-El intervalo no contiene el 0: los homocigotos AA pierden de media menos peso que los TT.
-
----
-
-### Diferencia de medias en muestras pareadas
-
-```{r}
-#| include: false
-d <- tg_despues - tg_antes
-ic_pareado <- t.test(tg_despues, tg_antes, paired = TRUE)$conf.int
-```
-
-:::{#exm-ic-pareadas}
-Se miden los triglicéridos (mg/dl) de 14 pacientes con hipertrigliceridemia antes y después de 8 semanas de suplementación con 3 g/día de omega-3 (EPA + DHA).
-:::
-
-```{r}
-resumen(Antes = tg_antes, Después = tg_despues, `Diferencia (después − antes)` = d)
-```
-
-Las mediciones del mismo individuo no son independientes, así que se trabaja con las diferencias $d_i$:
-$$
-\bar d \pm t^{13}_{0.025}\frac{\hat s_d}{\sqrt{14}} = `r fmt(mean(d), 2)` \pm `r fmt(qt(0.975, 13), 3)`\cdot\frac{`r fmt(sd(d), 2)`}{\sqrt{14}} = `r ic_texto(ic_pareado)`.
-$$
-
-Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic_pareado[2])` y `r round(-ic_pareado[1])` mg/dl de media.
-
----
-
-### Diferencia de proporciones
-
-```{r}
-#| include: false
-ic_prop <- prop.test(x = c(52, 24), n = c(70, 45), correct = FALSE)$conf.int
-```
-
-:::{#exm-ic-diferencia-proporciones}
-En un ensayo con suplementación de ácido fólico, la homocisteína se normaliza (< 12 µmol/l) en 52 de 70 portadores CC/CT de _MTHFR_ y en 24 de 45 homocigotos TT.
-:::
-
-$$
-\hat p_{CC/CT} = \frac{52}{70} = `r fmt(52/70, 3)` \qquad \hat p_{TT} = \frac{24}{45} = `r fmt(24/45, 3)`
-$$
-
-$$
-`r fmt(52/70, 3)` - `r fmt(24/45, 3)` \pm 1.96\sqrt{\frac{`r fmt(52/70, 3)`\cdot `r fmt(1 - 52/70, 3)`}{70}+\frac{`r fmt(24/45, 3)`\cdot `r fmt(1 - 24/45, 3)`}{45}} = `r ic_texto(ic_prop, 3)`.
-$$
-
-El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre `r round(100 * ic_prop[1])` y `r round(100 * ic_prop[2])` puntos porcentuales.
-
----
-
-### Cociente de varianzas
-
-```{r}
-#| include: false
-ic_f <- var.test(auc_TT, auc_CC)$conf.int
-```
-
-:::{#exm-ic-cociente-varianzas}
-Se compara la variabilidad de la respuesta glucémica postprandial (incremento del área bajo la curva, mmol·min/l) a una misma comida entre portadores TT y CC de _TCF7L2_ rs7903146.
-:::
-
-```{r}
-resumen(TT = auc_TT, CC = auc_CC)
-```
-
-$$
-\frac{\hat s_{TT}^2}{\hat s_{CC}^2} = `r fmt(var(auc_TT) / var(auc_CC), 3)` \qquad \mbox{Intervalo del 95\%: } `r ic_texto(ic_f, 3)`.
-$$
-
-El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.
 
 ---
 

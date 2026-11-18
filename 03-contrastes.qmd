@@ -117,7 +117,7 @@ H_0: \mu_{AA} = \mu_{TT} \qquad H_1: \mu_{AA} < \mu_{TT}.
 $$
 :::
 
-## El contraste como un juicio
+## El contraste como un juicio {.smaller}
 
 Un contraste de hipótesis funciona como un juicio penal:
 
@@ -136,12 +136,14 @@ Un contraste de hipótesis funciona como un juicio penal:
 **Contraste**
 
 - Se asume $H_0$ cierta.
-- La muestra aporta la evidencia.
+- El investigador/a hace de fiscal: su objetivo es rechazar $H_0$ aportando evidencia con la muestra.
 - Si la evidencia contra $H_0$ es suficiente, se rechaza $H_0$; si no, no se rechaza.
 - No rechazar $H_0$ no demuestra que sea cierta.
 :::
 
 ::::
+
+Por eso la afirmación que el investigador quiere demostrar se plantea siempre como hipótesis alternativa $H_1$.
 
 :::{.callout-important}
 _La ausencia de evidencia no es evidencia de ausencia_. Un estudio pequeño que no encuentra interacción gen-dieta no demuestra que no exista.
@@ -154,6 +156,24 @@ Según la forma de $H_1$ el contraste puede ser:
 - **Bilateral**: $H_0: \theta = \theta_0$ frente a $H_1: \theta \neq \theta_0$.
 - **Unilateral a la derecha**: $H_0: \theta = \theta_0$ frente a $H_1: \theta > \theta_0$.
 - **Unilateral a la izquierda**: $H_0: \theta = \theta_0$ frente a $H_1: \theta < \theta_0$.
+
+### Ejemplos de contrastes bilaterales y unilaterales {.smaller}
+
+:::{#exm-tipos-contraste}
+- **Bilateral**, cuando interesa detectar diferencias en cualquier sentido:
+  - ¿Es la prevalencia del genotipo TT de _MTHFR_ en nuestra cohorte distinta del 10% descrito en el norte de Europa? $H_1: p \neq 0.10$.
+  - ¿Difiere el colesterol LDL medio entre portadores E3 y E4 de _APOE_? $H_1: \mu_{E3} \neq \mu_{E4}$.
+- **Unilateral a la derecha**, cuando solo interesa detectar un aumento:
+  - ¿Supera la homocisteína media de los homocigotos TT de _MTHFR_ el umbral de 12 µmol/l? $H_1: \mu > 12$.
+  - ¿Aumenta una dieta rica en fibra la concentración de butirato fecal? $H_1: \mu_d > 0$.
+- **Unilateral a la izquierda**, cuando solo interesa detectar una disminución:
+  - ¿Reduce la suplementación con omega-3 los triglicéridos? $H_1: \mu_d < 0$.
+  - ¿Pierden menos peso con una dieta hipocalórica los portadores AA de _FTO_ que los TT? $H_1: \mu_{AA} < \mu_{TT}$.
+:::
+
+:::{.callout-important}
+El tipo de contraste se decide _antes_ de ver los datos y según la pregunta de investigación. Un contraste unilateral solo está justificado si un efecto en el sentido contrario no tiene interés o no es plausible.
+:::
 
 ## Tipos de errores {.smaller}
 
@@ -234,6 +254,10 @@ Normalmente tiene la forma
 $$
 \mbox{Estadístico} = \frac{\mbox{Estimación} - \mbox{Valor bajo } H_0}{\mbox{Error estándar}}.
 $$
+
+Cuanto más se aleja el estadístico de lo esperado bajo $H_0$, más evidencia hay en contra de $H_0$.
+
+---
 
 :::{#exm-hombres-estadistico}
 Sospechamos que en una población hay menos hombres que mujeres. Si $p$ es la proporción de hombres, por las leyes de la genética lo esperable es $p = 0.5$, así que planteamos
@@ -352,7 +376,6 @@ El _nivel de significación_ o _riesgo_ $\alpha$ es la probabilidad máxima de c
 
 - Valores habituales: $\alpha = 0.05$, $0.01$ o $0.001$.
 - Cuanto menor es $\alpha$, más evidencia exigimos para rechazar $H_0$ y menor es la región de rechazo.
-- Con muchos contrastes hay que reducir $\alpha$ en cada uno para controlar los falsos positivos globales: en GWAS se usa $\alpha = 5\cdot 10^{-8}$.
 
 :::{.callout-note}
 Elegir $\alpha$ es una decisión sobre el coste de un falso positivo. En un estudio exploratorio de metilación se puede tolerar un $\alpha$ mayor (controlando la FDR) que en un ensayo que va a fundamentar una recomendación dietética.
@@ -1180,6 +1203,25 @@ ggplot(microbiota, aes(dieta, shannon, fill = dieta)) +
 :::
 
 ::::
+
+---
+
+### El problema de los contrastes múltiples
+
+El riesgo $\alpha$ controla la probabilidad de un falso positivo en _un_ contraste. Cuando se hacen muchos contrastes simultáneos, los falsos positivos se acumulan.
+
+:::{#exm-dos-contrastes}
+Con la misma muestra contrastamos si la dieta mediterránea modifica el colesterol LDL y si modifica la PCR, con $\alpha = 0.05$ en cada contraste. Si en realidad la dieta no afecta a ninguna de las dos variables (y los contrastes son independientes):
+
+- Número esperado de falsos positivos: $2\cdot 0.05 = 0.1$.
+- Probabilidad de al menos un falso positivo: $1-(1-0.05)^2 = `r fmt(1 - 0.95^2, 4)`$, casi el doble de $\alpha$.
+:::
+
+:::{#exm-gwas}
+En un GWAS se contrastan $m = 10^6$ SNPs. Si ninguno estuviese asociado con el IMC, con $\alpha = 0.05$ esperaríamos $10^6\cdot 0.05 = 50\,000$ falsos positivos, y la probabilidad de al menos uno sería prácticamente 1.
+:::
+
+Por eso hay que reducir $\alpha$ en cada contraste. Con la corrección de Bonferroni se usa $\alpha/m$: en GWAS el umbral de significación es $0.05/10^6 = 5\cdot 10^{-8}$.
 
 ---
 

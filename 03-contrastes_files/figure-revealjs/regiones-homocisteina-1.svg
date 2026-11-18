@@ -55,12 +55,12 @@
 <line x1='333.46' y1='319.50' x2='333.46' y2='29.80' style='stroke-width: 2.13; stroke: #03BF3D; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='80.81' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='22.00px' lengthAdjust='spacingAndGlyphs'>-2.5</text>
-<text x='166.39' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='251.98' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='16.86px' lengthAdjust='spacingAndGlyphs'>2.5</text>
-<text x='337.56' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='17.09px' lengthAdjust='spacingAndGlyphs'>5.0</text>
-<text x='423.14' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='16.36px' lengthAdjust='spacingAndGlyphs'>7.5</text>
-<text x='217.74' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='9.04px' lengthAdjust='spacingAndGlyphs'>T</text>
-<text x='10.46' y='19.20' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='203.39px' lengthAdjust='spacingAndGlyphs'>Distribución T(19) bajo H₀</text>
+<text x='80.81' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='22.00px' lengthAdjust='spacingAndGlyphs'>-2.5</text>
+<text x='166.39' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.34px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='251.98' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='16.86px' lengthAdjust='spacingAndGlyphs'>2.5</text>
+<text x='337.56' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='17.09px' lengthAdjust='spacingAndGlyphs'>5.0</text>
+<text x='423.14' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='16.36px' lengthAdjust='spacingAndGlyphs'>7.5</text>
+<text x='217.74' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='9.04px' lengthAdjust='spacingAndGlyphs'>T</text>
+<text x='10.46' y='19.20' style='font-size: 16.80px; font-family: "Arimo";' textLength='203.39px' lengthAdjust='spacingAndGlyphs'>Distribución T(19) bajo H₀</text>
 </g>
 </svg>

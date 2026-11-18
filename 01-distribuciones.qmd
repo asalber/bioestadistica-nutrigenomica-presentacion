@@ -724,6 +724,35 @@ sigue una _distribución chi-cuadrado_ con $\nu$ grados de libertad, $\chi^2\sim
 - Contrastes de independencia entre genotipo y respuesta a una dieta en tablas de contingencia.
 - Contrastes de razón de verosimilitudes en modelos de interacción gen-nutriente.
 
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-chi-cuadrado-hba1c}
+La HbA1c de los pacientes con diabetes tipo 2 bien controlados es $X\sim N(6.5, 0.4)$. Si tomamos muestras de 15 pacientes, el estadístico
+$$\chi^2 = \frac{14\hat S^2}{0.4^2}\sim\chi^2(14).$$
+¿Cuál es la probabilidad de que la cuasidesviación típica muestral supere 0.5?
+:::
+
+$$P(\hat S > 0.5) = P\left(\chi^2 > \frac{14\cdot 0.5^2}{0.4^2}\right) = P(\chi^2 > 21.875) = `r fmt(1 - pchisq(21.875, 14), 4)`.$$
+
+Solo en un `r fmt_pct(1 - pchisq(21.875, 14))` de las muestras la cuasidesviación superará 0.5 (área sombreada).
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: chi-cuadrado-hba1c
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(0.01, 40, length.out = 500), `χ²(14)` = \(x) dchisq(x, 14)) |>
+  dibujar_densidades("χ²", colores = myblue, corte = 21.875, sombrear = \(x) x > 21.875) +
+  theme(legend.position = "none")
+```
+:::
+
+::::
+
 ## Distribución T de Student {.smaller}
 
 :::{#def-distribucion-t}
@@ -746,6 +775,35 @@ Es simétrica como la normal pero con colas más pesadas. Cuando $\nu\to\infty$ 
 - Contrastes antes-después en estudios de intervención (datos pareados).
 - Contrastes de los coeficientes de un modelo de regresión.
 
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-t-homocisteina}
+La homocisteína de los homocigotos TT de _MTHFR_ es normal con media $\mu = 14$ µmol/l. En muestras pequeñas de 5 personas, el estadístico
+$$T = \frac{\bar X - 14}{\hat S/\sqrt{5}}\sim T(4).$$
+¿Cuál es la probabilidad de que $T$ supere 2?
+:::
+
+- Con la $T(4)$: $P(T > 2) = `r fmt(1 - pt(2, 4), 4)`$.
+- Con la $N(0,1)$: $P(Z > 2) = `r fmt(1 - pnorm(2), 4)`$.
+
+Las colas de la $T$ son más pesadas: si usáramos la normal subestimaríamos la probabilidad de valores extremos.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: t-homocisteina
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(-4, 4, length.out = 500), `T(4)` = \(x) dt(x, 4), `N(0,1)` = dnorm) |>
+  dibujar_densidades("Estadístico", colores = c(myblue, mygray), corte = 2, sombrear = \(x) x > 2)
+```
+:::
+
+::::
+
 ## Distribución F de Fisher-Snedecor {.smaller}
 
 :::{#def-distribucion-f}
@@ -764,6 +822,35 @@ sigue una _distribución F de Fisher-Snedecor_ con $\nu_1$ y $\nu_2$ grados de l
 - Comparación de la variabilidad de la respuesta glucémica entre genotipos.
 - Análisis de la varianza (ANOVA) para comparar el IMC entre los tres genotipos de _FTO_.
 - Contraste global de un modelo de regresión con varios nutrientes y SNPs.
+
+---
+
+:::: {.columns}
+
+::: {.column width="45%"}
+:::{#exm-f-glucemia}
+Se mide la respuesta glucémica en 16 portadores TT y 20 CC de _TCF7L2_. Si ambas poblaciones son normales con igual varianza,
+$$F = \frac{\hat S^2_{TT}}{\hat S^2_{CC}}\sim F(15, 19).$$
+¿Cuál es la probabilidad de que la cuasivarianza de los TT duplique la de los CC?
+:::
+
+$$P(F > 2) = `r fmt(1 - pf(2, 15, 19), 4)`.$$
+
+Aun con varianzas iguales, el cociente supera 2 en un `r fmt_pct(1 - pf(2, 15, 19))` de las muestras.
+:::
+
+::: {.column width="55%"}
+```{r}
+#| label: f-glucemia
+#| fig-width: 6
+#| fig-height: 5
+densidades(seq(0.01, 4, length.out = 500), `F(15, 19)` = \(x) df(x, 15, 19)) |>
+  dibujar_densidades("F", colores = myblue, corte = 2, sombrear = \(x) x > 2) +
+  theme(legend.position = "none")
+```
+:::
+
+::::
 
 ---
 

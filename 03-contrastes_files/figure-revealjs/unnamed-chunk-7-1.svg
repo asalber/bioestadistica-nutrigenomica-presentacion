@@ -72,12 +72,12 @@
 <line x1='286.02' y1='221.22' x2='286.02' y2='36.78' style='stroke-width: 2.13; stroke: #03BF3D; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw4NjQuMDB8MC4wMHwyNTIuMDA=)'>
-<text x='36.12' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='12.38px' lengthAdjust='spacingAndGlyphs'>-4</text>
-<text x='128.67' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='221.23' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='313.79' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='406.34' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='17.43' y='26.17' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='255.95px' lengthAdjust='spacingAndGlyphs'>Unilateral: p = P(Z ≥ 1.4) = 0.081</text>
+<text x='36.12' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.38px' lengthAdjust='spacingAndGlyphs'>-4</text>
+<text x='128.67' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='221.23' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='313.79' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='406.34' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='17.43' y='26.17' style='font-size: 16.80px; font-family: "Arimo";' textLength='255.95px' lengthAdjust='spacingAndGlyphs'>Unilateral: p = P(Z ≥ 1.4) = 0.081</text>
 </g>
 <defs>
   <clipPath id='cpNDMyLjAwfDg1Ny4wM3w2Ljk3fDI0NS4wMw=='>
@@ -120,11 +120,11 @@
 <line x1='752.70' y1='221.22' x2='752.70' y2='36.78' style='stroke-width: 2.13; stroke: #03BF3D; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw4NjQuMDB8MC4wMHwyNTIuMDA=)'>
-<text x='461.14' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='12.38px' lengthAdjust='spacingAndGlyphs'>-4</text>
-<text x='553.70' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='646.26' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='738.81' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='831.37' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='442.46' y='26.17' style='font-size: 16.80px; font-family: "Liberation Sans";' textLength='257.56px' lengthAdjust='spacingAndGlyphs'>Bilateral: p = 2P(Z ≥ 2.3) = 0.021</text>
+<text x='461.14' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='12.38px' lengthAdjust='spacingAndGlyphs'>-4</text>
+<text x='553.70' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='646.26' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='738.81' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='831.37' y='235.63' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.23px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='442.46' y='26.17' style='font-size: 16.80px; font-family: "Arimo";' textLength='257.56px' lengthAdjust='spacingAndGlyphs'>Bilateral: p = 2P(Z ≥ 2.3) = 0.021</text>
 </g>
 </svg>

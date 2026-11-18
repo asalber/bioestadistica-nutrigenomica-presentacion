@@ -56,23 +56,23 @@
 <line x1='231.02' y1='319.50' x2='231.02' y2='52.15' style='stroke-width: 1.07; stroke-dasharray: 5.69,5.69; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
-<text x='30.73' y='311.41' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='30.73' y='224.71' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='4.55px' lengthAdjust='spacingAndGlyphs'>1</text>
-<text x='30.73' y='138.00' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='54.52' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
-<text x='142.77' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='23.91px' lengthAdjust='spacingAndGlyphs'>0.25</text>
-<text x='231.02' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='24.14px' lengthAdjust='spacingAndGlyphs'>0.50</text>
-<text x='319.26' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='23.41px' lengthAdjust='spacingAndGlyphs'>0.75</text>
-<text x='407.51' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Liberation Sans";' textLength='21.89px' lengthAdjust='spacingAndGlyphs'>1.00</text>
-<text x='231.02' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='160.03px' lengthAdjust='spacingAndGlyphs'>Valor beta de metilación</text>
-<text transform='translate(17.16,185.82) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Liberation Sans";' textLength='62.33px' lengthAdjust='spacingAndGlyphs'>Densidad</text>
+<text x='30.73' y='311.41' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='7.06px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='30.73' y='224.71' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='4.55px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='30.73' y='138.00' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='54.52' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.39px' lengthAdjust='spacingAndGlyphs'>0.00</text>
+<text x='142.77' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='23.91px' lengthAdjust='spacingAndGlyphs'>0.25</text>
+<text x='231.02' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='24.14px' lengthAdjust='spacingAndGlyphs'>0.50</text>
+<text x='319.26' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='23.41px' lengthAdjust='spacingAndGlyphs'>0.75</text>
+<text x='407.51' y='333.91' text-anchor='middle' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Arimo";' textLength='21.89px' lengthAdjust='spacingAndGlyphs'>1.00</text>
+<text x='231.02' y='350.00' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='160.03px' lengthAdjust='spacingAndGlyphs'>Valor beta de metilación</text>
+<text transform='translate(17.16,185.82) rotate(-90)' text-anchor='middle' style='font-size: 14.00px; font-family: "Arimo";' textLength='62.33px' lengthAdjust='spacingAndGlyphs'>Densidad</text>
 <rect x='75.72' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC; fill-opacity: 0.50;' />
 <rect x='75.72' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: #0099CC; stroke-linecap: butt; stroke-linejoin: miter; fill: #0099CC; fill-opacity: 0.15;' />
 <line x1='76.74' y1='22.59' x2='90.56' y2='22.59' style='stroke-width: 2.13; stroke: #0099CC; stroke-linecap: butt;' />
 <rect x='224.18' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #FF2152; fill-opacity: 0.50;' />
 <rect x='224.18' y='14.66' width='15.86' height='15.86' style='stroke-width: 1.07; stroke: #FF2152; stroke-linecap: butt; stroke-linejoin: miter; fill: #FF2152; fill-opacity: 0.15;' />
 <line x1='225.20' y1='22.59' x2='239.03' y2='22.59' style='stroke-width: 2.13; stroke: #FF2152; stroke-linecap: butt;' />
-<text x='99.26' y='26.66' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='117.24px' lengthAdjust='spacingAndGlyphs'>Folato bajo: Beta(6, 4)</text>
-<text x='247.73' y='26.66' style='font-size: 11.20px; font-family: "Liberation Sans";' textLength='146.27px' lengthAdjust='spacingAndGlyphs'>Folato adecuado: Beta(3, 7)</text>
+<text x='99.26' y='26.66' style='font-size: 11.20px; font-family: "Arimo";' textLength='117.24px' lengthAdjust='spacingAndGlyphs'>Folato bajo: Beta(6, 4)</text>
+<text x='247.73' y='26.66' style='font-size: 11.20px; font-family: "Arimo";' textLength='146.27px' lengthAdjust='spacingAndGlyphs'>Folato adecuado: Beta(3, 7)</text>
 </g>
 </svg>
