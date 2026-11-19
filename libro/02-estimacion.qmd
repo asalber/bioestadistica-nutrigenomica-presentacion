@@ -150,12 +150,6 @@ $$
 - $E(\hat S^2) = \sigma^2$ y $Var(\hat S^2) = \dfrac{2\sigma^4}{n-1}$.
 - A diferencia del teorema central del límite para la media, este resultado _depende mucho de la normalidad_ de la población.
 
-Por otro lado, combinando la distribución de $\bar X$ y la de $\hat S^2$ se obtiene que
-$$
-\frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1),
-$$
-que es la base de los intervalos y contrastes para la media cuando no conocemos $\sigma$.
-
 Podemos comprobar este resultado con una simulación.
 
 :::{#exm-distribucion-varianza}
@@ -175,6 +169,42 @@ ggplot(tibble(estad), aes(estad)) +
   geom_histogram(aes(y = after_stat(density)), bins = 40, fill = myblue, colour = "white") +
   stat_function(fun = dchisq, args = list(df = n - 1), colour = myred, linewidth = 1) +
   labs(x = expression((n-1)*hat(S)^2/sigma^2), y = "Densidad")
+```
+
+### Distribución de la media muestral con varianza desconocida
+
+Los resultados anteriores para la media suponen que conocemos la desviación típica de la población, algo que casi nunca ocurre. Combinando la distribución de la media y la de la cuasivarianza obtenemos la distribución que se usa en la práctica.
+
+En la práctica casi nunca conocemos $\sigma$. Al sustituirla por $\hat S$ añadimos variabilidad y el estadístico deja de ser normal.
+
+:::{#thm-distribucion-media-varianza-desconocida}
+## Distribución de la media muestral con varianza desconocida
+Si $X_1,\ldots,X_n$ es una muestra aleatoria de una población normal $N(\mu, \sigma)$, entonces
+$$
+T = \frac{\bar X-\mu}{\hat S/\sqrt{n}} \sim T(n-1).
+$$
+:::
+
+- Se obtiene combinando la distribución de $\bar X$ (normal) y la de $\hat S^2$ (chi-cuadrado), que son independientes.
+- La $T(n-1)$ tiene colas más pesadas que la $N(0,1)$, sobre todo con muestras pequeñas.
+- Para $n\geq 30$ ambas distribuciones casi coinciden.
+- Es la base de los intervalos y contrastes para la media cuando no conocemos $\sigma$.
+
+```{r}
+#| label: media-varianza-desconocida
+#| fig-width: 6
+#| out-width: 60%
+#| fig-height: 3.8
+set.seed(13)
+n <- 5
+tsim <- replicate(5000, {x <- rnorm(n, 6.5, 0.4); (mean(x) - 6.5) / (sd(x) / sqrt(n))})
+ggplot(tibble(t = tsim[abs(tsim) < 6]), aes(t)) +
+  geom_histogram(aes(y = after_stat(density)), binwidth = 0.25, fill = mylightblue, colour = "white") +
+  stat_function(aes(colour = "T(4)"), fun = dt, args = list(df = n - 1), linewidth = 1) +
+  stat_function(aes(colour = "N(0,1)"), fun = dnorm, linewidth = 1, linetype = 2) +
+  scale_colour_manual(values = c(`T(4)` = myred, `N(0,1)` = mygray), name = NULL) +
+  labs(x = "Estadístico T con muestras de HbA1c de tamaño 5", y = "Densidad") +
+  theme(legend.position = "top")
 ```
 
 ### Distribución de la proporción muestral
@@ -232,7 +262,7 @@ La interpretación de los intervalos de confianza es una fuente habitual de erro
 **Lo que SÍ es**
 
 - Un rango de valores del parámetro compatibles con los datos al nivel de confianza elegido.
-- El resultado de un procedimiento que, repetido con muchas muestras, acierta el $(1-\alpha)\cdot 100\%$ de las veces.
+- El resultado de un proceso aleatorio que, repetido muchas veces, proporciona intervalos que contienen al parámetro que se quiere estimar un $(1-\alpha)\cdot 100\%$ de las veces.
 - Una medida de la precisión de la estimación: cuanto más estrecho, más precisa.
 - Una forma de valorar la relevancia clínica, comparando sus límites con el efecto mínimo de interés.
 
@@ -257,7 +287,7 @@ El parámetro es fijo; lo aleatorio son los límites del intervalo. Si repitiér
 ```{r}
 #| fig-width: 12
 #| fig-height: 4.5
-set.seed(12)
+set.seed(5)
 mu <- 12; n <- 25
 ics <- map_dfr(1:100, \(i) {
   x <- rnorm(n, mu, 3)
@@ -397,66 +427,36 @@ tibble(Método = c("Wald", "Wilson", "Exacto de Clopper-Pearson"),
 
 Los tres intervalos son muy parecidos porque $n\hat p = 38 \geq 5$. Con una confianza del 95%, la prevalencia del genotipo TT está entre el 11% y el 20%.
 
-## Principales intervalos de confianza
+### Intervalo para la diferencia de medias
 
-El razonamiento que hemos seguido para la media y la proporción se aplica a otros parámetros y a la comparación de dos poblaciones. En esta sección reunimos las fórmulas de los intervalos más habituales y las aplicamos a varios ejemplos de Nutrigenómica.
+Hasta ahora hemos construido intervalos para un parámetro de una sola población. En Nutrigenómica, sin embargo, es muy frecuente comparar dos grupos: dos genotipos, dos dietas o las mediciones antes y después de una intervención. El razonamiento es el mismo, pero ahora el parámetro de interés es una diferencia de medias o de proporciones, o un cociente de varianzas.
 
-### Intervalos de confianza para una población
+Para comparar las medias de dos poblaciones normales a partir de muestras independientes de tamaños $n_1$ y $n_2$, se usa la diferencia de medias muestrales $\bar X_1-\bar X_2$, que es normal con media $\mu_1-\mu_2$.
 
-La tabla siguiente resume los intervalos de confianza para los parámetros de una población, junto con las condiciones que deben cumplirse para poder aplicarlos.
-
-| Parámetro | Condiciones | Intervalo |
-|:---|:---|:---:|
-| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ |
-| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{\hat s}{\sqrt{n}}$ |
-| Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ |
-| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)\hat s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)\hat s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
-
-:::{.callout-note}
-$\chi^2_{n-1,\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $\chi^2(n-1)$. El intervalo para la desviación típica se obtiene tomando raíces cuadradas.
+:::{#thm-ic-diferencia-medias}
+## Intervalo de confianza para la diferencia de medias
+- Varianzas desconocidas pero iguales:
+$$
+\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}, \qquad \hat s_p^2 = \frac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}.
+$$
+- Varianzas desconocidas y distintas (Welch):
+$$
+\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\frac{\hat s_1^2}{n_1}+\frac{\hat s_2^2}{n_2}}, \quad g \mbox{ grados de libertad de Welch-Satterthwaite.}
+$$
 :::
 
-#### Intervalo para la varianza
-
-El intervalo para la varianza es el único de la tabla que no es simétrico respecto a la estimación, porque la distribución chi-cuadrado no es simétrica. Es útil, por ejemplo, para valorar la precisión de un método de medida.
-
-```{r}
-#| include: false
-n <- length(hba1c)
-ic_var <- (n - 1) * var(hba1c) / qchisq(c(0.975, 0.025), df = n - 1)
-```
-
-:::{#exm-ic-varianza}
-Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una cuasidesviación típica $\hat s = `r fmt(sd(hba1c), 3)`$ %. Calcular el intervalo de confianza del 95% para la desviación típica.
-:::
-
+Si las muestras son **pareadas** (mismos individuos antes y después), se calcula el intervalo para la media de las diferencias $d_i$:
 $$
-\left[\frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.975, 14), 2)`},\ \frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.025, 14), 2)`}\right] = `r ic_texto(ic_var, 4)`
+\bar d \pm t^{n-1}_{\alpha/2}\frac{\hat s_d}{\sqrt{n}}.
 $$
-
-Tomando raíces cuadradas, con una confianza del 95% la desviación típica del método está entre `r fmt(sqrt(ic_var[1]), 3)` y `r fmt(sqrt(ic_var[2]), 3)` %.
-
-### Intervalos de confianza para dos poblaciones
-
-En Nutrigenómica es muy frecuente comparar dos grupos: dos genotipos, dos dietas o las mediciones antes y después de una intervención. En estos casos el parámetro de interés es una diferencia de medias o de proporciones, o un cociente de varianzas.
-
-| Parámetro | Condiciones | Intervalo |
-|:---|:---|:---:|
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ |
-| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{\hat s_1^2}{n_1}+\dfrac{\hat s_2^2}{n_2}}$ |
-| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{\hat s_d}{\sqrt{n}}$ |
-| $p_1-p_2$ | Muestras independientes grandes | $\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}$ |
-| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ |
-
-Donde $\hat s_p^2 = \dfrac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}$ es la varianza ponderada y $g$ son los grados de libertad de Welch-Satterthwaite.
 
 :::{.callout-tip}
-Si el intervalo para $\mu_1-\mu_2$ o $p_1-p_2$ no contiene el 0, o el intervalo para $\sigma_1^2/\sigma_2^2$ no contiene el 1, hay evidencia de diferencias entre las poblaciones.
+Si el intervalo no contiene el 0, hay evidencia de que las medias son distintas.
 :::
 
 #### Diferencia de medias en muestras independientes
 
-Empezamos comparando las medias de dos grupos formados por individuos distintos, en este caso los dos genotipos homocigotos de _FTO_.
+Apliquemos estos intervalos a la comparación de dos grupos formados por individuos distintos, en este caso los dos genotipos homocigotos de _FTO_.
 
 :::{#exm-ic-diferencia-medias}
 Se sigue durante 6 meses a participantes con dieta hipocalórica y se mide la pérdida de peso (%) según el genotipo de _FTO_ rs9939609. Calcular el intervalo de confianza del 95% para la diferencia de medias.
@@ -498,9 +498,27 @@ $$
 
 Con una confianza del 95%, el omega-3 reduce los triglicéridos entre `r round(-ic_pareado[2])` y `r round(-ic_pareado[1])` mg/dl de media.
 
+### Intervalo para la diferencia de proporciones
+
+Para variables cualitativas, la comparación de dos grupos se hace a través de la diferencia de sus proporciones.
+
+Si $\hat p_1$ y $\hat p_2$ son las proporciones muestrales de dos muestras independientes, por el teorema central del límite su diferencia es aproximadamente normal con media $p_1-p_2$.
+
+:::{#thm-ic-diferencia-proporciones}
+## Intervalo de confianza para la diferencia de proporciones
+Si $n_i\hat p_i\geq 5$ y $n_i(1-\hat p_i)\geq 5$ en las dos muestras,
+$$
+\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_2(1-\hat p_2)}{n_2}}.
+$$
+:::
+
+:::{.callout-tip}
+Si el intervalo no contiene el 0, hay evidencia de que las proporciones son distintas.
+:::
+
 #### Diferencia de proporciones
 
-Para comparar dos proporciones, por ejemplo la proporción de respondedores a una suplementación en dos genotipos, se construye un intervalo para su diferencia.
+Veamos un ejemplo en el que comparamos la proporción de respondedores a una suplementación en dos genotipos.
 
 ```{r}
 #| include: false
@@ -521,9 +539,30 @@ $$
 
 El intervalo no contiene el 0: la suplementación normaliza la homocisteína en más portadores CC/CT que TT, con una diferencia de entre `r round(100 * ic_prop[1])` y `r round(100 * ic_prop[2])` puntos porcentuales.
 
+### Intervalo para el cociente de varianzas
+
+Por último, a veces interesa comparar la variabilidad de dos grupos y no sus medias. Como la varianza es una medida de escala, en lugar de la diferencia se estudia el cociente de las varianzas.
+
+Si las dos poblaciones son normales y las muestras independientes,
+$$
+F = \frac{\hat S_1^2/\sigma_1^2}{\hat S_2^2/\sigma_2^2} \sim F(n_1-1, n_2-1).
+$$
+
+:::{#thm-ic-cociente-varianzas}
+## Intervalo de confianza para el cociente de varianzas
+$$
+\left[\frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}},\ \frac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right],
+$$
+donde $f^{n_1-1,n_2-1}_{\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $F(n_1-1, n_2-1)$.
+:::
+
+:::{.callout-tip}
+Si el intervalo no contiene el 1, hay evidencia de que las varianzas son distintas. Es muy sensible a la falta de normalidad.
+:::
+
 #### Cociente de varianzas
 
-Por último, a veces interesa comparar la variabilidad de dos grupos y no sus medias. En ese caso se construye un intervalo para el cociente de las varianzas, basado en la distribución F.
+Como ejemplo, comparamos la variabilidad de la respuesta glucémica entre dos genotipos de _TCF7L2_.
 
 ```{r}
 #| include: false
@@ -543,6 +582,63 @@ $$
 $$
 
 El intervalo para el cociente de varianzas no contiene el 1: la respuesta glucémica es más variable en los portadores TT.
+
+## Principales intervalos de confianza
+
+En esta sección reunimos en dos tablas las fórmulas de los intervalos de confianza más habituales, para una y para dos poblaciones, junto con las condiciones que deben cumplirse para aplicarlos.
+
+### Intervalos de confianza para una población
+
+La tabla siguiente resume los intervalos de confianza para los parámetros de una población, junto con las condiciones que deben cumplirse para poder aplicarlos.
+
+| Parámetro | Condiciones | Intervalo |
+|:---|:---|:---:|
+| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ conocida | $\bar x \pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$ |
+| Media $\mu$ | Normal o $n\geq 30$, $\sigma$ desconocida | $\bar x \pm t^{n-1}_{\alpha/2}\dfrac{\hat s}{\sqrt{n}}$ |
+| Proporción $p$ | $n\hat p\geq 5$, $n(1-\hat p)\geq 5$ | $\hat p \pm z_{\alpha/2}\sqrt{\dfrac{\hat p(1-\hat p)}{n}}$ |
+| Varianza $\sigma^2$ | Población normal | $\left[\dfrac{(n-1)\hat s^2}{\chi^2_{n-1,\alpha/2}}, \dfrac{(n-1)\hat s^2}{\chi^2_{n-1,1-\alpha/2}}\right]$ |
+
+:::{.callout-note}
+$\chi^2_{n-1,\alpha/2}$ es el valor que deja una probabilidad $\alpha/2$ a su derecha en la $\chi^2(n-1)$. El intervalo para la desviación típica se obtiene tomando raíces cuadradas.
+:::
+
+#### Intervalo para la varianza
+
+El intervalo para la varianza es el único de la tabla que no es simétrico respecto a la estimación, porque la distribución chi-cuadrado no es simétrica. Es útil, por ejemplo, para valorar la precisión de un método de medida.
+
+```{r}
+#| include: false
+n <- length(hba1c)
+ic_var <- (n - 1) * var(hba1c) / qchisq(c(0.975, 0.025), df = n - 1)
+```
+
+:::{#exm-ic-varianza}
+Para validar un nuevo protocolo de medida de la HbA1c capilar se mide a 15 pacientes, obteniendo una cuasidesviación típica $\hat s = `r fmt(sd(hba1c), 3)`$ %. Calcular el intervalo de confianza del 95% para la desviación típica.
+:::
+
+$$
+\left[\frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.975, 14), 2)`},\ \frac{14\cdot `r fmt(var(hba1c), 4)`}{`r fmt(qchisq(0.025, 14), 2)`}\right] = `r ic_texto(ic_var, 4)`
+$$
+
+Tomando raíces cuadradas, con una confianza del 95% la desviación típica del método está entre `r fmt(sqrt(ic_var[1]), 3)` y `r fmt(sqrt(ic_var[2]), 3)` %.
+
+### Intervalos de confianza para dos poblaciones
+
+La siguiente tabla resume los intervalos para comparar dos poblaciones que hemos visto en la sección anterior.
+
+| Parámetro | Condiciones | Intervalo |
+|:---|:---|:---:|
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2=\sigma_2^2$ | $\bar x_1-\bar x_2 \pm t^{n_1+n_2-2}_{\alpha/2}\, \hat s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$ |
+| $\mu_1-\mu_2$ | Muestras independientes, normales, $\sigma_1^2\neq\sigma_2^2$ (Welch) | $\bar x_1-\bar x_2 \pm t^{g}_{\alpha/2}\sqrt{\dfrac{\hat s_1^2}{n_1}+\dfrac{\hat s_2^2}{n_2}}$ |
+| $\mu_d = \mu_1-\mu_2$ | Muestras pareadas, diferencias normales | $\bar d \pm t^{n-1}_{\alpha/2}\dfrac{\hat s_d}{\sqrt{n}}$ |
+| $p_1-p_2$ | Muestras independientes grandes | $\hat p_1-\hat p_2 \pm z_{\alpha/2}\sqrt{\dfrac{\hat p_1(1-\hat p_1)}{n_1}+\dfrac{\hat p_2(1-\hat p_2)}{n_2}}$ |
+| $\sigma_1^2/\sigma_2^2$ | Muestras independientes, normales | $\left[\dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{\alpha/2}}, \dfrac{\hat s_1^2/\hat s_2^2}{f^{n_1-1,n_2-1}_{1-\alpha/2}}\right]$ |
+
+Donde $\hat s_p^2 = \dfrac{(n_1-1)\hat s_1^2+(n_2-1)\hat s_2^2}{n_1+n_2-2}$ es la varianza ponderada y $g$ son los grados de libertad de Welch-Satterthwaite.
+
+:::{.callout-tip}
+Si el intervalo para $\mu_1-\mu_2$ o $p_1-p_2$ no contiene el 0, o el intervalo para $\sigma_1^2/\sigma_2^2$ no contiene el 1, hay evidencia de diferencias entre las poblaciones.
+:::
 
 ## Ejercicio
 

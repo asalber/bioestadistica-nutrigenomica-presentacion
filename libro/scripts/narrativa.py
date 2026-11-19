@@ -79,6 +79,9 @@ La siguiente figura muestra cómo cambia la forma de estas tres distribuciones c
     },
     antes={},
     antes_bloque={
+        "exm-chi-cuadrado-hba1c": "La chi-cuadrado permite calcular probabilidades sobre la variabilidad de una muestra, como en el siguiente ejemplo con la HbA1c.",
+        "exm-t-homocisteina": "El siguiente ejemplo muestra que, con muestras pequeñas, usar la normal en lugar de la T subestima la probabilidad de valores extremos.",
+        "exm-f-glucemia": "Con la F podemos calcular cuánto puede diferir por azar la variabilidad de dos muestras aunque las poblaciones tengan la misma varianza.",
         "exm-normal-imc": "Veamos cómo utilizar la distribución normal para comparar el riesgo de obesidad entre dos genotipos de _FTO_.",
         "exm-normal-ldl": "El siguiente ejemplo ilustra una propiedad importante de la normal: un pequeño desplazamiento de la media produce un cambio grande en la proporción de individuos que superan un umbral clínico.",
         "exm-lognormal-trigliceridos": "En el siguiente ejemplo calculamos la proporción de personas con hipertrigliceridemia y comparamos la distribución en la escala original y en la escala logarítmica.",
@@ -117,7 +120,7 @@ Antes de construir intervalos de confianza necesitamos fijar algunos conceptos b
 Conocida la distribución de los estimadores, podemos dar un paso más. En lugar de ofrecer un único valor como estimación del parámetro, daremos un intervalo de valores que, con una confianza determinada, contiene al parámetro.
 """,
         "Principales intervalos de confianza": """
-El razonamiento que hemos seguido para la media y la proporción se aplica a otros parámetros y a la comparación de dos poblaciones. En esta sección reunimos las fórmulas de los intervalos más habituales y las aplicamos a varios ejemplos de Nutrigenómica.
+En esta sección reunimos en dos tablas las fórmulas de los intervalos de confianza más habituales, para una y para dos poblaciones, junto con las condiciones que deben cumplirse para aplicarlos.
 """,
     },
     diapositivas={
@@ -138,6 +141,18 @@ Muchas variables de interés en Nutrigenómica no son normales. Afortunadamente,
 """,
         "Distribución de la varianza muestral": """
 Para estimar la variabilidad de una población usamos la cuasivarianza muestral $\\hat S^2$, que divide entre $n-1$ en lugar de $n$ para que el estimador sea insesgado. Su distribución está relacionada con la chi-cuadrado que vimos en el capítulo anterior.
+""",
+        "Distribución de la media muestral con varianza desconocida": """
+Los resultados anteriores para la media suponen que conocemos la desviación típica de la población, algo que casi nunca ocurre. Combinando la distribución de la media y la de la cuasivarianza obtenemos la distribución que se usa en la práctica.
+""",
+        "Intervalo para la diferencia de medias": """
+Hasta ahora hemos construido intervalos para un parámetro de una sola población. En Nutrigenómica, sin embargo, es muy frecuente comparar dos grupos: dos genotipos, dos dietas o las mediciones antes y después de una intervención. El razonamiento es el mismo, pero ahora el parámetro de interés es una diferencia de medias o de proporciones, o un cociente de varianzas.
+""",
+        "Intervalo para la diferencia de proporciones": """
+Para variables cualitativas, la comparación de dos grupos se hace a través de la diferencia de sus proporciones.
+""",
+        "Intervalo para el cociente de varianzas": """
+Por último, a veces interesa comparar la variabilidad de dos grupos y no sus medias. Como la varianza es una medida de escala, en lugar de la diferencia se estudia el cociente de las varianzas.
 """,
         "Distribución de la proporción muestral": """
 Cuando la variable de interés es cualitativa, el parámetro es una proporción y el estimador natural es la proporción muestral. Su distribución se deduce de la binomial y, para muestras grandes, del teorema central del límite.
@@ -170,19 +185,19 @@ La tabla siguiente resume los intervalos de confianza para los parámetros de un
 El intervalo para la varianza es el único de la tabla que no es simétrico respecto a la estimación, porque la distribución chi-cuadrado no es simétrica. Es útil, por ejemplo, para valorar la precisión de un método de medida.
 """,
         "Intervalos de confianza para dos poblaciones": """
-En Nutrigenómica es muy frecuente comparar dos grupos: dos genotipos, dos dietas o las mediciones antes y después de una intervención. En estos casos el parámetro de interés es una diferencia de medias o de proporciones, o un cociente de varianzas.
+La siguiente tabla resume los intervalos para comparar dos poblaciones que hemos visto en la sección anterior.
 """,
         "Diferencia de medias en muestras independientes": """
-Empezamos comparando las medias de dos grupos formados por individuos distintos, en este caso los dos genotipos homocigotos de _FTO_.
+Apliquemos estos intervalos a la comparación de dos grupos formados por individuos distintos, en este caso los dos genotipos homocigotos de _FTO_.
 """,
         "Diferencia de medias en muestras pareadas": """
 Cuando medimos a los mismos individuos en dos momentos, las dos muestras no son independientes y hay que tenerlo en cuenta. El diseño pareado elimina la variabilidad entre individuos y suele dar intervalos mucho más precisos.
 """,
         "Diferencia de proporciones": """
-Para comparar dos proporciones, por ejemplo la proporción de respondedores a una suplementación en dos genotipos, se construye un intervalo para su diferencia.
+Veamos un ejemplo en el que comparamos la proporción de respondedores a una suplementación en dos genotipos.
 """,
         "Cociente de varianzas": """
-Por último, a veces interesa comparar la variabilidad de dos grupos y no sus medias. En ese caso se construye un intervalo para el cociente de las varianzas, basado en la distribución F.
+Como ejemplo, comparamos la variabilidad de la respuesta glucémica entre dos genotipos de _TCF7L2_.
 """,
     },
     antes={},
@@ -237,6 +252,12 @@ La lógica de los contrastes de hipótesis puede resultar poco intuitiva al prin
 """,
         "Tipos de contraste": """
 La forma de la hipótesis alternativa determina en qué dirección buscamos evidencia en contra de la hipótesis nula, y con ello la forma de la región de rechazo que veremos más adelante.
+""",
+        "Ejemplos de contrastes bilaterales y unilaterales": """
+La elección entre un contraste bilateral y uno unilateral depende de la pregunta de investigación. Veamos algunos ejemplos de cada tipo.
+""",
+        "El problema de los contrastes múltiples": """
+Antes de terminar, volvemos sobre el riesgo $\\alpha$ para tratar un problema que aparece constantemente en los estudios ómicos: qué ocurre cuando se realizan muchos contrastes a la vez.
 """,
         "Tipos de errores": """
 Como la decisión se toma a partir de una muestra, y no de toda la población, siempre existe la posibilidad de equivocarse. Hay dos maneras de hacerlo.
@@ -341,7 +362,7 @@ Si la variable es muy asimétrica y las muestras son pequeñas, el contraste T p
 El contraste de Kruskal-Wallis generaliza el de Mann-Whitney a más de dos grupos y es la alternativa no paramétrica al ANOVA.
 """,
         "Corrección por comparaciones múltiples": """
-Como vimos al estudiar la distribución uniforme de los p-valores, cuando se realizan muchos contrastes a la vez el número de falsos positivos se dispara. Las correcciones por comparaciones múltiples ajustan los p-valores para controlarlo.
+Las correcciones por comparaciones múltiples ajustan los p-valores para controlar los falsos positivos. Veamos cómo se aplican en un estudio de expresión génica.
 """,
     },
     antes={},
@@ -349,6 +370,8 @@ Como vimos al estudiar la distribución uniforme de los p-valores, cuando se rea
         "exm-hipotesis": "Por ejemplo, en el estudio de la pérdida de peso según el genotipo de _FTO_ las hipótesis serían:",
         "exm-errores": "Un ejemplo ayuda a entender las consecuencias prácticas de cada tipo de error.",
         "exm-hombres-estadistico": "Presentamos ahora el primero de los dos ejemplos que nos acompañarán durante todo el capítulo. Es deliberadamente sencillo, porque el estadístico sigue una distribución binomial y todas las probabilidades se pueden calcular a mano.",
+        "exm-dos-contrastes": "Empecemos por el caso más sencillo, con solo dos contrastes.",
+        "exm-gwas": "El problema se agrava enormemente en los estudios de genoma completo.",
         "exm-estadistico-contraste": "El segundo ejemplo es más realista y utiliza un estadístico con distribución T de Student, como la mayoría de los contrastes sobre medias.",
         "exm-hombres-regiones": "Volvamos al ejemplo de la proporción de hombres para ver cómo se construye la región de rechazo cuando el estadístico es discreto.",
         "exm-regiones-homocisteina": "En el ejemplo de la homocisteína el estadístico es continuo y la región de rechazo queda determinada por un único valor crítico.",
